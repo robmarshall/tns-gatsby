@@ -10,7 +10,6 @@ module.exports = `
                 }
             }
         }
-
         allWordpressPost {
             edges {
                 node {
@@ -24,7 +23,7 @@ module.exports = `
                     featured_media {
                         localFile {
                           childImageSharp {
-                            small: resolutions(width:300, height:300){
+                            resolutions(width:300, height:300){
                               src
                               width
                               height
