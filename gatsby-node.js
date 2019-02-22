@@ -37,8 +37,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     edges: posts,
                     createPage: createPage,
                     pageTemplate: "src/templates/posts.js",
-                    pageLength: 3,
-                    pathPrefix: "/"
+                    pageLength: 8,
+                    pathPrefix: "",
+                    buildPath: (index, pathPrefix) =>
+                        index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`, // This is optional and this is the default
                 })
 
                 posts.forEach(edge => {
