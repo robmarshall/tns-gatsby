@@ -1,25 +1,30 @@
 module.exports = `
     {
-        allWordpressPage {
+        allWordpressPage (
+            sort: { fields: [date], order: DESC }
+            filter: { status: { eq: "publish" } }
+        ){
             edges {
                 node {
                     id
                     slug
-                    status
                     template
                 }
             }
         }
-        allWordpressPost {
+        allWordpressPost (
+            sort: { fields: [date], order: DESC }
+            filter: { status: { eq: "publish" } }
+        ){
             edges {
                 node {
                     id
                     slug
-                    status
                     template
                     format
                     title
                     date
+                    excerpt
                     featured_media {
                         localFile {
                             childImageSharp {
@@ -33,22 +38,10 @@ module.exports = `
                             }
                         }
                     }
-                }
-            }
-            allWordpressCategory {
-                edges {
-                    node {
-                        id
-                        slug
+                    categories {
                         name
                     }
-                }
-            }
-            allWordpressTag {
-                edges {
-                    node {
-                        id
-                        slug
+                    tags {
                         name
                     }
                 }
