@@ -14,7 +14,6 @@ const IndexPage = ({ data, pathContext }) => {
 
     return (
         <Layout>
-            <h4>{pageCount} Pages</h4>
 
             {group.map(({ node }) => (
                 <div key={node.slug} className={"post"} style={{ marginBottom: 50 }}>
