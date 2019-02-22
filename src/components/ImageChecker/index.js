@@ -5,12 +5,15 @@ const ImageChecker = ({ featuredMedia }) => {
 
     const fluidImage = featuredMedia ? featuredMedia.localFile.childImageSharp.fluid : null
 
-    return (
-        fluidImage &&
-        <div>
-            <Img fluid={fluidImage}/>
-        </div>
-    );
+    if(fluidImage && fluidImage.src){
+        return (
+            <div>
+                <Img fluid={fluidImage}/>
+            </div>
+        );
+    } else {
+        return "";
+    }
 
 };
 
