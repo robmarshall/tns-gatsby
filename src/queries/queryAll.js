@@ -35,6 +35,24 @@ module.exports = `
                     }
                 }
             }
+            allWordpressCategory {
+                edges {
+                    node {
+                        id
+                        slug
+                        name
+                    }
+                }
+            }
+            allWordpressTag {
+                edges {
+                    node {
+                        id
+                        slug
+                        name
+                    }
+                }
+            }
         }
     }
 `
