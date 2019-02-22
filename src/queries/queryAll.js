@@ -22,13 +22,15 @@ module.exports = `
                     date
                     featured_media {
                         localFile {
-                          childImageSharp {
-                            resolutions(width:300, height:300){
-                              src
-                              width
-                              height
+                            childImageSharp {
+                                fluid(maxWidth: 1000) {
+                                    base64
+                                    aspectRatio
+                                    src
+                                    srcSet
+                                    sizes
+                                }
                             }
-                          }
                         }
                     }
                 }

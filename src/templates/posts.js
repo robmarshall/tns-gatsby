@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import NavLink from "../components/NavLink"
 import Layout from "../components/Layout"
+import ImageChecker from "../components/ImageChecker"
 
 const IndexPage = ({ data, pathContext }) => {
     const { group, index, first, last, pageCount } = pathContext;
@@ -14,7 +15,10 @@ const IndexPage = ({ data, pathContext }) => {
 
             {group.map(({ node }) => (
                 <div key={node.slug} className={"post"} style={{ marginBottom: 50 }}>
-                    <Link to={'post/' + node.slug}>
+
+                    <ImageChecker featuredMedia={node.featured_media}/>
+
+                    <Link to={node.slug}>
                         <h3>{node.title}</h3>
                     </Link>
 
@@ -32,4 +36,5 @@ const IndexPage = ({ data, pathContext }) => {
         </Layout>
     );
 };
+
 export default IndexPage;
