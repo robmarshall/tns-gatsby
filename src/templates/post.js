@@ -50,6 +50,8 @@ export const postQuery = graphql`
                         }
                     }
                 }
+                title
+                alt_text
             }
         }
         site {
