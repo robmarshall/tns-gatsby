@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import { StaticQuery, graphql } from "gatsby"
 import Layout from "../components/Layout"
 
 class PageTemplate extends Component {
