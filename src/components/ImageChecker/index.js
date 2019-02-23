@@ -1,14 +1,20 @@
 import Img from "gatsby-image";
 import React from "react"
 
-const ImageChecker = ({ featuredMedia }) => {
+const ImageChecker = props => {
 
-    const fluidImage = featuredMedia ? featuredMedia.localFile.childImageSharp.fluid : null
+    console.log(props);
+
+    const fluidImage = props.featuredMedia ? props.featuredMedia.localFile.childImageSharp.fluid : null
 
     if(fluidImage && fluidImage.src){
+
+        const altTag = props.featuredMedia.alt_text ? props.featuredMedia.alt_text : null;
+        const title = props.featuredMedia.title ? props.featuredMedia.title : null;
+
         return (
             <div>
-                <Img fluid={fluidImage}/>
+                <Img fluid={fluidImage} title={title} alt={altTag}/>
             </div>
         );
     } else {
