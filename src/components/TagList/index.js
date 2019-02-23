@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 
 const TagList = ({ tags }) => {
 
-    if( tags.length > 0 ){
+    if( tags && tags.length > 0 ){
 
         const allTags = tags.map((tag) => (
             <li key={tag.slug} className="tag">
