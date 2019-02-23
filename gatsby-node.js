@@ -16,6 +16,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         const postTemplate = path.resolve("./src/templates/post.js");
         const postsTemplate = path.resolve("./src/templates/posts.js");
         const tagTemplate = path.resolve('./src/templates/tags.js');
+        const categoryTemplate = path.resolve('./src/templates/categories.js');
 
         resolve(
             graphql(queryAll).then(result => {
@@ -110,12 +111,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
                 });
 
-                // Create paginated tag pages
+                // Create paginated tag/cat pages
                 const tagList = Array.from(tagSet)
                 const categoryList = Array.from(categorySet)
 
                 tagList.forEach(tag => {
-
                     createPaginatedPages({
                         edges: tagMap.get(tag),
                         createPage: createPage,
@@ -128,7 +128,21 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                             tag: tag
                         },
                     })
+                });
 
+                categoryList.forEach(category => {
+                    createPaginatedPages({
+                        edges: categoryMap.get(category),
+                        createPage: createPage,
+                        pageTemplate: categoryTemplate,
+                        pageLength: 8,
+                        pathPrefix: "category",
+                        buildPath: (index, pathPrefix) =>
+                            index > 1 ? `${pathPrefix}/${_.kebabCase(category)}/page/${index}` : `/${pathPrefix}/${_.kebabCase(category)}`,
+                        context: {
+                            tag: category
+                        },
+                    })
                 });
 
 
