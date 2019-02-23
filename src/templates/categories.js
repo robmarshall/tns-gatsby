@@ -18,7 +18,7 @@ const IndexPage = ({ data, pageContext }) => {
     return (
         <Layout>
 
-            <h1>Category {currentCat}</h1>
+            <h1>Category: {currentCat}</h1>
 
             {group.map(({ node }) => (
                 <div key={node.slug} className={"post"} style={{ marginBottom: 50 }}>
