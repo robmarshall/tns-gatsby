@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 
 const CategoryList = ({ cats }) => {
 
-    if( cats.length > 0 ){
+    if( cats && cats.length > 0 ){
 
         const allCats = cats.map((cat) => (
             <li key={cat.slug} className="cat">
