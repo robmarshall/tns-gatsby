@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import _ from "lodash";
 
 const CategoryList = ({ cats }) => {
 
@@ -7,7 +8,7 @@ const CategoryList = ({ cats }) => {
 
         const allCats = cats.map((cat) => (
             <li key={cat.slug} className="cat">
-                {cat.name}
+                <Link to={`category/${_.kebabCase(cat.name)}`}>{cat.name}</Link>
             </li>
         ));
 

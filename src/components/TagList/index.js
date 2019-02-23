@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import _ from "lodash";
 
 const TagList = ({ tags }) => {
 
@@ -7,7 +8,7 @@ const TagList = ({ tags }) => {
 
         const allTags = tags.map((tag) => (
             <li key={tag.slug} className="tag">
-                {tag.name}
+                <Link to={`tag/${_.kebabCase(tag.name)}`}>{tag.name}</Link>
             </li>
         ));
 
