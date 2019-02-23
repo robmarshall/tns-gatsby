@@ -37,6 +37,8 @@ module.exports = `
                                 }
                             }
                         }
+                        title
+                        alt_text
                     }
                     categories {
                         name
