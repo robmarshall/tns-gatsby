@@ -39,7 +39,7 @@ const IndexPage = ({ data, pageContext }) => {
                 pageCount = {pageCount}
                 first = {first}
                 last = {last}
-                previousUrl = {`${pathPrefix}/${_.kebabCase(currentCat)}/${previousUrl}`}
+                prevUrl = {`${pathPrefix}/${_.kebabCase(currentCat)}/${previousUrl}`}
                 nextUrl = {`${pathPrefix}/${_.kebabCase(currentCat)}/page/${nextUrl}`}
                 prevText = "Go to Previous Page"
                 nextText = "Go to Next Page"

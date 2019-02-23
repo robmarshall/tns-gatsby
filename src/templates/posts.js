@@ -34,12 +34,12 @@ const IndexPage = ({ data, pageContext }) => {
                 pageCount = {pageCount}
                 first = {first}
                 last = {last}
-                previousUrl = {previousUrl}
+                prevUrl = {previousUrl}
                 nextUrl = {"page/" + nextUrl}
                 prevText = "Go to Previous Page"
                 nextText = "Go to Next Page"
             />
-            
+
         </Layout>
     );
 };
