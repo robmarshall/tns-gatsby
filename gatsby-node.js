@@ -140,7 +140,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                         buildPath: (index, pathPrefix) =>
                             index > 1 ? `${pathPrefix}/${_.kebabCase(category)}/page/${index}` : `/${pathPrefix}/${_.kebabCase(category)}`,
                         context: {
-                            tag: category
+                            category: category
                         },
                     })
                 });
