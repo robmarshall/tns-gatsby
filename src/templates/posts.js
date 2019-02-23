@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "gatsby";
-import NavLink from "../components/NavLink"
+import ArchivePaginationLinks from "../components/ArchivePaginationLinks"
 import Layout from "../components/Layout"
 import ImageChecker from "../components/ImageChecker"
 
-const IndexPage = ({ data, pathContext }) => {
-    const { group, index, first, last, pageCount } = pathContext;
+const IndexPage = ({ data, pageContext }) => {
+    const { pageCount, group, index, first, last } = pageContext;
     const previousUrl = index - 1 === 1 ? "" :
         index - 1 > 1 ?
         "page/" + (index - 1).toString() :
@@ -29,12 +29,17 @@ const IndexPage = ({ data, pathContext }) => {
                     {node.date}
                 </div>
             ))}
-            <div className="previousLink">
-                <NavLink test={first} url={previousUrl} text="Go to Previous Page" />
-            </div>
-            <div className="nextLink">
-                <NavLink test={last} url={"page/" + nextUrl} text="Go to Next Page" />
-            </div>
+
+            <ArchivePaginationLinks
+                pageCount = {pageCount}
+                first = {first}
+                last = {last}
+                previousUrl = {previousUrl}
+                nextUrl = {"page/" + nextUrl}
+                prevText = "Go to Previous Page"
+                nextText = "Go to Next Page"
+            />
+            
         </Layout>
     );
 };
