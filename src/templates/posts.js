@@ -16,6 +16,7 @@ const IndexPage = ({ data, pageContext }) => {
         <Layout>
 
             {group.map(({ node }) => (
+
                 <div key={node.slug} className={"post"} style={{ marginBottom: 50 }}>
 
                     <ImageChecker featuredMedia={node.featured_media}/>

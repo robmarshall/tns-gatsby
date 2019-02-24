@@ -3,8 +3,6 @@ import React from "react"
 
 const ImageChecker = props => {
 
-    console.log(props);
-
     const fluidImage = props.featuredMedia ? props.featuredMedia.localFile.childImageSharp.fluid : null
 
     if(fluidImage && fluidImage.src){
