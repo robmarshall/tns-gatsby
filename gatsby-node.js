@@ -31,6 +31,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                         component: slash(pageTemplate),
                         context: {
                             id: edge.node.id,
+                            slug: edge.node.slug,
+                            yoast: edge.node.yoast_meta
                         },
                     })
                 })
@@ -70,7 +72,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                         component: slash(postTemplate),
                         context: {
                             id: edge.node.id,
-                            slug: edge.node.slug
+                            slug: edge.node.slug,
+                            yoast: edge.node.yoast_meta
                         },
                     });
 

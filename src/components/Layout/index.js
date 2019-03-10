@@ -8,6 +8,7 @@ import MainMenu from '../MainMenu'
 
 const Layout = ({children}) => (
   <div>
+
     <Helmet
       title="Gatsby Default Starter"
       meta={[
@@ -15,7 +16,9 @@ const Layout = ({children}) => (
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
+
     <Header siteTitle="Gatsby"/>
+    
     <div
       style={{
         margin: '0 auto',
