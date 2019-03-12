@@ -1,24 +1,18 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 
 import Header from '../Header'
-import './index.css'
-
+import SEO from "../SEO/SEO"
 import MainMenu from '../MainMenu'
+
+import './index.css'
 
 const Layout = ({children}) => (
   <div>
 
-    <Helmet
-      title="Gatsby Default Starter"
-      meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
-      ]}
-    />
+    <SEO />
 
     <Header siteTitle="Gatsby"/>
-    
+
     <div
       style={{
         margin: '0 auto',

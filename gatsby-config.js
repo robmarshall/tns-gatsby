@@ -1,9 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Thoughts and Stuff`,
-    description: `Fetch data from WP`,
-    subtitle: `Fetch data from WP`,
+    siteName: `T&S`,
+    title: `Website Design and Development Inspiration`,
+    description: `Website Design and Development Inspiration`,
     author: `@RobMarProd`,
+    url: `tns.com`,
+    facebookAppID: `xxx`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import Layout from "../components/Layout"
-import Seo from "../components/Seo"
+import Seo from "../components/SEO/SEO"
 import ImageChecker from "../components/ImageChecker"
 import CategoryList from "../components/CategoryList";
 import TagList from "../components/TagList";
@@ -11,7 +11,11 @@ class PostTemplate extends Component {
 
         return (
             <Layout>
-                <Seo yoast={post.yoast_meta} />
+                <Seo
+                    title = {post.title}
+                    description = { (post.yoast_meta.yoast_wpseo_metadesc || post.excerpt) }
+                    article = {true}
+                />
                 <p dangerouslySetInnerHTML={{ __html: post.date }} />
                 <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
                 <ImageChecker featuredMedia={post.featured_media}/>
@@ -30,6 +34,7 @@ export const postQuery = graphql`
         wordpressPost(id: { eq: $id }) {
             title
             content
+            excerpt
             slug
             date(formatString: "DD, MM YYYY")
             tags {
@@ -52,6 +57,18 @@ export const postQuery = graphql`
                         }
                     }
                 }
+                
+                localFile {
+
+                    fixed(width: 1024, height: 512) {
+                        src
+                    }
+                    fixed(width: 1200, height: 630) {
+                        src
+                    }
+
+                }
+
                 title
                 alt_text
             }
@@ -77,7 +94,6 @@ export const postQuery = graphql`
         site {
             siteMetadata {
                 title
-                subtitle
             }
         }
     }
