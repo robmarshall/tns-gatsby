@@ -18,8 +18,8 @@ class PostTemplate extends Component {
                     description = { (post.yoast_meta.yoast_wpseo_metadesc || post.excerpt) }
                     article = {true}
                     image = { ( images.facebook.src || '' ) }
-                    facebookImage = { ( images.facebook.src || '' ) }
-                    twitterImage = { ( images.twitter.src || '' ) }
+                    facebookImage = { ( images.facebook || '' ) }
+                    twitterImage = { ( images.twitter || '' ) }
                 />
                 <p dangerouslySetInnerHTML={{ __html: post.date }} />
                 <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
@@ -62,6 +62,8 @@ export const postQuery = graphql`
                         }
                         facebook: fixed(width: 1024, height: 512) {
                             src
+                            width
+                            height
                         }
                         twitter: fixed(width: 1200, height: 630) {
                             src

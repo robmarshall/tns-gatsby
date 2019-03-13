@@ -9,6 +9,7 @@ const SEO = ({
     title = null,
     description = null,
     image = null,
+    imageAlt = null,
     facebookImage = null,
     twitterImage = null,
     pathname = null,
@@ -48,6 +49,7 @@ const SEO = ({
         title: ( title || defaultTitle ) ? ( title || defaultTitle ) + ' | ' + siteName : siteName,
         description: description || defaultDescription,
         image: image || '',
+        imageAlt: imageAlt || title || '',
         facebookImage: facebookImage || '',
         twitterImage: twitterImage || '',
         url: `${siteUrl}${pathname || '/'}`,
@@ -74,6 +76,7 @@ const SEO = ({
             title={seo.title}
             description={seo.description}
             image={seo.facebookImage}
+            imageAlt={seo.imageAlt}
             appID={facebookAppID}
           />
           <Twitter
@@ -93,7 +96,8 @@ SEO.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     image: PropTypes.string,
-    facebookImage: PropTypes.string,
+    imageAlt: PropTypes.string,
+    facebookImage: PropTypes.object,
     twitterImage: PropTypes.string,
     pathname: PropTypes.string,
     article: PropTypes.bool,
