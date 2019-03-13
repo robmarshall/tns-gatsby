@@ -13,6 +13,7 @@ class PostTemplate extends Component {
 
         return (
             <Layout>
+
                 <Seo
                     title = {post.title}
                     description = { (post.yoast_meta.yoast_wpseo_metadesc || post.excerpt) }
@@ -25,6 +26,7 @@ class PostTemplate extends Component {
                     modifiedTime = { post.modified }
                     tags={post.tags}
                 />
+
                 <p dangerouslySetInnerHTML={{ __html: post.date }} />
                 <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
                 <ImageChecker featuredMedia={post.featured_media}/>
