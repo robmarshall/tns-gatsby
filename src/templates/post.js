@@ -9,12 +9,17 @@ class PostTemplate extends Component {
     render() {
         const post = this.props.data.wordpressPost;
 
+        const images = post.featured_media.localFile.childImageSharp;
+
         return (
             <Layout>
                 <Seo
                     title = {post.title}
                     description = { (post.yoast_meta.yoast_wpseo_metadesc || post.excerpt) }
                     article = {true}
+                    image = { ( images.facebook.src || '' ) }
+                    facebookImage = { ( images.facebook.src || '' ) }
+                    twitterImage = { ( images.twitter.src || '' ) }
                 />
                 <p dangerouslySetInnerHTML={{ __html: post.date }} />
                 <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
@@ -55,20 +60,14 @@ export const postQuery = graphql`
                             srcSet
                             sizes
                         }
+                        facebook: fixed(width: 1024, height: 512) {
+                            src
+                        }
+                        twitter: fixed(width: 1200, height: 630) {
+                            src
+                        }
                     }
                 }
-                
-                localFile {
-
-                    fixed(width: 1024, height: 512) {
-                        src
-                    }
-                    fixed(width: 1200, height: 630) {
-                        src
-                    }
-
-                }
-
                 title
                 alt_text
             }
