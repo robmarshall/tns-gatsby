@@ -11,6 +11,7 @@ export default ({
     image = null,
     imageAlt = null,
     appID = null,
+    updatedTime = null,
 }) => (
   <Helmet>
     {locale && <meta property="og:locale" content={locale} />}
@@ -24,8 +25,6 @@ export default ({
     {image.height && <meta property="og:image:height" content={image.height} />}
     {imageAlt && <meta property="og:image:alt" content={imageAlt} />}
     {appID && <meta property="fb:app_id" content={appID} />}
-
-    // ADD IMAGE ALT
-    // ADD UPDATED TIME/DATE
+    {(updatedTime && type) && <meta property="og:updated_time" content={updatedTime} />}
   </Helmet>
 );
