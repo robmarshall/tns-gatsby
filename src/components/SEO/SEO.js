@@ -61,6 +61,10 @@ const SEO = ({
           <Helmet title={seo.title}>
             <meta name="description" content={seo.description} />
             <meta name="image" content={seo.image} />
+            // ADD PUBLISHED
+            // ADD MODIFED
+            // ADD TAGS
+            // ADD CALONICAL from yoast
           </Helmet>
           <Facebook
             locale={seo.locale}

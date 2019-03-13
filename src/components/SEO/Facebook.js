@@ -20,5 +20,8 @@ export default ({
     {description && <meta property="og:description" content={description} />}
     {image && <meta property="og:image" content={image} />}
     {appID && <meta property="fb:app_id" content={appID} />}
+    // ADD IMAGE SIZES
+    // ADD IMAGE ALT
+    // ADD UPDATED TIME/DATE
   </Helmet>
 );
