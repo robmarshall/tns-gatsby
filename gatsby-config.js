@@ -1,5 +1,6 @@
 module.exports = {
   siteMetadata: {
+    locale: `en_GB`,
     siteName: `T&S`,
     title: `Website Design and Development Inspiration`,
     description: `Website Design and Development Inspiration`,
