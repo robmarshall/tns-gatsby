@@ -91,7 +91,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     if(post.node.tags){
 
                         post.node.tags.forEach(tag => {
-                            tagSet.add(tag.name)
+                            tagSet.add(tag)
                             const array = tagMap.has(tag.name) ? tagMap.get(tag.name) : []
                             array.push(post)
                             tagMap.set(tag.name, array)
@@ -102,7 +102,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     if(post.node.categories){
 
                         post.node.categories.forEach(category => {
-                            categorySet.add(category.name)
+                            categorySet.add(category)
                             const array = categoryMap.has(category.name)
                             ? categoryMap.get(category.name)
                             : []
@@ -120,15 +120,16 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
                 tagList.forEach(tag => {
                     createPaginatedPages({
-                        edges: tagMap.get(tag),
+                        edges: tagMap.get(tag.name),
                         createPage: createPage,
                         pageTemplate: tagTemplate,
                         pageLength: 8,
                         pathPrefix: "tag",
                         buildPath: (index, pathPrefix) =>
-                            index > 1 ? `${pathPrefix}/${_.kebabCase(tag)}/page/${index}` : `/${pathPrefix}/${_.kebabCase(tag)}`,
+                            index > 1 ? `${pathPrefix}/${_.kebabCase(tag.name)}/page/${index}` : `/${pathPrefix}/${_.kebabCase(tag.name)}`,
                         context: {
-                            tag: tag
+                            tagName: tag.name,
+                            tagDescription: tag.description,
                         },
                     })
                 });
@@ -143,7 +144,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                         buildPath: (index, pathPrefix) =>
                             index > 1 ? `${pathPrefix}/${_.kebabCase(category)}/page/${index}` : `/${pathPrefix}/${_.kebabCase(category)}`,
                         context: {
-                            category: category
+                            catName: category.name,
+                            catDescription: category.description,
                         },
                     })
                 });

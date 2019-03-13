@@ -4,6 +4,7 @@ import { Link } from "gatsby";
 import ArchivePaginationLinks from "../components/ArchivePaginationLinks"
 import Layout from "../components/Layout"
 import ImageChecker from "../components/ImageChecker"
+import SEO from "../components/SEO/SEO"
 
 const IndexPage = ({ data, pageContext }) => {
     const { group, index, first, last, pageCount, additionalContext, pathPrefix } = pageContext;
@@ -13,12 +14,18 @@ const IndexPage = ({ data, pageContext }) => {
         (index - 1).toString();
     const nextUrl = (index + 1).toString();
 
-    const currentTag = additionalContext.tag;
+    const tagName = additionalContext.tagName;
+    const tagDesc = additionalContext.tagDescription || tagName + ' tag archive page';
 
     return (
         <Layout>
 
-            <h1>Tag: {currentTag}</h1>
+            <SEO
+                title = {tagName}
+                description = {tagDesc}
+            />
+
+            <h1>Tag: {tagName}</h1>
 
             {group.map(({ node }) => (
                 <div key={node.slug} className={"post"} style={{ marginBottom: 50 }}>
@@ -39,8 +46,8 @@ const IndexPage = ({ data, pageContext }) => {
                 pageCount = {pageCount}
                 first = {first}
                 last = {last}
-                prevUrl = {`${pathPrefix}/${_.kebabCase(currentTag)}/${previousUrl}`}
-                nextUrl = {`${pathPrefix}/${_.kebabCase(currentTag)}/page/${nextUrl}`}
+                prevUrl = {`${pathPrefix}/${_.kebabCase(tagName)}/${previousUrl}`}
+                nextUrl = {`${pathPrefix}/${_.kebabCase(tagName)}/page/${nextUrl}`}
                 prevText = "Go to Previous Page"
                 nextText = "Go to Next Page"
             />

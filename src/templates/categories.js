@@ -4,6 +4,7 @@ import { Link } from "gatsby";
 import ArchivePaginationLinks from "../components/ArchivePaginationLinks"
 import Layout from "../components/Layout"
 import ImageChecker from "../components/ImageChecker"
+import SEO from "../components/SEO/SEO"
 
 const IndexPage = ({ data, pageContext }) => {
     const { group, index, first, last, pageCount, additionalContext, pathPrefix } = pageContext;
@@ -13,12 +14,18 @@ const IndexPage = ({ data, pageContext }) => {
         (index - 1).toString();
     const nextUrl = (index + 1).toString();
 
-    const currentCat = additionalContext.category;
+    const catName = additionalContext.catName;
+    const catDesc = additionalContext.catDescription || catName + ' category archive page';
 
     return (
         <Layout>
 
-            <h1>Category: {currentCat}</h1>
+            <SEO
+                title = {catName}
+                description = {catDesc}
+            />
+
+            <h1>Category: {catName}</h1>
 
             {group.map(({ node }) => (
                 <div key={node.slug} className={"post"} style={{ marginBottom: 50 }}>
@@ -39,8 +46,8 @@ const IndexPage = ({ data, pageContext }) => {
                 pageCount = {pageCount}
                 first = {first}
                 last = {last}
-                prevUrl = {`${pathPrefix}/${_.kebabCase(currentCat)}/${previousUrl}`}
-                nextUrl = {`${pathPrefix}/${_.kebabCase(currentCat)}/page/${nextUrl}`}
+                prevUrl = {`${pathPrefix}/${_.kebabCase(catName)}/${previousUrl}`}
+                nextUrl = {`${pathPrefix}/${_.kebabCase(catName)}/page/${nextUrl}`}
                 prevText = "Go to Previous Page"
                 nextText = "Go to Next Page"
             />

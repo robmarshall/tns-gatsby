@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { StaticQuery } from 'gatsby';
 import Twitter from './Twitter';
 import Facebook from './Facebook';
+import _ from "lodash";
 
 const SEO = ({
     title = null,
@@ -57,7 +58,7 @@ const SEO = ({
         url: `${siteUrl}${pathname || '/'}`,
       };
 
-      seo.description = seo.description.replace(/<(?:.|\n)*?>/gm, '');
+      seo.description = cleanupDescription(seo.description);
 
       return (
         <>
@@ -108,5 +109,11 @@ SEO.propTypes = {
     modifiedTime: PropTypes.string,
     tags: PropTypes.array
 };
+
+function cleanupDescription(description){
+    let clean = description.replace(/<(?:.|\n)*?>/gm, '');
+    clean = _.unescape(clean);
+    return clean;
+}
 
 export default SEO;
