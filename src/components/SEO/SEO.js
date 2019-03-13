@@ -9,6 +9,8 @@ const SEO = ({
     title = null,
     description = null,
     image = null,
+    facebookImage = null,
+    twitterImage = null,
     pathname = null,
     article = false,
 }) => (
@@ -42,7 +44,9 @@ const SEO = ({
       const seo = {
         title: ( title || defaultTitle ) ? ( title || defaultTitle ) + ' | ' + siteName : siteName,
         description: description || defaultDescription,
-        image: `${siteUrl}${image || ''}`,
+        image: image || '',
+        facebookImage: facebookImage || '',
+        twitterImage: twitterImage || '',
         url: `${siteUrl}${pathname || '/'}`,
       };
 
@@ -61,14 +65,14 @@ const SEO = ({
             type={article ? 'article' : null}
             title={seo.title}
             description={seo.description}
-            image={seo.image}
+            image={seo.facebookImage}
             appID={facebookAppID}
           />
           <Twitter
             username={twitterUsername}
             title={seo.title}
             description={seo.description}
-            image={seo.image}
+            image={seo.twitterImage}
           />
         </>
       );
