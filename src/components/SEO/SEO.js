@@ -69,7 +69,7 @@ const SEO = ({
             {(publishedTime && article) && <meta property="article:published_time" content={publishedTime} />}
             {(modifiedTime && article) && <meta property="article:modified_time" content={modifiedTime} />}
 
-            {(tags && tags.length > 0) && tags.map(tag => <meta property="article:tag" content={tag.name} />)}
+            {(tags && tags.length > 0) && tags.map(tag => <meta key={tag.slug} property="article:tag" content={tag.name} />)}
 
 
             // ADD TAGS
@@ -91,7 +91,7 @@ const SEO = ({
             username={twitterUsername}
             title={seo.title}
             description={seo.description}
-            image={seo.twitterImage.src}
+            image={seo.twitterImage}
           />
         </>
       );
