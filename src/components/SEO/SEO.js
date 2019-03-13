@@ -14,6 +14,9 @@ const SEO = ({
     twitterImage = null,
     pathname = null,
     article = false,
+    publishedTime = null,
+    modifiedTime = null,
+    tags = null,
 }) => (
   <StaticQuery
     query={graphql`
@@ -48,7 +51,6 @@ const SEO = ({
         locale: ( locale || 'en_GB' ),
         title: ( title || defaultTitle ) ? ( title || defaultTitle ) + ' | ' + siteName : siteName,
         description: description || defaultDescription,
-        image: image || '',
         imageAlt: imageAlt || title || '',
         facebookImage: facebookImage || '',
         twitterImage: twitterImage || '',
@@ -61,12 +63,17 @@ const SEO = ({
       return (
         <>
           <Helmet title={seo.title}>
-            <meta name="description" content={seo.description} />
-            <meta name="image" content={seo.image} />
-            // ADD PUBLISHED
-            // ADD MODIFED
+            {seo.description && <meta property="description" content={seo.description} />}
+            {image && <meta property="image" content={image} />}
+
+            {(publishedTime && article) && <meta property="article:published_time" content={publishedTime} />}
+            {(modifiedTime && article) && <meta property="article:modified_time" content={modifiedTime} />}
+
+            {(tags && tags.length > 0) && tags.map(tag => <meta property="article:tag" content={tag.name} />)}
+
+
             // ADD TAGS
-            // ADD CALONICAL from yoast
+
           </Helmet>
           <Facebook
             locale={seo.locale}
@@ -78,12 +85,13 @@ const SEO = ({
             image={seo.facebookImage}
             imageAlt={seo.imageAlt}
             appID={facebookAppID}
+            updatedTime={modifiedTime}
           />
           <Twitter
             username={twitterUsername}
             title={seo.title}
             description={seo.description}
-            image={seo.twitterImage}
+            image={seo.twitterImage.src}
           />
         </>
       );
@@ -101,6 +109,8 @@ SEO.propTypes = {
     twitterImage: PropTypes.string,
     pathname: PropTypes.string,
     article: PropTypes.bool,
+    publishedTime: PropTypes.string,
+    modifiedTime: PropTypes.string,
     tags: PropTypes.array
 };
 
