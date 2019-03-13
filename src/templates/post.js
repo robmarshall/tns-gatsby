@@ -18,8 +18,12 @@ class PostTemplate extends Component {
                     description = { (post.yoast_meta.yoast_wpseo_metadesc || post.excerpt) }
                     article = {true}
                     image = { ( images.facebook.src || '' ) }
+                    imageAlt = { post.featured_media.alt_text }
                     facebookImage = { ( images.facebook || '' ) }
                     twitterImage = { ( images.twitter || '' ) }
+                    publishedTime = { post.date }
+                    modifiedTime = { post.modified }
+                    tags={post.tags}
                 />
                 <p dangerouslySetInnerHTML={{ __html: post.date }} />
                 <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
@@ -41,7 +45,8 @@ export const postQuery = graphql`
             content
             excerpt
             slug
-            date(formatString: "DD, MM YYYY")
+            date
+            modified
             tags {
               slug
               name
