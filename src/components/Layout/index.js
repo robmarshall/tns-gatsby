@@ -2,7 +2,6 @@ import React from 'react'
 
 import Header from '../Header'
 import SEO from "../SEO/SEO"
-import MainMenu from '../MainMenu'
 
 import './index.css'
 
@@ -21,7 +20,7 @@ const Layout = ({children}) => (
         paddingTop: 0,
       }}
     >
-        <MainMenu/>
+
       {children}
     </div>
   </div>
