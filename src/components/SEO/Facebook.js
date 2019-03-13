@@ -2,15 +2,17 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 export default ({
-  siteName = null,
-  pageUrl = null,
-  type = null,
-  title = null,
-  description = null,
-  image = null,
-  appID = null,
+    locale,
+    siteName = null,
+    pageUrl = null,
+    type = null,
+    title = null,
+    description = null,
+    image = null,
+    appID = null,
 }) => (
   <Helmet>
+    {locale && <meta property="og:locale" content={locale} />}
     {siteName && <meta property="og:site_name" content={siteName} />}
     {pageUrl && <meta property="og:url" content={pageUrl} />}
     {type && <meta property="og:type" content={type} />}

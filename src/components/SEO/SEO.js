@@ -19,6 +19,7 @@ const SEO = ({
       query SEOQuery {
         site {
           siteMetadata {
+            locale
             siteName
             defaultTitle: title
             defaultDescription: description
@@ -32,6 +33,7 @@ const SEO = ({
     render={({
       site: {
         siteMetadata: {
+          locale,
           siteName,
           defaultTitle,
           defaultDescription,
@@ -42,6 +44,7 @@ const SEO = ({
       },
     }) => {
       const seo = {
+        locale: ( locale || 'en_GB' ),
         title: ( title || defaultTitle ) ? ( title || defaultTitle ) + ' | ' + siteName : siteName,
         description: description || defaultDescription,
         image: image || '',
@@ -60,6 +63,7 @@ const SEO = ({
             <meta name="image" content={seo.image} />
           </Helmet>
           <Facebook
+            locale={seo.locale}
             siteName={seo.siteName}
             pageUrl={seo.url}
             type={article ? 'article' : null}
