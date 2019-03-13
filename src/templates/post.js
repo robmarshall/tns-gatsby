@@ -20,7 +20,7 @@ class PostTemplate extends Component {
                     image = { ( images.facebook.src || '' ) }
                     imageAlt = { post.featured_media.alt_text }
                     facebookImage = { ( images.facebook || '' ) }
-                    twitterImage = { ( images.twitter || '' ) }
+                    twitterImage = { ( images.twitter.src || '' ) }
                     publishedTime = { post.date }
                     modifiedTime = { post.modified }
                     tags={post.tags}
