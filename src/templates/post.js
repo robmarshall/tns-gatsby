@@ -1,20 +1,20 @@
 import React, { Component } from "react"
 import Layout from "../components/Layout"
-import Seo from "../components/SEO/SEO"
+import SEO from "../components/SEO/SEO"
 import ImageChecker from "../components/ImageChecker"
 import CategoryList from "../components/CategoryList";
 import TagList from "../components/TagList";
 
 class PostTemplate extends Component {
     render() {
-        const post = this.props.data.wordpressPost;
 
+        const post = this.props.data.wordpressPost;
         const images = post.featured_media.localFile.childImageSharp;
 
         return (
             <Layout>
 
-                <Seo
+                <SEO
                     title = {post.title}
                     description = { (post.yoast_meta.yoast_wpseo_metadesc || post.excerpt) }
                     article = {true}
@@ -97,11 +97,6 @@ export const postQuery = graphql`
                 yoast_wpseo_twitter_title
                 yoast_wpseo_twitter_description
                 yoast_wpseo_twitter_image
-            }
-        }
-        site {
-            siteMetadata {
-                title
             }
         }
     }
