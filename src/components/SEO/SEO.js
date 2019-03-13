@@ -85,11 +85,15 @@ const SEO = ({
 );
 
 SEO.propTypes = {
+    locale: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
     image: PropTypes.string,
+    facebookImage: PropTypes.string,
+    twitterImage: PropTypes.string,
     pathname: PropTypes.string,
     article: PropTypes.bool,
+    tags: PropTypes.array
 };
 
 export default SEO;
