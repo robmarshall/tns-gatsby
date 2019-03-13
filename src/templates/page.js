@@ -1,13 +1,12 @@
 import React, {Component} from "react"
-import { StaticQuery, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/Layout"
+import SEO from "../components/SEO/SEO"
 
 class PageTemplate extends Component {
     render() {
 
-        const siteMetadata = this.props.data.site.siteMetadata
         const currentPage = this.props.data.wordpressPage
-        const images = currentPage.featured_media.localFile.childImageSharp;
 
         return (
             <Layout>
@@ -15,10 +14,6 @@ class PageTemplate extends Component {
                 <Seo
                     title = {currentPage.title}
                     description = { (currentPage.yoast_meta.yoast_wpseo_metadesc || currentPage.excerpt) }
-                    image = { ( images.facebook.src || '' ) }
-                    imageAlt = { currentPage.featured_media.alt_text }
-                    facebookImage = { ( images.facebook || '' ) }
-                    twitterImage = { ( images.twitter.src || '' ) }
                     publishedTime = { currentPage.date }
                     modifiedTime = { currentPage.modified }
                 />
@@ -41,29 +36,7 @@ export const pageQuery = graphql`
             slug
             date
             modified
-            featured_media {
-                localFile {
-                    childImageSharp {
-                        fluid(maxWidth: 1000) {
-                            base64
-                            aspectRatio
-                            src
-                            srcSet
-                            sizes
-                        }
-                        facebook: fixed(width: 1024, height: 512) {
-                            src
-                            width
-                            height
-                        }
-                        twitter: fixed(width: 1200, height: 630) {
-                            src
-                        }
-                    }
-                }
-                title
-                alt_text
-            }
+
             yoast_meta {
                 yoast_wpseo_focuskw
                 yoast_wpseo_title
