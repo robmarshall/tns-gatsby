@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import { StaticQuery, graphql } from "gatsby"
+import _ from "lodash";
 
 const Menu = ({ data }) => (
     <div>
@@ -8,7 +9,7 @@ const Menu = ({ data }) => (
         <ul>
 
             {data.map((item) =>
-                <li key={item.object_slug}>
+                <li key={( item.object_slug || _.kebabCase(item.title) )}>
                     <Link to={item.url}>
                         {item.title}
                     </Link>
