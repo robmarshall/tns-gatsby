@@ -23,7 +23,8 @@
     "sharp": "^0.21.3"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "WordPress"
   ],
   "license": "MIT",
   "scripts": {
