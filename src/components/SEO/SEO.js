@@ -57,7 +57,6 @@ const SEO = ({
         url: `${siteUrl}${pathname || '/'}`,
       };
 
-      // Remove all html tags
       seo.description = seo.description.replace(/<(?:.|\n)*?>/gm, '');
 
       return (
@@ -70,10 +69,6 @@ const SEO = ({
             {(modifiedTime && article) && <meta property="article:modified_time" content={modifiedTime} />}
 
             {(tags && tags.length > 0) && tags.map(tag => <meta key={tag.slug} property="article:tag" content={tag.name} />)}
-
-
-            // ADD TAGS
-
           </Helmet>
           <Facebook
             locale={seo.locale}
