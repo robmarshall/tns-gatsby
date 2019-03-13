@@ -11,7 +11,7 @@ class PageTemplate extends Component {
         return (
             <Layout>
 
-                <Seo
+                <SEO
                     title = {currentPage.title}
                     description = { (currentPage.yoast_meta.yoast_wpseo_metadesc || currentPage.excerpt) }
                     publishedTime = { currentPage.date }
