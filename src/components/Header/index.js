@@ -6,12 +6,12 @@ import styles from "./header.scss"
 const Header = ({ siteTitle }) => (
   <header className="header">
       <div className="header__wrap">
-      <h1 className="header__title">
-        <Link className="header__link">
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
+          <h1 className="header__title">
+              <Link className="header__link">
+                  {siteTitle}
+              </Link>
+          </h1>
+      </div>
   </header>
 )
 
