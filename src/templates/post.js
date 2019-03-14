@@ -10,7 +10,7 @@ class PostTemplate extends Component {
     render() {
 
         const post = this.props.data.wordpressPost;
-        const images = post.featured_media.localFile.childImageSharp;
+        const images = post.featured_media ? post.featured_media.localFile.childImageSharp : '';
 
         return (
             <Layout>
@@ -19,10 +19,10 @@ class PostTemplate extends Component {
                     title = {post.title}
                     description = { (post.yoast_meta.yoast_wpseo_metadesc || post.excerpt) }
                     article = {true}
-                    image = { ( images.facebook.src || '' ) }
-                    imageAlt = { post.featured_media.alt_text }
+                    image = { ( images.facebook ? images.facebook.src : '' ) }
+                    imageAlt = { post.featured_media ? post.featured_media.alt_text : '' }
                     facebookImage = { ( images.facebook || '' ) }
-                    twitterImage = { ( images.twitter.src || '' ) }
+                    twitterImage = { ( images.twitter ? images.twitter.src : '' ) }
                     publishedTime = { post.date }
                     modifiedTime = { post.modified }
                     tags={post.tags}
