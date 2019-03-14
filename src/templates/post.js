@@ -33,6 +33,7 @@ class PostTemplate extends Component {
                 <div dangerouslySetInnerHTML={{ __html: post.content }} />
                 <CategoryList cats={post.categories}/>
                 <TagList tags={post.tags}/>
+
             </Layout>
         )
     }
@@ -60,7 +61,7 @@ export const postQuery = graphql`
             featured_media {
                 localFile {
                     childImageSharp {
-                        fluid(maxWidth: 1000) {
+                        fluid(maxWidth: 700) {
                             base64
                             aspectRatio
                             src
@@ -80,7 +81,7 @@ export const postQuery = graphql`
                 title
                 alt_text
             }
-            
+
             yoast_meta {
                 yoast_wpseo_title
                 yoast_wpseo_metadesc
