@@ -1,5 +1,6 @@
 import React from "react";
 import _ from "lodash";
+import moment from 'moment';
 import { Link } from "gatsby";
 import ArchivePaginationLinks from "../components/ArchivePaginationLinks"
 import Layout from "../components/Layout"
@@ -27,20 +28,46 @@ const IndexPage = ({ data, pageContext }) => {
 
             <h1>Category: {catName}</h1>
 
-            {group.map(({ node }) => (
-                <div key={node.slug} className={"post"} style={{ marginBottom: 50 }}>
+            <div className="post-list">
 
-                    <ImageChecker featuredMedia={node.featured_media}/>
+                {group.map(({ node }) => (
 
-                    <Link to={node.slug}>
-                        <h3>{node.title}</h3>
-                    </Link>
+                    <div key={node.slug} className="post">
 
-                    <div className={"post-content"} dangerouslySetInnerHTML={{__html: node.excerpt}} />
+                        <Link to={node.slug}>
 
-                    {node.date}
-                </div>
-            ))}
+                            <ImageChecker
+                                featuredMedia={node.featured_media}
+                                className="post__feat-image"
+                            />
+
+                            <h3 className="post__title">{node.title}</h3>
+
+                            <time
+                                className="post__date post__date--published"
+                                datetime={moment(node.date).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                            >
+                                {moment(node.date).format('Do MMMM YYYY')}
+                            </time>
+                            <time
+                                className="post__date post__date--updated screen-reader-text"
+                                datetime={moment(node.modifed).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                            >
+                                {moment(node.modifed).format('Do MMMM YYYY')}
+                            </time>
+
+                            <div
+                                className="post-content"
+                                dangerouslySetInnerHTML={{__html: node.excerpt}}
+                            />
+
+                        </Link>
+
+                    </div>
+
+                ))}
+
+            </div>
 
             <ArchivePaginationLinks
                 pageCount = {pageCount}
