@@ -23,7 +23,8 @@ module.exports = `
                     template
                     format
                     title
-                    date
+                    date(formatString:"YYYY-MM-DD, HH:mm:ss")
+                    modified(formatString:"YYYY-MM-DD, HH:mm:ss")
                     excerpt
                     featured_media {
                         localFile {
