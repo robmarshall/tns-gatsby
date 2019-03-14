@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "gatsby";
+import moment from 'moment';
 import ArchivePaginationLinks from "../components/ArchivePaginationLinks"
 import Layout from "../components/Layout"
 import ImageChecker from "../components/ImageChecker"
+
+import '../utils/sass/layout/post.scss';
 
 const IndexPage = ({ data, pageContext }) => {
     const { pageCount, group, index, first, last } = pageContext;
@@ -15,22 +18,46 @@ const IndexPage = ({ data, pageContext }) => {
     return (
         <Layout>
 
-            {group.map(({ node }) => (
+            <div className="post-list">
 
-                <div key={node.slug} className={"post"} style={{ marginBottom: 50 }}>
+                {group.map(({ node }) => (
 
-                    <ImageChecker featuredMedia={node.featured_media}/>
+                    <div key={node.slug} className="post">
 
-                    <Link to={node.slug}>
-                        <h3>{node.title}</h3>
-                    </Link>
+                        <Link to={node.slug}>
 
-                    {node.date}
+                            <ImageChecker
+                                featuredMedia={node.featured_media}
+                                className="post__feat-image"
+                            />
 
-                    <div className={"post-content"} dangerouslySetInnerHTML={{__html: node.excerpt}} />
+                            <h3 className="post__title">{node.title}</h3>
 
-                </div>
-            ))}
+                            <time
+                                className="post__date post__date--published"
+                                datetime={moment(node.date).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                            >
+                                {moment(node.date).format('Do MMMM YYYY')}
+                            </time>
+                            <time
+                                className="post__date post__date--updated screen-reader-text"
+                                datetime={moment(node.modifed).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                            >
+                                {moment(node.modifed).format('Do MMMM YYYY')}
+                            </time>
+
+                            <div
+                                className="post-content"
+                                dangerouslySetInnerHTML={{__html: node.excerpt}}
+                            />
+
+                        </Link>
+
+                    </div>
+
+                ))}
+
+            </div>
 
             <ArchivePaginationLinks
                 pageCount = {pageCount}

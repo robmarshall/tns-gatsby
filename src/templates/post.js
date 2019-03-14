@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import moment from 'moment';
 import Layout from "../components/Layout"
 import SEO from "../components/SEO/SEO"
 import ImageChecker from "../components/ImageChecker"
@@ -27,12 +28,29 @@ class PostTemplate extends Component {
                     tags={post.tags}
                 />
 
-                <p dangerouslySetInnerHTML={{ __html: post.date }} />
-                <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
-                <ImageChecker featuredMedia={post.featured_media}/>
-                <div dangerouslySetInnerHTML={{ __html: post.content }} />
-                <CategoryList cats={post.categories}/>
-                <TagList tags={post.tags}/>
+                <article className="post">
+
+                    <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
+
+                    <time
+                        className="post__date post__date--published"
+                        datetime={moment(post.date).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                    >
+                        {moment(post.date).format('Do MMMM YYYY')}
+                    </time>
+                    <time
+                        className="post__date post__date--updated screen-reader-text"
+                        datetime={moment(post.modifed).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                    >
+                        {moment(post.modifed).format('Do MMMM YYYY')}
+                    </time>
+
+                    <ImageChecker featuredMedia={post.featured_media} className="post__feat-image"/>
+                    <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                    <CategoryList cats={post.categories}/>
+                    <TagList tags={post.tags}/>
+
+                </article>
 
             </Layout>
         )
@@ -48,8 +66,8 @@ export const postQuery = graphql`
             content
             excerpt
             slug
-            date
-            modified
+            date(formatString:"YYYY-MM-DD, HH:mm:ss")
+            modified(formatString:"YYYY-MM-DD, HH:mm:ss")
             tags {
               slug
               name
