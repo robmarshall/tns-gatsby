@@ -1,18 +1,27 @@
 import React from "react";
 import NavLink from "../NavLink";
+import "./pagination.scss"
 
 const ArchivePaginationLinks = props => {
 
     if( props.pageCount > 1 ){
 
+        const next = (
+            <div className="pagination__links pagination__links--next">
+                <NavLink test={props.last} url={props.nextUrl} text={props.nextText} />
+            </div>
+        );
+
+        const prev = (
+            <div className="pagination__links pagination__links--prev">
+                <NavLink test={props.first} url={props.prevUrl} text={props.prevText} />
+            </div>
+        );
+
         return (
-            <div className="paginationLinks">
-                <div className="previousLink">
-                    <NavLink test={props.first} url={props.prevUrl} text={props.prevText} />
-                </div>
-                <div className="nextLink">
-                    <NavLink test={props.last} url={props.nextUrl} text={props.nextText} />
-                </div>
+            <div className="pagination__wrap">
+                { prev }
+                { next }
             </div>
         );
 

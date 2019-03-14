@@ -41,17 +41,20 @@ const IndexPage = ({ data, pageContext }) => {
                                 className="post__feat-image"
                             />
 
-                            <h3 className="post__title">{node.title}</h3>
+                            <h3
+                                className="post__title"
+                                dangerouslySetInnerHTML={{__html: node.title}}
+                            />
 
                             <time
                                 className="post__date post__date--published"
-                                datetime={moment(node.date).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                                dateTime={moment(node.date).format('YYYY-MM-DDTHH:mm:ss+00:00')}
                             >
                                 {moment(node.date).format('Do MMMM YYYY')}
                             </time>
                             <time
                                 className="post__date post__date--updated screen-reader-text"
-                                datetime={moment(node.modifed).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                                dateTime={moment(node.modifed).format('YYYY-MM-DDTHH:mm:ss+00:00')}
                             >
                                 {moment(node.modifed).format('Do MMMM YYYY')}
                             </time>

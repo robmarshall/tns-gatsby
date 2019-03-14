@@ -34,13 +34,13 @@ class PostTemplate extends Component {
 
                     <time
                         className="post__date post__date--published"
-                        datetime={moment(post.date).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                        dateTime={moment(post.date).format('YYYY-MM-DDTHH:mm:ss+00:00')}
                     >
                         {moment(post.date).format('Do MMMM YYYY')}
                     </time>
                     <time
                         className="post__date post__date--updated screen-reader-text"
-                        datetime={moment(post.modifed).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                        dateTime={moment(post.modifed).format('YYYY-MM-DDTHH:mm:ss+00:00')}
                     >
                         {moment(post.modifed).format('Do MMMM YYYY')}
                     </time>

@@ -1,0 +1,19 @@
+@import '../../utils/sass/abstracts/abstracts';
+
+.pagination__wrap {
+    display: flex;
+}
+
+.pagination__links {
+    margin: 0 0 em(10) 0;
+}
+
+.pagination__links--prev {
+    text-align: left;
+    width: 50%;
+}
+
+.pagination__links--next {
+    text-align: right;
+    width: 50%;
+}

@@ -1,0 +1,16 @@
+@import '../../utils/sass/abstracts/abstracts';
+
+.footer {
+    border: em(1) solid rgba(0,0,0,.05);
+    margin-top: em(10);
+    padding: em(20) 0;
+    text-align: center;
+}
+
+@media only screen and (min-width: em(730px)) {
+
+    .footer {
+        margin-top: em(20);
+    }
+
+}

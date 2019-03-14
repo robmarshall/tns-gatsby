@@ -1,6 +1,8 @@
 import React from 'react'
 
 import Header from '../Header'
+import Footer from '../Footer'
+
 import SEO from "../SEO/SEO"
 
 import '../../utils/sass/base/base.scss';
@@ -16,6 +18,9 @@ const Layout = ({children}) => (
     <div className="article-container">
         {children}
     </div>
+
+    <Footer />
+
   </div>
 )
 
