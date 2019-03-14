@@ -136,13 +136,13 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
                 categoryList.forEach(category => {
                     createPaginatedPages({
-                        edges: categoryMap.get(category),
+                        edges: categoryMap.get(category.name),
                         createPage: createPage,
                         pageTemplate: categoryTemplate,
                         pageLength: 8,
                         pathPrefix: "category",
                         buildPath: (index, pathPrefix) =>
-                            index > 1 ? `${pathPrefix}/${_.kebabCase(category)}/page/${index}` : `/${pathPrefix}/${_.kebabCase(category)}`,
+                            index > 1 ? `${pathPrefix}/${_.kebabCase(category.name)}/page/${index}` : `/${pathPrefix}/${_.kebabCase(category.name)}`,
                         context: {
                             catName: category.name,
                             catDescription: category.description,
