@@ -9,10 +9,11 @@ const ImageChecker = props => {
 
         const altTag = props.featuredMedia.alt_text ? props.featuredMedia.alt_text : null;
         const title = props.featuredMedia.title ? props.featuredMedia.title : null;
+        const className = props.className ? props.className : null;
 
         return (
             <div>
-                <Img fluid={fluidImage} title={title} alt={altTag}/>
+                <Img className={className} fluid={fluidImage} title={title} alt={altTag}/>
             </div>
         );
     } else {
