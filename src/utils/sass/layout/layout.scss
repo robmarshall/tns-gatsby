@@ -1,6 +1,9 @@
+@import '../abstracts/abstracts';
+
 .container,
 .article-container {
-    padding: 0 em(15);
+    padding-left: em(15);
+    padding-right: em(15);
     margin: 0 auto;
     width: 100%;
 }
@@ -8,7 +11,8 @@
 @media only screen and (min-width: em(730px)) {
 
     .article-container {
-        padding: 0;
+        padding-left: 0;
+        padding-right: 0;
         max-width: em(700);
     }
 
@@ -17,7 +21,8 @@
 @media only screen and (min-width: em(1000px)) {
 
     .container {
-        padding: 0;
+        padding-left: 0;
+        padding-right: 0;
         margin: 0 auto;
         max-width: em(960);
     }

@@ -13,7 +13,7 @@ const Layout = ({children}) => (
 
     <Header siteTitle="T&S"/>
 
-    <div className="container">
+    <div className="article-container">
         {children}
     </div>
   </div>

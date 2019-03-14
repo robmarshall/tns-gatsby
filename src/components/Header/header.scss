@@ -1,3 +1,5 @@
+@import '../../utils/sass/abstracts/abstracts';
+
 .header {
     margin-bottom: 1.45em;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
@@ -9,7 +11,7 @@
 
 .header__title {
     margin: 0;
-    font-size: em(20);
+    font-size: em(30);
 }
 
 .header__link {
