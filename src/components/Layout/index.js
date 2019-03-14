@@ -3,25 +3,18 @@ import React from 'react'
 import Header from '../Header'
 import SEO from "../SEO/SEO"
 
-import './index.css'
+import '../../utils/sass/base/base.scss';
+import '../../utils/sass/layout/layout.scss';
 
 const Layout = ({children}) => (
   <div>
 
     <SEO />
 
-    <Header siteTitle="Gatsby"/>
+    <Header siteTitle="T&S"/>
 
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '0px 1.0875rem 1.45rem',
-        paddingTop: 0,
-      }}
-    >
-
-      {children}
+    <div className="container">
+        {children}
     </div>
   </div>
 )
