@@ -25,9 +25,10 @@ const IndexPage = ({ data, pageContext }) => {
                         <h3>{node.title}</h3>
                     </Link>
 
+                    {node.date}
+
                     <div className={"post-content"} dangerouslySetInnerHTML={{__html: node.excerpt}} />
 
-                    {node.date}
                 </div>
             ))}
 
