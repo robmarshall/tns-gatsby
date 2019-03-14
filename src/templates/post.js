@@ -45,9 +45,11 @@ class PostTemplate extends Component {
                         {moment(post.modifed).format('Do MMMM YYYY')}
                     </time>
 
+                    <CategoryList cats={post.categories}/>
+
                     <ImageChecker featuredMedia={post.featured_media} className="post__feat-image"/>
                     <div dangerouslySetInnerHTML={{ __html: post.content }} />
-                    <CategoryList cats={post.categories}/>
+
                     <TagList tags={post.tags}/>
 
                 </article>
