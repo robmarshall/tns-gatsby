@@ -7,13 +7,13 @@ $sm: 640px;
 $xs: 480px;
 
 // Set the font sizes for all screen sizes
-$h1-font-size: (null: 50, $md: 44, $sm: 40, $xs: 30);
-$h2-font-size: (null: 40, $md: 35, $sm: 35, $xs: 25);
+$h1-font-size: (null: 43, $md: 35, $sm: 30, $xs: 28);
+$h2-font-size: (null: 36, $md: 28, $sm: 30, $xs: 25);
 $h3-font-size: (null: 30, $md: 27, $sm: 25, $xs: 20);
 $h4-font-size: (null: 24, $md: 22, $sm: 21, $xs: 18);
 $p-font-size: (null: 20, $md: 18, $sm: 18, $xs: 17);
 
-$body-line-height: 1.58;
+$body-line-height: 1.6;
 $heading-line-height: 1.25;
 
 body {
@@ -43,7 +43,7 @@ blockquote, form, noscript, iframe
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
-    margin-bottom: 1.45rem;
+    margin-bottom: 0.825rem;
     padding-bottom: 0;
     padding-left: 0;
     padding-right: 0;
