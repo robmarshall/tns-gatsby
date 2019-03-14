@@ -1,0 +1,20 @@
+$browser-context: 16;
+
+// unitless function to convert px to em
+@function em($pixels, $context: $browser-context) {
+    @if (unitless($pixels)) {
+        $pixels: $pixels * 1px;
+    }
+    @if (unitless($context)) {
+        $context: $context * 1px;
+    }
+    @return $pixels / $context * 1em;
+}
+
+@mixin animate-transition( $type, $time ){
+    -webkit-transition: $type $time ease;
+    -moz-transition: $type $time ease;
+    -ms-transition: $type $time ease;
+    -o-transition: $type $time ease;
+    transition: $type $time ease;
+}

@@ -1,0 +1,14 @@
+.btn,
+button,
+[type=submit],
+#submit,
+.smooth,
+.smooth:after,
+.smooth:before {
+    @include animate-transition( all, 0.5s );
+}
+
+a {
+    @include animate-transition( color, 0.5s );
+    display: inline-block;
+}

@@ -1,0 +1,223 @@
+$font-stack: "Merriweather",Georgia,Cambria,"Times New Roman",Times,serif;
+
+// breakpoint variables
+$lg: 1170px;
+$md: 1024px;
+$sm: 640px;
+$xs: 480px;
+
+// Set the font sizes for all screen sizes
+$h1-font-size: (null: 50, $md: 44, $sm: 40, $xs: 30);
+$h2-font-size: (null: 40, $md: 35, $sm: 35, $xs: 25);
+$h3-font-size: (null: 30, $md: 27, $sm: 25, $xs: 20);
+$h4-font-size: (null: 24, $md: 22, $sm: 21, $xs: 19);
+$p-font-size: (null: 22, $md: 21, $sm: 20, $xs: 18);
+
+$body-line-height: 1.58;
+$heading-line-height: 1.25;
+
+body {
+    color: rgba(0,0,0,.84)
+}
+
+body,input,textarea,option,select {
+    font-weight: 400;
+    font-family: $font-stack;
+    line-height: $body-line-height;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+p, input, textarea, select, option, a {
+    font-size: inherit;
+    color: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6,
+ul, ol, dl, dd, figure, pre, hr,
+blockquote, form, noscript, iframe
+{
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 1.45rem;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    text-rendering: optimizeLegibility;
+}
+
+blockquote *:last-child,
+li *:last-child,
+p *:last-child {
+    margin-bottom: 0;
+}
+
+p {
+    margin-bottom: 0.25em;
+    line-height: $body-line-height;
+}
+
+i, .i, em {
+    font-style:italic;
+}
+
+b, .b, strong {
+    font-weight: 700;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    line-height: $heading-line-height;
+    font-weight: 700;
+}
+
+ul, ol {
+    margin-left: 1.45rem;
+    margin-bottom: 1.45rem;
+    list-style-position: outside;
+    list-style-image: none;
+}
+
+li > ol,
+li > ul {
+    margin-left: 1.45rem;
+    margin-bottom: calc(1.45rem / 2);
+    margin-top: calc(1.45rem / 2);
+}
+
+li li {
+    font-size: 1em;
+}
+
+strong, bold {
+    font-weight: 700;
+}
+
+em, i {
+    font-style: italic;
+}
+
+li {
+    position: relative;
+}
+
+hr {
+    margin: 1.5em 0;
+}
+
+code,
+kbd,
+samp {
+    font-size: 0.85rem;
+    line-height: 1.45rem;
+}
+
+thead {
+    text-align: left;
+}
+
+td,
+th {
+    text-align: left;
+    border-bottom: 1px solid hsla(0, 0%, 0%, 0.12);
+    font-feature-settings: "tnum";
+    -moz-font-feature-settings: "tnum";
+    -ms-font-feature-settings: "tnum";
+    -webkit-font-feature-settings: "tnum";
+    padding-left: 0.96667rem;
+    padding-right: 0.96667rem;
+    padding-top: 0.725rem;
+    padding-bottom: calc(0.725rem - 1px);
+}
+
+th:first-child,
+td:first-child,
+th:last-child,
+td:last-child {
+    padding-right: 0;
+}
+
+tt,
+code {
+    background-color: hsla(0, 0%, 0%, 0.04);
+    border-radius: 3px;
+    font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
+    "Liberation Mono", Menlo, Courier, monospace;
+    padding: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+pre code {
+    background: none;
+    line-height: 1.42;
+}
+
+code:before,
+code:after,
+tt:before,
+tt:after {
+    letter-spacing: -0.2em;
+    content: " ";
+}
+
+pre code:before,
+pre code:after,
+pre tt:before,
+pre tt:after {
+    content: "";
+}
+
+// breakpoint mixin
+@mixin breakpoint($mq01: 0, $mq2: false, $maxmin: max-width) {
+    @if $mq2 == false {
+        @media ($maxmin: $mq01) {
+            @content;
+        }
+    }
+    @else {
+        @media (min-width: $mq01) and (max-width: $mq2) {
+            @content;
+        }
+    }
+}
+
+// responsive font size mixin
+@mixin font-size-map($font-size-map) {
+    @each $breakpoint, $font-size in $font-size-map {
+        @if $breakpoint == null {
+            font-size: em($font-size);
+        } @else {
+            @include breakpoint($breakpoint) {
+                font-size: em($font-size);
+            }
+        }
+    }
+}
+
+
+h1 {
+    @include font-size-map($h1-font-size);
+}
+
+h2 {
+    @include font-size-map($h2-font-size);
+}
+
+h3 {
+    @include font-size-map($h3-font-size);
+}
+
+h4,
+h5 {
+    @include font-size-map($h4-font-size);
+}
+
+li,
+p {
+    @include font-size-map($p-font-size);
+}
