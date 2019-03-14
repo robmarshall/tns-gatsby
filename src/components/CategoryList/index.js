@@ -15,7 +15,6 @@ const CategoryList = ({ cats }) => {
 
         return (
             <div className="cats__wrap">
-                <h4>Categories:</h4>
                 <ul className="cats">
                     {allCats}
                 </ul>
