@@ -1,0 +1,63 @@
+@import '../abstracts/abstracts';
+
+.post-list {
+    a {
+        text-decoration: none;
+        @include animate-transition( all, 0.3s );
+    }
+
+    a:hover,
+    a:focus {
+        opacity: 0.9;
+    }
+
+}
+
+.post {
+    margin-bottom: em(40);
+
+    p a {
+        color: #e60000;
+    }
+}
+
+.post__feat-image {
+    margin-bottom: em(20);
+}
+
+article .post__feat-image {
+    margin-bottom: em(30);
+}
+
+.post__date {
+    display: block;
+    margin: em(10) 0;
+    font-size: em(16);
+    font-style: italic;
+}
+
+.post-content {
+    margin-top: em(20);
+}
+
+@media only screen and (min-width: em(730px)) {
+
+    .post {
+        margin-bottom: em(80);
+    }
+
+    .post__date {
+        display: block;
+        margin: em(10) 0;
+        font-size: em(18);
+    }
+
+    .post__feat-image {
+        margin-bottom: em(30);
+    }
+
+    article .post__feat-image {
+        margin-bottom: em(50);
+    }
+
+}
