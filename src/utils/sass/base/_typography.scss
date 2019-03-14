@@ -17,7 +17,8 @@ $body-line-height: 1.6;
 $heading-line-height: 1.25;
 
 body {
-    color: rgba(0,0,0,.84)
+    color: rgba(0,0,0,.84);
+    word-wrap: break-word;
 }
 
 body,input,textarea,option,select {
@@ -36,9 +37,8 @@ p, input, textarea, select, option, a {
     color: inherit;
 }
 
-a {
-    overflow-wrap: break-word;
-    word-break: break-word;
+p a {
+    display: inline;
 }
 
 p, h1, h2, h3, h4, h5, h6,
@@ -60,6 +60,13 @@ blockquote *:last-child,
 li *:last-child,
 p *:last-child {
     margin-bottom: 0;
+}
+
+blockquote {
+    padding: em(10) em(20);
+    margin: em(15) 0;
+    border-left: 5px solid #eee;
+    font-style: italic;
 }
 
 p {
