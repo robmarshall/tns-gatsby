@@ -8,6 +8,10 @@
     width: 100%;
 }
 
+.article-container {
+    min-height: calc(100vh - (#{em(75)} + #{em(67)} + 3em + 1.25em));
+}
+
 @media only screen and (min-width: em(730px)) {
 
     .article-container {
