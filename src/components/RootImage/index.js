@@ -36,7 +36,7 @@ const RootImage = (props) => (
       });
       if (!image) { return null; }
 
-      const imageSizes = image.node.childImageSharp.sizes;
+      const imageSizes = image.node.childImageSharp.fluid;
       return (
         <Img
           alt={props.alt}
