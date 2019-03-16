@@ -16,7 +16,7 @@ const RootImage = (props) => (
               relativePath
               name
               childImageSharp {
-                  fluid(maxWidth: 1000) {
+                  fluid(maxWidth: 700) {
                       base64
                       aspectRatio
                       src
@@ -41,6 +41,7 @@ const RootImage = (props) => (
         <Img
           alt={props.alt}
           sizes={imageSizes}
+          className={props.className}
         />
       );
     }}
