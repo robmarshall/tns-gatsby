@@ -1,13 +1,15 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
+<h1>
     Starter code for an SEO enabled WordPress blog turned Gatsby.
 </h1>
 
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+<h2>Includes:</h2>
+<ul>
+    <li>Posts, categories and tags pages</li>
+    <li>WordPress Menu Integration
+    <li>Yoast Integration on Posts/Pages - Still need to add fallback image</li>
+    <li>Facebook/Twitter meta data</li>
+    <li>Partly semantic - This will be improved</li>
+    <li>404 Page</li>
+    <li>Image component to easily use images from src/images</li>
+    <li>Super speedy fast</li>
+</ul>
