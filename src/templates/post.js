@@ -71,11 +71,9 @@ export const postQuery = graphql`
             date(formatString:"YYYY-MM-DD, HH:mm:ss")
             modified(formatString:"YYYY-MM-DD, HH:mm:ss")
             tags {
-              slug
               name
             }
             categories {
-              slug
               name
             }
             featured_media {
