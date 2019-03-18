@@ -76,7 +76,8 @@ module.exports = {
                     windows: false,
                 },
             },
-        }`gatsby-plugin-sass`,
+        },
+        `gatsby-plugin-sass`,
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         {
