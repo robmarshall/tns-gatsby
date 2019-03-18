@@ -35,7 +35,7 @@ const SEO = ({
                 }
                 wordpressWpSettings {
                     locale: language
-                    setTitle: title
+                    setSiteName: title
                     setDescription: description
                     url
                 }
@@ -53,22 +53,21 @@ const SEO = ({
                     facebookAppID,
                 },
             },
-            wordpressWpSettings: { locale, setTitle, setDescription, url },
+            wordpressWpSettings: { locale, setSiteName, setDescription, url },
         }) => {
-            const pageTitle = title || setTitle || fallbackTitle
+            const siteName = setSiteName || fallbackSiteName
+            const pageTitle = title || setDescription || fallbackTitle
+            const siteUrl = url || fallbackSiteUrl
 
             const seo = {
                 locale: locale || fallbackLocale || 'en_GB',
                 title: pageTitle ? pageTitle + ' | ' + siteName : siteName,
-                description:
-                    description || setDescription || defaultDescription,
+                description: description || fallbackDescription,
                 imageAlt: imageAlt || title || '',
                 facebookImage: facebookImage || '',
                 twitterImage: twitterImage || '',
                 url: `${siteUrl}${pathname || '/'}`,
             }
-
-            console.log(language)
 
             seo.description = cleanupDescription(seo.description)
 
