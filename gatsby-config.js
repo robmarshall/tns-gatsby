@@ -20,7 +20,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-          baseUrl: `thoughtsandstuff.com`,
+          baseUrl: `rest.thoughtsandstuff.com`,
           protocol: `http`,
           hostingWPCOM: false,
           useACF: false,
