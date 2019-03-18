@@ -73,11 +73,11 @@ const SEO = ({
 
             return (
                 <>
-                    <Helmet title={seo.title}>
+                    <Helmet title={_.unescape(seo.title)}>
                         {seo.description && (
                             <meta
                                 property="description"
-                                content={seo.description}
+                                content={_.unescape(seo.description)}
                             />
                         )}
                         {image && <meta property="image" content={image} />}
@@ -107,11 +107,11 @@ const SEO = ({
                     </Helmet>
                     <Facebook
                         locale={seo.locale}
-                        siteName={seo.siteName}
+                        siteName={_.unescape(seo.siteName)}
                         pageUrl={seo.url}
                         type={article ? 'article' : null}
-                        title={seo.title}
-                        description={seo.description}
+                        title={_.unescape(seo.title)}
+                        description={_.unescape(seo.description)}
                         image={seo.facebookImage}
                         imageAlt={seo.imageAlt}
                         appID={facebookAppID}
@@ -119,8 +119,8 @@ const SEO = ({
                     />
                     <Twitter
                         username={twitterUsername}
-                        title={seo.title}
-                        description={seo.description}
+                        title={_.unescape(seo.title)}
+                        description={_.unescape(seo.description)}
                         image={seo.twitterImage}
                     />
                 </>
