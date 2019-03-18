@@ -12,4 +12,5 @@
     <li>404 Page</li>
     <li>Image component to easily use images from src/images</li>
     <li>Super speedy fast</li>
+    <li>Links to WordPress settings to get title and description</li>
 </ul>
