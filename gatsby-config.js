@@ -14,7 +14,7 @@ module.exports = {
         title: `Website Design and Development Inspiration`,
         description: `Website Design and Development Inspiration`,
         author: `@RobMarProd`,
-        url: `tns.com`,
+        url: `thoughtsandstuff.com`,
         facebookAppID: `xxx`,
     },
     plugins: [
