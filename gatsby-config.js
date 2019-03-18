@@ -9,8 +9,8 @@ require('dotenv').config({
 
 module.exports = {
     siteMetadata: {
-        locale: `en_GB`,
-        siteName: `T&S`,
+        locale: `en_GB`, // Fallback
+        siteName: `T&S`, // Fallback
         title: `Website Design and Development Inspiration`,
         description: `Website Design and Development Inspiration`,
         author: `@RobMarProd`,
