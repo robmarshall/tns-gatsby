@@ -24,98 +24,35 @@ const SEO = ({
             query SEOQuery {
                 site {
                     siteMetadata {
-<<<<<<< HEAD
-                        locale
-                        siteName
-                        defaultTitle: title
-                        defaultDescription: description
-                        siteUrl: url
-=======
                         fallbackLocale: locale
                         fallbackSiteName: siteName
                         fallbackTitle: title
                         fallbackDescription: description
                         fallbackSiteUrl: url
->>>>>>> f58bee2af60f66c0739a3095e189518928802c8d
                         twitterUsername: author
                         facebookAppID
                     }
                 }
-<<<<<<< HEAD
-=======
                 wordpressWpSettings {
                     locale: language
                     setSiteName: title
                     setDescription: description
                     url
                 }
->>>>>>> f58bee2af60f66c0739a3095e189518928802c8d
             }
         `}
         render={({
             site: {
                 siteMetadata: {
-<<<<<<< HEAD
-                    locale,
-                    siteName,
-                    defaultTitle,
-                    defaultDescription,
-                    siteUrl,
-=======
                     fallbackLocale,
                     fallbackSiteName,
                     fallbackTitle,
                     fallbackDescription,
                     fallbackSiteUrl,
->>>>>>> f58bee2af60f66c0739a3095e189518928802c8d
                     twitterUsername,
                     facebookAppID,
                 },
             },
-<<<<<<< HEAD
-        }) => {
-            const seo = {
-                locale: locale || 'en_GB',
-                title:
-                    title || defaultTitle
-                        ? (title || defaultTitle) + ' | ' + siteName
-                        : siteName,
-                description: description || defaultDescription,
-                imageAlt: imageAlt || title || '',
-                facebookImage: facebookImage || '',
-                twitterImage: twitterImage || '',
-                url: `${siteUrl}${pathname || '/'}`,
-            }
-
-            seo.description = cleanupDescription(seo.description)
-
-            return (
-                <>
-                    <Helmet title={seo.title}>
-                        {seo.description && (
-                            <meta
-                                property="description"
-                                content={seo.description}
-                            />
-                        )}
-                        {image && (
-                            <meta property="image" content={siteUrl + image} />
-                        )}
-
-                        {publishedTime && article && (
-                            <meta
-                                property="article:published_time"
-                                content={publishedTime}
-                            />
-                        )}
-                        {modifiedTime && article && (
-                            <meta
-                                property="article:modified_time"
-                                content={modifiedTime}
-                            />
-                        )}
-
-=======
             wordpressWpSettings: { locale, setSiteName, setDescription, url },
         }) => {
             const siteName = setSiteName || fallbackSiteName
@@ -143,7 +80,9 @@ const SEO = ({
                                 content={_.unescape(seo.description)}
                             />
                         )}
-                        {image && <meta property="image" content={image} />}
+                        {image && (
+                            <meta property="image" content={siteUrl + image} />
+                        )}
 
                         {publishedTime && article && (
                             <meta
@@ -158,7 +97,6 @@ const SEO = ({
                             />
                         )}
 
->>>>>>> f58bee2af60f66c0739a3095e189518928802c8d
                         {tags &&
                             tags.length > 0 &&
                             tags.map(tag => (
@@ -171,36 +109,22 @@ const SEO = ({
                     </Helmet>
                     <Facebook
                         locale={seo.locale}
-<<<<<<< HEAD
                         baseUrl={siteUrl}
-                        siteName={seo.siteName}
-                        pageUrl={seo.url}
-                        type={article ? 'article' : null}
-                        title={seo.title}
-                        description={seo.description}
-=======
                         siteName={_.unescape(seo.siteName)}
                         pageUrl={seo.url}
                         type={article ? 'article' : null}
                         title={_.unescape(seo.title)}
                         description={_.unescape(seo.description)}
->>>>>>> f58bee2af60f66c0739a3095e189518928802c8d
                         image={seo.facebookImage}
                         imageAlt={seo.imageAlt}
                         appID={facebookAppID}
                         updatedTime={modifiedTime}
                     />
                     <Twitter
-<<<<<<< HEAD
+                        username={twitterUsername}
                         baseUrl={siteUrl}
-                        username={twitterUsername}
-                        title={seo.title}
-                        description={seo.description}
-=======
-                        username={twitterUsername}
                         title={_.unescape(seo.title)}
                         description={_.unescape(seo.description)}
->>>>>>> f58bee2af60f66c0739a3095e189518928802c8d
                         image={seo.twitterImage}
                     />
                 </>
