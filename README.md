@@ -16,7 +16,10 @@
 </ul>
 
 <h2>Connecting to WordPress</h2>
-<p>Due to this build requiring admin access (for full control from WordPress) an <i>env.development</i> file is required for the development, and the same variables in this are needed as environment variables on you hosting provider.
+<p>Due to this build requiring admin access (for full control from WordPress) an <i>env.development</i> file is required for the development, and the same variables in this are needed as environment variables on you hosting provider.</p>
+
+<p>The build doesn't currently create a static site when login details are not included. This will be added later</p>
+
 <p>An example env. file is included as env.example</p>
 
 <p><b>File</b></p>
