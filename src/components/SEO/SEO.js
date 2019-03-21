@@ -101,7 +101,7 @@ const SEO = ({
                             tags.length > 0 &&
                             tags.map(tag => (
                                 <meta
-                                    key={tag.slug}
+                                    key={_.kebabCase(tag.name)}
                                     property="article:tag"
                                     content={tag.name}
                                 />
