@@ -15,10 +15,12 @@ module.exports = {
         description: `Website Design and Development Inspiration`,
         author: `@RobMarProd`,
         url: `thoughtsandstuff.com`,
+        siteUrl: `https://thoughtsandstuff.com`,
         facebookAppID: `xxx`,
     },
     plugins: [
         `gatsby-plugin-react-helmet`,
+        `gatsby-plugin-sitemap`,
         {
             resolve: `gatsby-source-filesystem`,
             options: {
