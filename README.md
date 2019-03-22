@@ -14,6 +14,7 @@
     <li>Super speedy fast</li>
     <li>Links to WordPress settings to get title and description</li>
     <li>Easy Google Analytics Integration</li>
+    <li>Sitemap build in</li>
 </ul>
 
 <h2>Connecting to WordPress</h2>
