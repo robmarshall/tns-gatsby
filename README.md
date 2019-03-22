@@ -40,3 +40,5 @@ This build is set up to accept:
 <li>Experiment</li>
 <li>Variation</li>
 </ul>
+
+<p>Need to include outbound link tracking as standard.</p>
