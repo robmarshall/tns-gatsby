@@ -13,6 +13,7 @@
     <li>Image component to easily use images from src/images</li>
     <li>Super speedy fast</li>
     <li>Links to WordPress settings to get title and description</li>
+    <li>Easy Google Analytics Integration</li>
 </ul>
 
 <h2>Connecting to WordPress</h2>
@@ -27,4 +28,15 @@
 <ul>
     <li>JWT_USER: Your admin user username - I set up a new user just for this. This makes it easier to control access rights.</li>
     <li>JWT_PASSWORD: The user password - this is required to get settings information</li>
+</ul>
+
+<h2>Connecting to Google Analytics</h2>
+
+<p>To connect to Google Analytics all you need to do is add your Google IDs to the .env file</p>
+This build is set up to accept:
+<ul>
+<li>Standard Analytics</li>
+<li>Optimze</li>
+<li>Experiment</li>
+<li>Variation</li>
 </ul>
