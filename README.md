@@ -17,6 +17,11 @@
     <li>Sitemap build in</li>
 </ul>
 
+<h2>Built for Netlify</h2>
+<p>You are welcome to use another hosting platform, but as this site is built be a blog template
+it made sense to host on a free Netlify account.</p>
+<p>The Netlify Gatbsy plugin is included (can be removed from the gatsby-config.js file if not needed) to use HTTP2 files where possible.</p>
+
 <h2>Connecting to WordPress</h2>
 <p>Due to this build requiring admin access (for full control from WordPress) an <i>env.development</i> file is required for the development, and the same variables in this are needed as environment variables on you hosting provider.</p>
 
