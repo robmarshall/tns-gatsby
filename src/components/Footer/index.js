@@ -6,7 +6,7 @@ const Footer = ({ siteTitle }) => (
     <footer className="footer">
         <div className="container footer__wrap">
             By{' '}
-            <a href="https://www.justlikethis.co.uk" className="footer__link">
+            <a href="https://www.robertmarshall.dev" className="footer__link">
                 Robert Marshall
             </a>{' '}
             &{' '}
