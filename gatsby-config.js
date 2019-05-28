@@ -36,15 +36,26 @@ module.exports = {
                 hostingWPCOM: false,
                 useACF: false,
                 verboseOutput: true,
-                searchAndReplaceContentUrls: {
-                    sourceUrl: 'http://rest.thoughtsandstuff.com',
-                    replacementUrl: 'https://thoughtsandstuff.com',
-                },
+                // Need to re-add following:
+                // https://github.com/TylerBarnes/gatsby-wordpress-inline-images/issues/13
+                // searchAndReplaceContentUrls: {
+                //     sourceUrl: 'http://rest.thoughtsandstuff.com',
+                //     replacementUrl: 'https://thoughtsandstuff.com',
+                // },
                 auth: {
                     jwt_user: process.env.JWT_USER,
                     jwt_pass: process.env.JWT_PASSWORD,
                 },
             },
+            plugins: [
+                {
+                    resolve: `gatsby-wordpress-inline-images`,
+                    options: {
+                        baseUrl: `rest.thoughtsandstuff.com`,
+                        protocol: `http`,
+                    },
+                },
+            ],
         },
         {
             resolve: `gatsby-plugin-favicon`,
