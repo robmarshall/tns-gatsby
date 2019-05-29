@@ -36,10 +36,8 @@ module.exports = {
                 hostingWPCOM: false,
                 useACF: false,
                 verboseOutput: true,
-                // Need to re-add following:
-                // https://github.com/TylerBarnes/gatsby-wordpress-inline-images/issues/13
                 // searchAndReplaceContentUrls: {
-                //     sourceUrl: 'http://rest.thoughtsandstuff.com',
+                //     sourceUrl: 'https://rest.thoughtsandstuff.com',
                 //     replacementUrl: 'https://thoughtsandstuff.com',
                 // },
                 auth: {
@@ -47,15 +45,16 @@ module.exports = {
                     jwt_pass: process.env.JWT_PASSWORD,
                 },
             },
-            plugins: [
-                {
-                    resolve: `gatsby-wordpress-inline-images`,
-                    options: {
-                        baseUrl: `rest.thoughtsandstuff.com`,
-                        protocol: `http`,
-                    },
-                },
-            ],
+            // Doesnt seem to work yet...
+            // plugins: [
+            //     {
+            //         resolve: `gatsby-wordpress-inline-images`,
+            //         options: {
+            //             baseUrl: `rest.thoughtsandstuff.com`,
+            //             protocol: `http`,
+            //         },
+            //     },
+            // ],
         },
         {
             resolve: `gatsby-plugin-favicon`,
