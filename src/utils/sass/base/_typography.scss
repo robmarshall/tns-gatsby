@@ -1,4 +1,4 @@
-$font-stack: "Merriweather",Georgia,Cambria,"Times New Roman",Times,serif;
+$font-stack: "Merriweather", Georgia, Cambria, "Times New Roman", Times, serif;
 
 // breakpoint variables
 $lg: 1170px;
@@ -7,229 +7,287 @@ $sm: 640px;
 $xs: 480px;
 
 // Set the font sizes for all screen sizes
-$h1-font-size: (null: 43, $md: 35, $sm: 30, $xs: 28);
-$h2-font-size: (null: 34, $md: 28, $sm: 30, $xs: 24);
-$h3-font-size: (null: 30, $md: 27, $sm: 25, $xs: 22);
-$h4-font-size: (null: 24, $md: 22, $sm: 21, $xs: 21);
-$p-font-size: (null: 20, $md: 20, $sm: 19, $xs: 18);
+$h1-font-size: (
+  null: 43,
+  $md: 35,
+  $sm: 30,
+  $xs: 28
+);
+$h2-font-size: (
+  null: 34,
+  $md: 28,
+  $sm: 30,
+  $xs: 24
+);
+$h3-font-size: (
+  null: 30,
+  $md: 27,
+  $sm: 25,
+  $xs: 22
+);
+$h4-font-size: (
+  null: 24,
+  $md: 22,
+  $sm: 21,
+  $xs: 21
+);
+$p-font-size: (
+  null: 20,
+  $md: 20,
+  $sm: 19,
+  $xs: 18
+);
 
 $body-line-height: 1.6;
 $heading-line-height: 1.25;
 
 body {
-    color: rgba(0,0,0,.84);
-    word-wrap: break-word;
+  color: rgba(0, 0, 0, 0.84);
+  word-wrap: break-word;
 }
 
-body,input,textarea,option,select {
-    font-weight: 400;
-    font-family: $font-stack;
-    line-height: $body-line-height;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    text-rendering: optimizeLegibility !important;
-    -webkit-font-smoothing: antialiased !important;
-    -moz-osx-font-smoothing: grayscale !important;
+body,
+input,
+textarea,
+option,
+select {
+  font-weight: 400;
+  font-family: $font-stack;
+  line-height: $body-line-height;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
 }
 
-p, input, textarea, select, option, a {
-    font-size: inherit;
-    color: inherit;
+p,
+input,
+textarea,
+select,
+option,
+a {
+  font-size: inherit;
+  color: inherit;
 }
 
 p a {
-    display: inline;
+  display: inline;
 }
 
-p, h1, h2, h3, h4, h5, h6,
-ul, ol, dl, dd, figure, pre, hr,
-blockquote, form, noscript, iframe
-{
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    margin-bottom: 0.825rem;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    text-rendering: optimizeLegibility;
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+dl,
+dd,
+figure,
+pre,
+hr,
+blockquote,
+form,
+noscript,
+iframe {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0.825rem;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  text-rendering: optimizeLegibility;
 }
 
 blockquote *:last-child,
 li *:last-child,
 p *:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 blockquote {
-    padding: em(10) em(20);
-    margin: em(15) 0;
-    border-left: 5px solid #eee;
-    font-style: italic;
+  padding: em(10) em(20);
+  margin: em(15) 0;
+  border-left: 5px solid #eee;
+  font-style: italic;
 }
 
 p {
-    margin-bottom: 0.25em;
-    line-height: $body-line-height;
+  margin-bottom: 1em;
+  line-height: $body-line-height;
 }
 
-i, .i, em {
-    font-style:italic;
+i,
+.i,
+em {
+  font-style: italic;
 }
 
-b, .b, strong {
-    font-weight: 700;
+b,
+.b,
+strong {
+  font-weight: 700;
 }
 
-h1,h2,h3,h4,h5,h6 {
-    line-height: $heading-line-height;
-    font-weight: 700;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: $heading-line-height;
+  font-weight: 700;
 }
 
-ul, ol {
-    margin-left: 1.45rem;
-    margin-bottom: 1.45rem;
-    list-style-position: outside;
-    list-style-image: none;
+ul,
+ol {
+  margin-left: 1.45rem;
+  margin-bottom: 1.45rem;
+  list-style-position: outside;
+  list-style-image: none;
 }
 
 li > ol,
 li > ul {
-    margin-left: 1.45rem;
-    margin-bottom: calc(1.45rem / 2);
-    margin-top: calc(1.45rem / 2);
+  margin-left: 1.45rem;
+  margin-bottom: calc(1.45rem / 2);
+  margin-top: calc(1.45rem / 2);
 }
 
 li li {
-    font-size: 1em;
+  font-size: 1em;
 }
 
-strong, bold {
-    font-weight: 700;
+strong,
+bold {
+  font-weight: 700;
 }
 
-em, i {
-    font-style: italic;
+em,
+i {
+  font-style: italic;
 }
 
 li {
-    position: relative;
+  position: relative;
 }
 
 hr {
-    margin: 1.5em 0;
+  margin: 1.5em 0;
 }
 
 code,
 kbd,
 samp {
-    font-size: 0.85rem;
-    line-height: 1.45rem;
+  font-size: 0.85rem;
+  line-height: 1.45rem;
 }
 
 thead {
-    text-align: left;
+  text-align: left;
 }
 
 td,
 th {
-    text-align: left;
-    border-bottom: 1px solid hsla(0, 0%, 0%, 0.12);
-    font-feature-settings: "tnum";
-    -moz-font-feature-settings: "tnum";
-    -ms-font-feature-settings: "tnum";
-    -webkit-font-feature-settings: "tnum";
-    padding-left: 0.96667rem;
-    padding-right: 0.96667rem;
-    padding-top: 0.725rem;
-    padding-bottom: calc(0.725rem - 1px);
+  text-align: left;
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.12);
+  font-feature-settings: "tnum";
+  -moz-font-feature-settings: "tnum";
+  -ms-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  padding-left: 0.96667rem;
+  padding-right: 0.96667rem;
+  padding-top: 0.725rem;
+  padding-bottom: calc(0.725rem - 1px);
 }
 
 th:first-child,
 td:first-child,
 th:last-child,
 td:last-child {
-    padding-right: 0;
+  padding-right: 0;
 }
 
 tt,
 code {
-    background-color: hsla(0, 0%, 0%, 0.04);
-    border-radius: 3px;
-    font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
+  background-color: hsla(0, 0%, 0%, 0.04);
+  border-radius: 3px;
+  font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
     "Liberation Mono", Menlo, Courier, monospace;
-    padding: 0;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
 }
 
 pre code {
-    background: none;
-    line-height: 1.42;
+  background: none;
+  line-height: 1.42;
 }
 
 code:before,
 code:after,
 tt:before,
 tt:after {
-    letter-spacing: -0.2em;
-    content: " ";
+  letter-spacing: -0.2em;
+  content: " ";
 }
 
 pre code:before,
 pre code:after,
 pre tt:before,
 pre tt:after {
-    content: "";
+  content: "";
 }
 
 // breakpoint mixin
 @mixin breakpoint($mq01: 0, $mq2: false, $maxmin: max-width) {
-    @if $mq2 == false {
-        @media ($maxmin: $mq01) {
-            @content;
-        }
+  @if $mq2 == false {
+    @media ($maxmin: $mq01) {
+      @content;
     }
-    @else {
-        @media (min-width: $mq01) and (max-width: $mq2) {
-            @content;
-        }
+  } @else {
+    @media (min-width: $mq01) and (max-width: $mq2) {
+      @content;
     }
+  }
 }
 
 // responsive font size mixin
 @mixin font-size-map($font-size-map) {
-    @each $breakpoint, $font-size in $font-size-map {
-        @if $breakpoint == null {
-            font-size: em($font-size);
-        } @else {
-            @include breakpoint($breakpoint) {
-                font-size: em($font-size);
-            }
-        }
+  @each $breakpoint, $font-size in $font-size-map {
+    @if $breakpoint == null {
+      font-size: em($font-size);
+    } @else {
+      @include breakpoint($breakpoint) {
+        font-size: em($font-size);
+      }
     }
+  }
 }
 
-
 h1 {
-    @include font-size-map($h1-font-size);
+  @include font-size-map($h1-font-size);
 }
 
 h2 {
-    @include font-size-map($h2-font-size);
+  @include font-size-map($h2-font-size);
 }
 
 h3 {
-    @include font-size-map($h3-font-size);
+  @include font-size-map($h3-font-size);
 }
 
 h4,
 h5 {
-    @include font-size-map($h4-font-size);
+  @include font-size-map($h4-font-size);
 }
 
 li,
 p {
-    @include font-size-map($p-font-size);
+  @include font-size-map($p-font-size);
 }
