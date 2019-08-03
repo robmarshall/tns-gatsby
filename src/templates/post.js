@@ -9,13 +9,15 @@ import Prism from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
 
 class PostTemplate extends Component {
+  componentDidMount() {
+    Prism.highlightAll();
+  }
+
   render() {
     const post = this.props.data.wordpressPost;
     const images = post.featured_media
       ? post.featured_media.localFile.childImageSharp
       : "";
-
-    Prism.highlightAll();
 
     return (
       <Layout>
