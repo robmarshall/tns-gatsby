@@ -74,7 +74,7 @@ const SEO = ({
           <Helmet title={_.unescape(seo.title)}>
             {seo.description && (
               <meta
-                property="Description"
+                property="description"
                 content={_.unescape(seo.description)}
               />
             )}
