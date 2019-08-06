@@ -19,6 +19,19 @@ class PostTemplate extends Component {
       ? post.featured_media.localFile.childImageSharp
       : "";
 
+    const publishedSchema = moment(post.date, "YYYY-MM-DD, HH:mm:ss").format();
+    const publishedUser = moment(post.date, "YYYY-MM-DD, HH:mm:ss").format(
+      "Do MMMM YYYY"
+    );
+
+    const modifiedSchema = moment(
+      post.modified,
+      "YYYY-MM-DD, HH:mm:ss"
+    ).format();
+    const modifiedUser = moment(post.modified, "YYYY-MM-DD, HH:mm:ss").format(
+      "Do MMMM YYYY"
+    );
+
     return (
       <Layout>
         <SEO
@@ -29,8 +42,8 @@ class PostTemplate extends Component {
           imageAlt={post.featured_media ? post.featured_media.alt_text : ""}
           facebookImage={images.facebook || ""}
           twitterImage={images.twitter ? images.twitter.src : ""}
-          publishedTime={post.date}
-          modifiedTime={post.modified}
+          publishedTime={publishedSchema}
+          modifiedTime={modifiedSchema}
           tags={post.tags}
         />
 
@@ -39,15 +52,15 @@ class PostTemplate extends Component {
 
           <time
             className="post__date post__date--published"
-            dateTime={moment(post.date).format("YYYY-MM-DDTHH:mm:ss+00:00")}
+            dateTime={publishedSchema}
           >
-            {moment(post.date).format("Do MMMM YYYY")}
+            {publishedUser}
           </time>
           <time
             className="post__date post__date--updated screen-reader-text"
-            dateTime={moment(post.modifed).format("YYYY-MM-DDTHH:mm:ss+00:00")}
+            dateTime={modifiedSchema}
           >
-            {moment(post.modifed).format("Do MMMM YYYY")}
+            {modifiedUser}
           </time>
 
           <CategoryList cats={post.categories} />
