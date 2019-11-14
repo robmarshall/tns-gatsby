@@ -11,3 +11,10 @@ export function isPage(postType) {
     }
     return false
 }
+
+export function getSingleType(postType){
+    if(isPage(postType)){
+        return ' - Article'
+    }
+    return ''
+}

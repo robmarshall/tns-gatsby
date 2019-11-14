@@ -18,136 +18,142 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
 
     const { createPage } = boundActionCreators
 
-    console.log('Getting Pages')
+    return new Promise((resolve, reject) => {
+        console.log('Getting Pages')
 
-    await graphql(queryPages).then(result => {
-        if (result.errors) reject(result.errors)
+        graphql(queryPages).then(result => {
+            if (result.errors) reject(result.errors)
 
-        // Pages detail
-        const pages = result.wpgraphql.pages.nodes
+            // Pages detail
+            const pages = result.data.wpgraphql.pages.nodes
 
-        pages.forEach(node => {
-            createPage({
-                path: `/${node.slug}/`,
-                component: slash(pageTemplate),
-                context: {
-                  page: node
-                },
-            })
-        })
-    })
-
-    console.log('Getting Posts')
-    await graphql(queryPosts).then(result => {
-        if (result.errors) reject(result.errors)
-
-        // Posts detail
-        const posts = result.wpgraphql.posts.nodes
-        let tags = []
-        let categories = []
-
-        createPaginatedPages({
-            edges: posts,
-            createPage: createPage,
-            pageTemplate: postsTemplate,
-            pageLength: 8,
-            pathPrefix: '',
-            buildPath: (index, pathPrefix) =>
-                index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`,
-        })
-
-        posts.forEach(node => {
-            // Grab all the tags and categories for later use
-            if (node.tags) {
-                node.tags.forEach(tag => {
-                    tags.push(tag.name)
+            pages.forEach(node => {
+                createPage({
+                    path: `/${node.slug}/`,
+                    component: slash(pageTemplate),
+                    context: {
+                        page: node,
+                    },
                 })
-            }
-
-            if (node.categories) {
-                node.categories.forEach(category => {
-                    categories.push(category.name)
-                })
-            }
-
-            createPage({
-                path: `/${node.slug}/`,
-                component: slash(postTemplate),
-                context: {
-                    post: node
-                },
             })
         })
 
-        const tagSet = new Set()
-        const tagMap = new Map()
-        const categorySet = new Set()
-        const categoryMap = new Map()
+        console.log('Getting Posts')
+        graphql(queryPosts).then(result => {
+            if (result.errors) reject(result.errors)
 
-        // Now loop through posts, and allocated posts to tags/cats
-        posts.forEach(node => {
-            if (node.tags) {
-                node.tags.nodes.forEach(tag => {
-                    tagSet.add(tag)
-                    const array = tagMap.has(tag.name)
-                        ? tagMap.get(tag.name)
-                        : []
-                    array.push(post)
-                    tagMap.set(tag.name, array)
-                })
-            }
+            // Posts detail
+            const posts = result.data.wpgraphql.posts.nodes
+            let tags = []
+            let categories = []
 
-            if (node.categories) {
-                node.categories.nodes.forEach(category => {
-                    categorySet.add(category)
-                    const array = categoryMap.has(category.name)
-                        ? categoryMap.get(category.name)
-                        : []
-                    array.push(post)
-                    categoryMap.set(category.name, array)
-                })
-            }
-        })
-
-        // Create paginated tag/cat pages
-        const tagList = Array.from(tagSet)
-        const categoryList = Array.from(categorySet)
-
-        tagList.forEach(tag => {
             createPaginatedPages({
-                edges: tagMap.get(tag.name),
+                edges: posts,
                 createPage: createPage,
-                pageTemplate: tagTemplate,
+                pageTemplate: postsTemplate,
                 pageLength: 8,
-                pathPrefix: 'tag',
+                pathPrefix: '',
                 buildPath: (index, pathPrefix) =>
                     index > 1
-                        ? `${pathPrefix}/${_.kebabCase(tag.name)}/page/${index}`
-                        : `/${pathPrefix}/${_.kebabCase(tag.name)}`,
-                context: {
-                    tagName: tag.name,
-                    tagDescription: tag.description,
-                },
+                        ? `${pathPrefix}/page/${index}`
+                        : `/${pathPrefix}`,
             })
-        })
 
-        categoryList.forEach(category => {
-            createPaginatedPages({
-                edges: categoryMap.get(category.name),
-                createPage: createPage,
-                pageTemplate: categoryTemplate,
-                pageLength: 8,
-                pathPrefix: 'category',
-                buildPath: (index, pathPrefix) =>
-                    index > 1
-                        ? `${pathPrefix}/${_.kebabCase(
-                              category.name
-                          )}/page/${index}`
-                        : `/${pathPrefix}/${_.kebabCase(category.name)}`,
-                context: {
-                    catName: category.name,
-                    catDescription: category.description,
-                },
+            posts.forEach(node => {
+                // Grab all the tags and categories for later use
+                if (node.tags) {
+                    node.tags.nodes.forEach(tag => {
+                        tags.push(tag.name)
+                    })
+                }
+
+                if (node.categories) {
+                    node.categories.nodes.forEach(category => {
+                        categories.push(category.name)
+                    })
+                }
+
+                createPage({
+                    path: `/${node.slug}/`,
+                    component: slash(postTemplate),
+                    context: {
+                        post: node,
+                    },
+                })
+            })
+
+            const tagSet = new Set()
+            const tagMap = new Map()
+            const categorySet = new Set()
+            const categoryMap = new Map()
+
+            // Now loop through posts, and allocated posts to tags/cats
+            posts.forEach(node => {
+                if (node.tags) {
+                    node.tags.nodes.forEach(tag => {
+                        tagSet.add(tag)
+                        const array = tagMap.has(tag.name)
+                            ? tagMap.get(tag.name)
+                            : []
+                        array.push(node)
+                        tagMap.set(tag.name, array)
+                    })
+                }
+
+                if (node.categories) {
+                    node.categories.nodes.forEach(category => {
+                        categorySet.add(category)
+                        const array = categoryMap.has(category.name)
+                            ? categoryMap.get(category.name)
+                            : []
+                        array.push(node)
+                        categoryMap.set(category.name, array)
+                    })
+                }
+            })
+
+            // Create paginated tag/cat pages
+            const tagList = Array.from(tagSet)
+            const categoryList = Array.from(categorySet)
+
+            tagList.forEach(tag => {
+                createPaginatedPages({
+                    edges: tagMap.get(tag.name),
+                    createPage: createPage,
+                    pageTemplate: tagTemplate,
+                    pageLength: 8,
+                    pathPrefix: 'tag',
+                    buildPath: (index, pathPrefix) =>
+                        index > 1
+                            ? `${pathPrefix}/${_.kebabCase(
+                                  tag.name
+                              )}/page/${index}`
+                            : `/${pathPrefix}/${_.kebabCase(tag.name)}`,
+                    context: {
+                        tagName: tag.name,
+                        tagDescription: tag.description,
+                    },
+                })
+            })
+
+            categoryList.forEach(category => {
+                createPaginatedPages({
+                    edges: categoryMap.get(category.name),
+                    createPage: createPage,
+                    pageTemplate: categoryTemplate,
+                    pageLength: 8,
+                    pathPrefix: 'category',
+                    buildPath: (index, pathPrefix) =>
+                        index > 1
+                            ? `${pathPrefix}/${_.kebabCase(
+                                  category.name
+                              )}/page/${index}`
+                            : `/${pathPrefix}/${_.kebabCase(category.name)}`,
+                    context: {
+                        catName: category.name,
+                        catDescription: category.description,
+                    },
+                })
             })
         })
     })

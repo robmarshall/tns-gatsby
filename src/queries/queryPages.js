@@ -14,8 +14,8 @@ query GET_PAGES($first:Int, $after:String){
         id
         slug
         title
-        date(formatString:"YYYY-MM-DD, HH:mm:ss")
-        modified(formatString:"YYYY-MM-DD, HH:mm:ss")
+        date
+        modified
         content
         excerpt
         seo {
@@ -37,15 +37,6 @@ query GET_PAGES($first:Int, $after:String){
           modified
           imageFile {
             childImageSharp {
-              image1200: fluid(maxWidth: 1000) {
-                  base64
-                  aspectRatio
-                  src
-                  srcSet
-                  srcWebp
-                  srcSetWebp
-                  sizes
-              }
               facebook: fixed(width: 1024, height: 512) {
                   src
                   width

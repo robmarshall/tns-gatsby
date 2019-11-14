@@ -6,7 +6,7 @@ import AllSiteDefaults from '../../hooks/get-site-defaults'
 import limitString from '../../utils/limitString'
 
 import SchemaOrg from './SchemaOrg'
-import { isPostSingle, getSingleType } from './SeoHelpers'
+import { getSingleType, isPost } from './SeoHelpers'
 
 const SEO = ({
     address,
@@ -92,7 +92,7 @@ const SEO = ({
 
                 {/* OpenGraph tags */}
                 <meta property="og:url" content={postUrl} />
-                {isPostSingle(postType) ? (
+                {isPost(postType) ? (
                     <meta property="og:type" content="article" />
                 ) : null}
                 <meta property="og:title" content={metaTitle} />

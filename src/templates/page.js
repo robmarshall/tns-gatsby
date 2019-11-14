@@ -1,4 +1,5 @@
 import React from "react"
+import _ from 'lodash'
 import Layout from "../components/Layout"
 import SEO from "../components/SEO/SEO"
 
@@ -11,19 +12,36 @@ const PageTemplate = (props) => {
             date,
             modified,
             excerpt,
+            featuredImage,
             seo,
         } },
         postURI,
     } = props
 
+    const facebookImage = _.get(
+        featuredImage,
+        'imageFile.childImageSharp.facebook.src',
+        false
+    )
+    const twitterImage = _.get(
+        featuredImage,
+        'imageFile.childImageSharp.twitter.src',
+        false
+    )
+
     return (
         <Layout>
 
             <SEO
-                title={seo.title || title}
+                postType="page"
+                yoastTitle={seo.title}
+                title={title}
                 description={seo.metaDesc || excerpt}
-                publishedTime={date}
-                modifiedTime={modified}
+                facebookPostImage={facebookImage}
+                twitterPostImage={twitterImage}
+                url={postURI}
+                datePublished={date}
+                dateModified={modified}
             />
 
             <h1

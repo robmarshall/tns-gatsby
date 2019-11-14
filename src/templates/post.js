@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import Img from "gatsby-image";
+import _ from 'lodash'
 import moment from "moment";
 import Prism from "prismjs";
 import CategoryList from "../components/CategoryList";
-import ImageChecker from "../components/ImageChecker";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO/SEO";
 import TagList from "../components/TagList";
@@ -17,20 +18,39 @@ class PostTemplate extends Component {
     render() {
 
         const {
-            title,
-            content,
-            date,
-            modified,
-            excerpt,
-            featured_media,
-            tags,
-            categories,
-            seo,
-        } = props
+            pageContext: { post: {
+                title,
+                content,
+                date,
+                modified,
+                excerpt,
+                featuredImage,
+                tags,
+                categories,
+                seo,
+            } },
+            postURI,
+        } = this.props
 
-        const images = featured_media
-            ? featured_media.localFile.childImageSharp
-            : "";
+        const image = _.get(
+            featuredImage,
+            'imageFile.childImageSharp.image1000',
+            false
+        )
+
+        const facebookImage = _.get(
+            featuredImage,
+            'imageFile.childImageSharp.facebook.src',
+            false
+        )
+        const twitterImage = _.get(
+            featuredImage,
+            'imageFile.childImageSharp.twitter.src',
+            false
+        )
+
+        const featuredAlt = _.get(featuredImage, 'alt_text', false)
+        const featuredTitle = _.get(featuredImage, 'title', false)
 
         const publishedSchema = moment(date, "YYYY-MM-DD, HH:mm:ss").format();
         const publishedUser = moment(date, "YYYY-MM-DD, HH:mm:ss").format(
@@ -47,17 +67,17 @@ class PostTemplate extends Component {
 
         return (
             <Layout>
+
                 <SEO
-                    title={seo.title || title}
+                    postType="page"
+                    yoastTitle={seo.title}
+                    title={title}
                     description={seo.metaDesc || excerpt}
-                    article
-                    image={images.facebook ? images.facebook.src : ""}
-                    imageAlt={featured_media ? featured_media.alt_text : ""}
-                    facebookImage={images.facebook || ""}
-                    twitterImage={images.twitter ? images.twitter.src : ""}
-                    publishedTime={publishedSchema}
-                    modifiedTime={modifiedSchema}
-                    tags={tags}
+                    facebookPostImage={facebookImage}
+                    twitterPostImage={twitterImage}
+                    url={postURI}
+                    datePublished={date}
+                    dateModified={modified}
                 />
 
                 <article className="post">
@@ -81,10 +101,10 @@ class PostTemplate extends Component {
 
                     <CategoryList cats={categories} />
 
-                    <ImageChecker
-                        featuredMedia={featured_media}
-                        className="post__feat-image"
-                    />
+                    <div>
+                        <Img className="post__feat-image" fluid={image} title={featuredTitle} alt={featuredAlt} />
+                    </div>
+
                     <div
                         // eslint-disable-next-line
                       dangerouslySetInnerHTML={{ __html: content }} />

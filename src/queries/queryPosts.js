@@ -14,8 +14,8 @@ query GET_POSTS($first:Int, $after:String){
         id
         slug
         title
-        date(formatString:"YYYY-MM-DD, HH:mm:ss")
-        modified(formatString:"YYYY-MM-DD, HH:mm:ss")
+        date
+        modified
         content
         excerpt
         seo {
@@ -49,7 +49,7 @@ query GET_POSTS($first:Int, $after:String){
           modified
           imageFile {
             childImageSharp {
-              image1200: fluid(maxWidth: 1000) {
+              image1000: fluid(maxWidth: 1000) {
                   base64
                   aspectRatio
                   src
