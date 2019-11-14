@@ -1,4 +1,5 @@
 import React from 'react'
+import he from 'he'
 import _ from 'lodash'
 import Helmet from 'react-helmet'
 import sanitizeHtml from 'sanitize-html'
@@ -81,7 +82,7 @@ const SEO = ({
         <>
             <Helmet>
                 {/* General tags */}
-                <title>{browserTitle}</title>
+                <title>{he.unescape(browserTitle)}</title>
                 {postDescription && (
                     <meta name="description" content={postDescription} />
                 )}
