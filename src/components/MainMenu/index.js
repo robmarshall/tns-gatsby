@@ -24,24 +24,24 @@ const Menu = ({ data }) => (
 const MainMenu = ({props}) => (
     <StaticQuery
         query={graphql`
-          query LayoutQuery {
-            allWordpressWpApiMenusMenusItems{
-                edges{
-                    node{
-                        id
-                        name
-                        items{
-                            title
-                            url
-                            object_slug
-                        }
-                    }
+      query {
+        wpgraphql {
+          menus {
+            nodes {
+              menuItems {
+                nodes {
+                  url
+                  label
+                  target
                 }
+              }
             }
           }
-      `}
+        }
+      }
+    `}
         // eslint-disable-next-line
-        render={data => <Menu data={data.allWordpressWpApiMenusMenusItems.edges[0].node.items} {...props} />}
+        render={data => <Menu data={data.wpgraphql.menus.nodes[0].menuItems.nodes} {...props} />}
     />
 )
 

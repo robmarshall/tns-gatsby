@@ -19,17 +19,17 @@ const AllCategoriesList = ({props}) => (
     <StaticQuery
         query={graphql`
           query {
-              allWordpressCategory(filter: { count: { gt: 0 } }){
-                edges {
-                  node {
-                    name
-                  }
+            wpgraphql {
+              categories {
+                nodes {
+                  name
                 }
               }
+            }
           }
       `}
         // eslint-disable-next-line
-        render={data => <List data={data.allWordpressCategory.edges} {...props} />}
+        render={data => <List data={data.wpgraphql.categories.nodes} {...props} />}
     />
 )
 

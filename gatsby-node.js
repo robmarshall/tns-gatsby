@@ -1,5 +1,4 @@
 const _ = require(`lodash`)
-const Promise = require(`bluebird`)
 const path = require(`path`)
 const slash = require(`slash`)
 const queryPages = require(`./src/queries/queryPages.js`)
@@ -18,10 +17,10 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
 
     const { createPage } = boundActionCreators
 
-    return new Promise((resolve, reject) => {
+
         console.log('Getting Pages')
 
-        graphql(queryPages).then(result => {
+        await graphql(queryPages).then(result => {
             if (result.errors) reject(result.errors)
 
             // Pages detail
@@ -39,7 +38,7 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
         })
 
         console.log('Getting Posts')
-        graphql(queryPosts).then(result => {
+        await graphql(queryPosts).then(result => {
             if (result.errors) reject(result.errors)
 
             // Posts detail
@@ -154,7 +153,7 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
                         catDescription: category.description,
                     },
                 })
-            })
+      
         })
     })
 }
