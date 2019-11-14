@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import Img from "gatsby-image";
 import _ from 'lodash'
 import moment from 'moment';
 import ArchivePaginationLinks from "../components/ArchivePaginationLinks"
