@@ -1,131 +1,153 @@
-import React from "react";
-import { graphql, StaticQuery } from "gatsby";
-import _ from "lodash";
-import Helmet from "react-helmet";
-import Facebook from "./Facebook";
-import Twitter from "./Twitter";
+import React from 'react'
+import _ from 'lodash'
+import Helmet from 'react-helmet'
+import sanitizeHtml from 'sanitize-html'
+import AllSiteDefaults from '../../hooks/get-site-defaults'
+import limitString from '../../utils/limitString'
 
-const cleanupDescription = (description) => {
-    let clean = description.replace(/<(?:.|\n)*?>/gm, "");
-    clean = _.unescape(clean);
-    return clean;
-}
+import SchemaOrg from './SchemaOrg'
+import { isPostSingle, getSingleType } from './SeoHelpers'
 
 const SEO = ({
-    title = null,
-    description = null,
-    image = null,
-    imageAlt = null,
-    facebookImage = null,
-    twitterImage = null,
-    pathname = null,
-    article = false,
-    publishedTime = null,
-    modifiedTime = null,
-    tags = null
-}) => (
-    <StaticQuery
-        query={graphql`
-      query SEOQuery {
-        site {
-          siteMetadata {
-            fallbackLocale: locale
-            fallbackSiteName: siteName
-            fallbackTitle: title
-            fallbackDescription: description
-            siteUrl: url
-            twitterUsername: author
-            facebookAppID
-          }
-        }
-        wordpressWpSettings {
-          locale: language
-          setSiteName: title
-          setDescription: description
-        }
-      }
-    `}
-        render={({
-            site: {
-                siteMetadata: {
-                    fallbackLocale,
-                    fallbackSiteName,
-                    fallbackTitle,
-                    fallbackDescription,
-                    siteUrl,
-                    twitterUsername,
-                    facebookAppID
-                }
-            },
-            wordpressWpSettings: { locale, setSiteName, setDescription }
-        }) => {
-            const siteName = setSiteName || fallbackSiteName;
-            const pageTitle = title || setDescription || fallbackTitle;
+    address,
+    author,
+    datePublished,
+    dateModified,
+    description,
+    facebookPostImage,
+    postType,
+    title,
+    twitterPostImage,
+    startDateTime,
+    eventOver,
+    url,
+    yoastTitle,
+    articleBody,
+}) => {
+    // Pull data from WordPress and Gatsby config
+    const { settings, site, facebookImage, twitterImage } = AllSiteDefaults()
+    const wpSettings = settings.allSettings
+    const fallback = site.siteMetadata
 
-            const seo = {
-                locale: locale || fallbackLocale || "en_GB",
-                title: pageTitle ? `${pageTitle  } | ${  siteName}` : siteName,
-                description: description || fallbackDescription,
-                imageAlt: imageAlt || title || "",
-                facebookImage: facebookImage || "",
-                twitterImage: twitterImage || "",
-                url: `${siteUrl}${pathname || "/"}`
-            };
+    const siteName = wpSettings.generalSettingsTitle || fallback.siteName
+    const tagLine =
+        wpSettings.generalSettingsDescription || fallback.description
+    const facebookImageFallback = _.get(
+        facebookImage,
+        'childImageSharp.fixed.src',
+        false
+    )
+    const twitterImageFallback = _.get(
+        twitterImage,
+        'childImageSharp.fixed.src',
+        false
+    )
 
-            seo.description = cleanupDescription(seo.description);
+    // Set the title from the browser. If there is a page title, set properly. Otherwise fall back
+    const browserTitle =
+        yoastTitle || title
+            ? `${title}${getSingleType(postType)} | ${siteName}`
+            : `${siteName} | ${tagLine}`
 
-            return (
-                <>
-                    <Helmet title={_.unescape(seo.title)}>
-                        {seo.description && (
-                            <meta
-                                property="description"
-                                content={_.unescape(seo.description)}
-                            />
-                        )}
-                        {image && <meta property="image" content={siteUrl + image} />}
+    const metaTitle = yoastTitle || title + getSingleType(postType) || siteName
 
-                        {publishedTime && article && (
-                            <meta property="article:published_time" content={publishedTime} />
-                        )}
-                        {modifiedTime && article && (
-                            <meta property="article:modified_time" content={modifiedTime} />
-                        )}
+    const sanitizeOptions = {
+        allowedTags: [],
+        allowedAttributes: {},
+    }
 
-                        {tags &&
-              tags.length > 0 &&
-              tags.map(tag => (
-                  <meta
-                      key={_.kebabCase(tag.name)}
-                      property="article:tag"
-                      content={tag.name}
-                  />
-              ))}
-                    </Helmet>
-                    <Facebook
-                        locale={seo.locale}
-                        baseUrl={siteUrl}
-                        siteName={_.unescape(seo.siteName)}
-                        pageUrl={seo.url}
-                        type={article ? "article" : null}
-                        title={_.unescape(seo.title)}
-                        description={_.unescape(seo.description)}
-                        image={seo.facebookImage}
-                        imageAlt={seo.imageAlt}
-                        appID={facebookAppID}
-                        updatedTime={modifiedTime}
+    // Take the description/excerpt and remove all html tags
+    const postDescription = limitString(
+        sanitizeHtml(description || tagLine, sanitizeOptions),
+        150
+    )
+
+    const facebookMetaImage =
+        facebookPostImage ||
+        facebookImageFallback ||
+        twitterPostImage ||
+        twitterImageFallback ||
+        false
+    const twitterMetaImage =
+        twitterPostImage ||
+        twitterImageFallback ||
+        facebookPostImage ||
+        facebookImageFallback ||
+        false
+
+    const postUrl = url ? `${fallback.siteUrl}${url}` : fallback.siteUrl
+
+    return (
+        <>
+            <Helmet>
+                {/* General tags */}
+                <title>{browserTitle}</title>
+                {postDescription && (
+                    <meta name="description" content={postDescription} />
+                )}
+                {facebookMetaImage && (
+                    <meta name="image" content={facebookMetaImage} />
+                )}
+                <link rel="canonical" href={postUrl} />
+
+                {/* OpenGraph tags */}
+                <meta property="og:url" content={postUrl} />
+                {isPostSingle(postType) ? (
+                    <meta property="og:type" content="article" />
+                ) : null}
+                <meta property="og:title" content={metaTitle} />
+                {postDescription && (
+                    <meta property="og:description" content={postDescription} />
+                )}
+                {facebookMetaImage && (
+                    <meta property="og:image" content={facebookMetaImage} />
+                )}
+                {fallback.facebookAppID && (
+                    <meta
+                        property="fb:app_id"
+                        content={fallback.facebookAppID}
                     />
-                    <Twitter
-                        username={twitterUsername}
-                        baseUrl={siteUrl}
-                        title={_.unescape(seo.title)}
-                        description={_.unescape(seo.description)}
-                        image={seo.twitterImage}
-                    />
-                </>
-            );
-        }}
-    />
-);
+                )}
+                {datePublished && (
+                    <meta property="PublishDate" content={datePublished} />
+                )}
+                {dateModified && (
+                    <meta property="LastModifiedDate" content={dateModified} />
+                )}
+                {author && <meta property="Creator" content={author} />}
 
-export default SEO;
+                {/* Twitter Card tags */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:creator" content={fallback.author} />
+                <meta name="twitter:title" content={metaTitle} />
+                {postDescription && (
+                    <meta
+                        name="twitter:description"
+                        content={postDescription}
+                    />
+                )}
+                {twitterMetaImage && (
+                    <meta name="twitter:image" content={twitterMetaImage} />
+                )}
+            </Helmet>
+            <SchemaOrg
+                author={author}
+                url={url}
+                title={metaTitle}
+                image={facebookMetaImage}
+                description={postDescription}
+                datePublished={datePublished}
+                dateModified={dateModified}
+                address={address}
+                startDateTime={startDateTime}
+                siteUrl={fallback.siteUrl}
+                organization="Thoughts and Stuff"
+                postType={postType}
+                defaultTitle={tagLine}
+                articleBody={articleBody}
+            />
+        </>
+    )
+}
+
+export default SEO

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { graphql } from "gatsby";
 import moment from "moment";
 import Prism from "prismjs";
 import CategoryList from "../components/CategoryList";
@@ -10,52 +9,62 @@ import TagList from "../components/TagList";
 import "prismjs/themes/prism-tomorrow.css";
 
 class PostTemplate extends Component {
+
     componentDidMount() {
         Prism.highlightAll();
     }
 
     render() {
 
-        const {props: { data: { wordpressPost} } } = this;
+        const {
+            title,
+            content,
+            date,
+            modified,
+            excerpt,
+            featured_media,
+            tags,
+            categories,
+            seo,
+        } = props
 
-        const post = wordpressPost;
-        const images = post.featured_media
-            ? post.featured_media.localFile.childImageSharp
+        const images = featured_media
+            ? featured_media.localFile.childImageSharp
             : "";
 
-        const publishedSchema = moment(post.date, "YYYY-MM-DD, HH:mm:ss").format();
-        const publishedUser = moment(post.date, "YYYY-MM-DD, HH:mm:ss").format(
+        const publishedSchema = moment(date, "YYYY-MM-DD, HH:mm:ss").format();
+        const publishedUser = moment(date, "YYYY-MM-DD, HH:mm:ss").format(
             "Do MMMM YYYY"
         );
 
         const modifiedSchema = moment(
-            post.modified,
+            modified,
             "YYYY-MM-DD, HH:mm:ss"
         ).format();
-        const modifiedUser = moment(post.modified, "YYYY-MM-DD, HH:mm:ss").format(
+        const modifiedUser = moment(modified, "YYYY-MM-DD, HH:mm:ss").format(
             "Do MMMM YYYY"
         );
 
         return (
             <Layout>
                 <SEO
-                    title={post.title}
-                    description={post.yoast_meta.yoast_wpseo_metadesc || post.excerpt}
+                    title={seo.title || title}
+                    description={seo.metaDesc || excerpt}
                     article
                     image={images.facebook ? images.facebook.src : ""}
-                    imageAlt={post.featured_media ? post.featured_media.alt_text : ""}
+                    imageAlt={featured_media ? featured_media.alt_text : ""}
                     facebookImage={images.facebook || ""}
                     twitterImage={images.twitter ? images.twitter.src : ""}
                     publishedTime={publishedSchema}
                     modifiedTime={modifiedSchema}
-                    tags={post.tags}
+                    tags={tags}
                 />
 
                 <article className="post">
 
                     <h1
                         // eslint-disable-next-line
-                      dangerouslySetInnerHTML={{ __html: post.title }} />
+                      dangerouslySetInnerHTML={{ __html: title }} />
 
                     <time
                         className="post__date post__date--published"
@@ -70,17 +79,17 @@ class PostTemplate extends Component {
                         {modifiedUser}
                     </time>
 
-                    <CategoryList cats={post.categories} />
+                    <CategoryList cats={categories} />
 
                     <ImageChecker
-                        featuredMedia={post.featured_media}
+                        featuredMedia={featured_media}
                         className="post__feat-image"
                     />
                     <div
                         // eslint-disable-next-line
-                      dangerouslySetInnerHTML={{ __html: post.content }} />
+                      dangerouslySetInnerHTML={{ __html: content }} />
 
-                    <TagList tags={post.tags} />
+                    <TagList tags={tags} />
                 </article>
             </Layout>
         );
@@ -88,59 +97,3 @@ class PostTemplate extends Component {
 }
 
 export default PostTemplate;
-
-export const postQuery = graphql`
-  query currentPostQuery($id: String!) {
-    wordpressPost(id: { eq: $id }) {
-      title
-      content
-      excerpt
-      slug
-      date(formatString: "YYYY-MM-DD, HH:mm:ss")
-      modified(formatString: "YYYY-MM-DD, HH:mm:ss")
-      tags {
-        name
-      }
-      categories {
-        name
-      }
-      featured_media {
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 700) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              sizes
-            }
-            facebook: fixed(width: 1024, height: 512) {
-              src
-              width
-              height
-            }
-            twitter: fixed(width: 1200, height: 630) {
-              src
-            }
-          }
-        }
-        title
-        alt_text
-      }
-
-      yoast_meta {
-        yoast_wpseo_title
-        yoast_wpseo_metadesc
-        yoast_wpseo_meta_robots_noindex
-        yoast_wpseo_meta_robots_nofollow
-        yoast_wpseo_canonical
-        yoast_wpseo_opengraph_title
-        yoast_wpseo_opengraph_description
-        yoast_wpseo_opengraph_image
-        yoast_wpseo_twitter_title
-        yoast_wpseo_twitter_description
-        yoast_wpseo_twitter_image
-      }
-    }
-  }
-`;

@@ -29,43 +29,15 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-source-wordpress`,
-      options: {
-        baseUrl: `rest.thoughtsandstuff.com`,
-        protocol: `http`,
-        hostingWPCOM: false,
-        useACF: false,
-        verboseOutput: true,
-        // searchAndReplaceContentUrls: {
-        //     sourceUrl: 'https://rest.thoughtsandstuff.com',
-        //     replacementUrl: 'https://thoughtsandstuff.com',
-        // },
-        auth: {
-          jwt_user: process.env.JWT_USER,
-          jwt_pass: process.env.JWT_PASSWORD
+        resolve: `gatsby-source-graphql`,
+        options: {
+            // This type will contain remote schema Query type
+            typeName: `WPGraphQL`,
+            // This is field under which it's accessible
+            fieldName: `wpgraphql`,
+            // Url to query from
+            url: "http://rest.thoughtsandstuff.com/graphql",
         },
-        includedRoutes: [
-          "/*/*/menus",
-          "**/categories",
-          "**/posts",
-          "**/pages",
-          "**/media",
-          "**/tags",
-          "**/taxonomies",
-          "**/users",
-          "/*/*/settings"
-        ]
-      }
-      // Doesnt seem to work yet...
-      // plugins: [
-      //     {
-      //         resolve: `gatsby-wordpress-inline-images`,
-      //         options: {
-      //             baseUrl: `rest.thoughtsandstuff.com`,
-      //             protocol: `http`,
-      //         },
-      //     },
-      // ],
     },
     {
       resolve: `gatsby-plugin-feed`,
@@ -128,38 +100,6 @@ module.exports = {
             managingEditor: "Robert Marshall"
           }
         ]
-      }
-    },
-    {
-      resolve: `gatsby-plugin-favicon`,
-      options: {
-        logo: "./src/favicon.png",
-
-        // WebApp Manifest Configuration
-        appName: "TnS", // Inferred with your package.json
-        appDescription: "Website Design and Development Inspiration",
-        developerName: "Robert Marshall",
-        developerURL: "robertmarshall.dev",
-        dir: "auto",
-        lang: "en-US",
-        background: "#fff",
-        theme_color: "#fff",
-        display: "standalone",
-        orientation: "any",
-        start_url: "/?homescreen=1",
-        version: "1.0",
-        icons: {
-          android: true,
-          appleIcon: true,
-          appleStartup: true,
-          coast: false,
-          favicons: true,
-          firefox: true,
-          opengraph: false,
-          twitter: false,
-          yandex: false,
-          windows: false
-        }
       }
     },
     `gatsby-plugin-sass`,

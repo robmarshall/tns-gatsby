@@ -1,67 +1,40 @@
 import React from "react"
-import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import SEO from "../components/SEO/SEO"
 
 const PageTemplate = (props) => {
 
-
-    const { data: {wordpressPage} } = props
-
-    const currentPage = wordpressPage
+    const {
+        pageContext: { page: {
+            title,
+            content,
+            date,
+            modified,
+            excerpt,
+            seo,
+        } },
+        postURI,
+    } = props
 
     return (
         <Layout>
 
             <SEO
-                title={currentPage.title}
-                description={(currentPage.yoast_meta.yoast_wpseo_metadesc || currentPage.excerpt)}
-                publishedTime={currentPage.date}
-                modifiedTime={currentPage.modified}
+                title={seo.title || title}
+                description={seo.metaDesc || excerpt}
+                publishedTime={date}
+                modifiedTime={modified}
             />
 
             <h1
                 // eslint-disable-next-line
-              dangerouslySetInnerHTML={{__html: currentPage.title}} />
+              dangerouslySetInnerHTML={{__html: title}} />
             <div
                 // eslint-disable-next-line
-              dangerouslySetInnerHTML={{__html: currentPage.content}} />
+              dangerouslySetInnerHTML={{__html: content}} />
         </Layout>
     )
 
 }
 
 export default PageTemplate
-
-export const pageQuery = graphql`
-    query currentPageQuery($id: String!) {
-        wordpressPage(id: { eq: $id }) {
-            title
-            content
-            excerpt
-            slug
-            date
-            modified
-
-            yoast_meta {
-                yoast_wpseo_title
-                yoast_wpseo_metadesc
-                yoast_wpseo_meta_robots_noindex
-                yoast_wpseo_meta_robots_nofollow
-                yoast_wpseo_canonical
-                yoast_wpseo_opengraph_title
-                yoast_wpseo_opengraph_description
-                yoast_wpseo_opengraph_image
-                yoast_wpseo_twitter_title
-                yoast_wpseo_twitter_description
-                yoast_wpseo_twitter_image
-            }
-        }
-        site {
-            id
-            siteMetadata {
-                title
-            }
-        }
-    }
-`
