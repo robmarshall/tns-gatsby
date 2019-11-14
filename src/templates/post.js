@@ -1,82 +1,90 @@
 import React, { Component } from "react";
-import moment from "moment";
 import { graphql } from "gatsby";
+import moment from "moment";
+import Prism from "prismjs";
+import CategoryList from "../components/CategoryList";
+import ImageChecker from "../components/ImageChecker";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO/SEO";
-import ImageChecker from "../components/ImageChecker";
-import CategoryList from "../components/CategoryList";
 import TagList from "../components/TagList";
-import Prism from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
 
 class PostTemplate extends Component {
-  componentDidMount() {
-    Prism.highlightAll();
-  }
+    componentDidMount() {
+        Prism.highlightAll();
+    }
 
-  render() {
-    const post = this.props.data.wordpressPost;
-    const images = post.featured_media
-      ? post.featured_media.localFile.childImageSharp
-      : "";
+    render() {
 
-    const publishedSchema = moment(post.date, "YYYY-MM-DD, HH:mm:ss").format();
-    const publishedUser = moment(post.date, "YYYY-MM-DD, HH:mm:ss").format(
-      "Do MMMM YYYY"
-    );
+        const {props: { data: { wordpressPost} } } = this;
 
-    const modifiedSchema = moment(
-      post.modified,
-      "YYYY-MM-DD, HH:mm:ss"
-    ).format();
-    const modifiedUser = moment(post.modified, "YYYY-MM-DD, HH:mm:ss").format(
-      "Do MMMM YYYY"
-    );
+        const post = wordpressPost;
+        const images = post.featured_media
+            ? post.featured_media.localFile.childImageSharp
+            : "";
 
-    return (
-      <Layout>
-        <SEO
-          title={post.title}
-          description={post.yoast_meta.yoast_wpseo_metadesc || post.excerpt}
-          article={true}
-          image={images.facebook ? images.facebook.src : ""}
-          imageAlt={post.featured_media ? post.featured_media.alt_text : ""}
-          facebookImage={images.facebook || ""}
-          twitterImage={images.twitter ? images.twitter.src : ""}
-          publishedTime={publishedSchema}
-          modifiedTime={modifiedSchema}
-          tags={post.tags}
-        />
+        const publishedSchema = moment(post.date, "YYYY-MM-DD, HH:mm:ss").format();
+        const publishedUser = moment(post.date, "YYYY-MM-DD, HH:mm:ss").format(
+            "Do MMMM YYYY"
+        );
 
-        <article className="post">
-          <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
+        const modifiedSchema = moment(
+            post.modified,
+            "YYYY-MM-DD, HH:mm:ss"
+        ).format();
+        const modifiedUser = moment(post.modified, "YYYY-MM-DD, HH:mm:ss").format(
+            "Do MMMM YYYY"
+        );
 
-          <time
-            className="post__date post__date--published"
-            dateTime={publishedSchema}
-          >
-            {publishedUser}
-          </time>
-          <time
-            className="post__date post__date--updated screen-reader-text"
-            dateTime={modifiedSchema}
-          >
-            {modifiedUser}
-          </time>
+        return (
+            <Layout>
+                <SEO
+                    title={post.title}
+                    description={post.yoast_meta.yoast_wpseo_metadesc || post.excerpt}
+                    article
+                    image={images.facebook ? images.facebook.src : ""}
+                    imageAlt={post.featured_media ? post.featured_media.alt_text : ""}
+                    facebookImage={images.facebook || ""}
+                    twitterImage={images.twitter ? images.twitter.src : ""}
+                    publishedTime={publishedSchema}
+                    modifiedTime={modifiedSchema}
+                    tags={post.tags}
+                />
 
-          <CategoryList cats={post.categories} />
+                <article className="post">
 
-          <ImageChecker
-            featuredMedia={post.featured_media}
-            className="post__feat-image"
-          />
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                    <h1
+                        // eslint-disable-next-line
+                      dangerouslySetInnerHTML={{ __html: post.title }} />
 
-          <TagList tags={post.tags} />
-        </article>
-      </Layout>
-    );
-  }
+                    <time
+                        className="post__date post__date--published"
+                        dateTime={publishedSchema}
+                    >
+                        {publishedUser}
+                    </time>
+                    <time
+                        className="post__date post__date--updated screen-reader-text"
+                        dateTime={modifiedSchema}
+                    >
+                        {modifiedUser}
+                    </time>
+
+                    <CategoryList cats={post.categories} />
+
+                    <ImageChecker
+                        featuredMedia={post.featured_media}
+                        className="post__feat-image"
+                    />
+                    <div
+                        // eslint-disable-next-line
+                      dangerouslySetInnerHTML={{ __html: post.content }} />
+
+                    <TagList tags={post.tags} />
+                </article>
+            </Layout>
+        );
+    }
 }
 
 export default PostTemplate;

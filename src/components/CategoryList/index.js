@@ -21,10 +21,10 @@ const CategoryList = ({ cats }) => {
             </div>
         );
 
-    } else {
-        // No Categories
-        return null;
-    }
+    } 
+    // No Categories
+    return null;
+    
 
 };
 

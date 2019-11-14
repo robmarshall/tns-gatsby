@@ -51,14 +51,14 @@ input,
 textarea,
 option,
 select {
-  font-weight: 400;
   font-family: $font-stack;
-  line-height: $body-line-height;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
+  font-weight: 400;
+  line-height: $body-line-height;
+  text-rendering: optimizeLegibility !important;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 p,
@@ -67,8 +67,8 @@ textarea,
 select,
 option,
 a {
-  font-size: inherit;
   color: inherit;
+  font-size: inherit;
 }
 
 p a {
@@ -93,10 +93,10 @@ blockquote,
 form,
 noscript,
 iframe {
+  margin-bottom: 0.825rem;
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
-  margin-bottom: 0.825rem;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
@@ -111,15 +111,15 @@ p *:last-child {
 }
 
 blockquote {
-  padding: em(10) em(20);
-  margin: em(15) 0;
   border-left: 5px solid #eee;
   font-style: italic;
+  margin: em(15) 0;
+  padding: em(10) em(20);
 }
 
 p {
-  margin-bottom: 1em;
   line-height: $body-line-height;
+  margin-bottom: 1em;
 }
 
 i,
@@ -140,8 +140,8 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: $heading-line-height;
   font-weight: 700;
+  line-height: $heading-line-height;
 }
 
 h2,
@@ -149,22 +149,22 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 1.5em;
   margin-bottom: 1em;
+  margin-top: 1.5em;
 }
 
 ul,
 ol {
-  margin-left: 1.45rem;
-  margin-bottom: 1.45rem;
-  list-style-position: outside;
   list-style-image: none;
+  list-style-position: outside;
+  margin-bottom: 1.45rem;
+  margin-left: 1.45rem;
 }
 
 li > ol,
 li > ul {
-  margin-left: 1.45rem;
   margin-bottom: calc(1.45rem / 2);
+  margin-left: 1.45rem;
   margin-top: calc(1.45rem / 2);
 }
 
@@ -203,16 +203,16 @@ thead {
 
 td,
 th {
-  text-align: left;
   border-bottom: 1px solid hsla(0, 0%, 0%, 0.12);
-  font-feature-settings: "tnum";
   -moz-font-feature-settings: "tnum";
   -ms-font-feature-settings: "tnum";
   -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+  padding-bottom: calc(0.725rem - 1px);
   padding-left: 0.96667rem;
   padding-right: 0.96667rem;
   padding-top: 0.725rem;
-  padding-bottom: calc(0.725rem - 1px);
+  text-align: left;
 }
 
 th:first-child,
@@ -229,8 +229,8 @@ code {
   font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
     "Liberation Mono", Menlo, Courier, monospace;
   padding: 0;
-  padding-top: 0.2em;
   padding-bottom: 0.2em;
+  padding-top: 0.2em;
 }
 
 pre code {
@@ -242,8 +242,8 @@ code:before,
 code:after,
 tt:before,
 tt:after {
-  letter-spacing: -0.2em;
   content: " ";
+  letter-spacing: -0.2em;
 }
 
 pre code:before,

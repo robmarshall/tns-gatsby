@@ -1,28 +1,34 @@
-import React, {Component} from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import SEO from "../components/SEO/SEO"
 
-class PageTemplate extends Component {
-    render() {
+const PageTemplate = (props) => {
 
-        const currentPage = this.props.data.wordpressPage
 
-        return (
-            <Layout>
+    const { data: {wordpressPage} } = props
 
-                <SEO
-                    title = {currentPage.title}
-                    description = { (currentPage.yoast_meta.yoast_wpseo_metadesc || currentPage.excerpt) }
-                    publishedTime = { currentPage.date }
-                    modifiedTime = { currentPage.modified }
-                />
+    const currentPage = wordpressPage
 
-                <h1 dangerouslySetInnerHTML={{__html: currentPage.title}}/>
-                <div dangerouslySetInnerHTML={{__html: currentPage.content}}/>
-            </Layout>
-        )
-    }
+    return (
+        <Layout>
+
+            <SEO
+                title={currentPage.title}
+                description={(currentPage.yoast_meta.yoast_wpseo_metadesc || currentPage.excerpt)}
+                publishedTime={currentPage.date}
+                modifiedTime={currentPage.modified}
+            />
+
+            <h1
+                // eslint-disable-next-line
+              dangerouslySetInnerHTML={{__html: currentPage.title}} />
+            <div
+                // eslint-disable-next-line
+              dangerouslySetInnerHTML={{__html: currentPage.content}} />
+        </Layout>
+    )
+
 }
 
 export default PageTemplate

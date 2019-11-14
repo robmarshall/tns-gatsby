@@ -1,5 +1,5 @@
-import Img from "gatsby-image";
 import React from "react"
+import Img from "gatsby-image";
 
 const ImageChecker = props => {
 
@@ -13,12 +13,12 @@ const ImageChecker = props => {
 
         return (
             <div>
-                <Img className={className} fluid={fluidImage} title={title} alt={altTag}/>
+                <Img className={className} fluid={fluidImage} title={title} alt={altTag} />
             </div>
         );
-    } else {
-        return "";
-    }
+    } 
+    return "";
+    
 
 };
 

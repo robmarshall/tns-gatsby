@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Header from '../Header'
 import Footer from '../Footer'
+import Header from '../Header'
 
 import SEO from "../SEO/SEO"
 
@@ -9,19 +9,19 @@ import '../../utils/sass/base/base.scss';
 import '../../utils/sass/layout/layout.scss';
 
 const Layout = ({children}) => (
-  <div>
+    <div>
 
-    <SEO />
+        <SEO />
 
-    <Header siteTitle="T&S"/>
+        <Header siteTitle="T&S" />
 
-    <div className="article-container">
-        {children}
+        <div className="article-container">
+            {children}
+        </div>
+
+        <Footer />
+
     </div>
-
-    <Footer />
-
-  </div>
 )
 
 export default Layout

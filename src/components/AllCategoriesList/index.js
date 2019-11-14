@@ -9,7 +9,7 @@ const List = ({ data }) => {
 
     return (
         <div>
-            <CategoryList cats={allCats}/>
+            <CategoryList cats={allCats} />
         </div>
     )
 
@@ -17,7 +17,7 @@ const List = ({ data }) => {
 
 const AllCategoriesList = ({props}) => (
     <StaticQuery
-      query={graphql`
+        query={graphql`
           query {
               allWordpressCategory(filter: { count: { gt: 0 } }){
                 edges {
@@ -28,7 +28,8 @@ const AllCategoriesList = ({props}) => (
               }
           }
       `}
-      render={data => <List data={data.allWordpressCategory.edges} {...props} />}
+        // eslint-disable-next-line
+        render={data => <List data={data.allWordpressCategory.edges} {...props} />}
     />
 )
 

@@ -5,11 +5,14 @@ import '../../utils/sass/layout/layout.scss'
 const Footer = ({ siteTitle }) => (
     <footer className="footer">
         <div className="container footer__wrap">
-            By{' '}
+            By
+            {' '}
             <a href="https://www.robertmarshall.dev" className="footer__link">
                 Robert Marshall
-            </a>{' '}
-            &{' '}
+            </a>
+            {' '}
+            &
+            {' '}
             <a href="https://www.gatsbyjs.org/" className="footer__link">
                 Gatsby
             </a>

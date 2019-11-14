@@ -3,17 +3,14 @@ import { Link } from "gatsby";
 import moment from 'moment';
 
 import ArchivePaginationLinks from "../components/ArchivePaginationLinks"
-import Layout from "../components/Layout"
 import ImageChecker from "../components/ImageChecker"
+import Layout from "../components/Layout"
 
 import '../utils/sass/layout/post.scss';
 
 const IndexPage = ({ data, pageContext }) => {
     const { pageCount, group, index, first, last } = pageContext;
-    const previousUrl = index - 1 === 1 ? "" :
-        index - 1 > 1 ?
-        "page/" + (index - 1).toString() :
-        (index - 1).toString();
+    const previousUrl = index - 1 > 1 ? `page/${(index - 1).toString()}` : ""
     const nextUrl = (index + 1).toString();
 
     return (
@@ -34,6 +31,7 @@ const IndexPage = ({ data, pageContext }) => {
 
                             <h3
                                 className="post__title"
+                                // eslint-disable-next-line
                                 dangerouslySetInnerHTML={{__html: node.title}}
                             />
 
@@ -53,6 +51,7 @@ const IndexPage = ({ data, pageContext }) => {
 
                             <div
                                 className="post-content"
+                                // eslint-disable-next-line
                                 dangerouslySetInnerHTML={{__html: node.excerpt}}
                             />
 
@@ -65,13 +64,13 @@ const IndexPage = ({ data, pageContext }) => {
             </div>
 
             <ArchivePaginationLinks
-                pageCount = {pageCount}
-                first = {first}
-                last = {last}
-                prevUrl = {previousUrl}
-                nextUrl = {"page/" + nextUrl}
-                prevText = "Go to Previous Page"
-                nextText = "Go to Next Page"
+                pageCount={pageCount}
+                first={first}
+                last={last}
+                prevUrl={previousUrl}
+                nextUrl={`page/${  nextUrl}`}
+                prevText="Go to Previous Page"
+                nextText="Go to Next Page"
             />
 
         </Layout>

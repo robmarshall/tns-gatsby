@@ -22,10 +22,10 @@ const TagList = ({ tags }) => {
             </div>
         );
 
-    } else {
-        // No Tags
-        return null;
-    }
+    } 
+    // No Tags
+    return null;
+    
 
 };
 

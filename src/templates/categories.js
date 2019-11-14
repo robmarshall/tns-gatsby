@@ -1,32 +1,32 @@
 import React from "react";
+import { Link } from "gatsby";
 import _ from "lodash";
 import moment from 'moment';
-import { Link } from "gatsby";
 import ArchivePaginationLinks from "../components/ArchivePaginationLinks"
-import Layout from "../components/Layout"
 import ImageChecker from "../components/ImageChecker"
+import Layout from "../components/Layout"
 import SEO from "../components/SEO/SEO"
 
 const IndexPage = ({ data, pageContext }) => {
     const { group, index, first, last, pageCount, additionalContext, pathPrefix } = pageContext;
-    const previousUrl = index - 1 === 1 ? "" :
-        index - 1 > 1 ?
-        "page/" + (index - 1).toString() :
-        (index - 1).toString();
+    const previousUrl = index - 1 > 1 ? `page/${(index - 1).toString()}` : ""
     const nextUrl = (index + 1).toString();
 
-    const catName = additionalContext.catName;
-    const catDesc = additionalContext.catDescription || catName + ' category archive page';
+    const {catName} = additionalContext;
+    const catDesc = additionalContext.catDescription || `${catName  } category archive page`;
 
     return (
         <Layout>
 
             <SEO
-                title = {catName}
-                description = {catDesc}
+                title={catName}
+                description={catDesc}
             />
 
-            <h1>Category: {catName}</h1>
+            <h1>
+Category:
+                {catName}
+            </h1>
 
             <div className="post-list">
 
@@ -43,6 +43,7 @@ const IndexPage = ({ data, pageContext }) => {
 
                             <h3
                                 className="post__title"
+                                // eslint-disable-next-line
                                 dangerouslySetInnerHTML={{__html: node.title}}
                             />
 
@@ -61,6 +62,7 @@ const IndexPage = ({ data, pageContext }) => {
 
                             <div
                                 className="post-content"
+                                // eslint-disable-next-line
                                 dangerouslySetInnerHTML={{__html: node.excerpt}}
                             />
 
@@ -73,13 +75,13 @@ const IndexPage = ({ data, pageContext }) => {
             </div>
 
             <ArchivePaginationLinks
-                pageCount = {pageCount}
-                first = {first}
-                last = {last}
-                prevUrl = {`${pathPrefix}/${_.kebabCase(catName)}/${previousUrl}`}
-                nextUrl = {`${pathPrefix}/${_.kebabCase(catName)}/page/${nextUrl}`}
-                prevText = "Go to Previous Page"
-                nextText = "Go to Next Page"
+                pageCount={pageCount}
+                first={first}
+                last={last}
+                prevUrl={`${pathPrefix}/${_.kebabCase(catName)}/${previousUrl}`}
+                nextUrl={`${pathPrefix}/${_.kebabCase(catName)}/page/${nextUrl}`}
+                prevText="Go to Previous Page"
+                nextText="Go to Next Page"
             />
 
         </Layout>

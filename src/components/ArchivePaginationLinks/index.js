@@ -4,7 +4,9 @@ import "./pagination.scss"
 
 const ArchivePaginationLinks = props => {
 
-    if( props.pageCount > 1 ){
+    const {pageCount} = props
+
+    if( pageCount > 1 ){
 
         const next = (
             <div className="pagination__links pagination__links--next">
@@ -25,10 +27,10 @@ const ArchivePaginationLinks = props => {
             </div>
         );
 
-    } else {
-        // No Categories
-        return null;
     }
+    // No Categories
+    return null;
+
 
 };
 

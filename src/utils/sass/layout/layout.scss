@@ -2,9 +2,9 @@
 
 .container,
 .article-container {
+    margin: 0 auto;
     padding-left: em(15);
     padding-right: em(15);
-    margin: 0 auto;
     width: 100%;
 }
 
@@ -15,9 +15,9 @@
 @media only screen and (min-width: em(730px)) {
 
     .article-container {
+        max-width: em(700);
         padding-left: 0;
         padding-right: 0;
-        max-width: em(700);
     }
 
 }
@@ -25,10 +25,10 @@
 @media only screen and (min-width: em(1000px)) {
 
     .container {
-        padding-left: 0;
-        padding-right: 0;
         margin: 0 auto;
         max-width: em(960);
+        padding-left: 0;
+        padding-right: 0;
     }
 
 }

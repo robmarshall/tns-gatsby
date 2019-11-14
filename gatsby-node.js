@@ -4,6 +4,7 @@ const path = require(`path`)
 const slash = require(`slash`)
 const queryAll = require(`./src/queries/queryAll.js`)
 const createPaginatedPages = require("gatsby-paginate")
+const getRelatedPosts = require('./utils/getRelatedPosts.js')
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
 
@@ -149,8 +150,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                         },
                     })
                 });
-
-
             })
         )
     });
