@@ -4,26 +4,26 @@ import "./pagination.scss"
 
 const ArchivePaginationLinks = props => {
 
-    const {pageCount} = props
+    const {pageCount, last, first, nextUrl, prevUrl, nextText, prevText} = props
 
     if( pageCount > 1 ){
 
         const next = (
             <div className="pagination__links pagination__links--next">
-                <NavLink test={props.last} url={props.nextUrl} text={props.nextText} />
+                <NavLink test={last} url={nextUrl} text={nextText} />
             </div>
         );
 
         const prev = (
             <div className="pagination__links pagination__links--prev">
-                <NavLink test={props.first} url={props.prevUrl} text={props.prevText} />
+                <NavLink test={first} url={prevUrl} text={prevText} />
             </div>
         );
 
         return (
             <div className="pagination__wrap">
-                { prev }
-                { next }
+                { last ? prev : <div /> }
+                { first ? next : <div /> }
             </div>
         );
 
