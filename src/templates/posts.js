@@ -7,7 +7,7 @@ import ArchivePaginationLinks from "../components/ArchivePaginationLinks"
 
 import Layout from "../components/Layout"
 
-import '../utils/sass/layout/post.scss';
+import '../sass/layout/post.scss';
 
 const IndexPage = ({ data, pageContext }) => {
     const { pageCount, group, index, first, last } = pageContext;
