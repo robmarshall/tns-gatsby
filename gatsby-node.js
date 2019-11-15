@@ -140,6 +140,7 @@ exports.createPages = async ({ graphql, actions }) => {
                             : `/${pathPrefix}/${_.kebabCase(tag.name)}`,
                     context: {
                         tagName: tag.name,
+                        tagSlug: _.kebabCase(tag.name),
                         tagDescription: tag.description,
                     },
                 })
@@ -160,6 +161,7 @@ exports.createPages = async ({ graphql, actions }) => {
                             : `/${pathPrefix}/${_.kebabCase(category.name)}`,
                     context: {
                         catName: category.name,
+                        catSlug: _.kebabCase(category.name),
                         catDescription: category.description,
                     },
                 })
