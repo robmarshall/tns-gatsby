@@ -33,6 +33,7 @@ query GET_POSTS($first:Int, $after:String){
           nodes {
             name
             slug
+            description
           }
         }
         tags {
