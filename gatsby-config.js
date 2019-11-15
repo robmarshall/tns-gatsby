@@ -40,36 +40,36 @@ module.exports = {
                 url: "http://rest.thoughtsandstuff.com/graphql",
             },
         },
-        // {
-        //     resolve: `gatsby-plugin-feed`,
-        //     options: {
-        //         query: `
-        //       {
-        //         site {
-        //           siteMetadata {
-        //             title
-        //             description
-        //             siteUrl
-        //             site_url: siteUrl
-        //           }
-        //         }
-        //       }
-        //     `,
+        {
+            resolve: `gatsby-plugin-feed`,
+            options: {
+                query: `
+              {
+                site {
+                  siteMetadata {
+                    title
+                    description
+                    siteUrl
+                    site_url: siteUrl
+                  }
+                }
+              }
+            `,
         //         feeds: [
         //             {
-        //                 serialize: ({ query: { site, allWordpressPost } }) => {
-        //                     return allWordpressPost.edges.map(edge => {
-        //                         return { ...edge.node, description: edge.node.excerpt,
-        //                             date: edge.node.date,
-        //                             url: `${site.siteMetadata.siteUrl  }/${  edge.node.slug}`,
-        //                             guid: `${site.siteMetadata.siteUrl  }/${  edge.node.slug}`,
+        //                 serialize: ({ query: { site, wpgraphql } }) => {
+        //                     return wpgraphql.posts.nodes.map(node => {
+        //                         return { ...node, description: node.excerpt,
+        //                             date: node.date,
+        //                             url: `${site.siteMetadata.siteUrl  }/${  node.slug}`,
+        //                             guid: `${site.siteMetadata.siteUrl  }/${  node.slug}`,
         //                             categories:
-        //             edge.node.categories.length > 0
-        //                 ? edge.node.categories.map(cat => {
+        //             node.categories.nodes.length > 0
+        //                 ? edge.node.categories.nodes.map(cat => {
         //                     return cat.name;
         //                 })
         //                 : "",
-        //                             custom_elements: [{ "content:encoded": edge.node.content }]};
+        //                             custom_elements: [{ "content:encoded": node.content }]};
         //                     });
         //                 },
         //                 query: `
