@@ -99,7 +99,7 @@ class PostTemplate extends Component {
                         {modifiedUser}
                     </time>
 
-                    <CategoryList cats={categories} />
+                    <CategoryList cats={categories.nodes} />
 
                     <div>
                         <Img className="post__feat-image" fluid={image} title={featuredTitle} alt={featuredAlt} />
