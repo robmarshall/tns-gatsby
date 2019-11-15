@@ -10,7 +10,7 @@ const fetcher = require(`./src/queries/fetcher.js`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 // const getRelatedPosts = require('./utils/getRelatedPosts.js')
 
-exports.createPages = async ({ graphql, boundActionCreators }) => {
+exports.createPages = async ({ graphql, actions }) => {
     // Templates
     const pageTemplate = path.resolve('./src/templates/page.js')
     const postTemplate = path.resolve('./src/templates/post.js')
@@ -18,7 +18,7 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
     const tagTemplate = path.resolve('./src/templates/tags.js')
     const categoryTemplate = path.resolve('./src/templates/categories.js')
 
-    const { createPage } = boundActionCreators
+    const { createPage } = actions
 
     // eslint-disable-next-line
     console.log('Getting Pages')
