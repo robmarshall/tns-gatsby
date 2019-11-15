@@ -109,7 +109,7 @@ class PostTemplate extends Component {
                         // eslint-disable-next-line
                       dangerouslySetInnerHTML={{ __html: content }} />
 
-                    <TagList tags={tags} />
+                    <TagList tags={tags.nodes} />
                 </article>
             </Layout>
         );

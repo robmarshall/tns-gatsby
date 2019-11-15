@@ -7,8 +7,8 @@ import SEO from "../components/SEO/SEO"
 const IndexPage = ({ data, pageContext }) => {
     const { group, index, pageCount, additionalContext } = pageContext;
 
-    const {tagName} = additionalContext;
-    const tagDesc = additionalContext.tagDescription || `${tagName  } tag archive page`;
+    const {tagName, tagSlug} = additionalContext;
+    const tagDesc = additionalContext.tagDescription || `${tagName} tag archive page`;
 
     return (
         <Layout>
@@ -32,7 +32,7 @@ Tag:
             </div>
 
             <Pagination
-                prefix="tags"
+                prefix={`tag/${tagSlug}`}
                 currentPage={index}
                 numPages={pageCount}
             />
