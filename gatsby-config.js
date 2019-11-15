@@ -1,12 +1,12 @@
 const activeEnv =
-  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development";
+    process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
 
 // eslint-disable-next-line
-console.log(`Using environment config: '${activeEnv}'`);
+console.log(`Using environment config: '${activeEnv}'`)
 
-require("dotenv").config({
-    path: `.env.${activeEnv}`
-});
+require('dotenv').config({
+    path: `.env.${activeEnv}`,
+})
 
 module.exports = {
     siteMetadata: {
@@ -17,7 +17,7 @@ module.exports = {
         author: `@RobMarProd`,
         url: `https://thoughtsandstuff.com`,
         siteUrl: `https://thoughtsandstuff.com`,
-        facebookAppID: `xxx`
+        facebookAppID: `xxx`,
     },
     plugins: [
         `gatsby-plugin-react-helmet`,
@@ -26,89 +26,94 @@ module.exports = {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: `images`,
-                path: `${__dirname}/src/images/`
-            }
+                path: `${__dirname}/src/images/`,
+            },
         },
         {
             resolve: `gatsby-source-graphql`,
             options: {
-            // This type will contain remote schema Query type
+                // This type will contain remote schema Query type
                 typeName: `WPGraphQL`,
                 // This is field under which it's accessible
                 fieldName: `wpgraphql`,
                 // Url to query from
-                url: "http://rest.thoughtsandstuff.com/graphql",
+                url: 'http://rest.thoughtsandstuff.com/graphql',
             },
         },
-        // {
-        //     resolve: `gatsby-plugin-feed`,
-        //     options: {
-        //         query: `
-        //       {
-        //         site {
-        //           siteMetadata {
-        //             title
-        //             description
-        //             siteUrl
-        //             site_url: siteUrl
-        //           }
-        //         }
-        //       }
-        //     `,
-        //         feeds: [
-        //             {
-        //                 serialize: ({ query: { site, wpgraphql } }) => {
-        //                     return wpgraphql.posts.nodes.map(node => {
-        //                         return { ...node, description: node.excerpt,
-        //                             date: node.date,
-        //                             url: `${site.siteMetadata.siteUrl  }/${  node.slug}`,
-        //                             guid: `${site.siteMetadata.siteUrl  }/${  node.slug}`,
-        //                             categories:
-        //             node.categories.nodes.length > 0
-        //                 ? edge.node.categories.nodes.map(cat => {
-        //                     return cat.name;
-        //                 })
-        //                 : "",
-        //                             custom_elements: [{ "content:encoded": node.content }]};
-        //                     });
-        //                 },
-        //                 query: `
-        //           {
-        //             allWordpressPost (
-        //                 sort: { fields: [date], order: DESC }
-        //                 filter: { status: { eq: "publish" } }
-        //             ) {
-        //               edges {
-        //                 node {
-        //                   title
-        //                   slug
-        //                   excerpt
-        //                   content
-        //                   categories {
-        //                     name
-        //                   }
-        //                   date(formatString:"YYYY-MM-DD, HH:mm:ss")
-        //                 }
-        //               }
-        //             }
-        //           }
-        //         `,
-        //                 output: "/rss.xml",
-        //                 title: "T&S RSS Feed",
-        //                 description: "Website Design and Development Inspiration",
-        //                 managingEditor: "Robert Marshall"
-        //             }
-        //         ]
-        //     }
-        // },
+        {
+            resolve: `gatsby-plugin-feed`,
+            options: {
+                query: `
+              {
+                site {
+                  siteMetadata {
+                    title
+                    description
+                    siteUrl
+                    site_url: siteUrl
+                  }
+                }
+              }
+            `,
+                feeds: [
+                    {
+                        serialize: ({ query: { site, wpgraphql } }) => {
+                            return wpgraphql.posts.nodes.map(node => {
+                                return {
+                                    ...node,
+                                    description: node.excerpt,
+                                    date: node.date,
+                                    url: `${site.siteMetadata.siteUrl}/${node.slug}`,
+                                    guid: `${site.siteMetadata.siteUrl}/${node.slug}`,
+                                    categories:
+                                        node.categories.nodes.length > 0
+                                            ? node.categories.nodes.map(
+                                                cat => {
+                                                    return cat.name
+                                                }
+                                            )
+                                            : '',
+                                    custom_elements: [
+                                        { 'content:encoded': node.content },
+                                    ],
+                                }
+                            })
+                        },
+                        query: `
+                  {
+                    wpgraphql {
+                      posts(first: 2000) {
+                        nodes {
+                          title
+                          slug
+                          excerpt
+                          content
+                          categories {
+                            name
+                          }
+                          date
+                        }
+                      }
+                    }
+                  }
+                `,
+                        output: '/rss.xml',
+                        title: 'T&S RSS Feed',
+                        description:
+                            'Website Design and Development Inspiration',
+                        managingEditor: 'Robert Marshall',
+                    },
+                ],
+            },
+        },
         `gatsby-plugin-sass`,
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         {
-            resolve: "gatsby-plugin-html-attributes",
+            resolve: 'gatsby-plugin-html-attributes',
             options: {
-                lang: "en"
-            }
+                lang: 'en',
+            },
         },
         {
             resolve: `gatsby-plugin-prefetch-google-fonts`,
@@ -116,28 +121,28 @@ module.exports = {
                 fonts: [
                     {
                         family: `Merriweather`,
-                        variants: [`400`, `700`]
-                    }
-                ]
-            }
+                        variants: [`400`, `700`],
+                    },
+                ],
+            },
         },
         {
             resolve: `gatsby-plugin-google-analytics`,
             options: {
-                trackingId: process.env.GOOGLE_TRACKING_ID || "",
+                trackingId: process.env.GOOGLE_TRACKING_ID || '',
                 // Puts tracking script in the head instead of the body
                 head: true,
                 // Enables Google Optimize using your container Id
-                optimizeId: process.env.GOOGLE_OPTIMIZE_ID || "",
+                optimizeId: process.env.GOOGLE_OPTIMIZE_ID || '',
                 // Enables Google Optimize Experiment ID
-                experimentId: process.env.GOOGLE_EXPERIMENT_ID || "",
+                experimentId: process.env.GOOGLE_EXPERIMENT_ID || '',
                 // Set Variation ID. 0 for original 1,2,3....
-                variationId: process.env.GOOGLE_VARIATION_ID || ""
-            }
+                variationId: process.env.GOOGLE_VARIATION_ID || '',
+            },
         },
         `gatsby-plugin-netlify`,
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.app/offline
-        "gatsby-plugin-offline"
-    ]
-};
+        'gatsby-plugin-offline',
+    ],
+}
