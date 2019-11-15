@@ -32,6 +32,10 @@ article .post__feat-image {
     margin: em(10) 0;
 }
 
+.post__date--updated {
+  @include visuallyhidden;
+}
+
 .post-content {
     margin-top: em(20);
 }

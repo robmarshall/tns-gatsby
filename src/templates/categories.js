@@ -61,7 +61,7 @@ Category:
                                     {moment(node.date).format('Do MMMM YYYY')}
                                 </time>
                                 <time
-                                    className="post__date post__date--updated screen-reader-text"
+                                    className="post__date post__date--updated"
                                     dateTime={moment(node.modifed).format('YYYY-MM-DDTHH:mm:ss+00:00')}
                                 >
                                     {moment(node.modifed).format('Do MMMM YYYY')}

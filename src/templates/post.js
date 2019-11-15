@@ -93,7 +93,7 @@ class PostTemplate extends Component {
                         {publishedUser}
                     </time>
                     <time
-                        className="post__date post__date--updated screen-reader-text"
+                        className="post__date post__date--updated"
                         dateTime={modifiedSchema}
                     >
                         {modifiedUser}
