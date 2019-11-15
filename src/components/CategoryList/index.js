@@ -5,8 +5,6 @@ import './cats.scss';
 
 const CategoryList = ({ cats }) => {
 
-    console.log(cats)
-
     if( cats && cats.length > 0 ){
 
         const allCats = cats.map(cat => (
