@@ -40,67 +40,67 @@ module.exports = {
                 url: "http://rest.thoughtsandstuff.com/graphql",
             },
         },
-        {
-            resolve: `gatsby-plugin-feed`,
-            options: {
-                query: `
-              {
-                site {
-                  siteMetadata {
-                    title
-                    description
-                    siteUrl
-                    site_url: siteUrl
-                  }
-                }
-              }
-            `,
-                feeds: [
-                    {
-                        serialize: ({ query: { site, allWordpressPost } }) => {
-                            return allWordpressPost.edges.map(edge => {
-                                return { ...edge.node, description: edge.node.excerpt,
-                                    date: edge.node.date,
-                                    url: `${site.siteMetadata.siteUrl  }/${  edge.node.slug}`,
-                                    guid: `${site.siteMetadata.siteUrl  }/${  edge.node.slug}`,
-                                    categories:
-                    edge.node.categories.length > 0
-                        ? edge.node.categories.map(cat => {
-                            return cat.name;
-                        })
-                        : "",
-                                    custom_elements: [{ "content:encoded": edge.node.content }]};
-                            });
-                        },
-                        query: `
-                  {
-                    allWordpressPost (
-                        sort: { fields: [date], order: DESC }
-                        filter: { status: { eq: "publish" } }
-                    ) {
-                      edges {
-                        node {
-                          title
-                          slug
-                          excerpt
-                          content
-                          categories {
-                            name
-                          }
-                          date(formatString:"YYYY-MM-DD, HH:mm:ss")
-                        }
-                      }
-                    }
-                  }
-                `,
-                        output: "/rss.xml",
-                        title: "T&S RSS Feed",
-                        description: "Website Design and Development Inspiration",
-                        managingEditor: "Robert Marshall"
-                    }
-                ]
-            }
-        },
+        // {
+        //     resolve: `gatsby-plugin-feed`,
+        //     options: {
+        //         query: `
+        //       {
+        //         site {
+        //           siteMetadata {
+        //             title
+        //             description
+        //             siteUrl
+        //             site_url: siteUrl
+        //           }
+        //         }
+        //       }
+        //     `,
+        //         feeds: [
+        //             {
+        //                 serialize: ({ query: { site, allWordpressPost } }) => {
+        //                     return allWordpressPost.edges.map(edge => {
+        //                         return { ...edge.node, description: edge.node.excerpt,
+        //                             date: edge.node.date,
+        //                             url: `${site.siteMetadata.siteUrl  }/${  edge.node.slug}`,
+        //                             guid: `${site.siteMetadata.siteUrl  }/${  edge.node.slug}`,
+        //                             categories:
+        //             edge.node.categories.length > 0
+        //                 ? edge.node.categories.map(cat => {
+        //                     return cat.name;
+        //                 })
+        //                 : "",
+        //                             custom_elements: [{ "content:encoded": edge.node.content }]};
+        //                     });
+        //                 },
+        //                 query: `
+        //           {
+        //             allWordpressPost (
+        //                 sort: { fields: [date], order: DESC }
+        //                 filter: { status: { eq: "publish" } }
+        //             ) {
+        //               edges {
+        //                 node {
+        //                   title
+        //                   slug
+        //                   excerpt
+        //                   content
+        //                   categories {
+        //                     name
+        //                   }
+        //                   date(formatString:"YYYY-MM-DD, HH:mm:ss")
+        //                 }
+        //               }
+        //             }
+        //           }
+        //         `,
+        //                 output: "/rss.xml",
+        //                 title: "T&S RSS Feed",
+        //                 description: "Website Design and Development Inspiration",
+        //                 managingEditor: "Robert Marshall"
+        //             }
+        //         ]
+        //     }
+        // },
         `gatsby-plugin-sass`,
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
