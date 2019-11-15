@@ -7,7 +7,7 @@ const CategoryList = ({ cats }) => {
 
     if( cats && cats.length > 0 ){
 
-        const allCats = cats.map((cat) => (
+        const allCats = cats.map(cat => (
             <li key={_.kebabCase(cat.name)} className="cat">
                 <Link to={`category/${_.kebabCase(cat.name)}`} className="cat__name">{cat.name}</Link>
             </li>
@@ -21,10 +21,10 @@ const CategoryList = ({ cats }) => {
             </div>
         );
 
-    } 
+    }
     // No Categories
     return null;
-    
+
 
 };
 

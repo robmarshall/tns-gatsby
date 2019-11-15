@@ -4,18 +4,15 @@ import { StaticQuery, graphql } from "gatsby"
 import CategoryList from "../CategoryList";
 
 const List = ({ data }) => {
-
-    const allCats = data.map( cat => cat.node );
-
     return (
         <div>
-            <CategoryList cats={allCats} />
+            <CategoryList cats={data} />
         </div>
     )
 
 }
 
-const AllCategoriesList = ({props}) => (
+const AllCategoriesList = () => (
     <StaticQuery
         query={graphql`
           query {
@@ -28,8 +25,8 @@ const AllCategoriesList = ({props}) => (
             }
           }
       `}
-        // eslint-disable-next-line
-        render={data => <List data={data.wpgraphql.categories.nodes} {...props} />}
+
+        render={data => <List data={data.wpgraphql.categories.nodes} />}
     />
 )
 

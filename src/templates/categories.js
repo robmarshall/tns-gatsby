@@ -11,7 +11,7 @@ const IndexPage = ({ data, pageContext }) => {
     const { group, index, pageCount, additionalContext } = pageContext;
 
     const {catName} = additionalContext;
-    const catDesc = additionalContext.catDescription || `${catName  } category archive page`;
+    const catDesc = additionalContext.catDescription || `${catName} category archive page`;
 
     return (
         <Layout>
@@ -28,7 +28,7 @@ Category:
 
             <div className="post-list">
 
-                {group.map(({ node }) => {
+                {group.map( node => {
 
                     const image = _.get(
                         node,
