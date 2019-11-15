@@ -47,6 +47,7 @@
         "build": "gatsby build",
         "dev": "gatsby develop",
         "serve": "gatsby serve",
+        "clean": "gatsby clean",
         "pretest": "eslint --fix ./src&& stylelint --fix ./src",
         "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
     },
