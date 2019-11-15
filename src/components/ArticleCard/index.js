@@ -27,9 +27,9 @@ const ArticleCard = ({node}) => {
 
                 <h3
                     className="post__title"
-                    // eslint-disable-next-line
-        dangerouslySetInnerHTML={{__html: title}}
-                />
+                >
+                    {title}
+                </h3>
 
                 <time
                     className="post__date post__date--published"
