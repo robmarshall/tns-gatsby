@@ -5,8 +5,8 @@ import Header from '../Header'
 
 import SEO from "../SEO/SEO"
 
-import '../../utils/sass/base/base.scss';
-import '../../utils/sass/layout/layout.scss';
+import '../../sass/base/base.scss';
+import '../../sass/layout/layout.scss';
 
 const Layout = ({children}) => (
     <div>

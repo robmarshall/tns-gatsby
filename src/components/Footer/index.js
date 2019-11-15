@@ -1,6 +1,6 @@
 import React from 'react'
 import './footer.scss'
-import '../../utils/sass/layout/layout.scss'
+import '../../sass/layout/layout.scss'
 
 const Footer = ({ siteTitle }) => (
     <footer className="footer">
