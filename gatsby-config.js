@@ -40,21 +40,21 @@ module.exports = {
                 url: "http://rest.thoughtsandstuff.com/graphql",
             },
         },
-        {
-            resolve: `gatsby-plugin-feed`,
-            options: {
-                query: `
-              {
-                site {
-                  siteMetadata {
-                    title
-                    description
-                    siteUrl
-                    site_url: siteUrl
-                  }
-                }
-              }
-            `,
+        // {
+        //     resolve: `gatsby-plugin-feed`,
+        //     options: {
+        //         query: `
+        //       {
+        //         site {
+        //           siteMetadata {
+        //             title
+        //             description
+        //             siteUrl
+        //             site_url: siteUrl
+        //           }
+        //         }
+        //       }
+        //     `,
         //         feeds: [
         //             {
         //                 serialize: ({ query: { site, wpgraphql } }) => {
