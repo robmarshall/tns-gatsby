@@ -40,6 +40,9 @@ article .post__feat-image {
 
     .post {
         margin-bottom: em(80);
+        &:last-of-type {
+          margin-bottom: em(10);
+        }
     }
 
     .post__date {
