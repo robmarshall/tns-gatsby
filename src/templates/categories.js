@@ -7,7 +7,7 @@ import SEO from "../components/SEO/SEO"
 const IndexPage = ({ data, pageContext }) => {
     const { group, index, pageCount, additionalContext } = pageContext;
 
-    const {catName} = additionalContext;
+    const {catName, catSlug} = additionalContext;
     const catDesc = additionalContext.catDescription || `${catName} category archive page`;
 
     return (
@@ -32,7 +32,7 @@ Category:
             </div>
 
             <Pagination
-                prefix="categories"
+                prefix={`categories/${catSlug}`}
                 currentPage={index}
                 numPages={pageCount}
             />
