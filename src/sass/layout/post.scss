@@ -40,6 +40,19 @@ article .post__feat-image {
     margin-top: em(20);
 }
 
+.post_related  {
+  margin: em(40) 0;
+
+}
+
+.post_related_wrap {
+    display: flex;
+}
+
+.post_related_title {
+
+}
+
 @media only screen and (min-width: em(730px)) {
 
     .post {
@@ -65,6 +78,10 @@ article .post__feat-image {
 
     article .post__feat-image {
         margin-bottom: em(50);
+    }
+
+    .post_related  {
+        margin: em(60) 0;
     }
 
 }

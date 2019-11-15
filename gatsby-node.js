@@ -8,7 +8,7 @@ const createPaginatedPages = require('gatsby-paginate')
 const fetcher = require(`./src/queries/fetcher.js`)
 
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
-// const getRelatedPosts = require('./utils/getRelatedPosts.js')
+const getRelatedPosts = require('./utils/getRelatedPosts.js')
 
 exports.createPages = async ({ graphql, actions }) => {
     // Templates
@@ -87,6 +87,11 @@ exports.createPages = async ({ graphql, actions }) => {
                     component: slash(postTemplate),
                     context: {
                         post: node,
+                        relatedPosts: getRelatedPosts({
+                            posts,
+                            current: node,
+                            sortBy: 'categories',
+                        }),
                     },
                 })
             })

@@ -8,6 +8,7 @@ import Layout from "../components/Layout";
 import SEO from "../components/SEO/SEO";
 import TagList from "../components/TagList";
 import "prismjs/themes/prism-tomorrow.css";
+import RelatedCard from '../components/RelatedCard'
 
 class PostTemplate extends Component {
 
@@ -28,7 +29,7 @@ class PostTemplate extends Component {
                 tags,
                 categories,
                 seo,
-            } },
+            }, relatedPosts },
             postURI,
         } = this.props
 
@@ -110,6 +111,26 @@ class PostTemplate extends Component {
                       dangerouslySetInnerHTML={{ __html: content }} />
 
                     <TagList tags={tags.nodes} />
+
+
+                    {
+                        relatedPosts.length > 0 && (
+                            <div className="post_related">
+                                <h2 className="post_related_title">Related Posts</h2>
+                                <div className="post_related_wrap">
+                                    {
+                                        relatedPosts.map(post => {
+
+                                            return (
+                                                <RelatedCard node={post} />
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        )
+                    }
+
                 </article>
             </Layout>
         );
