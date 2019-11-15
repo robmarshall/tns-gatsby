@@ -6,11 +6,10 @@
 <ul>
     <li>Posts, categories and tags pages</li>
     <li>WordPress Menu Integration
-    <li>Yoast Integration on Posts/Pages - Still need to add fallback image setting</li>
+    <li>Yoast Integration on Posts/Pages</li>
     <li>Facebook/Twitter meta data</li>
     <li>Partly semantic - This will be improved</li>
     <li>404 Page</li>
-    <li>Image component to easily use images from src/images</li>
     <li>Super speedy fast</li>
     <li>Links to WordPress settings to get title and description</li>
     <li>Easy Google Analytics Integration</li>
