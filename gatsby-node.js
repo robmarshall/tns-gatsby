@@ -4,6 +4,9 @@ const slash = require(`slash`)
 const queryPages = require(`./src/queries/queryPages.js`)
 const queryPosts = require(`./src/queries/queryPosts.js`)
 const createPaginatedPages = require('gatsby-paginate')
+
+const fetcher = require(`./src/queries/fetcher.js`)
+
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 // const getRelatedPosts = require('./utils/getRelatedPosts.js')
 
@@ -17,15 +20,15 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
 
     const { createPage } = boundActionCreators
 
+    // eslint-disable-next-line
+    console.log('Getting Pages')
 
-        console.log('Getting Pages')
-
-        await graphql(queryPages).then(result => {
-            if (result.errors) reject(result.errors)
-
-            // Pages detail
-            const pages = result.data.wpgraphql.pages.nodes
-
+    await fetcher({
+        graphql,
+        postType: "pages",
+        query: queryPages
+    }).then(async pages => {
+        if (pages) {
             pages.forEach(node => {
                 createPage({
                     path: `/${node.slug}/`,
@@ -35,20 +38,27 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
                     },
                 })
             })
-        })
+        }
+    })
 
-        console.log('Getting Posts')
-        await graphql(queryPosts).then(result => {
-            if (result.errors) reject(result.errors)
+    // eslint-disable-next-line
+    console.log('Getting Posts')
+
+    await fetcher({
+        graphql,
+        postType: "posts",
+        query: queryPosts
+    }).then(async posts => {
+
+        if(posts){
 
             // Posts detail
-            const posts = result.data.wpgraphql.posts.nodes
-            let tags = []
-            let categories = []
+            const tags = []
+            const categories = []
 
             createPaginatedPages({
                 edges: posts,
-                createPage: createPage,
+                createPage,
                 pageTemplate: postsTemplate,
                 pageLength: 8,
                 pathPrefix: '',
@@ -59,7 +69,7 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
             })
 
             posts.forEach(node => {
-                // Grab all the tags and categories for later use
+            // Grab all the tags and categories for later use
                 if (node.tags) {
                     node.tags.nodes.forEach(tag => {
                         tags.push(tag.name)
@@ -118,15 +128,15 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
             tagList.forEach(tag => {
                 createPaginatedPages({
                     edges: tagMap.get(tag.name),
-                    createPage: createPage,
+                    createPage,
                     pageTemplate: tagTemplate,
                     pageLength: 8,
                     pathPrefix: 'tag',
                     buildPath: (index, pathPrefix) =>
                         index > 1
                             ? `${pathPrefix}/${_.kebabCase(
-                                  tag.name
-                              )}/page/${index}`
+                                tag.name
+                            )}/page/${index}`
                             : `/${pathPrefix}/${_.kebabCase(tag.name)}`,
                     context: {
                         tagName: tag.name,
@@ -138,25 +148,29 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
             categoryList.forEach(category => {
                 createPaginatedPages({
                     edges: categoryMap.get(category.name),
-                    createPage: createPage,
+                    createPage,
                     pageTemplate: categoryTemplate,
                     pageLength: 8,
                     pathPrefix: 'category',
                     buildPath: (index, pathPrefix) =>
                         index > 1
                             ? `${pathPrefix}/${_.kebabCase(
-                                  category.name
-                              )}/page/${index}`
+                                category.name
+                            )}/page/${index}`
                             : `/${pathPrefix}/${_.kebabCase(category.name)}`,
                     context: {
                         catName: category.name,
                         catDescription: category.description,
                     },
                 })
-      
-        })
+
+            })
+
+        }
     })
+
 }
+
 
 /**
  * Custom resolver to add all items from Media items (media libary)
@@ -255,6 +269,7 @@ exports.createResolvers = ({
                                 }
                             } catch (e) {
                                 // Ignore
+                                // eslint-disable-next-line
                                 console.log(e)
                                 return null
                             }
