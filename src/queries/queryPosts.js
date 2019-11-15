@@ -59,6 +59,15 @@ query GET_POSTS($first:Int, $after:String){
                   srcSetWebp
                   sizes
               }
+              image500: fluid(maxWidth: 500) {
+                  base64
+                  aspectRatio
+                  src
+                  srcSet
+                  srcWebp
+                  srcSetWebp
+                  sizes
+              }
               facebook: fixed(width: 1024, height: 512) {
                   src
                   width
