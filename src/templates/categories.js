@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "gatsby";
+import Img from "gatsby-image";
 import _ from "lodash";
 import moment from 'moment';
-import ArchivePaginationLinks from "../components/ArchivePaginationLinks"
-import ImageChecker from "../components/ImageChecker"
 import Layout from "../components/Layout"
+import Pagination from "../components/Pagination"
 import SEO from "../components/SEO/SEO"
 
 const IndexPage = ({ data, pageContext }) => {
-    const { group, index, first, last, pageCount, additionalContext, pathPrefix } = pageContext;
-    const previousUrl = index - 1 > 1 ? `page/${(index - 1).toString()}` : ""
-    const nextUrl = (index + 1).toString();
+    const { group, index, pageCount, additionalContext } = pageContext;
 
     const {catName} = additionalContext;
     const catDesc = additionalContext.catDescription || `${catName  } category archive page`;
@@ -30,58 +28,63 @@ Category:
 
             <div className="post-list">
 
-                {group.map(({ node }) => (
+                {group.map(({ node }) => {
 
-                    <div key={node.slug} className="post">
+                    const image = _.get(
+                        node,
+                        'featuredImage.imageFile.childImageSharp.image1000',
+                        false
+                    )
 
-                        <Link to={node.slug}>
+                    const featuredAlt = _.get(node, 'featuredImage.altText', false)
+                    const featuredTitle = _.get(node, 'featuredImage.title', false)
 
-                            <ImageChecker
-                                featuredMedia={node.featured_media}
-                                className="post__feat-image"
-                            />
+                    return (
+                        <div key={node.slug} className="post">
 
-                            <h3
-                                className="post__title"
-                                // eslint-disable-next-line
+                            <Link to={node.slug}>
+
+                                <div>
+                                    <Img className="post__feat-image" fluid={image} title={featuredTitle} alt={featuredAlt} />
+                                </div>
+
+                                <h3
+                                    className="post__title"
+                                    // eslint-disable-next-line
                                 dangerouslySetInnerHTML={{__html: node.title}}
-                            />
+                                />
 
-                            <time
-                                className="post__date post__date--published"
-                                dateTime={moment(node.date).format('YYYY-MM-DDTHH:mm:ss+00:00')}
-                            >
-                                {moment(node.date).format('Do MMMM YYYY')}
-                            </time>
-                            <time
-                                className="post__date post__date--updated screen-reader-text"
-                                dateTime={moment(node.modifed).format('YYYY-MM-DDTHH:mm:ss+00:00')}
-                            >
-                                {moment(node.modifed).format('Do MMMM YYYY')}
-                            </time>
+                                <time
+                                    className="post__date post__date--published"
+                                    dateTime={moment(node.date).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                                >
+                                    {moment(node.date).format('Do MMMM YYYY')}
+                                </time>
+                                <time
+                                    className="post__date post__date--updated screen-reader-text"
+                                    dateTime={moment(node.modifed).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                                >
+                                    {moment(node.modifed).format('Do MMMM YYYY')}
+                                </time>
 
-                            <div
-                                className="post-content"
-                                // eslint-disable-next-line
+                                <div
+                                    className="post-content"
+                                    // eslint-disable-next-line
                                 dangerouslySetInnerHTML={{__html: node.excerpt}}
-                            />
+                                />
 
-                        </Link>
+                            </Link>
 
-                    </div>
+                        </div>
 
-                ))}
+                    )})}
 
             </div>
 
-            <ArchivePaginationLinks
-                pageCount={pageCount}
-                first={first}
-                last={last}
-                prevUrl={`${pathPrefix}/${_.kebabCase(catName)}/${previousUrl}`}
-                nextUrl={`${pathPrefix}/${_.kebabCase(catName)}/page/${nextUrl}`}
-                prevText="Go to Previous Page"
-                nextText="Go to Next Page"
+            <Pagination
+                prefix="categories"
+                currentPage={index}
+                numPages={pageCount}
             />
 
         </Layout>

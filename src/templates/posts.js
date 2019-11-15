@@ -3,16 +3,14 @@ import { Link } from "gatsby";
 import Img from "gatsby-image";
 import _ from 'lodash'
 import moment from 'moment';
-import ArchivePaginationLinks from "../components/ArchivePaginationLinks"
-
 import Layout from "../components/Layout"
+import Pagination from "../components/Pagination"
+
 
 import '../sass/layout/post.scss';
 
 const IndexPage = ({ data, pageContext }) => {
-    const { pageCount, group, index, first, last } = pageContext;
-    const previousUrl = index - 1 > 1 ? `page/${(index - 1).toString()}` : ""
-    const nextUrl = (index + 1).toString();
+    const { pageCount, group, index  } = pageContext;
 
     return (
         <Layout>
@@ -26,8 +24,8 @@ const IndexPage = ({ data, pageContext }) => {
                         false
                     )
 
-                    const featuredAlt = _.get(node, '.featuredImagealt_text', false)
-                    const featuredTitle = _.get(node, '.featuredImagetitle', false)
+                    const featuredAlt = _.get(node, 'featuredImage.altText', false)
+                    const featuredTitle = _.get(node, 'featuredImage.title', false)
 
                     return (
 
@@ -76,14 +74,10 @@ const IndexPage = ({ data, pageContext }) => {
 
             </div>
 
-            <ArchivePaginationLinks
-                pageCount={pageCount}
-                first={first}
-                last={last}
-                prevUrl={previousUrl}
-                nextUrl={`page/${  nextUrl}`}
-                prevText="Go to Previous Page"
-                nextText="Go to Next Page"
+            <Pagination
+                prefix=""
+                currentPage={index}
+                numPages={pageCount}
             />
 
         </Layout>
