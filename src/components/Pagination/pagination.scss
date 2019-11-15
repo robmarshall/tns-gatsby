@@ -1,0 +1,85 @@
+@import '../../sass/abstracts/abstracts';
+
+.pagination {
+    border-radius: 5px;
+    display: inline-block;
+    margin: em(20px) 0;
+
+    &-wrap {
+        display: block;
+        text-align: center;
+    }
+
+    &Label {
+        position: relative;
+        @include visuallyhidden;
+    }
+
+    &List {
+        list-style: none;
+        text-align: center;
+        width: 100%;
+        margin: 0;
+    }
+
+    &Item {
+        display: inline-block;
+        margin: 0 em(5px);
+    }
+
+    &Link {
+        align-items: center;
+        background-color: #fff;
+        border-radius: 20%;
+        color: #292929;
+        display: flex;
+        font-size: em(16px);
+        font-family: Verdana, Geneva, sans-serif;
+        height: em(40);
+        justify-content: center;
+        text-decoration: none;
+        width: em(40);
+        box-shadow: 0 10px 30px -10px rgba(#532ee7, 0.5);
+        @include animate-transition(all, 0.5s);
+
+        &:hover {
+            box-shadow: 0 1px 1px rgba(#532ee7, 0.1);
+        }
+
+        &-live {
+            color: #fff;
+            background-color: rgba(#532ee7, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(#532ee7, 0.1);
+        }
+
+        &-prev {
+            &:after {
+                position: absolute;
+                margin-top: 1px;
+                border-bottom: em(5px) solid transparent;
+                border-top: em(5px) solid transparent;
+                border-right: em(8px) solid #292929;
+                content: '';
+            }
+        }
+
+        &-next {
+            &:after {
+                position: absolute;
+                margin-top: 1px;
+                border-bottom: em(5px) solid transparent;
+                border-top: em(5px) solid transparent;
+                border-left: em(8px) solid #292929;
+                content: '';
+            }
+        }
+    }
+
+    &Word {
+        display: none;
+
+        @media only screen and (min-width: em(1000px)) {
+            display: inline-block;
+        }
+    }
+}
