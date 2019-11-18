@@ -140,6 +140,20 @@ module.exports = {
                 variationId: process.env.GOOGLE_VARIATION_ID || '',
             },
         },
+        {
+            resolve: `gatsby-plugin-manifest`,
+            options: {
+                name: `Thoughts and Stuff`,
+                short_name: `T&S`,
+                description: `Website Design and Development Inspiration`,
+                lang: `en`,
+                start_url: `/`,
+                background_color: `#ffffff`,
+                theme_color: `#532ee7`,
+                display: `standalone`,
+                icon: `src/favicon.png`,
+            },
+        },
         `gatsby-plugin-netlify`,
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.app/offline
