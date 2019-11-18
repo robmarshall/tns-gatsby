@@ -8,7 +8,7 @@ const createPaginatedPages = require('gatsby-paginate')
 const fetcher = require(`./src/queries/fetcher.js`)
 
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
-const getRelatedPosts = require('./utils/getRelatedPosts.js')
+const getRelatedPosts = require('./src/utils/getRelatedPosts.js')
 
 exports.createPages = async ({ graphql, actions }) => {
     // Templates
