@@ -89,7 +89,9 @@ module.exports = {
                           excerpt
                           content
                           categories {
-                            name
+                            nodes {
+                              name
+                            }
                           }
                           date
                         }
