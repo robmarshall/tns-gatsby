@@ -1,0 +1,48 @@
+@import '../../sass/abstracts/abstracts';
+
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    ul {
+        list-style: none;
+        color: #292929;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0;
+    }
+
+    li {
+
+        width: 50%;
+        text-align: center;
+
+        @media only screen and (min-width: em(730px)) {
+          width: auto;
+          margin-right: em(20);
+        }
+
+        &:last-of-type {
+            margin-right: 0;
+            a {
+              background-color: #532ee7;
+              font-weight: 700;
+              border-radius: em(15);
+              color: #fff;
+              box-shadow: 0 10px 30px -10px rgba(#532ee7, 0.5);
+              @include animate-transition(all, 0.5s);
+              &:hover {
+                  box-shadow: 0 1px 1px rgba(#532ee7, 0.1);
+              }
+            }
+
+        }
+    }
+
+    a {
+        text-decoration: none;
+        padding: em(3) em(9);
+    }
+}

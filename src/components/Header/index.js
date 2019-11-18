@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
+import MainMenu from "../MainMenu"
 import "./header.scss"
 import '../../sass/layout/layout.scss';
 
@@ -12,6 +13,7 @@ const Header = ({ siteTitle }) => (
                     {siteTitle}
                 </Link>
             </h1>
+            <MainMenu />
         </div>
     </header>
 )

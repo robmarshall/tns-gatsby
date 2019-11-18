@@ -1,24 +1,22 @@
 import React from "react"
-import { Link , StaticQuery, graphql } from "gatsby"
-
+import { StaticQuery, graphql } from "gatsby"
+import Link from '../Link'
+import "./menu.scss"
 import _ from "lodash";
 
 const Menu = ({ data }) => (
-    <div>
-        <h1>Main Menu</h1>
+    <nav className="main-menu">
         <ul>
-
             {data.map((item) => (
                 <li key={( item.object_slug || _.kebabCase(item.title) )}>
                     <Link to={item.url}>
-                        {item.title}
+                        {item.label}
                     </Link>
                 </li>
             )
             )}
-
         </ul>
-    </div>
+    </nav>
 )
 
 const MainMenu = ({props}) => (

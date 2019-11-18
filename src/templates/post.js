@@ -112,7 +112,6 @@ class PostTemplate extends Component {
 
                     <TagList tags={tags.nodes} />
 
-
                     {
                         relatedPosts.length > 0 && (
                             <div className="post_related">
@@ -120,7 +119,6 @@ class PostTemplate extends Component {
                                 <div className="post_related_wrap">
                                     {
                                         relatedPosts.map(post => {
-
                                             return (
                                                 <RelatedCard node={post} />
                                             )
