@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import Img from "gatsby-image";
+import he from 'he'
 import _ from 'lodash'
 import moment from 'moment';
 
@@ -28,7 +29,7 @@ const ArticleCard = ({node}) => {
                 <h3
                     className="post__title"
                 >
-                    {title}
+                    {he.unescape(title)}
                 </h3>
 
                 <time

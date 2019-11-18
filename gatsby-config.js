@@ -60,7 +60,7 @@ module.exports = {
                         serialize: ({ query: { site, wpgraphql } }) => {
                             return wpgraphql.posts.nodes.map(node => {
                                 return {
-                                    ...node,
+                                    // ...node,
                                     description: node.excerpt,
                                     date: node.date,
                                     url: `${site.siteMetadata.siteUrl}/${node.slug}`,
