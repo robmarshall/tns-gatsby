@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import Img from "gatsby-image";
+import he from 'he'
 import _ from 'lodash'
 import './relatedcard.scss'
 
@@ -28,7 +29,7 @@ const RelatedCard = ({node}) => {
                 <h3
                     className="relatedCard_title"
                 >
-                    {title}
+                    {he.unescape(title)}
                 </h3>
 
             </Link>
