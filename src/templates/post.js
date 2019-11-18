@@ -5,10 +5,10 @@ import moment from "moment";
 import Prism from "prismjs";
 import CategoryList from "../components/CategoryList";
 import Layout from "../components/Layout";
+import RelatedCard from '../components/RelatedCard'
 import SEO from "../components/SEO/SEO";
 import TagList from "../components/TagList";
 import "prismjs/themes/prism-tomorrow.css";
-import RelatedCard from '../components/RelatedCard'
 
 class PostTemplate extends Component {
 

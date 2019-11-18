@@ -8,8 +8,8 @@
   }
 
   @media only screen and (min-width: em(800px)) {
-    width: calc(33.333% - (20px / 3 * 2));
     margin-right: 20px;
+    width: calc(33.333% - (20px / 3 * 2));
 
     &:last-of-type {
       margin-right: 0;

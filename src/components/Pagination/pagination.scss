@@ -17,9 +17,9 @@
 
     &List {
         list-style: none;
+        margin: 0;
         text-align: center;
         width: 100%;
-        margin: 0;
     }
 
     &Item {
@@ -31,15 +31,15 @@
         align-items: center;
         background-color: #fff;
         border-radius: 20%;
+        box-shadow: 0 10px 30px -10px rgba(#532ee7, 0.5);
         color: #292929;
         display: flex;
-        font-size: em(16px);
         font-family: Verdana, Geneva, sans-serif;
+        font-size: em(16px);
         height: em(40);
         justify-content: center;
         text-decoration: none;
         width: em(40);
-        box-shadow: 0 10px 30px -10px rgba(#532ee7, 0.5);
         @include animate-transition(all, 0.5s);
 
         &:hover {
@@ -47,30 +47,30 @@
         }
 
         &-live {
-            color: #fff;
             background-color: rgba(#532ee7, 0.5);
             box-shadow: 0 10px 30px -10px rgba(#532ee7, 0.1);
+            color: #fff;
         }
 
         &-prev {
             &:after {
-                position: absolute;
-                margin-top: 1px;
                 border-bottom: em(5px) solid transparent;
-                border-top: em(5px) solid transparent;
                 border-right: em(8px) solid #292929;
+                border-top: em(5px) solid transparent;
                 content: '';
+                margin-top: 1px;
+                position: absolute;
             }
         }
 
         &-next {
             &:after {
-                position: absolute;
-                margin-top: 1px;
                 border-bottom: em(5px) solid transparent;
-                border-top: em(5px) solid transparent;
                 border-left: em(8px) solid #292929;
+                border-top: em(5px) solid transparent;
                 content: '';
+                margin-top: 1px;
+                position: absolute;
             }
         }
     }

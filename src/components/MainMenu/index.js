@@ -1,8 +1,8 @@
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
+import _ from "lodash";
 import Link from '../Link'
 import "./menu.scss"
-import _ from "lodash";
 
 const Menu = ({ data }) => (
     <nav className="main-menu">
