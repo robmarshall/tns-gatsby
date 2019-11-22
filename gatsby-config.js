@@ -156,7 +156,22 @@ module.exports = {
                 icon: `src/favicon.png`,
             },
         },
+        {
+            resolve: 'gatsby-wpgraphql-inline-images',
+            options: {
+                wordPressUrl: 'http://rest.thoughtsandstuff.com/',
+                uploadsUrl: 'http://rest.thoughtsandstuff.com/wp-content/uploads/',
+                processPostTypes: ['Page', 'Post'],
+                graphqlTypeName: 'WPGraphQL',
+            },
+        },
         `gatsby-plugin-netlify`,
+        {
+            resolve: 'gatsby-plugin-netlify-cache',
+            options: {
+                cachePublic: true,
+            },
+        },
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.app/offline
         'gatsby-plugin-offline',

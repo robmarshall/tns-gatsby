@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Img from "gatsby-image";
+import contentParser from 'gatsby-wpgraphql-inline-images'
 import _ from 'lodash'
 import moment from "moment";
 import Prism from "prismjs";
@@ -106,9 +107,13 @@ class PostTemplate extends Component {
                         <Img className="post__feat-image" fluid={image} title={featuredTitle} alt={featuredAlt} />
                     </div>
 
-                    <div
-                        // eslint-disable-next-line
-                      dangerouslySetInnerHTML={{ __html: content }} />
+                    <div>
+                        {contentParser(
+                            { content },
+                            { wordPressUrl: 'http://rest.thoughtsandstuff.com/',
+                                uploadsUrl: 'http://rest.thoughtsandstuff.com/wp-content/uploads/' }
+                        )}
+                    </div>
 
                     <TagList tags={tags.nodes} />
 
