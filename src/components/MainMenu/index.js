@@ -1,8 +1,8 @@
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
+import slugify from '../../utils/slugify'
 import Link from '../Link'
 import "./menu.scss"
-import slugify from '../../utils/slugify'
 
 const Menu = ({ data }) => (
     <nav className="main-menu">
