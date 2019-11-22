@@ -1,14 +1,14 @@
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
-import _ from "lodash";
 import Link from '../Link'
 import "./menu.scss"
+import slugify from '../../utils/slugify'
 
 const Menu = ({ data }) => (
     <nav className="main-menu">
         <ul>
             {data.map((item) => (
-                <li key={( item.object_slug || _.kebabCase(item.title) )}>
+                <li key={slugify(item.label)}>
                     <Link to={item.url}>
                         {item.label}
                     </Link>

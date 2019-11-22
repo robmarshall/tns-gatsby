@@ -1,36 +1,38 @@
-import React, { Component } from "react";
-import Img from "gatsby-image";
+import React, { Component } from 'react'
+import Img from 'gatsby-image'
 import contentParser from 'gatsby-wpgraphql-inline-images'
 import _ from 'lodash'
-import moment from "moment";
-import Prism from "prismjs";
-import CategoryList from "../components/CategoryList";
-import Layout from "../components/Layout";
+import moment from 'moment'
+import Prism from 'prismjs'
+import CategoryList from '../components/CategoryList'
+import Layout from '../components/Layout'
 import RelatedCard from '../components/RelatedCard'
-import SEO from "../components/SEO/SEO";
-import TagList from "../components/TagList";
-import "prismjs/themes/prism-tomorrow.css";
+import SEO from '../components/SEO/SEO'
+import TagList from '../components/TagList'
+import 'prismjs/themes/prism-tomorrow.css'
+import slugify from '../utils/slugify'
 
 class PostTemplate extends Component {
-
     componentDidMount() {
-        Prism.highlightAll();
+        Prism.highlightAll()
     }
 
     render() {
-
         const {
-            pageContext: { post: {
-                title,
-                content,
-                date,
-                modified,
-                excerpt,
-                featuredImage,
-                tags,
-                categories,
-                seo,
-            }, relatedPosts },
+            pageContext: {
+                post: {
+                    title,
+                    content,
+                    date,
+                    modified,
+                    excerpt,
+                    featuredImage,
+                    tags,
+                    categories,
+                    seo,
+                },
+                relatedPosts,
+            },
             postURI,
         } = this.props
 
@@ -54,22 +56,23 @@ class PostTemplate extends Component {
         const featuredAlt = _.get(featuredImage, 'alt_text', false)
         const featuredTitle = _.get(featuredImage, 'title', false)
 
-        const publishedSchema = moment(date, "YYYY-MM-DD, HH:mm:ss").format();
-        const publishedUser = moment(date, "YYYY-MM-DD, HH:mm:ss").format(
-            "Do MMMM YYYY"
-        );
+        const publishedSchema = moment(date, 'YYYY-MM-DD, HH:mm:ss').format()
+        const publishedUser = moment(date, 'YYYY-MM-DD, HH:mm:ss').format(
+            'Do MMMM YYYY'
+        )
 
-        const modifiedSchema = moment(
-            modified,
-            "YYYY-MM-DD, HH:mm:ss"
-        ).format();
-        const modifiedUser = moment(modified, "YYYY-MM-DD, HH:mm:ss").format(
-            "Do MMMM YYYY"
-        );
+        const modifiedSchema = moment(modified, 'YYYY-MM-DD, HH:mm:ss').format()
+        const modifiedUser = moment(modified, 'YYYY-MM-DD, HH:mm:ss').format(
+            'Do MMMM YYYY'
+        )
+
+        const pluginOptions = {
+            wordPressUrl: `http://rest.thoughtsandstuff.com/`,
+            uploadsUrl: `http://rest.thoughtsandstuff.com/wp-content/uploads/`,
+        }
 
         return (
             <Layout>
-
                 <SEO
                     postType="page"
                     yoastTitle={seo.title}
@@ -83,10 +86,10 @@ class PostTemplate extends Component {
                 />
 
                 <article className="post">
-
                     <h1
                         // eslint-disable-next-line
-                      dangerouslySetInnerHTML={{ __html: title }} />
+                        dangerouslySetInnerHTML={{ __html: title }}
+                    />
 
                     <time
                         className="post__date post__date--published"
@@ -104,40 +107,34 @@ class PostTemplate extends Component {
                     <CategoryList cats={categories.nodes} />
 
                     <div>
-                        <Img className="post__feat-image" fluid={image} title={featuredTitle} alt={featuredAlt} />
+                        <Img
+                            className="post__feat-image"
+                            fluid={image}
+                            title={featuredTitle || ''}
+                            alt={featuredAlt || ''}
+                        />
                     </div>
 
-                    <div>
-                        {contentParser(
-                            { content },
-                            { wordPressUrl: 'http://rest.thoughtsandstuff.com/',
-                                uploadsUrl: 'http://rest.thoughtsandstuff.com/wp-content/uploads/' }
-                        )}
-                    </div>
+                    <div>{contentParser({ content }, pluginOptions)}</div>
 
                     <TagList tags={tags.nodes} />
 
-                    {
-                        relatedPosts.length > 0 && (
-                            <div className="post_related">
-                                <h2 className="post_related_title">Related Posts</h2>
-                                <div className="post_related_wrap">
-                                    {
-                                        relatedPosts.map(post => {
-                                            return (
-                                                <RelatedCard node={post} />
-                                            )
-                                        })
-                                    }
-                                </div>
+                    {relatedPosts.length > 0 && (
+                        <div className="post_related">
+                            <h2 className="post_related_title">
+                                Related Posts
+                            </h2>
+                            <div className="post_related_wrap">
+                                {relatedPosts.map(post => {
+                                    return <RelatedCard key={slugify(post.title)} node={post} />
+                                })}
                             </div>
-                        )
-                    }
-
+                        </div>
+                    )}
                 </article>
             </Layout>
-        );
+        )
     }
 }
 
-export default PostTemplate;
+export default PostTemplate
