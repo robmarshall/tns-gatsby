@@ -257,12 +257,6 @@ exports.createResolvers = ({
                                     cache,
                                     createNode,
                                     createNodeId,
-                                    auth: {
-                                        htaccess_user:
-                                            process.env.BASIC_AUTH_USER,
-                                        htaccess_pass:
-                                            process.env.BASIC_AUTH_PASS,
-                                    },
                                     reporter,
                                 })
 
