@@ -18,7 +18,7 @@ const ArticleCard = ({ node }) => {
   const featuredTitle = _.get(featuredImage, "title", false);
 
   return (
-    <div key={slug} className="post">
+    <div className="post">
       <Link to={slug}>
         <div>
           <Img
