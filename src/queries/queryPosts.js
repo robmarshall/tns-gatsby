@@ -17,6 +17,7 @@ query GET_POSTS($first:Int, $after:String){
         date
         modified
         content
+        uri
         excerpt
         seo {
             metaDesc
@@ -82,4 +83,4 @@ query GET_POSTS($first:Int, $after:String){
       }
     }
   }
-}`
+}`;
