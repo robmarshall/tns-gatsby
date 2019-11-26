@@ -1,44 +1,38 @@
 import React from "react";
-import ArticleCard from '../components/ArticleCard'
-import Layout from "../components/Layout"
-import Pagination from "../components/Pagination"
-import SEO from "../components/SEO/SEO"
+import ArticleCard from "../components/ArticleCard";
+import Layout from "../components/Layout";
+import Pagination from "../components/Pagination";
+import SEO from "../components/SEO/SEO";
 
 const IndexPage = ({ data, pageContext }) => {
-    const { group, index, pageCount, additionalContext } = pageContext;
+  const { group, index, pageCount, additionalContext } = pageContext;
 
-    const {catName, catSlug} = additionalContext;
-    const catDesc = additionalContext.catDescription || `${catName} category archive page`;
+  const { catName, catSlug } = additionalContext;
+  const catDesc =
+    additionalContext.catDescription || `${catName} category archive page`;
 
-    return (
-        <Layout>
+  return (
+    <Layout>
+      <SEO title={catName} description={catDesc} />
 
-            <SEO
-                title={catName}
-                description={catDesc}
-            />
+      <h1>
+        Category:
+        {catName}
+      </h1>
 
-            <h1>
-Category:
-                {catName}
-            </h1>
+      <div className="post-list">
+        {group.map(node => (
+          <ArticleCard key={node.slug} node={node} />
+        ))}
+      </div>
 
-            <div className="post-list">
-
-                {group.map(node => (
-                    <ArticleCard node={node} />
-                ))}
-
-            </div>
-
-            <Pagination
-                prefix={`categories/${catSlug}`}
-                currentPage={index}
-                numPages={pageCount}
-            />
-
-        </Layout>
-    );
+      <Pagination
+        prefix={`categories/${catSlug}`}
+        currentPage={index}
+        numPages={pageCount}
+      />
+    </Layout>
+  );
 };
 
 export default IndexPage;
