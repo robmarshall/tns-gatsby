@@ -1,32 +1,27 @@
-import React from "react";
-import { Link } from "gatsby";
-import _ from "lodash";
-import './tags.scss';
+import React from 'react'
+import Link from '../Link'
+import _ from 'lodash'
+import './tags.scss'
 
 const TagList = ({ tags }) => {
-
-    if( tags && tags.length > 0 ){
-
-        const allTags = tags.map((tag) => (
+    if (tags && tags.length > 0) {
+        const allTags = tags.map(tag => (
             <li key={_.kebabCase(tag.name)} className="tag">
-                <Link to={`tag/${_.kebabCase(tag.name)}`} className="tag__name">{tag.name}</Link>
+                <Link to={`tag/${_.kebabCase(tag.name)}`} className="tag__name">
+                    {tag.name}
+                </Link>
             </li>
-        ));
+        ))
 
         return (
             <div className="tags__wrap">
                 <h4 className="tags__title">Tags:</h4>
-                <ul className="tags">
-                    {allTags}
-                </ul>
+                <ul className="tags">{allTags}</ul>
             </div>
-        );
-
-    } 
+        )
+    }
     // No Tags
-    return null;
-    
+    return null
+}
 
-};
-
-export default TagList;
+export default TagList

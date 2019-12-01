@@ -26,6 +26,7 @@
     "gatsby-source-filesystem": "^2.0.37",
     "gatsby-source-graphql": "^2.1.22",
     "gatsby-transformer-sharp": "^2.1.19",
+    "gatsby-wpgraphql-inline-images": "^0.2.3",
     "he": "^1.2.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
