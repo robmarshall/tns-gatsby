@@ -99,15 +99,21 @@ const SEO = ({
                 {isPost(postType) ? (
                     <meta property="og:type" content="article" />
                 ) : null}
-                <meta property="og:title" content={he.unescape(metaTitle)} />
+                <meta
+                    name="title"
+                    property="og:title"
+                    content={he.unescape(metaTitle)}
+                />
                 {postDescription && (
                     <meta
+                        name="description"
                         property="og:description"
                         content={he.unescape(postDescription)}
                     />
                 )}
                 {facebookMetaImage && (
                     <meta
+                        name="image"
                         property="og:image"
                         content={fallback.siteUrl + facebookMetaImage}
                     />
@@ -124,7 +130,9 @@ const SEO = ({
                 {dateModified && (
                     <meta property="LastModifiedDate" content={dateModified} />
                 )}
-                {author && <meta property="Creator" content={author} />}
+                {author && (
+                    <meta name="author" property="Creator" content={author} />
+                )}
 
                 {/* Twitter Card tags */}
                 <meta name="twitter:card" content="summary_large_image" />
