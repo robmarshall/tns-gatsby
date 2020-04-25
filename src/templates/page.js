@@ -11,7 +11,6 @@ const PageTemplate = (props) => {
             content,
             date,
             modified,
-            excerpt,
             featuredImage,
             seo,
         } },
@@ -36,7 +35,7 @@ const PageTemplate = (props) => {
                 postType="page"
                 yoastTitle={seo.title}
                 title={title}
-                description={seo.metaDesc || excerpt}
+                description={seo.metaDesc}
                 facebookPostImage={facebookImage}
                 twitterPostImage={twitterImage}
                 url={postURI}
