@@ -1,7 +1,7 @@
 import React from 'react'
 import he from 'he'
 import get from 'lodash/get'
-import Helmet from 'react-helmet'
+import {Helmet} from 'react-helmet'
 import useSiteDefaults from '../../hooks/useSiteDefaults'
 import limitString from '../../utils/limitString'
 
