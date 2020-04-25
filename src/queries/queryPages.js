@@ -17,7 +17,6 @@ query GET_PAGES($first:Int, $after:String){
         date
         modified
         content
-        excerpt
         seo {
             metaDesc
             metaKeywords
