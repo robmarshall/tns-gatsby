@@ -5,6 +5,7 @@
   "version": "0.1.1",
   "author": "Robert Marshall",
   "dependencies": {
+    "dayjs": "^1.8.25",
     "dotenv": "^8.2.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "gatsby": "^2.20.35",
@@ -31,7 +32,6 @@
     "gatsby-wpgraphql-inline-images": "^0.2.5",
     "he": "^1.2.0",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
     "node-sass": "^4.14.0",
     "prismjs": "^1.20.0",
     "prop-types": "^15.7.2",

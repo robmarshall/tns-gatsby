@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import he from 'he'
 import get from 'lodash/get'
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 const ArticleCard = ({ node }) => {
     const { slug, featuredImage, title, date, modified, excerpt, seo } = node
@@ -33,17 +33,17 @@ const ArticleCard = ({ node }) => {
 
                 <time
                     className="post__date post__date--published"
-                    dateTime={moment(date).format('YYYY-MM-DDTHH:mm:ss+00:00')}
+                    dateTime={dayjs(date).format('YYYY-MM-DDTHH:mm:ss+00:00')}
                 >
-                    {moment(date).format('Do MMMM YYYY')}
+                    {dayjs(date).format('D MMMM YYYY')}
                 </time>
                 <time
                     className="post__date post__date--updated"
-                    dateTime={moment(modified).format(
+                    dateTime={dayjs(modified).format(
                         'YYYY-MM-DDTHH:mm:ss+00:00'
                     )}
                 >
-                    {moment(modified).format('Do MMMM YYYY')}
+                    {dayjs(modified).format('D MMMM YYYY')}
                 </time>
 
                 <div

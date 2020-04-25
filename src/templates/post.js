@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Img from 'gatsby-image'
 import contentParser from 'gatsby-wpgraphql-inline-images'
 import get from 'lodash/get'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import Prism from 'prismjs'
 import CategoryList from '../components/CategoryList'
 import ArticleContainer from '../containers/ArticleContainer'
@@ -56,14 +56,14 @@ const PostTemplate = (props) => {
     const featuredAlt = get(featuredImage, 'alt_text', false)
     const featuredTitle = get(featuredImage, 'title', false)
 
-    const publishedSchema = moment(date, 'YYYY-MM-DD, HH:mm:ss').format()
-    const publishedUser = moment(date, 'YYYY-MM-DD, HH:mm:ss').format(
-        'Do MMMM YYYY'
+    const publishedSchema = dayjs(date, 'YYYY-MM-DD, HH:mm:ss').format()
+    const publishedUser = dayjs(date, 'YYYY-MM-DD, HH:mm:ss').format(
+        'D MMMM YYYY'
     )
 
-    const modifiedSchema = moment(modified, 'YYYY-MM-DD, HH:mm:ss').format()
-    const modifiedUser = moment(modified, 'YYYY-MM-DD, HH:mm:ss').format(
-        'Do MMMM YYYY'
+    const modifiedSchema = dayjs(modified, 'YYYY-MM-DD, HH:mm:ss').format()
+    const modifiedUser = dayjs(modified, 'YYYY-MM-DD, HH:mm:ss').format(
+        'D MMMM YYYY'
     )
 
     const pluginOptions = {
