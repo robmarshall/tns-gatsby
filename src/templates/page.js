@@ -1,5 +1,5 @@
 import React from "react"
-import _ from 'lodash'
+import get from 'lodash/get'
 import Layout from "../components/Layout"
 import SEO from "../components/SEO/SEO"
 
@@ -18,12 +18,12 @@ const PageTemplate = (props) => {
         postURI,
     } = props
 
-    const facebookImage = _.get(
+    const facebookImage = get(
         featuredImage,
         'imageFile.childImageSharp.facebook.src',
         false
     )
-    const twitterImage = _.get(
+    const twitterImage = get(
         featuredImage,
         'imageFile.childImageSharp.twitter.src',
         false

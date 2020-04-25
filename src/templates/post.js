@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Img from 'gatsby-image'
 import contentParser from 'gatsby-wpgraphql-inline-images'
-import _ from 'lodash'
+import get from 'lodash/get'
 import moment from 'moment'
 import Prism from 'prismjs'
 import CategoryList from '../components/CategoryList'
@@ -36,25 +36,25 @@ class PostTemplate extends Component {
             uri,
         } = this.props
 
-        const image = _.get(
+        const image = get(
             featuredImage,
             'imageFile.childImageSharp.image1000',
             false
         )
 
-        const facebookImage = _.get(
+        const facebookImage = get(
             featuredImage,
             'imageFile.childImageSharp.facebook.src',
             false
         )
-        const twitterImage = _.get(
+        const twitterImage = get(
             featuredImage,
             'imageFile.childImageSharp.twitter.src',
             false
         )
 
-        const featuredAlt = _.get(featuredImage, 'alt_text', false)
-        const featuredTitle = _.get(featuredImage, 'title', false)
+        const featuredAlt = get(featuredImage, 'alt_text', false)
+        const featuredTitle = get(featuredImage, 'title', false)
 
         const publishedSchema = moment(date, 'YYYY-MM-DD, HH:mm:ss').format()
         const publishedUser = moment(date, 'YYYY-MM-DD, HH:mm:ss').format(
