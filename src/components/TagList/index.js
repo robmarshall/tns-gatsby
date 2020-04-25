@@ -1,13 +1,13 @@
 import React from 'react'
 import Link from '../Link'
-import _ from 'lodash'
+import slugify from '../../utils/slugify'
 import './tags.scss'
 
 const TagList = ({ tags }) => {
     if (tags && tags.length > 0) {
         const allTags = tags.map(tag => (
-            <li key={_.kebabCase(tag.name)} className="tag">
-                <Link to={`tag/${_.kebabCase(tag.name)}`} className="tag__name">
+            <li key={slugify(tag.name)} className="tag">
+                <Link to={`tag/${slugify(tag.name)}`} className="tag__name">
                     {tag.name}
                 </Link>
             </li>

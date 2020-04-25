@@ -2,20 +2,20 @@ import React from 'react'
 import Link from '../Link'
 import Img from 'gatsby-image'
 import he from 'he'
-import _ from 'lodash'
+import get from 'lodash/get'
 import './relatedcard.scss'
 
 const RelatedCard = ({ node }) => {
     const { slug, featuredImage, title } = node
 
-    const image = _.get(
+    const image = get(
         featuredImage,
         'imageFile.childImageSharp.image500',
         false
     )
 
-    const featuredAlt = _.get(featuredImage, 'altText', false)
-    const featuredTitle = _.get(featuredImage, 'title', false)
+    const featuredAlt = get(featuredImage, 'altText', false)
+    const featuredTitle = get(featuredImage, 'title', false)
 
     return (
         <div key={slug} className="relatedCard">

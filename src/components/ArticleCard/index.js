@@ -2,20 +2,20 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import he from 'he'
-import _ from 'lodash'
+import get from 'lodash/get'
 import moment from 'moment'
 
 const ArticleCard = ({ node }) => {
     const { slug, featuredImage, title, date, modified, excerpt, seo } = node
 
-    const image = _.get(
+    const image = get(
         featuredImage,
         'imageFile.childImageSharp.image1000',
         false
     )
 
-    const featuredAlt = _.get(featuredImage, 'altText', false)
-    const featuredTitle = _.get(featuredImage, 'title', false)
+    const featuredAlt = get(featuredImage, 'altText', false)
+    const featuredTitle = get(featuredImage, 'title', false)
 
     return (
         <div className="post">

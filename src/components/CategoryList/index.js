@@ -1,14 +1,14 @@
 import React from 'react'
 import Link from '../Link'
-import _ from 'lodash'
+import slugify from '../../utils/slugify'
 import './cats.scss'
 
 const CategoryList = ({ cats }) => {
     if (cats && cats.length > 0) {
         const allCats = cats.map(cat => (
-            <li key={_.kebabCase(cat.name)} className="cat">
+            <li key={slugify(cat.name)} className="cat">
                 <Link
-                    to={`category/${_.kebabCase(cat.name)}`}
+                    to={`category/${slugify(cat.name)}`}
                     className="cat__name"
                 >
                     {cat.name}
