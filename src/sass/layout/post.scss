@@ -49,6 +49,12 @@ article .post__feat-image {
     display: flex;
 }
 
+.gatsby-image-wrapper {
+    margin: em(25px) 1em em(25px) 0;
+    width: 100%;
+    max-width: 100% !important;
+}
+
 @media only screen and (min-width: em(730px)) {
 
     .post {
