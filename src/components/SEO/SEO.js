@@ -1,10 +1,11 @@
 import React from 'react'
 import he from 'he'
-import _ from 'lodash'
+import get from 'lodash/get'
 import Helmet from 'react-helmet'
-import sanitizeHtml from 'sanitize-html'
 import useSiteDefaults from '../../hooks/useSiteDefaults'
 import limitString from '../../utils/limitString'
+
+import decodeEntities from '../../utils/decodeEntities'
 
 import SchemaOrg from './SchemaOrg'
 import { getSingleType, isPost } from './SeoHelpers'
@@ -33,12 +34,12 @@ const SEO = ({
     const siteName = wpSettings.generalSettingsTitle || fallback.siteName
     const tagLine =
         wpSettings.generalSettingsDescription || fallback.description
-    const facebookImageFallback = _.get(
+    const facebookImageFallback = get(
         facebookImage,
         'childImageSharp.fixed.src',
         false
     )
-    const twitterImageFallback = _.get(
+    const twitterImageFallback = get(
         twitterImage,
         'childImageSharp.fixed.src',
         false
@@ -52,16 +53,8 @@ const SEO = ({
 
     const metaTitle = yoastTitle || title + getSingleType(postType) || siteName
 
-    const sanitizeOptions = {
-        allowedTags: [],
-        allowedAttributes: {},
-    }
-
     // Take the description/excerpt and remove all html tags
-    const postDescription = limitString(
-        sanitizeHtml(description || tagLine, sanitizeOptions),
-        150
-    )
+    const postDescription = limitString(decodeEntities(description || tagLine),150)
 
     const facebookMetaImage =
         facebookPostImage ||

@@ -1,9 +1,9 @@
-import React from "react";
-import _ from "lodash";
+import React, {memo} from "react";
+import get from "lodash/get";
 import Helmet from "react-helmet";
 import useSiteDefaults from "../../hooks/useSiteDefaults";
 
-export default React.memo(
+export default memo(
     ({
         address,
         author,
@@ -28,7 +28,7 @@ export default React.memo(
             },
         } = useSiteDefaults()
 
-        const logoData = _.get(logoPng, "childImageSharp.fluid", false);
+        const logoData = get(logoPng, "childImageSharp.fluid", false);
 
         // Set this as fallback. Overwritten later.
         let schema = [
