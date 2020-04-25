@@ -1,6 +1,6 @@
 import React from 'react'
 import AllCategoriesList from '../components/AllCategoriesList'
-import Layout from '../components/Layout'
+import Layout from '../containers/Layout'
 import RootImage from '../components/RootImage'
 
 import './404.scss'

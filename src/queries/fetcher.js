@@ -17,7 +17,7 @@ module.exports = async function fetcher({ graphql, postType, query }) {
 
     // If the WP hosting provider is slow, reduce this
     // otherwise your build may crash
-    let queryAmount = 200
+    let queryAmount = 50
 
     if (process.env.GATSBY_PAGESTOLOAD) {
         queryAmount = 13

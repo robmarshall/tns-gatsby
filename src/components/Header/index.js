@@ -3,18 +3,20 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import MainMenu from "../MainMenu"
 import "./header.scss"
-import '../../sass/layout/layout.scss';
+import Container from '../../containers/Container'
 
 const Header = ({ siteTitle }) => (
     <header className="header">
-        <div className="container header__wrap">
-            <h1 className="header__title">
-                <Link className="header__link" to="/">
-                    {siteTitle}
-                </Link>
-            </h1>
-            <MainMenu />
-        </div>
+        <Container>
+            <div className="header__wrap">
+                <h1 className="header__title">
+                    <Link className="header__link" to="/">
+                        {siteTitle}
+                    </Link>
+                </h1>
+                <MainMenu />
+            </div>
+        </Container>
     </header>
 )
 

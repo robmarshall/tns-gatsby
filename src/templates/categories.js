@@ -1,6 +1,7 @@
 import React from "react";
 import ArticleCard from "../components/ArticleCard";
-import Layout from "../components/Layout";
+import ArticleContainer from "../containers/ArticleContainer";
+import Layout from "../containers/Layout";
 import Pagination from "../components/Pagination";
 import SEO from "../components/SEO/SEO";
 
@@ -15,22 +16,27 @@ const IndexPage = ({ data, pageContext }) => {
     <Layout>
       <SEO title={catName} description={catDesc} />
 
-      <h1>
-        Category:
-        {catName}
-      </h1>
+          <ArticleContainer>
 
-      <div className="post-list">
-        {group.map(node => (
-          <ArticleCard key={node.slug} node={node} />
-        ))}
-      </div>
+              <h1>
+                Category:
+                {catName}
+              </h1>
 
-      <Pagination
-        prefix={`categories/${catSlug}`}
-        currentPage={index}
-        numPages={pageCount}
-      />
+              <div className="post-list">
+                {group.map(node => (
+                  <ArticleCard key={node.slug} node={node} />
+                ))}
+              </div>
+
+              <Pagination
+                prefix={`categories/${catSlug}`}
+                currentPage={index}
+                numPages={pageCount}
+              />
+
+        </ArticleContainer>
+
     </Layout>
   );
 };

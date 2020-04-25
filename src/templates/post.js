@@ -5,14 +5,15 @@ import get from 'lodash/get'
 import moment from 'moment'
 import Prism from 'prismjs'
 import CategoryList from '../components/CategoryList'
-import Layout from '../components/Layout'
+import ArticleContainer from '../containers/ArticleContainer'
+import Container from '../containers/Container'
+import Layout from '../containers/Layout'
 import RelatedCard from '../components/RelatedCard'
 import SEO from '../components/SEO/SEO'
 import TagList from '../components/TagList'
 import slugify from '../utils/slugify'
 
 const PostTemplate = (props) => {
-
     useEffect(() => {
         Prism.highlightAll()
     }, [])
@@ -84,53 +85,55 @@ const PostTemplate = (props) => {
                 dateModified={modified}
             />
 
-            <article className="post">
-                <h1>{title}</h1>
+            <ArticleContainer>
+                <article className="post">
+                    <h1>{title}</h1>
 
-                <time
-                    className="post__date post__date--published"
-                    dateTime={publishedSchema}
-                >
-                    {publishedUser}
-                </time>
-                <time
-                    className="post__date post__date--updated"
-                    dateTime={modifiedSchema}
-                >
-                    {modifiedUser}
-                </time>
+                    <time
+                        className="post__date post__date--published"
+                        dateTime={publishedSchema}
+                    >
+                        {publishedUser}
+                    </time>
+                    <time
+                        className="post__date post__date--updated"
+                        dateTime={modifiedSchema}
+                    >
+                        {modifiedUser}
+                    </time>
 
-                <CategoryList cats={categories.nodes} />
+                    <CategoryList cats={categories.nodes} />
 
-                <div>
-                    <Img
-                        className="post__feat-image"
-                        fluid={image}
-                        title={featuredTitle || ''}
-                        alt={featuredAlt || ''}
-                    />
-                </div>
+                    <div>
+                        <Img
+                            className="post__feat-image"
+                            fluid={image}
+                            title={featuredTitle || ''}
+                            alt={featuredAlt || ''}
+                        />
+                    </div>
 
-                <div>{contentParser({ content }, pluginOptions)}</div>
+                    <div>{contentParser({ content }, pluginOptions)}</div>
 
-                <TagList tags={tags.nodes} />
+                    <TagList tags={tags.nodes} />
+                </article>
+            </ArticleContainer>
 
-                {relatedPosts.length > 0 && (
+            {relatedPosts.length > 0 && (
+                <Container>
                     <div className="post_related">
                         <h2 className="post_related_title">Related Posts</h2>
                         <div className="post_related_wrap">
-                            {relatedPosts.map((post) => {
-                                return (
-                                    <RelatedCard
-                                        key={slugify(post.title)}
-                                        node={post}
-                                    />
-                                )
-                            })}
+                            {relatedPosts.map((post) => (
+                                <RelatedCard
+                                    key={slugify(post.title)}
+                                    node={post}
+                                />
+                            ))}
                         </div>
                     </div>
-                )}
-            </article>
+                </Container>
+            )}
         </Layout>
     )
 }

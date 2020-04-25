@@ -1,6 +1,7 @@
 import React from "react"
 import get from 'lodash/get'
-import Layout from "../components/Layout"
+import ArticleContainer from "../containers/ArticleContainer";
+import Layout from "../containers/Layout"
 import SEO from "../components/SEO/SEO"
 
 const PageTemplate = (props) => {
@@ -43,12 +44,16 @@ const PageTemplate = (props) => {
                 dateModified={modified}
             />
 
-            <h1
-                // eslint-disable-next-line
-              dangerouslySetInnerHTML={{__html: title}} />
-            <div
-                // eslint-disable-next-line
-              dangerouslySetInnerHTML={{__html: content}} />
+            <ArticleContainer>
+
+                <h1
+                    // eslint-disable-next-line
+                  dangerouslySetInnerHTML={{__html: title}} />
+                <div
+                    // eslint-disable-next-line
+                  dangerouslySetInnerHTML={{__html: content}} />
+
+          </ArticleContainer>
         </Layout>
     )
 

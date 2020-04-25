@@ -1,12 +1,11 @@
 import React from 'react'
 
-import Footer from '../Footer'
-import Header from '../Header'
+import Footer from '../../components/Footer'
+import Header from '../../components/Header'
 
-import SEO from "../SEO/SEO"
+import SEO from "../../components/SEO/SEO"
 
 import '../../sass/base/base.scss';
-import '../../sass/layout/layout.scss';
 
 const Layout = ({children}) => (
     <div>
@@ -15,9 +14,7 @@ const Layout = ({children}) => (
 
         <Header siteTitle="T&S" />
 
-        <div className="article-container">
-            {children}
-        </div>
+        {children}
 
         <Footer />
 
