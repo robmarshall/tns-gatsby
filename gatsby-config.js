@@ -132,6 +132,9 @@ module.exports = {
             },
         },
         {
+            resolve: 'gatsby-plugin-preload-fonts',
+        },
+        {
             resolve: `gatsby-plugin-google-analytics`,
             options: {
                 trackingId: process.env.GOOGLE_TRACKING_ID || '',
@@ -158,6 +161,12 @@ module.exports = {
                 display: `standalone`,
                 icon: `src/favicon.png`,
             },
+        },
+        {
+            resolve: 'gatsby-plugin-webpack-bundle-analyzer',
+            options: {
+                // production: true,
+            }
         },
         {
             resolve: 'gatsby-wpgraphql-inline-images',
