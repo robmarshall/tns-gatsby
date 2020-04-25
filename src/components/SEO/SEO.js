@@ -3,7 +3,7 @@ import he from 'he'
 import _ from 'lodash'
 import Helmet from 'react-helmet'
 import sanitizeHtml from 'sanitize-html'
-import AllSiteDefaults from '../../hooks/get-site-defaults'
+import useSiteDefaults from '../../hooks/useSiteDefaults'
 import limitString from '../../utils/limitString'
 
 import SchemaOrg from './SchemaOrg'
@@ -26,7 +26,7 @@ const SEO = ({
     articleBody,
 }) => {
     // Pull data from WordPress and Gatsby config
-    const { settings, site, facebookImage, twitterImage } = AllSiteDefaults()
+    const { settings, site, facebookImage, twitterImage } = useSiteDefaults()
     const wpSettings = settings.allSettings
     const fallback = site.siteMetadata
 

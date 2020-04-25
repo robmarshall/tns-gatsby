@@ -1,6 +1,6 @@
 import { useStaticQuery, graphql } from 'gatsby'
 
-function AllSiteDefaults() {
+function useSiteDefaults() {
     return useStaticQuery(
         graphql`
             {
@@ -28,4 +28,4 @@ function AllSiteDefaults() {
     )
 }
 
-export default AllSiteDefaults
+export default useSiteDefaults

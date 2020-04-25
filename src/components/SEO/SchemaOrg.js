@@ -1,7 +1,7 @@
 import React from "react";
 import _ from "lodash";
 import Helmet from "react-helmet";
-import AllSiteDefaults from "../../hooks/get-site-defaults";
+import useSiteDefaults from "../../hooks/useSiteDefaults";
 
 export default React.memo(
     ({
@@ -26,7 +26,7 @@ export default React.memo(
             site: {
                 siteMetadata: { siteName },
             },
-        } = AllSiteDefaults()
+        } = useSiteDefaults()
 
         const logoData = _.get(logoPng, "childImageSharp.fluid", false);
 
