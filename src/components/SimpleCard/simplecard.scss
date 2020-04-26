@@ -1,0 +1,42 @@
+@import '../../sass/abstracts/abstracts';
+
+.simpleCard {
+    width: 100%;
+
+    a {
+        text-decoration: none;
+        width: 100%;
+    }
+
+    &_title {
+        font-size: em(18);
+    }
+
+    @media only screen and (min-width: em(500px)) {
+        &_title {
+            font-size: em(20);
+        }
+    }
+
+    @media only screen and (min-width: em(700px)) {
+        margin-right: 20px;
+        width: calc(33.333% - (20px / 3 * 2));
+
+        &_title {
+            font-size: em(17);
+            font-weight: 400;
+        }
+
+        &:last-of-type {
+            margin-right: 0;
+            width: calc(33.333% - (20px / 3 * 2));
+        }
+    }
+
+    @media only screen and (min-width: em(900px)) {
+        &_title {
+            font-size: em(20);
+            font-weight: 600;
+        }
+    }
+}

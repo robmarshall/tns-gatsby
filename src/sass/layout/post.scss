@@ -40,15 +40,6 @@ article .post__feat-image {
     margin-top: em(20);
 }
 
-.post_related  {
-  margin: em(40) 0;
-
-}
-
-.post_related_wrap {
-    display: flex;
-}
-
 .gatsby-image-wrapper {
     margin: em(25px) 1em em(25px) 0;
     width: 100%;
@@ -80,10 +71,6 @@ article .post__feat-image {
 
     article .post__feat-image {
         margin-bottom: em(50);
-    }
-
-    .post_related  {
-        margin: em(60) 0;
     }
 
 }

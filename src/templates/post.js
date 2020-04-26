@@ -8,7 +8,7 @@ import CategoryList from '../components/CategoryList'
 import ArticleContainer from '../containers/ArticleContainer'
 import Container from '../containers/Container'
 import Layout from '../containers/Layout'
-import RelatedCard from '../components/RelatedCard'
+import RelatedCards from '../components/RelatedCards'
 import SEO from '../components/SEO/SEO'
 import TagList from '../components/TagList'
 import slugify from '../utils/slugify'
@@ -119,21 +119,7 @@ const PostTemplate = (props) => {
                 </article>
             </ArticleContainer>
 
-            {relatedPosts.length > 0 && (
-                <Container>
-                    <div className="post_related">
-                        <h2 className="post_related_title">Related Posts</h2>
-                        <div className="post_related_wrap">
-                            {relatedPosts.map((post) => (
-                                <RelatedCard
-                                    key={slugify(post.title)}
-                                    node={post}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </Container>
-            )}
+            <RelatedCards relatedPosts={relatedPosts} />
         </Layout>
     )
 }

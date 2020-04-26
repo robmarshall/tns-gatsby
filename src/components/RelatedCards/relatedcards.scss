@@ -1,0 +1,17 @@
+@import '../../sass/abstracts/abstracts';
+
+.post_related  {
+    margin: em(40) 0;
+}
+
+@media only screen and (min-width: em(700px)) {
+
+    .post_related_wrap {
+        display: flex;
+    }
+
+    .post_related  {
+        margin: em(60) 0;
+    }
+
+}
