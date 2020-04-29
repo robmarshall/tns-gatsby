@@ -134,7 +134,6 @@ exports.createPages = async ({ graphql, actions }) => {
                     edges: tagMap.get(tag.name),
                     createPage,
                     pageTemplate: tagTemplate,
-                    pageLength: 8,
                     pathPrefix: 'tag',
                     buildPath: (index, pathPrefix) =>
                         index > 1
@@ -155,7 +154,6 @@ exports.createPages = async ({ graphql, actions }) => {
                     edges: categoryMap.get(category.name),
                     createPage,
                     pageTemplate: categoryTemplate,
-                    pageLength: 8,
                     pathPrefix: 'category',
                     buildPath: (index, pathPrefix) =>
                         index > 1
