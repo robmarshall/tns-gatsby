@@ -60,7 +60,6 @@ exports.createPages = async ({ graphql, actions }) => {
                 edges: posts,
                 createPage,
                 pageTemplate: postsTemplate,
-                pageLength: 8,
                 pathPrefix: '',
                 buildPath: (index, pathPrefix) =>
                     index > 1
