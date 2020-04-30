@@ -27,7 +27,7 @@ export default function HTML(props) {
 
                 <script
                     async
-                    src="https://arc.io/widget.js?WrxccT2crAmKvqcpei9Qkw"
+                    src="https://arc.io/widget.js?#WrxccT2crAmKvqcpei9Qkw"
                 />
             </body>
         </html>
