@@ -1,14 +1,14 @@
 import React from 'react'
 import he from 'he'
 import get from 'lodash/get'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import useSiteDefaults from '../../hooks/useSiteDefaults'
 import limitString from '../../utils/limitString'
 
 import decodeEntities from '../../utils/decodeEntities'
 
 import SchemaOrg from './SchemaOrg'
-import { getSingleType, isPost } from './SeoHelpers'
+import { isPost } from './SeoHelpers'
 
 const SEO = ({
     address,
@@ -48,13 +48,16 @@ const SEO = ({
     // Set the title from the browser. If there is a page title, set properly. Otherwise fall back
     const browserTitle =
         yoastTitle || title
-            ? `${title}${getSingleType(postType)} | ${siteName}`
+            ? `${title} | ${siteName}`
             : `${siteName} | ${tagLine}`
 
-    const metaTitle = yoastTitle || title + getSingleType(postType) || siteName
+    const metaTitle = yoastTitle || title || siteName
 
     // Take the description/excerpt and remove all html tags
-    const postDescription = limitString(decodeEntities(description || tagLine),150)
+    const postDescription = limitString(
+        decodeEntities(description || tagLine),
+        150
+    )
 
     const facebookMetaImage =
         facebookPostImage ||
