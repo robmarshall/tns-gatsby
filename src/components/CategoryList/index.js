@@ -5,10 +5,10 @@ import './cats.scss'
 
 const CategoryList = ({ cats }) => {
     if (cats && cats.length > 0) {
-        const allCats = cats.map(cat => (
+        const allCats = cats.map((cat) => (
             <li key={slugify(cat.name)} className="cat">
                 <Link
-                    to={`category/${slugify(cat.name)}`}
+                    to={`/category/${slugify(cat.name)}`}
                     className="cat__name"
                 >
                     {cat.name}
