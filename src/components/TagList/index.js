@@ -5,9 +5,9 @@ import './tags.scss'
 
 const TagList = ({ tags }) => {
     if (tags && tags.length > 0) {
-        const allTags = tags.map(tag => (
+        const allTags = tags.map((tag) => (
             <li key={slugify(tag.name)} className="tag">
-                <Link to={`tag/${slugify(tag.name)}`} className="tag__name">
+                <Link to={`/tag/${slugify(tag.name)}`} className="tag__name">
                     {tag.name}
                 </Link>
             </li>
