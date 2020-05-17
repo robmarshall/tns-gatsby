@@ -1,8 +1,8 @@
 import React from 'react'
 
 import Container from '../../containers/Container'
-import SimpleCard from '../SimpleCard'
 import slugify from '../../utils/slugify'
+import SimpleCard from '../SimpleCard'
 
 import './relatedcards.scss'
 

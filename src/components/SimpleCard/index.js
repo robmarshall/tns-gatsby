@@ -1,8 +1,8 @@
 import React from 'react'
-import Link from '../Link'
 import Img from 'gatsby-image'
 import he from 'he'
 import get from 'lodash/get'
+import Link from '../Link'
 import './simplecard.scss'
 
 const SimpleCard = ({ node }) => {

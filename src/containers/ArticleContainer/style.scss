@@ -2,10 +2,10 @@
 
 .article-container {
     margin: 0 auto;
+    min-height: calc(100vh - (#{em(75)} + #{em(67)} + 3em + 1.25em));
     padding-left: em(15);
     padding-right: em(15);
     width: 100%;
-    min-height: calc(100vh - (#{em(75)} + #{em(67)} + 3em + 1.25em));
 }
 
 @media only screen and (min-width: em(730px)) {

@@ -238,19 +238,19 @@ code {
 
 pre code {
   background: none;
-  line-height: 1.42;
   font-size: 1rem !important;
+  line-height: 1.42;
 }
 
 pre {
   background: #f4f4f4;
   border: 1px solid #ddd;
-  page-break-inside: avoid;
+  display: block;
   margin-bottom: 1.6em;
   max-width: 100%;
   overflow: auto;
   padding: 1em 1.5em;
-  display: block;
+  page-break-inside: avoid;
   word-wrap: break-word;
 }
 

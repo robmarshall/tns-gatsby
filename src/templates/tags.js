@@ -1,9 +1,9 @@
 import React from 'react'
 import ArticleCard from '../components/ArticleCard'
-import ArticleContainer from '../containers/ArticleContainer'
-import Layout from '../containers/Layout'
 import Pagination from '../components/Pagination'
 import SEO from '../components/SEO/SEO'
+import ArticleContainer from '../containers/ArticleContainer'
+import Layout from '../containers/Layout'
 
 const IndexPage = ({ data, pageContext }) => {
     const { group, index, pageCount, additionalContext } = pageContext

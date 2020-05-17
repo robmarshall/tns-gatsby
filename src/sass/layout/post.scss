@@ -42,8 +42,8 @@ article .post__feat-image {
 
 .gatsby-image-wrapper {
     margin: em(25px) 1em em(25px) 0;
-    width: 100%;
     max-width: 100% !important;
+    width: 100%;
 }
 
 @media only screen and (min-width: em(730px)) {

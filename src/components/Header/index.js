@@ -1,9 +1,9 @@
-import React from "react"
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import MainMenu from "../MainMenu"
-import "./header.scss"
+import React from 'react'
+import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
 import Container from '../../containers/Container'
+import MainMenu from '../MainMenu'
+import './header.scss'
 
 const Header = ({ siteTitle }) => (
     <header className="header">

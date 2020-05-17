@@ -1,8 +1,8 @@
 import React from "react"
 import get from 'lodash/get'
+import SEO from "../components/SEO/SEO"
 import ArticleContainer from "../containers/ArticleContainer";
 import Layout from "../containers/Layout"
-import SEO from "../components/SEO/SEO"
 
 const PageTemplate = (props) => {
 
@@ -53,7 +53,7 @@ const PageTemplate = (props) => {
                     // eslint-disable-next-line
                   dangerouslySetInnerHTML={{__html: content}} />
 
-          </ArticleContainer>
+            </ArticleContainer>
         </Layout>
     )
 

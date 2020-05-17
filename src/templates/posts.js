@@ -1,8 +1,8 @@
 import React from 'react'
 import ArticleCard from '../components/ArticleCard'
+import Pagination from '../components/Pagination'
 import ArticleContainer from '../containers/ArticleContainer'
 import Layout from '../containers/Layout'
-import Pagination from '../components/Pagination'
 
 import '../sass/layout/post.scss'
 

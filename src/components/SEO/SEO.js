@@ -3,9 +3,9 @@ import he from 'he'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import useSiteDefaults from '../../hooks/useSiteDefaults'
+import decodeEntities from '../../utils/decodeEntities'
 import limitString from '../../utils/limitString'
 
-import decodeEntities from '../../utils/decodeEntities'
 
 import SchemaOrg from './SchemaOrg'
 import { isPost } from './SeoHelpers'

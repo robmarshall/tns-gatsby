@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react'
+import dayjs from 'dayjs'
 import Img from 'gatsby-image'
 import contentParser from 'gatsby-wpgraphql-inline-images'
 import get from 'lodash/get'
-import dayjs from 'dayjs'
 import Prism from 'prismjs'
 import CategoryList from '../components/CategoryList'
-import ArticleContainer from '../containers/ArticleContainer'
-import Container from '../containers/Container'
-import Layout from '../containers/Layout'
 import RelatedCards from '../components/RelatedCards'
 import SEO from '../components/SEO/SEO'
 import TagList from '../components/TagList'
-import slugify from '../utils/slugify'
+import ArticleContainer from '../containers/ArticleContainer'
+import Layout from '../containers/Layout'
+import decodeEntities from '../utils/decodeEntities'
 
 const PostTemplate = (props) => {
     useEffect(() => {
@@ -87,7 +86,7 @@ const PostTemplate = (props) => {
 
             <ArticleContainer>
                 <article className="post">
-                    <h1>{title}</h1>
+                    <h1>{decodeEntities(title)}</h1>
 
                     <time
                         className="post__date post__date--published"

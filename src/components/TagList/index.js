@@ -1,6 +1,6 @@
 import React from 'react'
-import Link from '../Link'
 import slugify from '../../utils/slugify'
+import Link from '../Link'
 import './tags.scss'
 
 const TagList = ({ tags }) => {

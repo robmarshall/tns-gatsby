@@ -1,9 +1,9 @@
 import React from 'react'
+import dayjs from 'dayjs'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import he from 'he'
 import get from 'lodash/get'
-import dayjs from 'dayjs'
 
 const ArticleCard = ({ node }) => {
     const { slug, featuredImage, title, date, modified, excerpt, seo } = node

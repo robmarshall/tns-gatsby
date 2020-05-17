@@ -57,7 +57,7 @@ const Pagination = ({ type, prefix, currentPage, numPages }) => {
                                             }
                                         >
                                             <span className="paginationLabel">
-                                            Page
+                                                Page
                                                 {' '}
                                             </span>
                                             {humanNum}
