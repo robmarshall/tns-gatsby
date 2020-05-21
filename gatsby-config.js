@@ -22,6 +22,7 @@ module.exports = {
     plugins: [
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sitemap`,
+        `gatsby-plugin-robots-txt`,
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -58,7 +59,7 @@ module.exports = {
                 feeds: [
                     {
                         serialize: ({ query: { site, wpgraphql } }) => {
-                            return wpgraphql.posts.nodes.map(node => {
+                            return wpgraphql.posts.nodes.map((node) => {
                                 return {
                                     ...node,
                                     description: node.excerpt,
@@ -67,9 +68,11 @@ module.exports = {
                                     guid: `${site.siteMetadata.siteUrl}/${node.slug}`,
                                     categories:
                                         node.categories.nodes.length > 0
-                                            ? node.categories.nodes.map(cat => {
-                                                  return cat.name
-                                              })
+                                            ? node.categories.nodes.map(
+                                                  (cat) => {
+                                                      return cat.name
+                                                  }
+                                              )
                                             : '',
                                     custom_elements: [
                                         { 'content:encoded': node.content },
@@ -166,7 +169,7 @@ module.exports = {
             resolve: 'gatsby-plugin-webpack-bundle-analyzer',
             options: {
                 // production: true,
-            }
+            },
         },
         {
             resolve: 'gatsby-wpgraphql-inline-images',
@@ -189,10 +192,10 @@ module.exports = {
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.app/offline
         {
-          resolve: `gatsby-plugin-offline`,
-          options: {
-            appendScript: require.resolve('./arc-sw.js'),
-          },
+            resolve: `gatsby-plugin-offline`,
+            options: {
+                appendScript: require.resolve('./arc-sw.js'),
+            },
         },
     ],
 }
