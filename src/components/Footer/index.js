@@ -6,14 +6,11 @@ const Footer = ({ siteTitle }) => (
     <footer className="footer">
         <Container>
             <div className="footer__wrap">
-                By
-                {' '}
-                <a href="https://www.robertmarshall.dev" className="footer__link">
+                By{' '}
+                <a href="https://robertmarshall.dev" className="footer__link">
                     Robert Marshall
-                </a>
-                {' '}
-                &
-                {' '}
+                </a>{' '}
+                &{' '}
                 <a href="https://www.gatsbyjs.org/" className="footer__link">
                     Gatsby
                 </a>
