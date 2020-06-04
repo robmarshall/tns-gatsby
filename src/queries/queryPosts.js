@@ -51,7 +51,10 @@ query GET_POSTS($first:Int, $after:String){
           modified
           imageFile {
             childImageSharp {
-              image1000: fluid(maxWidth: 1000) {
+              base700: sizes(base64Width: 800, quality: 100) {
+                  base64
+              }
+              image700: fluid(maxWidth: 700) {
                   base64
                   aspectRatio
                   src
@@ -83,4 +86,4 @@ query GET_POSTS($first:Int, $after:String){
       }
     }
   }
-}`;
+}`

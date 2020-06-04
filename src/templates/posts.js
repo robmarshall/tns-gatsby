@@ -13,8 +13,12 @@ const IndexPage = ({ data, pageContext }) => {
         <Layout>
             <ArticleContainer>
                 <div className="post-list">
-                    {group.map((node) => (
-                        <ArticleCard key={node.slug} node={node} />
+                    {group.map((node, index) => (
+                        <ArticleCard
+                            key={node.slug}
+                            node={node}
+                            count={index}
+                        />
                     ))}
                 </div>
 

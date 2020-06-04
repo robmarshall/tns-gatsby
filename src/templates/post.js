@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import dayjs from 'dayjs'
-import Img from 'gatsby-image'
 import contentParser from 'gatsby-wpgraphql-inline-images'
-import get from 'lodash/get'
 import Prism from 'prismjs'
 import CategoryList from '../components/CategoryList'
 import RelatedCards from '../components/RelatedCards'
@@ -35,25 +33,17 @@ const PostTemplate = (props) => {
         uri,
     } = props
 
-    const image = get(
-        featuredImage,
-        'imageFile.childImageSharp.image1000',
-        false
-    )
+    const image =
+        featuredImage?.imageFile?.childImageSharp?.base700?.base64 || false
 
-    const facebookImage = get(
-        featuredImage,
-        'imageFile.childImageSharp.facebook.src',
-        false
-    )
-    const twitterImage = get(
-        featuredImage,
-        'imageFile.childImageSharp.twitter.src',
-        false
-    )
+    const facebookImage =
+        featuredImage?.imageFile?.childImageSharp?.facebook?.src || false
 
-    const featuredAlt = get(featuredImage, 'alt_text', false)
-    const featuredTitle = get(featuredImage, 'title', false)
+    const twitterImage =
+        featuredImage?.imageFile?.childImageSharp?.twitter?.src || false
+
+    const featuredAlt = featuredImage?.alt_text || ''
+    const featuredTitle = featuredImage?.title || ''
 
     const publishedSchema = dayjs(date, 'YYYY-MM-DD, HH:mm:ss').format()
     const publishedUser = dayjs(date, 'YYYY-MM-DD, HH:mm:ss').format(
@@ -104,9 +94,9 @@ const PostTemplate = (props) => {
                     <CategoryList cats={categories.nodes} />
 
                     <div>
-                        <Img
+                        <img
                             className="post__feat-image"
-                            fluid={image}
+                            src={image}
                             title={featuredTitle || ''}
                             alt={featuredAlt || ''}
                         />

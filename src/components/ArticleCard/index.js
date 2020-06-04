@@ -2,34 +2,40 @@ import React from 'react'
 import dayjs from 'dayjs'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
-import he from 'he'
-import get from 'lodash/get'
+import decodeEntities from '../../utils/decodeEntities'
 
-const ArticleCard = ({ node }) => {
+const ArticleCard = ({ count, node }) => {
     const { slug, featuredImage, title, date, modified, excerpt, seo } = node
 
-    const image = get(
-        featuredImage,
-        'imageFile.childImageSharp.image1000',
-        false
-    )
+    const baseImage =
+        featuredImage?.imageFile?.childImageSharp?.base700.base64 || false
+    const image = featuredImage?.imageFile?.childImageSharp?.image700 || false
 
-    const featuredAlt = get(featuredImage, 'altText', false)
-    const featuredTitle = get(featuredImage, 'title', false)
+    const featuredAlt = featuredImage?.altText || ''
+    const featuredTitle = featuredImage?.title || ''
 
     return (
         <div className="post">
             <Link to={slug}>
                 <div>
-                    <Img
-                        className="post__feat-image"
-                        fluid={image}
-                        title={featuredTitle}
-                        alt={featuredAlt}
-                    />
+                    {count === 0 ? (
+                        <img
+                            className="post__feat-image"
+                            src={baseImage}
+                            title={featuredTitle}
+                            alt={featuredAlt}
+                        />
+                    ) : (
+                        <Img
+                            className="post__feat-image"
+                            fluid={image}
+                            title={featuredTitle}
+                            alt={featuredAlt}
+                        />
+                    )}
                 </div>
 
-                <h3 className="post__title">{he.unescape(title)}</h3>
+                <h3 className="post__title">{decodeEntities(title)}</h3>
 
                 <time
                     className="post__date post__date--published"
