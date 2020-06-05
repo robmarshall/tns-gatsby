@@ -29,10 +29,13 @@
                 border-radius: em(15);
                 box-shadow: 0 10px 30px -10px rgba(#532ee7, 0.5);
                 color: #fff;
-                font-weight: 700;
+                font-weight: 300;
                 @include animate-transition(all, 0.5s);
                 &:hover {
                     box-shadow: 0 1px 1px rgba(#532ee7, 0.1);
+                }
+                @media only screen and (min-width: em(730px)) {
+                    font-weight: 700;
                 }
             }
         }

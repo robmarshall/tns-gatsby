@@ -1,7 +1,7 @@
 @import '../abstracts/abstracts';
 
 .post-list {
-    margin-top: em(90);
+    margin-top: em(80);
     a {
         text-decoration: none;
         @include animate-transition(all, 0.3s);

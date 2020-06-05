@@ -1,7 +1,7 @@
 @import '../../sass/abstracts/abstracts';
 
 .article-container {
-    margin: 0 auto;
+    margin: em(100) auto 0 auto;
     min-height: calc(100vh - (#{em(75)} + #{em(67)} + 3em + 1.25em));
     padding-left: em(15);
     padding-right: em(15);
@@ -9,11 +9,10 @@
 }
 
 @media only screen and (min-width: em(730px)) {
-
     .article-container {
         max-width: em(700);
+        margin-top: em(140);
         padding-left: 0;
         padding-right: 0;
     }
-
 }
