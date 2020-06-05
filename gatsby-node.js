@@ -25,11 +25,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
     await fetcher({
         graphql,
-        postType: "pages",
-        query: queryPages
-    }).then(async pages => {
+        postType: 'pages',
+        query: queryPages,
+    }).then(async (pages) => {
         if (pages) {
-            pages.forEach(node => {
+            pages.forEach((node) => {
                 createPage({
                     path: `/${node.slug}/`,
                     component: slash(pageTemplate),
@@ -46,12 +46,10 @@ exports.createPages = async ({ graphql, actions }) => {
 
     await fetcher({
         graphql,
-        postType: "posts",
-        query: queryPosts
-    }).then(async posts => {
-
-        if(posts){
-
+        postType: 'posts',
+        query: queryPosts,
+    }).then(async (posts) => {
+        if (posts) {
             // Posts detail
             const tags = []
             const categories = []
@@ -67,16 +65,16 @@ exports.createPages = async ({ graphql, actions }) => {
                         : `/${pathPrefix}`,
             })
 
-            posts.forEach(node => {
-            // Grab all the tags and categories for later use
+            posts.forEach((node) => {
+                // Grab all the tags and categories for later use
                 if (node.tags) {
-                    node.tags.nodes.forEach(tag => {
+                    node.tags.nodes.forEach((tag) => {
                         tags.push(tag.name)
                     })
                 }
 
                 if (node.categories) {
-                    node.categories.nodes.forEach(category => {
+                    node.categories.nodes.forEach((category) => {
                         categories.push(category.name)
                     })
                 }
@@ -85,7 +83,7 @@ exports.createPages = async ({ graphql, actions }) => {
                     path: `/${node.slug}/`,
                     component: slash(postTemplate),
                     context: {
-                        post: node,
+                        id: node.id,
                         relatedPosts: getRelatedPosts({
                             posts,
                             current: node,
@@ -101,9 +99,9 @@ exports.createPages = async ({ graphql, actions }) => {
             const categoryMap = new Map()
 
             // Now loop through posts, and allocated posts to tags/cats
-            posts.forEach(node => {
+            posts.forEach((node) => {
                 if (node.tags) {
-                    node.tags.nodes.forEach(tag => {
+                    node.tags.nodes.forEach((tag) => {
                         tagSet.add(tag)
                         const array = tagMap.has(tag.name)
                             ? tagMap.get(tag.name)
@@ -114,7 +112,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 }
 
                 if (node.categories) {
-                    node.categories.nodes.forEach(category => {
+                    node.categories.nodes.forEach((category) => {
                         categorySet.add(category)
                         const array = categoryMap.has(category.name)
                             ? categoryMap.get(category.name)
@@ -129,7 +127,7 @@ exports.createPages = async ({ graphql, actions }) => {
             const tagList = Array.from(tagSet)
             const categoryList = Array.from(categorySet)
 
-            tagList.forEach(tag => {
+            tagList.forEach((tag) => {
                 createPaginatedPages({
                     edges: tagMap.get(tag.name),
                     createPage,
@@ -138,8 +136,8 @@ exports.createPages = async ({ graphql, actions }) => {
                     buildPath: (index, pathPrefix) =>
                         index > 1
                             ? `${pathPrefix}/${_.kebabCase(
-                                tag.name
-                            )}/page/${index}`
+                                  tag.name
+                              )}/page/${index}`
                             : `/${pathPrefix}/${_.kebabCase(tag.name)}`,
                     context: {
                         tagName: tag.name,
@@ -149,7 +147,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 })
             })
 
-            categoryList.forEach(category => {
+            categoryList.forEach((category) => {
                 createPaginatedPages({
                     edges: categoryMap.get(category.name),
                     createPage,
@@ -158,8 +156,8 @@ exports.createPages = async ({ graphql, actions }) => {
                     buildPath: (index, pathPrefix) =>
                         index > 1
                             ? `${pathPrefix}/${_.kebabCase(
-                                category.name
-                            )}/page/${index}`
+                                  category.name
+                              )}/page/${index}`
                             : `/${pathPrefix}/${_.kebabCase(category.name)}`,
                     context: {
                         catName: category.name,
@@ -167,14 +165,10 @@ exports.createPages = async ({ graphql, actions }) => {
                         catDescription: category.description,
                     },
                 })
-
             })
-
         }
     })
-
 }
-
 
 /**
  * Custom resolver to add all items from Media items (media libary)

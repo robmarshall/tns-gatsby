@@ -10,25 +10,29 @@ import ArticleContainer from '../containers/ArticleContainer'
 import Layout from '../containers/Layout'
 import decodeEntities from '../utils/decodeEntities'
 
+import { graphql } from 'gatsby'
+
 const PostTemplate = (props) => {
     useEffect(() => {
         Prism.highlightAll()
     }, [])
 
     const {
-        pageContext: {
-            post: {
-                title,
-                content,
-                date,
-                modified,
-                excerpt,
-                featuredImage,
-                tags,
-                categories,
-                seo,
+        pageContext: { relatedPosts },
+        data: {
+            wpgraphql: {
+                post: {
+                    title,
+                    content,
+                    date,
+                    modified,
+                    excerpt,
+                    featuredImage,
+                    tags,
+                    categories,
+                    seo,
+                },
             },
-            relatedPosts,
         },
         uri,
     } = props
@@ -114,3 +118,71 @@ const PostTemplate = (props) => {
 }
 
 export default PostTemplate
+
+export const pageQuery = graphql`
+    query PostById($id: ID!) {
+        site {
+            siteMetadata {
+                siteName
+            }
+        }
+        wpgraphql {
+            post(id: $id) {
+                id
+                slug
+                title
+                date
+                modified
+                content
+                uri
+                excerpt
+                seo {
+                    metaDesc
+                    metaKeywords
+                    metaRobotsNofollow
+                    metaRobotsNoindex
+                    opengraphDescription
+                    opengraphTitle
+                    title
+                    twitterDescription
+                    twitterTitle
+                }
+                categories {
+                    nodes {
+                        name
+                        slug
+                        description
+                    }
+                }
+                tags {
+                    nodes {
+                        name
+                        slug
+                    }
+                }
+                featuredImage {
+                    sourceUrl
+                    altText
+                    title
+                    mediaItemId
+                    modified
+                    imageFile {
+                        childImageSharp {
+                            base700: sizes(base64Width: 800, quality: 100) {
+                                base64
+                            }
+                            facebook: fixed(width: 1024, height: 512) {
+                                src
+                                width
+                                height
+                            }
+                            twitter: fixed(width: 1200, height: 630) {
+                                src
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`

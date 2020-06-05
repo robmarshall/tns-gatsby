@@ -17,13 +17,13 @@ module.exports = async function fetcher({ graphql, postType, query }) {
 
     // If the WP hosting provider is slow, reduce this
     // otherwise your build may crash
-    let queryAmount = 20
+    let queryAmount = 10
 
     if (process.env.GATSBY_PAGESTOLOAD) {
         queryAmount = 13
     }
 
-    const devPageLimiter = count => {
+    const devPageLimiter = (count) => {
         if (process.env.GATSBY_PAGESTOLOAD) {
             if (count >= process.env.GATSBY_PAGESTOLOAD) {
                 return false
@@ -32,33 +32,30 @@ module.exports = async function fetcher({ graphql, postType, query }) {
         return true
     }
 
-    const fetchPosts = async variables =>
+    const fetchPosts = async (variables) =>
         graphql(query, variables).then(async ({ data }) => {
-
             // eslint-disable-next-line
-            if(data.wpgraphql[postType]){
-
-                const { hasNextPage, endCursor } = data.wpgraphql[postType].pageInfo
+            if (data.wpgraphql[postType]) {
+                const { hasNextPage, endCursor } = data.wpgraphql[
+                    postType
+                ].pageInfo
 
                 if (data.wpgraphql[postType]) {
-                    data.wpgraphql[postType].nodes.forEach(post => {
+                    data.wpgraphql[postType].nodes.forEach((post) => {
                         allPosts.push(post)
                     })
                 }
 
                 if (hasNextPage && devPageLimiter(devCounter)) {
-                    devCounter =+ 1
+                    devCounter = +1
                     return fetchPosts({ first: queryAmount, after: endCursor })
                 }
-
             }
 
             return allPosts
         })
 
-    return fetchPosts({ first: queryAmount, after: null }).then(
-        result => {
-            return result
-        }
-    )
+    return fetchPosts({ first: queryAmount, after: null }).then((result) => {
+        return result
+    })
 }
