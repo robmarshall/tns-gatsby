@@ -1,18 +1,21 @@
 @import '../../sass/abstracts/abstracts';
 
 .header {
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,.05);
-    margin-bottom: em(20);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
     padding: 0 em(20);
+    background-color: #fff;
 }
 
 .header__wrap {
     padding: 0.75em 0;
-    @media only screen and (min-width: em(730px)) {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .header__title {
@@ -26,10 +29,9 @@
 }
 
 @media only screen and (min-width: em(730px)) {
-
     .header {
-        box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
-        margin-bottom: em(50);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.05);
+        background-color: transparent;
     }
 
     .header__wrap {
@@ -39,5 +41,4 @@
     .header__title {
         font-size: em(35);
     }
-
 }

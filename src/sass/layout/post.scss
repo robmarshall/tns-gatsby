@@ -1,16 +1,16 @@
 @import '../abstracts/abstracts';
 
 .post-list {
+    margin-top: em(90);
     a {
         text-decoration: none;
-        @include animate-transition( all, 0.3s );
+        @include animate-transition(all, 0.3s);
     }
 
     a:hover,
     a:focus {
         opacity: 0.9;
     }
-
 }
 
 .post {
@@ -33,7 +33,7 @@ article .post__feat-image {
 }
 
 .post__date--updated {
-  @include visuallyhidden;
+    @include visuallyhidden;
 }
 
 .post-content {
@@ -47,15 +47,18 @@ article .post__feat-image {
 }
 
 @media only screen and (min-width: em(730px)) {
+    .post-list {
+        margin-top: em(140);
+    }
 
     .post {
         margin-bottom: em(80);
         &:last-of-type {
-          margin-bottom: em(10);
+            margin-bottom: em(10);
         }
 
         .article-container & {
-          margin-bottom: em(80);
+            margin-bottom: em(80);
         }
     }
 
@@ -72,5 +75,4 @@ article .post__feat-image {
     article .post__feat-image {
         margin-bottom: em(50);
     }
-
 }
