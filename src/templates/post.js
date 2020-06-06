@@ -62,8 +62,8 @@ const PostTemplate = (props) => {
             <SEO
                 postType="page"
                 yoastTitle={seo.title}
-                title={title}
-                description={seo.metaDesc || excerpt}
+                title={decodeEntities(title)}
+                description={decodeEntities(seo.metaDesc || excerpt)}
                 facebookPostImage={facebookImage}
                 twitterPostImage={twitterImage}
                 url={uri}

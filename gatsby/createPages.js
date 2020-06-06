@@ -9,7 +9,9 @@ const queryPosts = require(`./queries/queryPosts.js`)
 
 const fetcher = require(`./fetcher.js`)
 const he = require('he')
+const decodeEntities = require(`../utils/decodeEntities.js`)
 const limitString = require(`../utils/limitString.js`)
+const stripTags = require(`../utils/stripTags.js`)
 const getRelatedPosts = require('./getRelatedPosts.js')
 
 module.exports = async function createPages({ graphql, actions }) {
@@ -78,7 +80,7 @@ module.exports = async function createPages({ graphql, actions }) {
                 publishedForUser: node.publishedForUser,
                 publishedForSchema: node.publishedForSchema,
                 excerpt: limitString(
-                    he.unescape(node.excerpt || node.seo.metaDesc),
+                    he.unescape(stripTags(node.excerpt || node.seo.metaDesc)),
                     150
                 ),
                 cats: node?.categories?.nodes || [],
