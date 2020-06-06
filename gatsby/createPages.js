@@ -78,7 +78,7 @@ module.exports = async function createPages({ graphql, actions }) {
                 publishedForUser: node.publishedForUser,
                 publishedForSchema: node.publishedForSchema,
                 excerpt: limitString(
-                    he.unescape(node.seo.metaDesc || node.excerpt),
+                    he.unescape(node.excerpt || node.seo.metaDesc),
                     150
                 ),
                 cats: node?.categories?.nodes || [],
