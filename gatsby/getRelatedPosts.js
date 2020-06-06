@@ -6,7 +6,7 @@ module.exports = function getRelatedPosts({ posts, current, sortBy }) {
     if (postCount > 0) {
         // Get types to match from current post
         if (sortBy !== 'rand' && current[sortBy]) {
-            const thisTypes = current[sortBy].nodes
+            const thisTypes = current[sortBy]
 
             // If not random, and we have types to match
             if (thisTypes) {
@@ -17,14 +17,12 @@ module.exports = function getRelatedPosts({ posts, current, sortBy }) {
                         // Does the type exist?
                         if (posts[i][sortBy]) {
                             // Loop through this loop post
-                            const foundMatch = posts[i][sortBy].nodes.some(
-                                item => {
-                                    // If this name, matches the current name, return true
-                                    return thisTypes.some(inner => {
-                                        return inner.name === item.name
-                                    })
-                                }
-                            )
+                            const foundMatch = posts[i][sortBy].some((item) => {
+                                // If this name, matches the current name, return true
+                                return thisTypes.some((inner) => {
+                                    return inner.name === item.name
+                                })
+                            })
 
                             if (foundMatch) {
                                 relatedPosts.push(posts[i])
@@ -56,7 +54,7 @@ module.exports = function getRelatedPosts({ posts, current, sortBy }) {
                         break
                     }
                 }
-                p =+ 1
+                p = +1
             }
         }
     }

@@ -1,4 +1,4 @@
-const decodeEntities = (str) => {
+module.exports = function decodeEntities(str) {
     if (typeof window !== 'undefined') {
         // this prevents any overhead from creating the object each time
         const element = document.createElement('div')
@@ -18,5 +18,3 @@ const decodeEntities = (str) => {
 
     return ''
 }
-
-export default decodeEntities

@@ -1,7 +1,7 @@
 @import '../abstracts/abstracts';
 
 .post-list {
-    margin-top: em(80);
+    margin-top: em(40);
     a {
         text-decoration: none;
         @include animate-transition(all, 0.3s);
@@ -47,10 +47,6 @@ article .post__feat-image {
 }
 
 @media only screen and (min-width: em(730px)) {
-    .post-list {
-        margin-top: em(140);
-    }
-
     .post {
         margin-bottom: em(80);
         &:last-of-type {

@@ -1,11 +1,8 @@
 import React from 'react'
-import he from 'he'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import useSiteDefaults from '../../hooks/useSiteDefaults'
-import decodeEntities from '../../utils/decodeEntities'
-import limitString from '../../utils/limitString'
-
+import he from 'he'
 
 import SchemaOrg from './SchemaOrg'
 import { isPost } from './SeoHelpers'
@@ -34,16 +31,11 @@ const SEO = ({
     const siteName = wpSettings.generalSettingsTitle || fallback.siteName
     const tagLine =
         wpSettings.generalSettingsDescription || fallback.description
-    const facebookImageFallback = get(
-        facebookImage,
-        'childImageSharp.fixed.src',
-        false
-    )
-    const twitterImageFallback = get(
-        twitterImage,
-        'childImageSharp.fixed.src',
-        false
-    )
+    const facebookImageFallback =
+        facebookImage?.childImageSharp?.fixed?.src || false
+
+    const twitterImageFallback =
+        twitterImage?.childImageSharp?.fixed?.src || false
 
     // Set the title from the browser. If there is a page title, set properly. Otherwise fall back
     const browserTitle =
@@ -52,12 +44,6 @@ const SEO = ({
             : `${siteName} | ${tagLine}`
 
     const metaTitle = yoastTitle || title || siteName
-
-    // Take the description/excerpt and remove all html tags
-    const postDescription = limitString(
-        decodeEntities(description || tagLine),
-        150
-    )
 
     const facebookMetaImage =
         facebookPostImage ||
@@ -79,11 +65,8 @@ const SEO = ({
             <Helmet>
                 {/* General tags */}
                 <title>{he.unescape(browserTitle)}</title>
-                {postDescription && (
-                    <meta
-                        name="description"
-                        content={he.unescape(postDescription)}
-                    />
+                {description && (
+                    <meta name="description" content={description} />
                 )}
                 {facebookMetaImage && (
                     <meta name="image" content={facebookMetaImage} />
@@ -100,11 +83,11 @@ const SEO = ({
                     property="og:title"
                     content={he.unescape(metaTitle)}
                 />
-                {postDescription && (
+                {description && (
                     <meta
                         name="description"
                         property="og:description"
-                        content={he.unescape(postDescription)}
+                        content={description}
                     />
                 )}
                 {facebookMetaImage && (
@@ -134,11 +117,8 @@ const SEO = ({
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:creator" content={fallback.author} />
                 <meta name="twitter:title" content={he.unescape(metaTitle)} />
-                {postDescription && (
-                    <meta
-                        name="twitter:description"
-                        content={he.unescape(postDescription)}
-                    />
+                {description && (
+                    <meta name="twitter:description" content={description} />
                 )}
                 {twitterMetaImage && (
                     <meta
@@ -152,7 +132,7 @@ const SEO = ({
                 url={url}
                 title={he.unescape(metaTitle)}
                 image={fallback.siteUrl + facebookMetaImage}
-                description={he.unescape(postDescription)}
+                description={description}
                 datePublished={datePublished}
                 dateModified={dateModified}
                 address={address}

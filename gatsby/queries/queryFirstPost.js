@@ -1,14 +1,13 @@
 module.exports = `
-query GET_POSTS($first:Int, $after:String){
+query GET_FIRST_POST {
   wpgraphql {
     posts(
-      first: $first
-      after:$after
+      first: 1
+      after: null
       where: {status: PUBLISH}
     ) {
       pageInfo {
         endCursor
-        hasNextPage
       }
       nodes {
         id
@@ -16,19 +15,13 @@ query GET_POSTS($first:Int, $after:String){
         title
         date
         modified
-        content
-        uri
+        modifiedForUser
+        modifiedForSchema
+        publishedForUser
+        publishedForSchema
         excerpt
         seo {
             metaDesc
-            metaKeywords
-            metaRobotsNofollow
-            metaRobotsNoindex
-            opengraphDescription
-            opengraphTitle
-            title
-            twitterDescription
-            twitterTitle
         }
         categories {
           nodes {
@@ -47,7 +40,7 @@ query GET_POSTS($first:Int, $after:String){
           sourceUrl
           altText
           title
-          mediaItemId
+          databaseId
           modified
           imageFile {
             childImageSharp {

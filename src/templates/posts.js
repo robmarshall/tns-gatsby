@@ -12,14 +12,26 @@ const IndexPage = ({ data, pageContext }) => {
     return (
         <Layout>
             <ArticleContainer>
-                <div className="post-list">
-                    {group.map((node, index) => (
-                        <ArticleCard
-                            key={node.slug}
-                            node={node}
-                            count={index}
-                        />
-                    ))}
+                <div id="post-list" className="post-list">
+                    {group.map((node, index) => {
+                        return (
+                            <ArticleCard
+                                key={node.slug}
+                                count={index}
+                                base64={node.base64}
+                                slug={node.slug}
+                                image={node.image}
+                                imageTitle={node.imageTitle}
+                                imageAlt={node.imageAlt}
+                                title={node.title}
+                                modifiedForUser={node.modifiedForUser}
+                                modifiedForSchema={node.modifiedForSchema}
+                                publishedForUser={node.publishedForUser}
+                                publishedForSchema={node.publishedForSchema}
+                                excerpt={node.excerpt}
+                            />
+                        )
+                    })}
                 </div>
 
                 <Pagination

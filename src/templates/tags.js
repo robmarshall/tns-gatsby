@@ -22,9 +22,23 @@ const IndexPage = ({ data, pageContext }) => {
                     {tagName}
                 </h1>
 
-                <div className="post-list">
+                <div id="post-list" className="post-list">
                     {group.map((node) => (
-                        <ArticleCard key={node.slug} node={node} />
+                        <ArticleCard
+                            key={node.slug}
+                            count={index}
+                            base64={node.base64}
+                            slug={node.slug}
+                            image={node.image}
+                            imageTitle={node.imageTitle}
+                            imageAlt={node.imageAlt}
+                            title={node.title}
+                            modifiedForUser={node.modifiedForUser}
+                            modifiedForSchema={node.modifiedForSchema}
+                            publishedForUser={node.publishedForUser}
+                            publishedForSchema={node.publishedForSchema}
+                            excerpt={node.excerpt}
+                        />
                     ))}
                 </div>
 

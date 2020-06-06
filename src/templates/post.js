@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import dayjs from 'dayjs'
 import contentParser from 'gatsby-wpgraphql-inline-images'
 import Prism from 'prismjs'
 import CategoryList from '../components/CategoryList'
@@ -26,6 +25,10 @@ const PostTemplate = (props) => {
                     content,
                     date,
                     modified,
+                    modifiedForUser,
+                    modifiedForSchema,
+                    publishedForUser,
+                    publishedForSchema,
                     excerpt,
                     featuredImage,
                     tags,
@@ -48,16 +51,6 @@ const PostTemplate = (props) => {
 
     const featuredAlt = featuredImage?.alt_text || ''
     const featuredTitle = featuredImage?.title || ''
-
-    const publishedSchema = dayjs(date, 'YYYY-MM-DD, HH:mm:ss').format()
-    const publishedUser = dayjs(date, 'YYYY-MM-DD, HH:mm:ss').format(
-        'D MMMM YYYY'
-    )
-
-    const modifiedSchema = dayjs(modified, 'YYYY-MM-DD, HH:mm:ss').format()
-    const modifiedUser = dayjs(modified, 'YYYY-MM-DD, HH:mm:ss').format(
-        'D MMMM YYYY'
-    )
 
     const pluginOptions = {
         wordPressUrl: `http://rest.thoughtsandstuff.com/`,
@@ -84,15 +77,15 @@ const PostTemplate = (props) => {
 
                     <time
                         className="post__date post__date--published"
-                        dateTime={publishedSchema}
+                        dateTime={publishedForSchema}
                     >
-                        {publishedUser}
+                        {publishedForUser}
                     </time>
                     <time
                         className="post__date post__date--updated"
-                        dateTime={modifiedSchema}
+                        dateTime={modifiedForSchema}
                     >
-                        {modifiedUser}
+                        {modifiedForUser}
                     </time>
 
                     <CategoryList cats={categories.nodes} />
@@ -133,25 +126,21 @@ export const pageQuery = graphql`
                 title
                 date
                 modified
+                modifiedForUser
+                modifiedForSchema
+                publishedForUser
+                publishedForSchema
                 content
                 uri
                 excerpt
                 seo {
                     metaDesc
-                    metaKeywords
-                    metaRobotsNofollow
-                    metaRobotsNoindex
-                    opengraphDescription
-                    opengraphTitle
                     title
-                    twitterDescription
-                    twitterTitle
                 }
                 categories {
                     nodes {
                         name
                         slug
-                        description
                     }
                 }
                 tags {
@@ -164,7 +153,7 @@ export const pageQuery = graphql`
                     sourceUrl
                     altText
                     title
-                    mediaItemId
+                    databaseId
                     modified
                     imageFile {
                         childImageSharp {

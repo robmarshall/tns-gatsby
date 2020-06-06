@@ -3,21 +3,17 @@ import React from 'react'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 
-import SEO from "../../components/SEO/SEO"
+import SEO from '../../components/SEO/SEO'
 
-import '../../sass/base/base.scss';
+import './layout.scss'
+import '../../sass/base/base.scss'
 
-const Layout = ({children}) => (
+const Layout = ({ children }) => (
     <div>
-
         <SEO />
-
         <Header siteTitle="T&S" />
-
-        {children}
-
+        <div className="layout">{children}</div>
         <Footer />
-
     </div>
 )
 
