@@ -10,6 +10,7 @@ const List = ({ data }) => {
         'Design',
         'Inspiration',
         'Uncategorised',
+        'UX',
     ]
 
     return (
