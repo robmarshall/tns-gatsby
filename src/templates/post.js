@@ -90,14 +90,16 @@ const PostTemplate = (props) => {
 
                     <CategoryList cats={categories.nodes} />
 
-                    <div>
-                        <img
-                            className="post__feat-image"
-                            src={image}
-                            title={featuredTitle || ''}
-                            alt={featuredAlt || ''}
-                        />
-                    </div>
+                    {image && (
+                        <div>
+                            <img
+                                className="post__feat-image"
+                                src={image}
+                                title={featuredTitle || ''}
+                                alt={featuredAlt || ''}
+                            />
+                        </div>
+                    )}
 
                     <div>{contentParser({ content }, pluginOptions)}</div>
 

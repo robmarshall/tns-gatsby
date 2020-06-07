@@ -10,12 +10,14 @@ const SimpleCard = ({ node }) => {
     return (
         <div key={slug} className="simpleCard">
             <Link to={slug}>
-                <Img
-                    className="simpleCard_image"
-                    fluid={imageSmall}
-                    title={imageTitle}
-                    alt={imageAlt}
-                />
+                {imageSmall && (
+                    <Img
+                        className="simpleCard_image"
+                        fluid={imageSmall}
+                        title={imageTitle}
+                        alt={imageAlt}
+                    />
+                )}
                 <h3 className="simpleCard_title">{title}</h3>
             </Link>
         </div>
