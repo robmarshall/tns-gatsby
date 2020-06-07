@@ -1,6 +1,11 @@
 const moment = require('moment')
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
+const he = require('he')
+const decodeEntities = require(`../utils/decodeEntities.js`)
+const limitString = require(`../utils/limitString.js`)
+const stripTags = require(`../utils/stripTags.js`)
+
 const activeEnv =
     process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
 
@@ -77,6 +82,21 @@ module.exports = function createResolvers({
                         )
                     }
                     return null
+                },
+            },
+            cleanTitle: {
+                type: 'String',
+                resolve(source, args, context, info) {
+                    return he.unescape(source.title)
+                },
+            },
+            cleanExerpt: {
+                type: 'String',
+                resolve(source, args, context, info) {
+                    const seo = source?.seo.metaDesc || false
+                    const excerpt = source?.excerpt || false
+
+                    return limitString(he.unescape(stripTags(seo || excerpt)))
                 },
             },
         },

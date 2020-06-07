@@ -1,8 +1,6 @@
 import React from 'react'
-import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import useSiteDefaults from '../../hooks/useSiteDefaults'
-import he from 'he'
 
 import SchemaOrg from './SchemaOrg'
 import { isPost } from './SeoHelpers'
@@ -64,7 +62,7 @@ const SEO = ({
         <>
             <Helmet>
                 {/* General tags */}
-                <title>{he.unescape(browserTitle)}</title>
+                <title>{browserTitle}</title>
                 {description && (
                     <meta name="description" content={description} />
                 )}
@@ -78,11 +76,7 @@ const SEO = ({
                 {isPost(postType) ? (
                     <meta property="og:type" content="article" />
                 ) : null}
-                <meta
-                    name="title"
-                    property="og:title"
-                    content={he.unescape(metaTitle)}
-                />
+                <meta name="title" property="og:title" content={metaTitle} />
                 {description && (
                     <meta
                         name="description"
@@ -116,7 +110,7 @@ const SEO = ({
                 {/* Twitter Card tags */}
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:creator" content={fallback.author} />
-                <meta name="twitter:title" content={he.unescape(metaTitle)} />
+                <meta name="twitter:title" content={metaTitle} />
                 {description && (
                     <meta name="twitter:description" content={description} />
                 )}
@@ -130,7 +124,7 @@ const SEO = ({
             <SchemaOrg
                 author={author}
                 url={url}
-                title={he.unescape(metaTitle)}
+                title={metaTitle}
                 image={fallback.siteUrl + facebookMetaImage}
                 description={description}
                 datePublished={datePublished}
@@ -140,7 +134,7 @@ const SEO = ({
                 siteUrl={fallback.siteUrl}
                 organization="Thoughts and Stuff"
                 postType={postType}
-                defaultTitle={he.unescape(tagLine)}
+                defaultTitle={tagLine}
                 articleBody={articleBody}
             />
         </>

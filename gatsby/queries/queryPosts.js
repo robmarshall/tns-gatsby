@@ -21,6 +21,8 @@ query GET_POSTS($first:Int, $after:String){
         publishedForUser
         publishedForSchema
         excerpt
+        cleanTitle
+        cleanExerpt
         seo {
             metaDesc
         }

@@ -7,10 +7,6 @@ const queryPages = require(`./queries/queryPages.js`)
 const queryPosts = require(`./queries/queryPosts.js`)
 
 const fetcher = require(`./fetcher.js`)
-const he = require('he')
-const decodeEntities = require(`../utils/decodeEntities.js`)
-const limitString = require(`../utils/limitString.js`)
-const stripTags = require(`../utils/stripTags.js`)
 const getRelatedPosts = require('./getRelatedPosts.js')
 
 module.exports = async function createPages({ graphql, actions }) {
@@ -68,16 +64,13 @@ module.exports = async function createPages({ graphql, actions }) {
                     false,
                 imageAlt: node.featuredImage?.altText || '',
                 imageTitle: node.featuredImage?.title || '',
-                title: he.unescape(node.title),
+                title: node.cleanTitle,
                 slug: node.slug,
                 modifiedForUser: node.modifiedForUser,
                 modifiedForSchema: node.modifiedForSchema,
                 publishedForUser: node.publishedForUser,
                 publishedForSchema: node.publishedForSchema,
-                excerpt: limitString(
-                    he.unescape(stripTags(node.excerpt || node.seo.metaDesc)),
-                    150
-                ),
+                excerpt: node.cleanExerpt,
                 cats: node?.categories?.nodes || [],
                 tags: node?.tags?.nodes || [],
             }))

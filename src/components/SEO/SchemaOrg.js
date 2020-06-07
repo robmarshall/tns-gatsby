@@ -1,7 +1,6 @@
-import React, {memo} from "react";
-import get from "lodash/get";
-import {Helmet} from "react-helmet";
-import useSiteDefaults from "../../hooks/useSiteDefaults";
+import React, { memo } from 'react'
+import { Helmet } from 'react-helmet'
+import useSiteDefaults from '../../hooks/useSiteDefaults'
 
 export default memo(
     ({
@@ -18,9 +17,8 @@ export default memo(
         startDateTime,
         title,
         url,
-        articleBody
+        articleBody,
     }) => {
-
         const {
             logoPng,
             site: {
@@ -28,106 +26,108 @@ export default memo(
             },
         } = useSiteDefaults()
 
-        const logoData = get(logoPng, "childImageSharp.fluid", false);
+        const logoData = logoPng?.childImageSharp?.fluid || false
 
         // Set this as fallback. Overwritten later.
         let schema = [
             {
-                "@context": "http://schema.org",
-                "@type": "WebSite",
+                '@context': 'http://schema.org',
+                '@type': 'WebSite',
                 url,
                 name: title,
-                alternateName: defaultTitle
-            }
-        ];
+                alternateName: defaultTitle,
+            },
+        ]
 
-        if (postType === "post") {
+        if (postType === 'post') {
             schema = [
                 ...schema,
                 {
-                    "@context": "http://schema.org",
-                    "@type": "BlogPosting",
+                    '@context': 'http://schema.org',
+                    '@type': 'BlogPosting',
                     url,
                     name: title,
                     alternateName: defaultTitle,
                     headline: title,
                     image: {
-                        "@type": "ImageObject",
-                        url: image
+                        '@type': 'ImageObject',
+                        url: image,
                     },
                     description,
                     author: {
-                        "@type": "Person",
-                        name: author
+                        '@type': 'Person',
+                        name: author,
                     },
                     publisher: {
-                        "@type": "Organization",
+                        '@type': 'Organization',
                         url: siteUrl,
                         logo: {
-                            "@type": "ImageObject",
+                            '@type': 'ImageObject',
                             url: logoData.src,
                             width: 567,
-                            height: 544
+                            height: 544,
                         },
-                        name: siteName
+                        name: siteName,
                     },
                     mainEntityOfPage: {
-                        "@type": "WebSite",
-                        "@id": url
+                        '@type': 'WebSite',
+                        '@id': url,
                     },
                     datePublished,
                     dateModified,
-                    articleBody
-                }
-            ];
+                    articleBody,
+                },
+            ]
         }
 
-        if (postType === "route" || postType === "group") {
+        if (postType === 'route' || postType === 'group') {
             schema = [
                 ...schema,
                 {
-                    "@context": "http://schema.org",
-                    "@type": "BlogPosting",
+                    '@context': 'http://schema.org',
+                    '@type': 'BlogPosting',
                     url,
                     name: title,
                     alternateName: defaultTitle,
                     headline: title,
                     image: {
-                        "@type": "ImageObject",
-                        url: image
+                        '@type': 'ImageObject',
+                        url: image,
                     },
                     description,
                     author: {
-                        "@type": "Organization",
-                        name: "Run Leeds"
+                        '@type': 'Organization',
+                        name: 'Run Leeds',
                     },
                     publisher: {
-                        "@type": "Organization",
+                        '@type': 'Organization',
                         url: siteUrl,
                         logo: {
-                            "@type": "ImageObject",
+                            '@type': 'ImageObject',
                             url: logoData.src,
                             width: 567,
-                            height: 544
+                            height: 544,
                         },
-                        name: "Run Leeds"
+                        name: 'Run Leeds',
                     },
                     mainEntityOfPage: {
-                        "@type": "WebSite",
-                        "@id": url
+                        '@type': 'WebSite',
+                        '@id': url,
                     },
                     datePublished,
                     dateModified,
-                    articleBody
-                }
-            ];
+                    articleBody,
+                },
+            ]
         }
 
         return (
             <Helmet>
                 {/* Schema.org tags */}
-                <script type="application/ld+json">{JSON.stringify(schema)}</script>
+                <script type="application/ld+json">
+                    {JSON.stringify(schema)}
+                </script>
             </Helmet>
-        );
+        )
     }
-);
+)

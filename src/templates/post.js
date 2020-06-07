@@ -62,8 +62,8 @@ const PostTemplate = (props) => {
             <SEO
                 postType="page"
                 yoastTitle={seo.title}
-                title={decodeEntities(title)}
-                description={decodeEntities(seo.metaDesc || excerpt)}
+                title={cleanTitle}
+                description={cleanExerpt}
                 facebookPostImage={facebookImage}
                 twitterPostImage={twitterImage}
                 url={uri}
@@ -73,7 +73,7 @@ const PostTemplate = (props) => {
 
             <ArticleContainer>
                 <article className="post">
-                    <h1>{decodeEntities(title)}</h1>
+                    <h1>{title}</h1>
 
                     <time
                         className="post__date post__date--published"
@@ -133,6 +133,8 @@ export const pageQuery = graphql`
                 content
                 uri
                 excerpt
+                cleanTitle
+                cleanExerpt
                 seo {
                     metaDesc
                     title
