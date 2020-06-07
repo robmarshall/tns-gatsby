@@ -1,4 +1,4 @@
-import React, { useEffect, createRef } from 'react'
+import React, { useEffect } from 'react'
 import contentParser from 'gatsby-wpgraphql-inline-images'
 import CategoryList from '../components/CategoryList'
 import RelatedCards from '../components/RelatedCards'
@@ -7,19 +7,13 @@ import TagList from '../components/TagList'
 import ArticleContainer from '../containers/ArticleContainer'
 import Layout from '../containers/Layout'
 import decodeEntities from '../utils/decodeEntities'
-
 import { graphql } from 'gatsby'
-
-const PrismLib = loadable.lib(() => import('prismjs'))
+import Prism from 'prismjs'
 
 const PostTemplate = (props) => {
-    const Prism = createRef
-
     useEffect(() => {
-        if (Prism.current) {
-            Prism.current.default.highlightAll()
-        }
-    }, [Prism.current])
+        Prism.highlightAll()
+    }, [])
 
     const {
         pageContext: { relatedPosts },
