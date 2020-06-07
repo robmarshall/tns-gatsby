@@ -18,7 +18,7 @@ const ArticleCard = ({
 }) => {
     return (
         <div className={style.card}>
-            <Link to={slug}>
+            <Link to={`/${slug}`}>
                 <div>
                     {count === 0 ? (
                         <div className={style.image}>

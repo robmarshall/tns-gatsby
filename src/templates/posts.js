@@ -13,7 +13,7 @@ const IndexPage = ({ data, pageContext }) => {
     return (
         <Layout>
             <ArticleContainer>
-                <FilterCategories />
+                {index === 1 && <FilterCategories />}
                 <div id="post-list" className="post-list">
                     {group.map((node, index) => {
                         return (
