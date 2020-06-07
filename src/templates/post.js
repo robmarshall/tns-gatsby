@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, createRef } from 'react'
 import contentParser from 'gatsby-wpgraphql-inline-images'
-import Prism from 'prismjs'
 import CategoryList from '../components/CategoryList'
 import RelatedCards from '../components/RelatedCards'
 import SEO from '../components/SEO/SEO'
@@ -11,10 +10,16 @@ import decodeEntities from '../utils/decodeEntities'
 
 import { graphql } from 'gatsby'
 
+const PrismLib = loadable.lib(() => import('prismjs'))
+
 const PostTemplate = (props) => {
+    const Prism = createRef
+
     useEffect(() => {
-        Prism.highlightAll()
-    }, [])
+        if (Prism.current) {
+            Prism.current.default.highlightAll()
+        }
+    }, [Prism.current])
 
     const {
         pageContext: { relatedPosts },
@@ -24,7 +29,7 @@ const PostTemplate = (props) => {
                     content,
                     date,
                     cleanTitle,
-                    cleanExerpt,
+                    cleanExcerpt,
                     modified,
                     modifiedForUser,
                     modifiedForSchema,
@@ -63,7 +68,7 @@ const PostTemplate = (props) => {
                 postType="page"
                 yoastTitle={seo.title}
                 title={cleanTitle}
-                description={cleanExerpt}
+                description={cleanExcerpt}
                 facebookPostImage={facebookImage}
                 twitterPostImage={twitterImage}
                 url={uri}
@@ -136,7 +141,7 @@ export const pageQuery = graphql`
                 uri
                 excerpt
                 cleanTitle
-                cleanExerpt
+                cleanExcerpt
                 seo {
                     metaDesc
                     title

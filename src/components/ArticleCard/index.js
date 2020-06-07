@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
+import style from './style.module.scss'
 
 const ArticleCard = ({
     count,
@@ -15,20 +16,36 @@ const ArticleCard = ({
     publishedForSchema,
     excerpt,
 }) => {
+    console.log(image)
+
     return (
-        <div className="post">
+        <div className={style.card}>
             <Link to={slug}>
                 <div>
                     {count === 0 ? (
-                        <img
-                            className="post__feat-image"
-                            src={image.src}
-                            title={imageTitle}
-                            alt={imageAlt}
-                        />
+                        <div className={style.image}>
+                            <picture>
+                                <source
+                                    type="image/webp"
+                                    srcSet={image.srcSetWebp}
+                                    sizes={image.sizes}
+                                />
+                                <source
+                                    srcSet={image.srcSet}
+                                    sizes={image.sizes}
+                                />
+                                <img
+                                    sizes={image.sizes}
+                                    srcSet={image.srcSet}
+                                    src={image.src}
+                                    alt={imageAlt}
+                                    title={imageTitle}
+                                />
+                            </picture>
+                        </div>
                     ) : (
                         <Img
-                            className="post__feat-image"
+                            className={style.image}
                             fluid={image}
                             title={imageTitle}
                             alt={imageAlt}
@@ -36,22 +53,19 @@ const ArticleCard = ({
                     )}
                 </div>
 
-                <h3 className="post__title">{title}</h3>
+                <h2 className={style.title}>{title}</h2>
 
-                <time
-                    className="post__date post__date--published"
-                    dateTime={publishedForSchema}
-                >
+                <time className={style.date} dateTime={publishedForSchema}>
                     {publishedForUser}
                 </time>
                 <time
-                    className="post__date post__date--updated"
+                    className={style.date_updated}
                     dateTime={modifiedForSchema}
                 >
                     {modifiedForUser}
                 </time>
 
-                <div className="post-content">
+                <div className={style.excerpt}>
                     <p>{excerpt}</p>
                 </div>
             </Link>

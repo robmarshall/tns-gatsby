@@ -1,0 +1,48 @@
+@import '../../sass/abstracts/abstracts';
+
+.card {
+    margin-bottom: em(40);
+}
+
+.image {
+    margin-bottom: em(30);
+}
+
+.title {
+    font-size: em(30);
+}
+
+.date {
+    display: block;
+    font-size: em(16);
+    font-style: italic;
+    margin: em(10) 0;
+}
+
+.date_updated {
+    display: block;
+    @include visuallyhidden;
+}
+
+.excerpt {
+    margin-top: em(20);
+}
+
+@media only screen and (min-width: em(730px)) {
+    .card {
+        margin-bottom: em(80);
+        &:last-of-type {
+            margin-bottom: em(10);
+        }
+    }
+
+    .date {
+        display: block;
+        font-size: em(18);
+        margin: em(10) 0;
+    }
+
+    .image {
+        margin-bottom: em(30);
+    }
+}

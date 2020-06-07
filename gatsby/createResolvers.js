@@ -91,12 +91,12 @@ module.exports = function createResolvers({
                     return he.unescape(source?.title || '')
                 },
             },
-            cleanExerpt: {
+            cleanExcerpt: {
                 type: 'String',
                 resolve(source, args, context, info) {
                     const seo = source?.seo.metaDesc || false
                     const excerpt = source?.excerpt || false
-                    return limitString(he.unescape(stripTags(seo || excerpt)))
+                    return he.unescape(stripTags(seo || limitString(excerpt)))
                 },
             },
         },

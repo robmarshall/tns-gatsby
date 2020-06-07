@@ -70,7 +70,7 @@ module.exports = async function createPages({ graphql, actions }) {
                 modifiedForSchema: node.modifiedForSchema,
                 publishedForUser: node.publishedForUser,
                 publishedForSchema: node.publishedForSchema,
-                excerpt: node.cleanExerpt,
+                excerpt: node.cleanExcerpt,
                 cats: node?.categories?.nodes || [],
                 tags: node?.tags?.nodes || [],
             }))

@@ -22,7 +22,7 @@ query GET_POSTS($first:Int, $after:String){
         publishedForSchema
         excerpt
         cleanTitle
-        cleanExerpt
+        cleanExcerpt
         seo {
             metaDesc
         }
@@ -52,7 +52,6 @@ query GET_POSTS($first:Int, $after:String){
                   aspectRatio
                   src
                   srcSet
-                  srcWebp
                   srcSetWebp
                   sizes
               }
@@ -61,7 +60,6 @@ query GET_POSTS($first:Int, $after:String){
                   aspectRatio
                   src
                   srcSet
-                  srcWebp
                   srcSetWebp
                   sizes
               }

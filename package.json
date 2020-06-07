@@ -5,7 +5,7 @@
     "version": "0.1.1",
     "author": "Robert Marshall",
     "dependencies": {
-        "dayjs": "^1.8.28",
+        "@loadable/component": "^5.12.0",
         "dotenv": "^8.2.0",
         "eslint-plugin-jsx-a11y": "^6.2.3",
         "gatsby": "^2.23.1",

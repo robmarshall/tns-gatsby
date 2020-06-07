@@ -1,5 +1,6 @@
 import React from 'react'
 import ArticleCard from '../components/ArticleCard'
+import FilterCategories from '../components/FilterCategories'
 import Pagination from '../components/Pagination'
 import ArticleContainer from '../containers/ArticleContainer'
 import Layout from '../containers/Layout'
@@ -12,6 +13,7 @@ const IndexPage = ({ data, pageContext }) => {
     return (
         <Layout>
             <ArticleContainer>
+                <FilterCategories />
                 <div id="post-list" className="post-list">
                     {group.map((node, index) => {
                         return (
