@@ -16,8 +16,6 @@ const ArticleCard = ({
     publishedForSchema,
     excerpt,
 }) => {
-    console.log(image)
-
     return (
         <div className={style.card}>
             <Link to={slug}>

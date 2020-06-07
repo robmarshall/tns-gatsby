@@ -47,7 +47,6 @@ module.exports = function createResolvers({
             modifiedForUser: {
                 type: 'String',
                 resolve(source, args, context, info) {
-                    console.log
                     if (source.modified) {
                         return moment(source.modified).format('D MMMM YYYY')
                     }
