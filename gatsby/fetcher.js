@@ -6,21 +6,14 @@
  *
  * @param func graphql GraphQl function from Gatsby
  * @param string postType Post type slug
- * @param number offset number of posts to ignore before starting count
  * @param object query The query to pass to GraphQl
  * @return object he resulting data from GraphQl
  */
 
-module.exports = async function fetcher({
-    graphql,
-    postType,
-    initialQuery,
-    query,
-}) {
+module.exports = async function fetcher({ graphql, postType, query }) {
     const allPosts = []
 
     let devCounter = 1
-    let offset = null
 
     // If the WP hosting provider is slow, reduce this
     // otherwise your build may crash
@@ -37,18 +30,6 @@ module.exports = async function fetcher({
             }
         }
         return true
-    }
-
-    if (initialQuery) {
-        await graphql(initialQuery).then(async ({ data }) => {
-            // eslint-disable-next-line
-            if (data.wpgraphql[postType]) {
-                offset = data.wpgraphql[postType].pageInfo.endCursor
-                data.wpgraphql[postType].nodes.forEach((post) => {
-                    allPosts.push(post)
-                })
-            }
-        })
     }
 
     const fetchPosts = async (variables) =>
@@ -72,7 +53,7 @@ module.exports = async function fetcher({
             return allPosts
         })
 
-    return fetchPosts({ first: queryAmount, after: offset }).then((result) => {
+    return fetchPosts({ first: queryAmount, after: null }).then((result) => {
         return result
     })
 }

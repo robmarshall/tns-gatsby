@@ -4,7 +4,6 @@ import Img from 'gatsby-image'
 
 const ArticleCard = ({
     count,
-    base64,
     slug,
     image,
     imageTitle,
@@ -23,7 +22,7 @@ const ArticleCard = ({
                     {count === 0 ? (
                         <img
                             className="post__feat-image"
-                            src={base64}
+                            src={image.src}
                             title={imageTitle}
                             alt={imageAlt}
                         />

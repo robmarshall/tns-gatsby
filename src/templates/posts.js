@@ -18,7 +18,6 @@ const IndexPage = ({ data, pageContext }) => {
                             <ArticleCard
                                 key={node.slug}
                                 count={index}
-                                base64={node.base64}
                                 slug={node.slug}
                                 image={node.image}
                                 imageTitle={node.imageTitle}

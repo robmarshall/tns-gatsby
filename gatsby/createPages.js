@@ -4,7 +4,6 @@ const slash = require(`slash`)
 const createPaginatedPages = require('gatsby-paginate')
 
 const queryPages = require(`./queries/queryPages.js`)
-const queryFirstPost = require(`./queries/queryFirstPost.js`)
 const queryPosts = require(`./queries/queryPosts.js`)
 
 const fetcher = require(`./fetcher.js`)
@@ -51,7 +50,6 @@ module.exports = async function createPages({ graphql, actions }) {
     await fetcher({
         graphql,
         postType: 'posts',
-        initialQuery: queryFirstPost,
         query: queryPosts,
     }).then(async (posts) => {
         if (posts) {
@@ -62,9 +60,6 @@ module.exports = async function createPages({ graphql, actions }) {
             // Strip down post data into essential object
             const slimPosts = posts.map((node) => ({
                 id: node.id,
-                base64:
-                    node.featuredImage?.imageFile?.childImageSharp?.base700
-                        ?.base64 || false,
                 image:
                     node.featuredImage?.imageFile?.childImageSharp?.image700 ||
                     false,
