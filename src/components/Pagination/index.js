@@ -1,28 +1,28 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-import  './pagination.scss'
+import './pagination.scss'
 
 function makePageUrl(prefix, pageNum, type) {
     const end = pageNum === 0 ? '' : `/page/${pageNum + 1}`
-    return `/${prefix}${end}`
+    const fullString = `/${prefix}${end}`
+    return fullString.replace(/^\/+/g, '')
 }
 
 const Pagination = ({ type, prefix, currentPage, numPages }) => {
     if (numPages > 1) {
         return (
             <div className="pagination-wrap">
-                <nav
-                    className="pagination"
-                    aria-label="Pagination Navigation"
-                >
+                <nav className="pagination" aria-label="Pagination Navigation">
                     <ul className="paginationList">
                         {currentPage > 1 && (
-                            <li
-                                className="paginationItem paginationWord"
-                            >
+                            <li className="paginationItem paginationWord">
                                 <Link
-                                    to={makePageUrl(prefix, currentPage - 2, type)}
+                                    to={makePageUrl(
+                                        prefix,
+                                        currentPage - 2,
+                                        type
+                                    )}
                                     className="paginationLink paginationLink-prev"
                                 >
                                     <span className="paginationLabel">
@@ -36,7 +36,7 @@ const Pagination = ({ type, prefix, currentPage, numPages }) => {
 
                             if (
                                 currentPage + 3 > humanNum &&
-                            currentPage - 3 < humanNum
+                                currentPage - 3 < humanNum
                             ) {
                                 return (
                                     <li
@@ -47,8 +47,8 @@ const Pagination = ({ type, prefix, currentPage, numPages }) => {
                                             to={makePageUrl(prefix, i, type)}
                                             className={
                                                 currentPage === humanNum
-                                                    ? "paginationLink paginationLink-live"
-                                                    : "paginationLink"
+                                                    ? 'paginationLink paginationLink-live'
+                                                    : 'paginationLink'
                                             }
                                             aria-current={
                                                 currentPage === humanNum
@@ -57,8 +57,7 @@ const Pagination = ({ type, prefix, currentPage, numPages }) => {
                                             }
                                         >
                                             <span className="paginationLabel">
-                                                Page
-                                                {' '}
+                                                Page{' '}
                                             </span>
                                             {humanNum}
                                         </Link>
@@ -68,9 +67,7 @@ const Pagination = ({ type, prefix, currentPage, numPages }) => {
                             return null
                         })}
                         {currentPage < numPages && (
-                            <li
-                                className="paginationItem paginationWord"
-                            >
+                            <li className="paginationItem paginationWord">
                                 <Link
                                     to={makePageUrl(prefix, currentPage, type)}
                                     className="paginationLink paginationLink-next"
