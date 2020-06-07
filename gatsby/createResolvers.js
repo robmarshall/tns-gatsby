@@ -47,6 +47,7 @@ module.exports = function createResolvers({
             modifiedForUser: {
                 type: 'String',
                 resolve(source, args, context, info) {
+                    console.log
                     if (source.modified) {
                         return moment(source.modified).format('D MMMM YYYY')
                     }
@@ -87,7 +88,7 @@ module.exports = function createResolvers({
             cleanTitle: {
                 type: 'String',
                 resolve(source, args, context, info) {
-                    return he.unescape(source.title)
+                    return he.unescape(source?.title || '')
                 },
             },
             cleanExerpt: {
@@ -95,7 +96,6 @@ module.exports = function createResolvers({
                 resolve(source, args, context, info) {
                     const seo = source?.seo.metaDesc || false
                     const excerpt = source?.excerpt || false
-
                     return limitString(he.unescape(stripTags(seo || excerpt)))
                 },
             },

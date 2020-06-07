@@ -5,6 +5,8 @@ import useSiteDefaults from '../../hooks/useSiteDefaults'
 import SchemaOrg from './SchemaOrg'
 import { isPost } from './SeoHelpers'
 
+import decodeEntities from '../../utils/decodeEntities'
+
 const SEO = ({
     address,
     author,
@@ -41,7 +43,7 @@ const SEO = ({
             ? `${title} | ${siteName}`
             : `${siteName} | ${tagLine}`
 
-    const metaTitle = yoastTitle || title || siteName
+    const metaTitle = decodeEntities(yoastTitle || title || siteName)
 
     const facebookMetaImage =
         facebookPostImage ||
@@ -62,7 +64,7 @@ const SEO = ({
         <>
             <Helmet>
                 {/* General tags */}
-                <title>{browserTitle}</title>
+                <title>{decodeEntities(browserTitle)}</title>
                 {description && (
                     <meta name="description" content={description} />
                 )}

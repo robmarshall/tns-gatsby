@@ -21,15 +21,15 @@ const PostTemplate = (props) => {
         data: {
             wpgraphql: {
                 post: {
-                    title,
                     content,
                     date,
+                    cleanTitle,
+                    cleanExerpt,
                     modified,
                     modifiedForUser,
                     modifiedForSchema,
                     publishedForUser,
                     publishedForSchema,
-                    excerpt,
                     featuredImage,
                     tags,
                     categories,
@@ -73,7 +73,7 @@ const PostTemplate = (props) => {
 
             <ArticleContainer>
                 <article className="post">
-                    <h1>{title}</h1>
+                    <h1>{cleanTitle}</h1>
 
                     <time
                         className="post__date post__date--published"
