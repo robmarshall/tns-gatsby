@@ -43,7 +43,7 @@ const IndexPage = ({ data, pageContext }) => {
                 </div>
 
                 <Pagination
-                    prefix={`categories/${catSlug}`}
+                    prefix={`category/${catSlug}`}
                     currentPage={index}
                     numPages={pageCount}
                 />
