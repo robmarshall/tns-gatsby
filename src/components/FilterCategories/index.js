@@ -1,7 +1,7 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
-import Link from '../Link'
 import slugify from '../../utils/slugify'
+import Link from '../Link'
 import style from './style.module.scss'
 
 const List = ({ data }) => {

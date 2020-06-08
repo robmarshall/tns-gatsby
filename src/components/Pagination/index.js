@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import { Location } from '@reach/router'
+import { Link } from 'gatsby'
 
 import './pagination.scss'
 
@@ -8,7 +8,7 @@ function makePageUrl(prefix, pageNum) {
     const end = pageNum === 0 ? '' : `/page/${pageNum + 1}`
     const fullString = `${prefix}${end}`
     const cleanString = fullString.replace(/^\/+/g, '')
-    return `${location.origin}/${cleanString}`
+    return `${process.env.GATSBY_BASE_URL}/${cleanString}`
 }
 
 const NextPrevLink = ({
@@ -25,14 +25,14 @@ const NextPrevLink = ({
     let label
 
     if (prev) {
-        linkClass = linkClass + 'prev'
+        linkClass += 'prev'
         pageNum = currentPage - 2
         humanNum = currentPage - 1
         label = 'Prev'
     }
 
     if (next) {
-        linkClass = linkClass + 'next'
+        linkClass += 'next'
         pageNum = currentPage
         humanNum = currentPage + 1
         label = 'Next'

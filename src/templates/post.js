@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
+import { graphql } from 'gatsby'
 import contentParser from 'gatsby-wpgraphql-inline-images'
+import Prism from 'prismjs'
 import CategoryList from '../components/CategoryList'
 import RelatedCards from '../components/RelatedCards'
 import SEO from '../components/SEO/SEO'
 import TagList from '../components/TagList'
 import ArticleContainer from '../containers/ArticleContainer'
 import Layout from '../containers/Layout'
-import decodeEntities from '../utils/decodeEntities'
-import { graphql } from 'gatsby'
-import Prism from 'prismjs'
 
 const PostTemplate = (props) => {
     useEffect(() => {
@@ -48,7 +47,7 @@ const PostTemplate = (props) => {
     const twitterImage =
         featuredImage?.imageFile?.childImageSharp?.twitter?.src || false
 
-    const featuredAlt = featuredImage?.alt_text || ''
+    const featuredAlt = featuredImage.alt_text || ''
     const featuredTitle = featuredImage?.title || ''
 
     const pluginOptions = {

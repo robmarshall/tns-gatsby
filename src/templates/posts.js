@@ -15,11 +15,11 @@ const IndexPage = ({ data, pageContext }) => {
             <ArticleContainer>
                 {index === 1 && <FilterCategories />}
                 <div id="post-list" className="post-list">
-                    {group.map((node, index) => {
+                    {group.map((node, count) => {
                         return (
                             <ArticleCard
                                 key={node.slug}
-                                count={index}
+                                count={count}
                                 slug={node.slug}
                                 image={node.image}
                                 imageTitle={node.imageTitle}

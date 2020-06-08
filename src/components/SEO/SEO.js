@@ -2,10 +2,10 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import useSiteDefaults from '../../hooks/useSiteDefaults'
 
+import decodeEntities from '../../utils/decodeEntities'
 import SchemaOrg from './SchemaOrg'
 import { isPost } from './SeoHelpers'
 
-import decodeEntities from '../../utils/decodeEntities'
 
 const SEO = ({
     address,
