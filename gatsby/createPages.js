@@ -1,4 +1,3 @@
-const _ = require(`lodash`)
 const path = require(`path`)
 const slash = require(`slash`)
 const createPaginatedPages = require('gatsby-paginate')
@@ -6,6 +5,7 @@ const createPaginatedPages = require('gatsby-paginate')
 const queryPages = require(`./queries/queryPages.js`)
 const queryPosts = require(`./queries/queryPosts.js`)
 
+const slugify = require('../utils/slugify')
 const fetcher = require(`./fetcher.js`)
 const getRelatedPosts = require('./getRelatedPosts.js')
 
@@ -156,13 +156,11 @@ module.exports = async function createPages({ graphql, actions }) {
                     pathPrefix: 'tag',
                     buildPath: (index, pathPrefix) =>
                         index > 1
-                            ? `${pathPrefix}/${_.kebabCase(
-                                  tag.name
-                              )}/page/${index}`
-                            : `/${pathPrefix}/${_.kebabCase(tag.name)}`,
+                            ? `${pathPrefix}/${slugify(tag.name)}/page/${index}`
+                            : `/${pathPrefix}/${slugify(tag.name)}`,
                     context: {
                         tagName: tag.name,
-                        tagSlug: _.kebabCase(tag.name),
+                        tagSlug: slugify(tag.name),
                         tagDescription: tag.description,
                     },
                 })
@@ -176,13 +174,13 @@ module.exports = async function createPages({ graphql, actions }) {
                     pathPrefix: 'category',
                     buildPath: (index, pathPrefix) =>
                         index > 1
-                            ? `${pathPrefix}/${_.kebabCase(
+                            ? `${pathPrefix}/${slugify(
                                   category.name
                               )}/page/${index}`
-                            : `/${pathPrefix}/${_.kebabCase(category.name)}`,
+                            : `/${pathPrefix}/${slugify(category.name)}`,
                     context: {
                         catName: category.name,
-                        catSlug: _.kebabCase(category.name),
+                        catSlug: slugify(category.name),
                         catDescription: category.description,
                     },
                 })
