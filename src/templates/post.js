@@ -28,6 +28,7 @@ const PostTemplate = (props) => {
                     modifiedForSchema,
                     publishedForUser,
                     publishedForSchema,
+                    updatedAfterMonth,
                     featuredImage,
                     tags,
                     categories,
@@ -73,18 +74,29 @@ const PostTemplate = (props) => {
                 <article className="post">
                     <h1>{cleanTitle}</h1>
 
-                    <time
-                        className="post__date post__date--published"
-                        dateTime={publishedForSchema}
-                    >
-                        {publishedForUser}
-                    </time>
-                    <time
-                        className="post__date post__date--updated"
-                        dateTime={modifiedForSchema}
-                    >
-                        {modifiedForUser}
-                    </time>
+                    <div className="post__date_wrap">
+                        <time
+                            className="post__date post__date--published"
+                            dateTime={publishedForSchema}
+                            itemProp="datePublished"
+                        >
+                            {publishedForUser}
+                        </time>
+                        {updatedAfterMonth && (
+                            <span className="post__date_updated">
+                                Updated:{' '}
+                            </span>
+                        )}
+                        <time
+                            className={`post__date ${
+                                updatedAfterMonth ? '' : 'post__date--updated'
+                            }`}
+                            dateTime={modifiedForSchema}
+                            itemProp="dateModified"
+                        >
+                            {modifiedForUser}
+                        </time>
+                    </div>
 
                     <CategoryList cats={categories.nodes} />
 
@@ -130,6 +142,7 @@ export const pageQuery = graphql`
                 modifiedForSchema
                 publishedForUser
                 publishedForSchema
+                updatedAfterMonth
                 content
                 uri
                 excerpt

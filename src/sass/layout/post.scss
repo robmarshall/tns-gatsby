@@ -25,11 +25,20 @@ article .post__feat-image {
     margin-bottom: em(30);
 }
 
-.post__date {
+.post__date_wrap {
     display: block;
+}
+
+.post__date {
+    display: inline-block;
     font-size: em(16);
     font-style: italic;
     margin: em(10) 0;
+}
+
+.post__date_updated {
+    font-weight: 600;
+    margin: 0 0 0 em(15);
 }
 
 .post__date--updated {
@@ -59,9 +68,7 @@ article .post__feat-image {
     }
 
     .post__date {
-        display: block;
         font-size: em(18);
-        margin: em(10) 0;
     }
 
     .post__feat-image {
