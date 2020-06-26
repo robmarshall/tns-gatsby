@@ -26,9 +26,6 @@ const PostTemplate = (props) => {
                     modified,
                     modifiedForUser,
                     modifiedForSchema,
-                    publishedForUser,
-                    publishedForSchema,
-                    updatedAfterMonth,
                     featuredImage,
                     tags,
                     categories,
@@ -66,7 +63,6 @@ const PostTemplate = (props) => {
                 facebookPostImage={facebookImage}
                 twitterPostImage={twitterImage}
                 url={uri}
-                datePublished={date}
                 dateModified={modified}
             />
 
@@ -75,22 +71,11 @@ const PostTemplate = (props) => {
                     <h1>{cleanTitle}</h1>
 
                     <div className="post__date_wrap">
+                        <span className="post__date_updated">
+                            Last Updated:{' '}
+                        </span>
                         <time
-                            className="post__date post__date--published"
-                            dateTime={publishedForSchema}
-                            itemProp="datePublished"
-                        >
-                            {publishedForUser}
-                        </time>
-                        {updatedAfterMonth && (
-                            <span className="post__date_updated">
-                                Updated:{' '}
-                            </span>
-                        )}
-                        <time
-                            className={`post__date ${
-                                updatedAfterMonth ? '' : 'post__date--updated'
-                            }`}
+                            className={'post__date'}
                             dateTime={modifiedForSchema}
                             itemProp="dateModified"
                         >
@@ -140,9 +125,6 @@ export const pageQuery = graphql`
                 modified
                 modifiedForUser
                 modifiedForSchema
-                publishedForUser
-                publishedForSchema
-                updatedAfterMonth
                 content
                 uri
                 excerpt

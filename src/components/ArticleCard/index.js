@@ -12,8 +12,6 @@ const ArticleCard = ({
     title,
     modifiedForUser,
     modifiedForSchema,
-    publishedForUser,
-    publishedForSchema,
     excerpt,
 }) => {
     return (
@@ -53,15 +51,16 @@ const ArticleCard = ({
 
                 <h2 className={style.title}>{title}</h2>
 
-                <time className={style.date} dateTime={publishedForSchema}>
-                    {publishedForUser}
-                </time>
-                <time
-                    className={style.date_updated}
-                    dateTime={modifiedForSchema}
-                >
-                    {modifiedForUser}
-                </time>
+                <div className="post__date_wrap">
+                    <span className="post__date_updated">Last Updated: </span>
+                    <time
+                        className={'post__date'}
+                        dateTime={modifiedForSchema}
+                        itemProp="dateModified"
+                    >
+                        {modifiedForUser}
+                    </time>
+                </div>
 
                 <div className={style.excerpt}>
                     <p>{excerpt}</p>

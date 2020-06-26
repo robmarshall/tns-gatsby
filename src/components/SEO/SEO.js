@@ -6,19 +6,15 @@ import decodeEntities from '../../utils/decodeEntities'
 import SchemaOrg from './SchemaOrg'
 import { isPost } from './SeoHelpers'
 
-
 const SEO = ({
     address,
     author,
-    datePublished,
     dateModified,
     description,
     facebookPostImage,
     postType,
     title,
     twitterPostImage,
-    startDateTime,
-    eventOver,
     url,
     yoastTitle,
     articleBody,
@@ -99,9 +95,6 @@ const SEO = ({
                         content={fallback.facebookAppID}
                     />
                 )}
-                {datePublished && (
-                    <meta property="PublishDate" content={datePublished} />
-                )}
                 {dateModified && (
                     <meta property="LastModifiedDate" content={dateModified} />
                 )}
@@ -129,10 +122,7 @@ const SEO = ({
                 title={metaTitle}
                 image={fallback.siteUrl + facebookMetaImage}
                 description={description}
-                datePublished={datePublished}
                 dateModified={dateModified}
-                address={address}
-                startDateTime={startDateTime}
                 siteUrl={fallback.siteUrl}
                 organization="Thoughts and Stuff"
                 postType={postType}

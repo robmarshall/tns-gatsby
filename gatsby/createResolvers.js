@@ -64,42 +64,6 @@ module.exports = function createResolvers({
                     return null
                 },
             },
-            publishedForUser: {
-                type: 'String',
-                resolve(source, args, context, info) {
-                    if (source.date) {
-                        return moment(source.date).format('D MMMM YYYY')
-                    }
-                    return null
-                },
-            },
-            publishedForSchema: {
-                type: 'String',
-                resolve(source, args, context, info) {
-                    if (source.date) {
-                        return moment(source.date).format(
-                            'YYYY-MM-DD, HH:mm:ss'
-                        )
-                    }
-                    return null
-                },
-            },
-            updatedAfterMonth: {
-                type: 'Boolean',
-                resolve(source, args, context, info) {
-                    if (source.date) {
-                        const months = moment(new Date(source.modified)).diff(
-                            new Date(source.date),
-                            'months',
-                            true
-                        )
-                        if (months > 1) {
-                            return true
-                        }
-                    }
-                    return false
-                },
-            },
             cleanTitle: {
                 type: 'String',
                 resolve(source, args, context, info) {

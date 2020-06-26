@@ -35,8 +35,6 @@ const IndexPage = ({ data, pageContext }) => {
                             title={node.title}
                             modifiedForUser={node.modifiedForUser}
                             modifiedForSchema={node.modifiedForSchema}
-                            publishedForUser={node.publishedForUser}
-                            publishedForSchema={node.publishedForSchema}
                             excerpt={node.excerpt}
                         />
                     ))}

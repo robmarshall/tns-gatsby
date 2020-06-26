@@ -18,8 +18,6 @@ query GET_POSTS($first:Int, $after:String){
         modified
         modifiedForUser
         modifiedForSchema
-        publishedForUser
-        publishedForSchema
         excerpt
         cleanTitle
         cleanExcerpt

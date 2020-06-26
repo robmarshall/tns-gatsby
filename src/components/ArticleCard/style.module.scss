@@ -19,11 +19,6 @@
     margin: em(10) 0;
 }
 
-.date_updated {
-    display: block;
-    @include visuallyhidden;
-}
-
 .excerpt {
     margin-top: em(20);
 }

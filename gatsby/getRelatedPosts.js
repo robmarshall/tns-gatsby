@@ -58,5 +58,28 @@ module.exports = function getRelatedPosts({ posts, current, sortBy }) {
             }
         }
     }
-    return relatedPosts
+
+    // Now clean up unneeded post data
+    const cleanPosts = relatedPosts.map((post) => {
+        // Make own const
+        const newPost = { ...post }
+
+        delete newPost.excerpt
+        delete newPost.tags
+        delete newPost.cats
+        delete newPost.modifiedForUser
+        delete newPost.modifiedForSchema
+
+        const image = newPost.image
+        const imageSmall = newPost.imageSmall
+        delete image.base64
+        delete imageSmall.base64
+
+        return {
+            ...newPost,
+            image,
+        }
+    })
+
+    return cleanPosts
 }

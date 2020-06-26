@@ -8,7 +8,7 @@ import './relatedcards.scss'
 
 const RelatedCards = ({ relatedPosts }) => {
     const cards = relatedPosts.map((post) => (
-        <SimpleCard key={slugify(post.title)} node={post} />
+        <SimpleCard key={post.slug} node={post} />
     ))
 
     if (cards) {
