@@ -98,16 +98,18 @@ module.exports = async function createPages({ graphql, actions }) {
                     })
                 }
 
+                const relatedPosts = getRelatedPosts({
+                    posts: slimPosts,
+                    current: node,
+                    sortBy: 'cats',
+                })
+
                 createPage({
                     path: `/${node.slug}/`,
                     component: slash(postTemplate),
                     context: {
                         id: node.id,
-                        relatedPosts: getRelatedPosts({
-                            posts: slimPosts,
-                            current: node,
-                            sortBy: 'cats',
-                        }),
+                        relatedPosts: relatedPosts,
                     },
                 })
             })
