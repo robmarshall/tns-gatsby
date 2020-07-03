@@ -71,7 +71,7 @@
         "babel-loader": "^8.1.0",
         "babel-plugin-prismjs": "^2.0.1",
         "babel-plugin-remove-graphql-queries": "^2.9.3",
-        "babel-preset-gatsby": "^0.4.8",
+        "babel-preset-gatsby": "^0.5.1",
         "eslint": "^7.2.0",
         "eslint-config-airbnb": "^18.1.0",
         "eslint-config-prettier": "^6.11.0",
@@ -85,7 +85,7 @@
         "eslint-plugin-react-hooks": "^4.0.4",
         "gatsby-plugin-eslint": "^2.0.5",
         "gatsby-plugin-react-axe": "^0.4.1",
-        "sass-loader": "^8.0.2",
+        "sass-loader": "^9.0.1",
         "style-loader": "^1.2.1",
         "stylelint-order": "^4.1.0"
     }
