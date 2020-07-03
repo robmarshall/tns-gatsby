@@ -9,7 +9,7 @@ const SimpleCard = ({ node }) => {
 
     return (
         <div key={slug} className="simpleCard">
-            <Link to={slug}>
+            <Link to={`/${slug}`}>
                 {imageSmall && (
                     <Img
                         className="simpleCard_image"
