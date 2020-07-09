@@ -13,14 +13,14 @@
 module.exports = async function fetcher({ graphql, postType, query }) {
     const allPosts = []
 
-    let devCounter = 1
+    let currentPageCount = 20
 
     // If the WP hosting provider is slow, reduce this
     // otherwise your build may crash
     let queryAmount = 10
 
     if (process.env.GATSBY_PAGESTOLOAD) {
-        queryAmount = 2
+        queryAmount = 20
     }
 
     const devPageLimiter = (count) => {
@@ -34,26 +34,32 @@ module.exports = async function fetcher({ graphql, postType, query }) {
 
     const fetchPosts = async (variables) =>
         graphql(query, variables).then(async ({ data }) => {
+            console.log(data[`allWp${postType}`].pageInfo)
             // eslint-disable-next-line
-            if (data.wpgraphql[postType]) {
-                const { hasNextPage, endCursor } = data.wpgraphql[
-                    postType
+            if (data[`allWp${postType}`]) {
+                const { pageCount, totalCount } = data[
+                    `allWp${postType}`
                 ].pageInfo
 
-                data.wpgraphql[postType].nodes.forEach((post) => {
+                data[`allWp${postType}`].nodes.forEach((post) => {
                     allPosts.push(post)
                 })
 
-                if (hasNextPage && devPageLimiter(devCounter)) {
-                    devCounter = +1
-                    return fetchPosts({ first: queryAmount, after: endCursor })
+                const hasNextPage = queryAmount * currentPageCount < totalCount
+
+                if (hasNextPage && devPageLimiter(currentPageCount)) {
+                    currentPageCount = +1
+                    return fetchPosts({
+                        skip: queryAmount * currentPageCount,
+                        limit: queryAmount,
+                    })
                 }
             }
 
             return allPosts
         })
 
-    return fetchPosts({ first: queryAmount, after: null }).then((result) => {
+    return fetchPosts({ skip: 0, limit: queryAmount }).then((result) => {
         return result
     })
 }

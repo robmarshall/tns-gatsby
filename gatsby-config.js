@@ -31,14 +31,28 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-source-graphql`,
+            resolve: `gatsby-source-wordpress-experimental`,
             options: {
-                // This type will contain remote schema Query type
-                typeName: `WPGraphQL`,
-                // This is field under which it's accessible
-                fieldName: `wpgraphql`,
-                // Url to query from
-                url: 'http://rest.thoughtsandstuff.com/graphql',
+                url: `http://rest.thoughtsandstuff.com/graphql`,
+                verbose: true,
+                develop: {
+                    hardCacheMediaFiles: true,
+                },
+                debug: {
+                    graphql: {
+                        writeQueriesToDisk: true,
+                    },
+                },
+                type: {
+                    Post: {
+                        limit:
+                            process.env.NODE_ENV === `development`
+                                ? // Lets just pull 50 posts in development to make it easy on ourselves.
+                                  50
+                                : // and we don't actually need more than 5000 in production for this particular site
+                                  5000,
+                    },
+                },
             },
         },
         {
@@ -58,8 +72,8 @@ module.exports = {
             `,
                 feeds: [
                     {
-                        serialize: ({ query: { site, wpgraphql } }) => {
-                            return wpgraphql.posts.nodes.map((node) => {
+                        serialize: ({ query: { site, allWpPost } }) => {
+                            return allWpPost.nodes.map((node) => {
                                 return {
                                     ...node,
                                     description: node.excerpt,
@@ -82,20 +96,18 @@ module.exports = {
                         },
                         query: `
                   {
-                    wpgraphql {
-                      posts(first: 2000) {
-                        nodes {
-                          title
-                          slug
-                          excerpt
-                          content
-                          categories {
-                            nodes {
-                              name
-                            }
+                    allWpPost(first: 2000) {
+                      nodes {
+                        title
+                        slug
+                        excerpt
+                        content
+                        categories {
+                          nodes {
+                            name
                           }
-                          date
                         }
+                        date
                       }
                     }
                   }
@@ -169,17 +181,6 @@ module.exports = {
             resolve: 'gatsby-plugin-webpack-bundle-analyzer',
             options: {
                 // production: true,
-            },
-        },
-        {
-            resolve: 'gatsby-wpgraphql-inline-images',
-            options: {
-                wordPressUrl: 'http://rest.thoughtsandstuff.com/',
-                uploadsUrl:
-                    'http://rest.thoughtsandstuff.com/wp-content/uploads/',
-                processPostTypes: ['Page', 'Post'],
-                graphqlTypeName: 'WPGraphQL',
-                generateWebp: true,
             },
         },
         `gatsby-plugin-netlify`,

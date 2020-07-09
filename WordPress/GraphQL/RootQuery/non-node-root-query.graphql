@@ -1,0 +1,129 @@
+query NON_NODE_QUERY {
+  allSettings {
+    discussionSettingsDefaultCommentStatus
+    discussionSettingsDefaultPingStatus
+    generalSettingsDateFormat
+    generalSettingsDescription
+    generalSettingsLanguage
+    generalSettingsStartOfWeek
+    generalSettingsTimeFormat
+    generalSettingsTimezone
+    generalSettingsTitle
+    generalSettingsUrl
+    readingSettingsPostsPerPage
+    writingSettingsDefaultCategory
+    writingSettingsDefaultPostFormat
+    writingSettingsUseSmilies
+  }
+
+  discussionSettings {
+    defaultCommentStatus
+    defaultPingStatus
+  }
+
+  generalSettings {
+    dateFormat
+    description
+    language
+    startOfWeek
+    timeFormat
+    timezone
+    title
+    url
+  }
+
+  readingSettings {
+    postsPerPage
+  }
+
+  seo {
+    breadcrumbs {
+      archivePrefix
+      boldLast
+      enabled
+      homeText
+      notFoundText
+      prefix
+      searchPrefix
+      separator
+      showBlogPage
+    }
+
+    schema {
+      companyLogo {
+        id
+        sourceUrl
+      }
+
+      companyName
+      companyOrPerson
+
+      logo {
+        id
+        sourceUrl
+      }
+
+      personLogo {
+        id
+        sourceUrl
+      }
+
+      siteName
+      siteUrl
+      wordpressSiteName
+    }
+
+    social {
+      facebook {
+        defaultImage {
+          id
+          sourceUrl
+        }
+
+        url
+      }
+
+      instagram {
+        url
+      }
+
+      linkedIn {
+        url
+      }
+
+      mySpace {
+        url
+      }
+
+      pinterest {
+        metaTag
+        url
+      }
+
+      twitter {
+        username
+      }
+
+      wikipedia {
+        url
+      }
+
+      youTube {
+        url
+      }
+    }
+
+    webmaster {
+      baiduVerify
+      googleVerify
+      msVerify
+      yandexVerify
+    }
+  }
+
+  writingSettings {
+    defaultCategory
+    defaultPostFormat
+    useSmilies
+  }
+}

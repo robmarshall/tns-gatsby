@@ -1,0 +1,47 @@
+query SINGLE_CONTENT_QUERY($id: ID!) {
+  menuItem(id: $id) {
+    childItems(first: 100) {
+      nodes {
+        id
+      }
+    }
+    connectedObject {
+      __typename
+      ... on Post {
+        id
+      }
+      ... on Page {
+        id
+      }
+      ... on Category {
+        id
+      }
+      ... on Tag {
+        id
+      }
+      ... on MenuItem {
+        id
+      }
+    }
+    cssClasses
+    databaseId
+    description
+    id
+    label
+    linkRelationship
+    locations
+    menu {
+      node {
+        id
+      }
+    }
+    order
+    parentDatabaseId
+    parentId
+    path
+    target
+    title
+    url
+    __typename
+  }
+}

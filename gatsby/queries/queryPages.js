@@ -1,40 +1,33 @@
 module.exports = `
-query GET_PAGES($first:Int, $after:String){
-  wpgraphql {
-    pages(
-      first: $first
-      after:$after
-      where: {status: PUBLISH}
-    ) {
-      pageInfo {
-        endCursor
-        hasNextPage
+query GET_PAGES($skip:Int, $limit:Int){
+  allWpPage(filter: {status: {eq: "publish"}}, sort: {fields: dateGmt, order: DESC}, skip: $skip, limit: $limit){
+    pageInfo {
+      pageCount
+      totalCount
+    }
+    nodes {
+      id
+      slug
+      title
+      date
+      modified
+      content
+      seo {
+          metaDesc
+          metaKeywords
+          metaRobotsNofollow
+          metaRobotsNoindex
+          opengraphDescription
+          opengraphTitle
+          title
+          twitterDescription
+          twitterTitle
       }
-      nodes {
-        id
-        slug
-        title
-        date
-        modified
-        content
-        seo {
-            metaDesc
-            metaKeywords
-            metaRobotsNofollow
-            metaRobotsNoindex
-            opengraphDescription
-            opengraphTitle
-            title
-            twitterDescription
-            twitterTitle
-        }
-        featuredImage {
-          sourceUrl
+      featuredImage {
+        node {
           altText
           title
-          mediaItemId
-          modified
-          imageFile {
+          localFile {
             childImageSharp {
               facebook: fixed(width: 1024, height: 512) {
                   src

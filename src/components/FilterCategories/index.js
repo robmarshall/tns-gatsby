@@ -41,16 +41,14 @@ const FilterCategories = () => (
     <StaticQuery
         query={graphql`
             query {
-                wpgraphql {
-                    categories {
-                        nodes {
-                            name
-                        }
+                allWpCategory {
+                    nodes {
+                        name
                     }
                 }
             }
         `}
-        render={(data) => <List data={data.wpgraphql.categories.nodes} />}
+        render={(data) => <List data={data.allWpCategory.nodes} />}
     />
 )
 

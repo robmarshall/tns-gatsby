@@ -4,7 +4,7 @@ function useSiteDefaults() {
     return useStaticQuery(
         graphql`
             {
-                settings: wpgraphql {
+                settings: wp {
                     allSettings {
                         generalSettingsDescription
                         generalSettingsTitle
@@ -13,14 +13,14 @@ function useSiteDefaults() {
                 }
                 site: site {
                     siteMetadata {
-                      locale
-                      siteName
-                      title
-                      description
-                      author
-                      url
-                      siteUrl
-                      facebookAppID
+                        locale
+                        siteName
+                        title
+                        description
+                        author
+                        url
+                        siteUrl
+                        facebookAppID
                     }
                 }
             }

@@ -19,12 +19,22 @@ module.exports = async function createPages({ graphql, actions }) {
 
     const { createPage } = actions
 
+    const { data: wpSettings } = await graphql(`
+        {
+            wp {
+                readingSettings {
+                    postsPerPage
+                }
+            }
+        }
+    `)
+
     // eslint-disable-next-line
     console.log('Getting Pages')
 
     await fetcher({
         graphql,
-        postType: 'pages',
+        postType: 'Page',
         query: queryPages,
     }).then(async (pages) => {
         if (pages) {
@@ -45,7 +55,7 @@ module.exports = async function createPages({ graphql, actions }) {
 
     await fetcher({
         graphql,
-        postType: 'posts',
+        postType: 'Post',
         query: queryPosts,
     }).then(async (posts) => {
         if (posts) {

@@ -28,6 +28,7 @@
         "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5",
         "gatsby-source-filesystem": "^2.3.10",
         "gatsby-source-graphql": "^2.5.3",
+        "gatsby-source-wordpress-experimental": "^1.0.2",
         "gatsby-transformer-sharp": "^2.5.4",
         "gatsby-wpgraphql-inline-images": "^0.2.5",
         "he": "^1.2.0",

@@ -37,16 +37,17 @@ const PostTemplate = (props) => {
     } = props
 
     const image =
-        featuredImage?.imageFile?.childImageSharp?.base700?.base64 || false
+        featuredImage?.node?.imageFile?.childImageSharp?.base700?.base64 ||
+        false
 
     const facebookImage =
-        featuredImage?.imageFile?.childImageSharp?.facebook?.src || false
+        featuredImage?.node?.imageFile?.childImageSharp?.facebook?.src || false
 
     const twitterImage =
-        featuredImage?.imageFile?.childImageSharp?.twitter?.src || false
+        featuredImage?.node?.imageFile?.childImageSharp?.twitter?.src || false
 
-    const featuredAlt = featuredImage.alt_text || ''
-    const featuredTitle = featuredImage?.title || ''
+    const featuredAlt = featuredImage.node?.alt_text || ''
+    const featuredTitle = featuredImage?.node?.title || ''
 
     const pluginOptions = {
         wordPressUrl: `http://rest.thoughtsandstuff.com/`,
@@ -110,49 +111,48 @@ const PostTemplate = (props) => {
 export default PostTemplate
 
 export const pageQuery = graphql`
-    query PostById($id: ID!) {
+    query PostById($id: String!) {
         site {
             siteMetadata {
                 siteName
             }
         }
-        wpgraphql {
-            post(id: $id) {
-                id
-                slug
+        wpPost(id: { eq: $id }) {
+            id
+            slug
+            title
+            date
+            modified
+            modifiedForUser
+            modifiedForSchema
+            content
+            uri
+            excerpt
+            cleanTitle
+            cleanExcerpt
+            seo {
+                metaDesc
                 title
-                date
-                modified
-                modifiedForUser
-                modifiedForSchema
-                content
-                uri
-                excerpt
-                cleanTitle
-                cleanExcerpt
-                seo {
-                    metaDesc
-                    title
+            }
+            categories {
+                nodes {
+                    name
+                    slug
                 }
-                categories {
-                    nodes {
-                        name
-                        slug
-                    }
+            }
+            tags {
+                nodes {
+                    name
+                    slug
                 }
-                tags {
-                    nodes {
-                        name
-                        slug
-                    }
-                }
-                featuredImage {
-                    sourceUrl
+            }
+            featuredImage {
+                node {
                     altText
                     title
                     databaseId
                     modified
-                    imageFile {
+                    localFile {
                         childImageSharp {
                             base700: sizes(base64Width: 800, quality: 100) {
                                 base64

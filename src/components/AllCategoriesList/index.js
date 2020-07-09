@@ -1,7 +1,7 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
 
-import CategoryList from "../CategoryList";
+import CategoryList from '../CategoryList'
 
 const List = ({ data }) => {
     return (
@@ -9,24 +9,20 @@ const List = ({ data }) => {
             <CategoryList cats={data} />
         </div>
     )
-
 }
 
 const AllCategoriesList = () => (
     <StaticQuery
         query={graphql`
-          query {
-            wpgraphql {
-              categories {
-                nodes {
-                  name
+            query {
+                allWpCategory {
+                    nodes {
+                        name
+                    }
                 }
-              }
             }
-          }
-      `}
-
-        render={data => <List data={data.wpgraphql.categories.nodes} />}
+        `}
+        render={(data) => <List data={data.allWpCategory.nodes} />}
     />
 )
 

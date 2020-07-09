@@ -1,49 +1,42 @@
 module.exports = `
-query GET_POSTS($first:Int, $after:String){
-  wpgraphql {
-    posts(
-      first: $first
-      after:$after
-      where: {status: PUBLISH}
-    ) {
-      pageInfo {
-        endCursor
-        hasNextPage
+query GET_POSTS($skip:Int, $limit:Int){
+  allWpPost(filter: {status: {eq: "publish"}}, sort: {fields: dateGmt, order: DESC}, skip: $skip, limit: $limit){
+    pageInfo {
+      pageCount
+      totalCount
+    }
+    nodes {
+      id
+      slug
+      title
+      date
+      modified
+      modifiedForUser
+      modifiedForSchema
+      excerpt
+      cleanTitle
+      cleanExcerpt
+      seo {
+          metaDesc
       }
-      nodes {
-        id
-        slug
-        title
-        date
-        modified
-        modifiedForUser
-        modifiedForSchema
-        excerpt
-        cleanTitle
-        cleanExcerpt
-        seo {
-            metaDesc
+      categories {
+        nodes {
+          name
+          slug
+          description
         }
-        categories {
-          nodes {
-            name
-            slug
-            description
-          }
+      }
+      tags {
+        nodes {
+          name
+          slug
         }
-        tags {
-          nodes {
-            name
-            slug
-          }
-        }
-        featuredImage {
-          sourceUrl
+      }
+      featuredImage {
+        node {
           altText
           title
-          databaseId
-          modified
-          imageFile {
+          localFile {
             childImageSharp {
               image700: fluid(maxWidth: 700) {
                   base64

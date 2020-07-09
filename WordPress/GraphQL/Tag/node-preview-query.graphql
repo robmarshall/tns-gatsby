@@ -1,0 +1,57 @@
+query PREVIEW_QUERY($id: ID!) {
+  tag(id: $id, idType: ID, asPreview: true) {
+    count
+    databaseId
+    description
+    id
+    link
+    name
+    posts(first: 100) {
+      nodes {
+        id
+      }
+    }
+    seo {
+      breadcrumbs {
+        text
+        url
+      }
+      canonical
+      focuskw
+      metaDesc
+      metaKeywords
+      metaRobotsNofollow
+      metaRobotsNoindex
+      opengraphAuthor
+      opengraphDescription
+      opengraphImage {
+        id
+        sourceUrl
+      }
+      opengraphModifiedTime
+      opengraphPublishedTime
+      opengraphPublisher
+      opengraphSiteName
+      opengraphTitle
+      opengraphType
+      opengraphUrl
+      title
+      twitterDescription
+      twitterImage {
+        id
+        sourceUrl
+      }
+      twitterTitle
+    }
+    slug
+    taxonomy {
+      node {
+        id
+      }
+    }
+    termGroupId
+    termTaxonomyId
+    uri
+    __typename
+  }
+}
