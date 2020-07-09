@@ -7,15 +7,19 @@ import Layout from '../containers/Layout'
 
 import '../sass/layout/post.scss'
 
-const IndexPage = ({ data, pageContext }) => {
-    const { pageCount, group, index } = pageContext
+const Posts = ({ data, pageContext }) => {
+    const {
+        allWpPost: { nodes, pageInfo },
+    } = data
+
+    const { archiveType, archivePath } = pageContext
 
     return (
         <Layout>
             <ArticleContainer>
                 {index === 1 && <FilterCategories />}
                 <div id="post-list" className="post-list">
-                    {group.map((node, count) => {
+                    {group.map((nodes, count) => {
                         return (
                             <ArticleCard
                                 key={node.slug}
@@ -35,12 +39,30 @@ const IndexPage = ({ data, pageContext }) => {
 
                 <Pagination
                     prefix=""
-                    currentPage={index}
-                    numPages={pageCount}
+                    currentPage={pageInfo.currentPage}
+                    pageCount={pageInfo.pageCount}
                 />
             </ArticleContainer>
         </Layout>
     )
 }
 
-export default IndexPage
+export const query = graphql`
+    query Posts($offset: Int!, $perPage: Int!) {
+        allWpPost(
+            limit: $perPage
+            skip: $offset
+            sort: { fields: date, order: DESC }
+        ) {
+            nodes {
+                ...PostPreviewContent
+            }
+            pageInfo {
+                currentPage
+                pageCount
+            }
+        }
+    }
+`
+
+export default Posts

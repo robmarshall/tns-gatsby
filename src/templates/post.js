@@ -17,20 +17,18 @@ const PostTemplate = (props) => {
     const {
         pageContext: { relatedPosts },
         data: {
-            wpgraphql: {
-                post: {
-                    content,
-                    date,
-                    cleanTitle,
-                    cleanExcerpt,
-                    modified,
-                    modifiedForUser,
-                    modifiedForSchema,
-                    featuredImage,
-                    tags,
-                    categories,
-                    seo,
-                },
+            wpPost: {
+                content,
+                date,
+                cleanTitle,
+                cleanExcerpt,
+                modified,
+                modifiedForUser,
+                modifiedForSchema,
+                featuredImage,
+                tags,
+                categories,
+                seo,
             },
         },
         uri,
@@ -53,6 +51,8 @@ const PostTemplate = (props) => {
         wordPressUrl: `http://rest.thoughtsandstuff.com/`,
         uploadsUrl: `http://rest.thoughtsandstuff.com/wp-content/uploads/`,
     }
+
+    console.log(relatedPosts)
 
     return (
         <Layout>

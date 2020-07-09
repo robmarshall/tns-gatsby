@@ -35,6 +35,9 @@ module.exports = {
             options: {
                 url: `http://rest.thoughtsandstuff.com/graphql`,
                 verbose: true,
+                schema: {
+                    perPage: 20,
+                },
                 develop: {
                     hardCacheMediaFiles: true,
                 },

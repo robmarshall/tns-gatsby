@@ -75,8 +75,8 @@ const PageLink = ({ pageNum, prefix, isCurrent, humanNum }) => {
     )
 }
 
-const Pagination = ({ prefix, currentPage, numPages }) => {
-    if (numPages > 1) {
+const Pagination = ({ prefix, currentPage, pageCount }) => {
+    if (pageCount > 1) {
         return (
             <Location>
                 {({ location }) => (
@@ -90,10 +90,10 @@ const Pagination = ({ prefix, currentPage, numPages }) => {
                                     prev
                                     prefix={prefix}
                                     currentPage={currentPage}
-                                    totalPages={numPages}
+                                    totalPages={pageCount}
                                     location={location}
                                 />
-                                {Array.from({ length: numPages }, (_, i) => {
+                                {Array.from({ length: pageCount }, (_, i) => {
                                     const humanNum = i + 1
 
                                     if (
@@ -119,7 +119,7 @@ const Pagination = ({ prefix, currentPage, numPages }) => {
                                     next
                                     prefix={prefix}
                                     currentPage={currentPage}
-                                    totalPages={numPages}
+                                    totalPages={pageCount}
                                     location={location}
                                 />
                             </ul>

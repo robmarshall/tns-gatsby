@@ -18,31 +18,11 @@ const ArticleCard = ({
         <div className={style.card}>
             <Link to={`/${slug}`}>
                 <div>
-                    {count === 0 ? (
-                        <div className={style.image}>
-                            <picture>
-                                <source
-                                    type="image/webp"
-                                    srcSet={image.srcSetWebp}
-                                    sizes={image.sizes}
-                                />
-                                <source
-                                    srcSet={image.srcSet}
-                                    sizes={image.sizes}
-                                />
-                                <img
-                                    sizes={image.sizes}
-                                    srcSet={image.srcSet}
-                                    src={image.src}
-                                    alt={imageAlt}
-                                    title={imageTitle}
-                                />
-                            </picture>
-                        </div>
-                    ) : (
+                    {image && (
                         <Img
                             className={style.image}
                             fluid={image}
+                            loading={count === 0 ? 'eager' : 'lazy'}
                             title={imageTitle}
                             alt={imageAlt}
                         />
