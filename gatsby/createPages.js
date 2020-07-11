@@ -1,11 +1,10 @@
 // const getRelatedPosts = require('./getRelatedPosts.js')
-const createPages = require('./create/pages.js')
-const createPosts = require('./create/posts.js')
+const createPage = require('./create/page.js')
+const createPost = require('./create/post.js')
+const createCat = require('./create/cat.js')
+const createTag = require('./create/tag.js')
 
 module.exports = async function createPages(props) {
-    // const tagTemplate = path.resolve('src/templates/tags.js')
-    // const categoryTemplate = path.resolve('src/templates/categories.js')
-
     const { graphql } = props
 
     const { data: wpSettings } = await graphql(`
@@ -20,6 +19,8 @@ module.exports = async function createPages(props) {
 
     const perPage = wpSettings.wp.readingSettings.postsPerPage || 10
 
-    await createPages(props)
-    await createPosts(props, { perPage, blogURI: '/' })
+    await createPage(props)
+    await createPost(props, { perPage, blogURI: '/' })
+    await createCat(props, { perPage })
+    await createTag(props, { perPage })
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import SEO from '../components/SEO/SEO'
 import ArticleContainer from '../containers/ArticleContainer'
 import Layout from '../containers/Layout'
@@ -48,7 +49,7 @@ const PageTemplate = (props) => {
 export const pageQuery = graphql`
     query page($id: String!) {
         wpPage(id: { eq: $id }) {
-            ...PostContent
+            ...PageContent
         }
     }
 `

@@ -15,7 +15,7 @@ const Posts = ({ data, pageContext }) => {
 
     const { currentPage } = pageInfo
 
-    const { archiveType, archivePath } = pageContext
+    const { archivePath } = pageContext
 
     return (
         <Layout>
@@ -67,8 +67,6 @@ export const query = graphql`
         ) {
             nodes {
                 ...PostPreviewContent
-                modifiedForUser: date(formatString: "D MMMM YYYY")
-                modifiedForSchema: date(formatString: "YYYY-MM-DD, HH:mm:ss")
             }
             pageInfo {
                 currentPage

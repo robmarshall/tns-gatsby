@@ -43,6 +43,14 @@ module.exports = function createResolvers({
     // Add all media libary images so they can be queried by
     // childImageSharp
     createResolvers({
+        WpPage: {
+            cleanTitle: {
+                type: 'String',
+                resolve(source, args, context, info) {
+                    return he.unescape(source?.title || '')
+                },
+            },
+        },
         WpPost: {
             cleanTitle: {
                 type: 'String',

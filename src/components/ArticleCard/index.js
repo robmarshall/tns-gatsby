@@ -16,18 +16,16 @@ const ArticleCard = ({
 }) => {
     return (
         <div className={style.card}>
-            <Link to={`/${slug}`}>
-                <div>
-                    {image && (
-                        <Img
-                            className={style.image}
-                            fluid={image}
-                            loading={count === 0 ? 'eager' : 'lazy'}
-                            title={imageTitle}
-                            alt={imageAlt}
-                        />
-                    )}
-                </div>
+            <Link to={`/${slug}`} className={style.link}>
+                {image && (
+                    <Img
+                        className={style.image}
+                        fluid={image}
+                        loading={count === 0 ? 'eager' : 'lazy'}
+                        title={imageTitle}
+                        alt={imageAlt}
+                    />
+                )}
 
                 <h2 className={style.title}>{title}</h2>
 

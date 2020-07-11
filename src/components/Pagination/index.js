@@ -5,7 +5,7 @@ import { Link } from 'gatsby'
 import './pagination.scss'
 
 function makePageUrl(prefix, pageNum) {
-    const end = pageNum === 0 ? '' : `/page/${pageNum + 1}`
+    const end = pageNum === 0 ? '' : `page/${pageNum + 1}`
     const fullString = `${prefix}${end}`
     const cleanString = fullString.replace(/^\/+/g, '')
     return `${process.env.GATSBY_BASE_URL}/${cleanString}`

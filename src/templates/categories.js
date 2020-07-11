@@ -1,53 +1,90 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import ArticleCard from '../components/ArticleCard'
 import Pagination from '../components/Pagination'
 import SEO from '../components/SEO/SEO'
 import ArticleContainer from '../containers/ArticleContainer'
 import Layout from '../containers/Layout'
 
-const IndexPage = ({ data, pageContext }) => {
-    const { group, index, pageCount, additionalContext } = pageContext
+const CatTemplate = ({ data, pageContext }) => {
+    const {
+        allWpPost: { nodes, pageInfo },
+    } = data
 
-    const { catName, catSlug } = additionalContext
-    const catDesc =
-        additionalContext.catDescription || `${catName} category archive page`
+    const { currentPage } = pageInfo
+
+    const { archivePath, name, description } = pageContext
+
+    const catDesc = description || `${name} category archive page`
 
     return (
         <Layout>
-            <SEO title={catName} description={catDesc} />
+            <SEO title={name} description={catDesc} />
 
             <ArticleContainer>
-                <h1>
-                    Category:
-                    {catName}
-                </h1>
+                <h1>Category: {name}</h1>
+                {description && <p>{description}</p>}
 
                 <div id="post-list" className="post-list">
-                    {group.map((node) => (
-                        <ArticleCard
-                            key={node.slug}
-                            count={index}
-                            base64={node.base64}
-                            slug={node.slug}
-                            image={node.image}
-                            imageTitle={node.imageTitle}
-                            imageAlt={node.imageAlt}
-                            title={node.title}
-                            modifiedForUser={node.modifiedForUser}
-                            modifiedForSchema={node.modifiedForSchema}
-                            excerpt={node.excerpt}
-                        />
-                    ))}
+                    {nodes.map((node, count) => {
+                        const image =
+                            node?.featuredImage?.node?.remoteFile
+                                ?.childImageSharp?.fluid || false
+                        const imageTitle =
+                            node?.featuredImage?.node?.imageTitle || ''
+                        const imageAlt =
+                            node?.featuredImage?.node?.imageAlt || ''
+
+                        return (
+                            <ArticleCard
+                                key={node.slug}
+                                count={count}
+                                slug={node.slug}
+                                image={image}
+                                imageTitle={imageTitle}
+                                imageAlt={imageAlt}
+                                title={node.title}
+                                modifiedForUser={node.modifiedForUser}
+                                modifiedForSchema={node.modifiedForSchema}
+                                excerpt={node.cleanExcerpt}
+                            />
+                        )
+                    })}
                 </div>
 
                 <Pagination
-                    prefix={`category/${catSlug}`}
-                    currentPage={index}
-                    numPages={pageCount}
+                    prefix={archivePath}
+                    currentPage={pageInfo.currentPage}
+                    pageCount={pageInfo.pageCount}
                 />
             </ArticleContainer>
         </Layout>
     )
 }
 
-export default IndexPage
+export const query = graphql`
+    query Category($categoryDatabaseId: Int!, $offset: Int!, $perPage: Int!) {
+        allWpPost(
+            limit: $perPage
+            skip: $offset
+            sort: { fields: date, order: DESC }
+            filter: {
+                categories: {
+                    nodes: {
+                        elemMatch: { databaseId: { eq: $categoryDatabaseId } }
+                    }
+                }
+            }
+        ) {
+            nodes {
+                ...PostPreviewContent
+            }
+            pageInfo {
+                currentPage
+                pageCount
+            }
+        }
+    }
+`
+
+export default CatTemplate

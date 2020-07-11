@@ -42,6 +42,8 @@ export const fragments = graphql`
         databaseId
         excerpt
         cleanExcerpt
+        modifiedForUser: date(formatString: "D MMMM YYYY")
+        modifiedForSchema: date(formatString: "YYYY-MM-DD, HH:mm:ss")
         featuredImage {
             node {
                 remoteFile {
@@ -101,7 +103,7 @@ export const fragments = graphql`
         }
     }
 
-    fragment PageContent on WpPost {
+    fragment PageContent on WpPage {
         title
         cleanTitle
         content
@@ -113,22 +115,16 @@ export const fragments = graphql`
                 }
             }
         }
-        categories {
-            nodes {
-                name
-                slug
-                description
-            }
-        }
-        tags {
-            nodes {
-                name
-                slug
-            }
-        }
         seo {
             metaDesc
+            metaKeywords
+            metaRobotsNofollow
+            metaRobotsNoindex
+            opengraphDescription
+            opengraphTitle
             title
+            twitterDescription
+            twitterTitle
         }
     }
 `

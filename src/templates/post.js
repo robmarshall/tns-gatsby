@@ -101,8 +101,6 @@ const PostTemplate = (props) => {
     )
 }
 
-export default PostTemplate
-
 export const postQuery = graphql`
     query post($id: String!) {
         wpPost(id: { eq: $id }) {
@@ -112,3 +110,5 @@ export const postQuery = graphql`
         }
     }
 `
+
+export default PostTemplate

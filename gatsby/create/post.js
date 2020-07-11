@@ -15,8 +15,6 @@ module.exports = async ({ actions, graphql }, options) => {
         }
     `)
 
-    const chunkedContentNodes = chunk(data.allWpPost.nodes, perPage)
-
     // Make individual posts.
     await Promise.all(
         data.allWpPost.nodes.map(async (post, index) => {
@@ -31,6 +29,8 @@ module.exports = async ({ actions, graphql }, options) => {
     )
 
     // Make post listing.
+    const chunkedContentNodes = chunk(data.allWpPost.nodes, perPage)
+
     await Promise.all(
         chunkedContentNodes.map(async (nodesChunk, index) => {
             const firstNode = nodesChunk[0]
@@ -40,7 +40,6 @@ module.exports = async ({ actions, graphql }, options) => {
                 path: index === 0 ? blogURI : `${blogURI}page/${index + 1}/`,
                 context: {
                     archivePath: blogURI,
-                    archiveType: 'post',
                     offset: perPage * index,
                     pageNumber: index + 1,
                     perPage,

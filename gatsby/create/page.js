@@ -14,10 +14,10 @@ module.exports = async ({ actions, graphql }) => {
 
     // Make individual pages.
     await Promise.all(
-        data.allWpPost.nodes.map(async (page, index) => {
+        data.allWpPage.nodes.map(async (page, index) => {
             await actions.createPage({
                 component: path.resolve('src/templates/page.js'),
-                path: post.uri,
+                path: page.uri,
                 context: {
                     id: page.id,
                 },
