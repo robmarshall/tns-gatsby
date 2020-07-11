@@ -5,21 +5,8 @@ query PREVIEW_QUERY($id: ID!) {
         id
       }
     }
-    connectedObject {
-      __typename
-      ... on Post {
-        id
-      }
-      ... on Page {
-        id
-      }
-      ... on Category {
-        id
-      }
-      ... on Tag {
-        id
-      }
-      ... on MenuItem {
+    connectedNode {
+      node {
         id
       }
     }

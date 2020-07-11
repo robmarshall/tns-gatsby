@@ -13,13 +13,6 @@ query NODE_LIST_QUERY($first: Int!, $after: String) {
           id
         }
       }
-      commentCount
-      commentStatus
-      comments(first: 100) {
-        nodes {
-          id
-        }
-      }
       content
       contentType {
         node {
@@ -53,6 +46,7 @@ query NODE_LIST_QUERY($first: Int!, $after: String) {
       modifiedGmt
       pingStatus
       pinged
+      postType
       seo {
         breadcrumbs {
           text

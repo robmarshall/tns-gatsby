@@ -20,14 +20,12 @@ const MainMenu = ({ props }) => (
     <StaticQuery
         query={graphql`
             query {
-                allWpMenu {
-                    nodes {
-                        menuItems {
-                            nodes {
-                                url
-                                label
-                                target
-                            }
+                wpMenu(name: { eq: "Main Menu" }) {
+                    menuItems {
+                        nodes {
+                            url
+                            label
+                            target
                         }
                     }
                 }
@@ -35,13 +33,7 @@ const MainMenu = ({ props }) => (
         `}
         // eslint-disable-next-line
         render={(data) => {
-            console.log(data)
-            return (
-                <Menu
-                    data={data.allWpMenu.nodes[0].menuItems.nodes}
-                    {...props}
-                />
-            )
+            return <Menu data={data.wpMenu.menuItems.nodes} {...props} />
         }}
     />
 )

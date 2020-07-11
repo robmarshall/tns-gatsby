@@ -44,26 +44,6 @@ module.exports = function createResolvers({
     // childImageSharp
     createResolvers({
         WpPost: {
-            modifiedForUser: {
-                type: 'String',
-                resolve(source, args, context, info) {
-                    if (source.modified) {
-                        return moment(source.modified).format('D MMMM YYYY')
-                    }
-                    return null
-                },
-            },
-            modifiedForSchema: {
-                type: 'String',
-                resolve(source, args, context, info) {
-                    if (source.modified) {
-                        return moment(source.modified).format(
-                            'YYYY-MM-DD, HH:mm:ss'
-                        )
-                    }
-                    return null
-                },
-            },
             cleanTitle: {
                 type: 'String',
                 resolve(source, args, context, info) {

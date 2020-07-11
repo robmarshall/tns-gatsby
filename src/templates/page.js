@@ -1,37 +1,24 @@
-import React from "react"
-import get from 'lodash/get'
-import SEO from "../components/SEO/SEO"
-import ArticleContainer from "../containers/ArticleContainer";
-import Layout from "../containers/Layout"
+import React from 'react'
+import SEO from '../components/SEO/SEO'
+import ArticleContainer from '../containers/ArticleContainer'
+import Layout from '../containers/Layout'
 
 const PageTemplate = (props) => {
-
     const {
-        pageContext: { page: {
-            title,
-            content,
-            date,
-            modified,
-            featuredImage,
-            seo,
-        } },
-        postURI,
+        data: {
+            wpPost: { content, date, cleanTitle, modified, featuredImage, seo },
+        },
+        uri,
     } = props
 
-    const facebookImage = get(
-        featuredImage,
-        'imageFile.childImageSharp.facebook.src',
-        false
-    )
-    const twitterImage = get(
-        featuredImage,
-        'imageFile.childImageSharp.twitter.src',
-        false
-    )
+    const facebookImage =
+        featuredImage?.node?.remoteFile?.childImageSharp?.facebook?.src || false
+
+    const twitterImage =
+        featuredImage?.node?.remoteFile?.childImageSharp?.twitter?.src || false
 
     return (
         <Layout>
-
             <SEO
                 postType="page"
                 yoastTitle={seo.title}
@@ -39,24 +26,31 @@ const PageTemplate = (props) => {
                 description={seo.metaDesc}
                 facebookPostImage={facebookImage}
                 twitterPostImage={twitterImage}
-                url={postURI}
+                url={uri}
                 datePublished={date}
                 dateModified={modified}
             />
 
             <ArticleContainer>
-
                 <h1
                     // eslint-disable-next-line
-                  dangerouslySetInnerHTML={{__html: title}} />
+                    dangerouslySetInnerHTML={{ __html: cleanTitle }}
+                />
                 <div
                     // eslint-disable-next-line
-                  dangerouslySetInnerHTML={{__html: content}} />
-
+                    dangerouslySetInnerHTML={{ __html: content }}
+                />
             </ArticleContainer>
         </Layout>
     )
-
 }
+
+export const pageQuery = graphql`
+    query page($id: String!) {
+        wpPage(id: { eq: $id }) {
+            ...PostContent
+        }
+    }
+`
 
 export default PageTemplate

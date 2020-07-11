@@ -12,13 +12,6 @@ query PREVIEW_QUERY($id: ID!) {
         id
       }
     }
-    commentCount
-    commentStatus
-    comments(first: 100) {
-      nodes {
-        id
-      }
-    }
     content
     contentType {
       node {
@@ -52,6 +45,7 @@ query PREVIEW_QUERY($id: ID!) {
     modifiedGmt
     pingStatus
     pinged
+    postType
     seo {
       breadcrumbs {
         text

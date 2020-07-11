@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { graphql } from 'gatsby'
-import contentParser from 'gatsby-wpgraphql-inline-images'
+import Img from 'gatsby-image'
 import Prism from 'prismjs'
 import CategoryList from '../components/CategoryList'
 import RelatedCards from '../components/RelatedCards'
@@ -15,7 +15,7 @@ const PostTemplate = (props) => {
     }, [])
 
     const {
-        pageContext: { relatedPosts },
+        // pageContext: { relatedPosts },
         data: {
             wpPost: {
                 content,
@@ -35,24 +35,18 @@ const PostTemplate = (props) => {
     } = props
 
     const image =
-        featuredImage?.node?.imageFile?.childImageSharp?.base700?.base64 ||
-        false
+        featuredImage?.node?.remoteFile?.childImageSharp?.fluid || false
 
     const facebookImage =
-        featuredImage?.node?.imageFile?.childImageSharp?.facebook?.src || false
+        featuredImage?.node?.remoteFile?.childImageSharp?.facebook?.src || false
 
     const twitterImage =
-        featuredImage?.node?.imageFile?.childImageSharp?.twitter?.src || false
+        featuredImage?.node?.remoteFile?.childImageSharp?.twitter?.src || false
 
     const featuredAlt = featuredImage.node?.alt_text || ''
     const featuredTitle = featuredImage?.node?.title || ''
 
-    const pluginOptions = {
-        wordPressUrl: `http://rest.thoughtsandstuff.com/`,
-        uploadsUrl: `http://rest.thoughtsandstuff.com/wp-content/uploads/`,
-    }
-
-    console.log(relatedPosts)
+    // <RelatedCards relatedPosts={relatedPosts} />
 
     return (
         <Layout>
@@ -88,87 +82,33 @@ const PostTemplate = (props) => {
 
                     {image && (
                         <div>
-                            <img
+                            <Img
                                 className="post__feat-image"
-                                src={image}
+                                fluid={image}
+                                loading="eager"
                                 title={featuredTitle || ''}
                                 alt={featuredAlt || ''}
                             />
                         </div>
                     )}
 
-                    <div>{contentParser({ content }, pluginOptions)}</div>
+                    <div dangerouslySetInnerHTML={{ __html: content }} />
 
                     <TagList tags={tags.nodes} />
                 </article>
             </ArticleContainer>
-
-            <RelatedCards relatedPosts={relatedPosts} />
         </Layout>
     )
 }
 
 export default PostTemplate
 
-export const pageQuery = graphql`
-    query PostById($id: String!) {
-        site {
-            siteMetadata {
-                siteName
-            }
-        }
+export const postQuery = graphql`
+    query post($id: String!) {
         wpPost(id: { eq: $id }) {
-            id
-            slug
-            title
-            date
-            modified
-            modifiedForUser
-            modifiedForSchema
-            content
-            uri
-            excerpt
-            cleanTitle
-            cleanExcerpt
-            seo {
-                metaDesc
-                title
-            }
-            categories {
-                nodes {
-                    name
-                    slug
-                }
-            }
-            tags {
-                nodes {
-                    name
-                    slug
-                }
-            }
-            featuredImage {
-                node {
-                    altText
-                    title
-                    databaseId
-                    modified
-                    localFile {
-                        childImageSharp {
-                            base700: sizes(base64Width: 800, quality: 100) {
-                                base64
-                            }
-                            facebook: fixed(width: 1024, height: 512) {
-                                src
-                                width
-                                height
-                            }
-                            twitter: fixed(width: 1200, height: 630) {
-                                src
-                            }
-                        }
-                    }
-                }
-            }
+            ...PostContent
+            modifiedForUser: date(formatString: "D MMMM YYYY")
+            modifiedForSchema: date(formatString: "YYYY-MM-DD, HH:mm:ss")
         }
     }
 `

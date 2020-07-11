@@ -6,21 +6,8 @@ query NODE_LIST_QUERY($first: Int!, $after: String) {
           id
         }
       }
-      connectedObject {
-        __typename
-        ... on Post {
-          id
-        }
-        ... on Page {
-          id
-        }
-        ... on Category {
-          id
-        }
-        ... on Tag {
-          id
-        }
-        ... on MenuItem {
+      connectedNode {
+        node {
           id
         }
       }

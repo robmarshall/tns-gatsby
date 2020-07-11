@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import ArticleCard from '../components/ArticleCard'
 import FilterCategories from '../components/FilterCategories'
 import Pagination from '../components/Pagination'
@@ -12,26 +13,36 @@ const Posts = ({ data, pageContext }) => {
         allWpPost: { nodes, pageInfo },
     } = data
 
+    const { currentPage } = pageInfo
+
     const { archiveType, archivePath } = pageContext
 
     return (
         <Layout>
             <ArticleContainer>
-                {index === 1 && <FilterCategories />}
+                {currentPage === 1 && <FilterCategories />}
                 <div id="post-list" className="post-list">
-                    {group.map((nodes, count) => {
+                    {nodes.map((node, count) => {
+                        const image =
+                            node?.featuredImage?.node?.remoteFile
+                                ?.childImageSharp?.fluid || false
+                        const imageTitle =
+                            node?.featuredImage?.node?.imageTitle || ''
+                        const imageAlt =
+                            node?.featuredImage?.node?.imageAlt || ''
+
                         return (
                             <ArticleCard
                                 key={node.slug}
                                 count={count}
                                 slug={node.slug}
-                                image={node.image}
-                                imageTitle={node.imageTitle}
-                                imageAlt={node.imageAlt}
+                                image={image}
+                                imageTitle={imageTitle}
+                                imageAlt={imageAlt}
                                 title={node.title}
                                 modifiedForUser={node.modifiedForUser}
                                 modifiedForSchema={node.modifiedForSchema}
-                                excerpt={node.excerpt}
+                                excerpt={node.cleanExcerpt}
                             />
                         )
                     })}
@@ -56,6 +67,8 @@ export const query = graphql`
         ) {
             nodes {
                 ...PostPreviewContent
+                modifiedForUser: date(formatString: "D MMMM YYYY")
+                modifiedForSchema: date(formatString: "YYYY-MM-DD, HH:mm:ss")
             }
             pageInfo {
                 currentPage

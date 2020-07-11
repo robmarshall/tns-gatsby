@@ -17,13 +17,6 @@ query SINGLE_CONTENT_QUERY($id: ID!) {
         id
       }
     }
-    commentCount
-    commentStatus
-    comments(first: 100) {
-      nodes {
-        id
-      }
-    }
     content
     contentType {
       node {
@@ -63,6 +56,7 @@ query SINGLE_CONTENT_QUERY($id: ID!) {
     }
     parentDatabaseId
     parentId
+    postType
     seo {
       breadcrumbs {
         text

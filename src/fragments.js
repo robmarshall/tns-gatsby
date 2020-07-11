@@ -19,7 +19,7 @@ export const fragments = graphql`
 
     fragment Facebook on File {
         childImageSharp {
-            fixed(width: 1024, height: 512) {
+            facebook: fixed(width: 1024, height: 512) {
                 src
                 width
                 height
@@ -29,21 +29,24 @@ export const fragments = graphql`
 
     fragment Twitter on File {
         childImageSharp {
-            fixed(width: 1200, height: 630) {
+            twitter: fixed(width: 1200, height: 630) {
                 src
             }
         }
     }
 
     fragment PostPreviewContent on WpPost {
-        uri
+        slug
         title
+        cleanTitle
         databaseId
         excerpt
-        date(formatString: "LL")
+        cleanExcerpt
         featuredImage {
-            remoteFile {
-                ...Thumbnail
+            node {
+                remoteFile {
+                    ...Thumbnail
+                }
             }
         }
         categories {
@@ -58,19 +61,25 @@ export const fragments = graphql`
                 name
                 slug
             }
+        }
+        seo {
+            metaDesc
         }
     }
 
     fragment PostContent on WpPost {
         title
+        cleanTitle
         content
-        date(formatString: "LL")
         excerpt
+        cleanExcerpt
         featuredImage {
-            remoteFile {
-                ...HeroImage
-                ...Facebook
-                ...Twitter
+            node {
+                remoteFile {
+                    ...Thumbnail
+                    ...Facebook
+                    ...Twitter
+                }
             }
         }
         categories {
@@ -85,6 +94,41 @@ export const fragments = graphql`
                 name
                 slug
             }
+        }
+        seo {
+            metaDesc
+            title
+        }
+    }
+
+    fragment PageContent on WpPost {
+        title
+        cleanTitle
+        content
+        featuredImage {
+            node {
+                remoteFile {
+                    ...Facebook
+                    ...Twitter
+                }
+            }
+        }
+        categories {
+            nodes {
+                name
+                slug
+                description
+            }
+        }
+        tags {
+            nodes {
+                name
+                slug
+            }
+        }
+        seo {
+            metaDesc
+            title
         }
     }
 `
