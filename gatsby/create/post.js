@@ -10,6 +10,11 @@ module.exports = async ({ actions, graphql }, options) => {
                 nodes {
                     uri
                     id
+                    categories {
+                        nodes {
+                            databaseId
+                        }
+                    }
                 }
             }
         }
@@ -18,11 +23,14 @@ module.exports = async ({ actions, graphql }, options) => {
     // Make individual posts.
     await Promise.all(
         data.allWpPost.nodes.map(async (post, index) => {
+            const primaryCatId = post?.categories?.nodes[0]?.databaseId || false
+
             await actions.createPage({
                 component: path.resolve('src/templates/post.js'),
                 path: post.uri,
                 context: {
                     id: post.id,
+                    primaryCatId: primaryCatId,
                 },
             })
         })

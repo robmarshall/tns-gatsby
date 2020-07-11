@@ -5,20 +5,24 @@ import Link from '../Link'
 import './simplecard.scss'
 
 const SimpleCard = ({ node }) => {
-    const { slug, imageSmall, imageTitle, imageAlt, title } = node
+    const { cleanTitle, featuredImage, slug } = node
+
+    const image = featuredImage?.node?.remoteFile?.childImageSharp?.fluid
+    const imageTitle = featuredImage?.node?.title
+    const imageAlt = featuredImage?.node?.alt_text
 
     return (
         <div key={slug} className="simpleCard">
             <Link to={`/${slug}`}>
-                {imageSmall && (
+                {image && (
                     <Img
                         className="simpleCard_image"
-                        fluid={imageSmall}
+                        fluid={image}
                         title={imageTitle}
                         alt={imageAlt}
                     />
                 )}
-                <h3 className="simpleCard_title">{title}</h3>
+                <h3 className="simpleCard_title">{cleanTitle}</h3>
             </Link>
         </div>
     )

@@ -30,6 +30,8 @@ const PostTemplate = (props) => {
                 categories,
                 seo,
             },
+            relatedByCat,
+            relatedTopUp,
         },
         uri,
     } = props
@@ -46,7 +48,16 @@ const PostTemplate = (props) => {
     const featuredAlt = featuredImage.node?.alt_text || ''
     const featuredTitle = featuredImage?.node?.title || ''
 
-    // <RelatedCards relatedPosts={relatedPosts} />
+    const relatedPosts = relatedByCat.nodes
+    const relatedCount = relatedPosts.length
+    if (relatedCount < 3) {
+        const relatedNeeded = 3 - relatedCount
+
+        for (var i = 0; i < relatedNeeded; i++) {
+            const newRelated = relatedTopUp.nodes[i]
+            relatedPosts.push(newRelated)
+        }
+    }
 
     return (
         <Layout>
@@ -97,16 +108,34 @@ const PostTemplate = (props) => {
                     <TagList tags={tags.nodes} />
                 </article>
             </ArticleContainer>
+            <RelatedCards relatedPosts={relatedPosts} />
         </Layout>
     )
 }
 
 export const postQuery = graphql`
-    query post($id: String!) {
+    query post($id: String!, $primaryCatId: Int!) {
         wpPost(id: { eq: $id }) {
             ...PostContent
             modifiedForUser: date(formatString: "D MMMM YYYY")
             modifiedForSchema: date(formatString: "YYYY-MM-DD, HH:mm:ss")
+        }
+        relatedByCat: allWpPost(
+            limit: 3
+            filter: {
+                categories: {
+                    nodes: { elemMatch: { databaseId: { eq: $primaryCatId } } }
+                }
+            }
+        ) {
+            nodes {
+                ...RelatedContent
+            }
+        }
+        relatedTopUp: allWpPost(limit: 3) {
+            nodes {
+                ...RelatedContent
+            }
         }
     }
 `

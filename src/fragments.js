@@ -127,4 +127,17 @@ export const fragments = graphql`
             twitterTitle
         }
     }
+
+    fragment RelatedContent on WpPost {
+        slug
+        title
+        cleanTitle
+        featuredImage {
+            node {
+                remoteFile {
+                    ...SmallThumbnail
+                }
+            }
+        }
+    }
 `
