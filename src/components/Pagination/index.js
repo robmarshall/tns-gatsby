@@ -1,5 +1,4 @@
 import React from 'react'
-import { Location } from '@reach/router'
 import { Link } from 'gatsby'
 
 import './pagination.scss'
@@ -7,18 +6,11 @@ import './pagination.scss'
 function makePageUrl(prefix, pageNum) {
     const end = pageNum === 0 ? '' : `page/${pageNum + 1}`
     const fullString = `${prefix}${end}`
-    const cleanString = fullString.replace(/^\/+/g, '')
-    return `${process.env.GATSBY_BASE_URL}/${cleanString}`
+    const cleanUrl = fullString.replace(/^\/+/g, '')
+    return process.env.GATSBY_BASE_URL + '/' + cleanUrl
 }
 
-const NextPrevLink = ({
-    next,
-    prev,
-    prefix,
-    currentPage,
-    totalPages,
-    location,
-}) => {
+const NextPrevLink = ({ next, prev, prefix, currentPage, totalPages }) => {
     let linkClass = 'paginationLink paginationLink-'
     let pageNum
     let humanNum
@@ -44,10 +36,7 @@ const NextPrevLink = ({
 
     return (
         <li className="paginationItem paginationWord">
-            <Link
-                to={makePageUrl(prefix, pageNum, location)}
-                className={linkClass}
-            >
+            <Link to={makePageUrl(prefix, pageNum)} className={linkClass}>
                 <span className="paginationLabel">
                     {`${label} Page (${humanNum})`}
                 </span>
@@ -57,6 +46,7 @@ const NextPrevLink = ({
 }
 
 const PageLink = ({ pageNum, prefix, isCurrent, humanNum }) => {
+    console.log(makePageUrl(prefix, pageNum))
     return (
         <li key={`pagination-number${humanNum}`} className="paginationItem">
             <Link
@@ -78,55 +68,43 @@ const PageLink = ({ pageNum, prefix, isCurrent, humanNum }) => {
 const Pagination = ({ prefix, currentPage, pageCount }) => {
     if (pageCount > 1) {
         return (
-            <Location>
-                {({ location }) => (
-                    <div className="pagination-wrap">
-                        <nav
-                            className="pagination"
-                            aria-label="Pagination Navigation"
-                        >
-                            <ul className="paginationList">
-                                <NextPrevLink
-                                    prev
-                                    prefix={prefix}
-                                    currentPage={currentPage}
-                                    totalPages={pageCount}
-                                    location={location}
-                                />
-                                {Array.from({ length: pageCount }, (_, i) => {
-                                    const humanNum = i + 1
+            <div className="pagination-wrap">
+                <nav className="pagination" aria-label="Pagination Navigation">
+                    <ul className="paginationList">
+                        <NextPrevLink
+                            prev
+                            prefix={prefix}
+                            currentPage={currentPage}
+                            totalPages={pageCount}
+                        />
+                        {Array.from({ length: pageCount }, (_, i) => {
+                            const humanNum = i + 1
 
-                                    if (
-                                        currentPage + 3 > humanNum &&
-                                        currentPage - 3 < humanNum
-                                    ) {
-                                        return (
-                                            <PageLink
-                                                key={`pageNumber-${humanNum}`}
-                                                prefix={prefix}
-                                                pageNum={i}
-                                                isCurrent={
-                                                    currentPage === humanNum
-                                                }
-                                                humanNum={humanNum}
-                                                location={location}
-                                            />
-                                        )
-                                    }
-                                    return null
-                                })}
-                                <NextPrevLink
-                                    next
-                                    prefix={prefix}
-                                    currentPage={currentPage}
-                                    totalPages={pageCount}
-                                    location={location}
-                                />
-                            </ul>
-                        </nav>
-                    </div>
-                )}
-            </Location>
+                            if (
+                                currentPage + 3 > humanNum &&
+                                currentPage - 3 < humanNum
+                            ) {
+                                return (
+                                    <PageLink
+                                        key={`pageNumber-${humanNum}`}
+                                        prefix={prefix}
+                                        pageNum={i}
+                                        isCurrent={currentPage === humanNum}
+                                        humanNum={humanNum}
+                                    />
+                                )
+                            }
+                            return null
+                        })}
+                        <NextPrevLink
+                            next
+                            prefix={prefix}
+                            currentPage={currentPage}
+                            totalPages={pageCount}
+                        />
+                    </ul>
+                </nav>
+            </div>
         )
     }
     return null

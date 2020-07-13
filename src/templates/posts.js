@@ -49,7 +49,7 @@ const Posts = ({ data, pageContext }) => {
                 </div>
 
                 <Pagination
-                    prefix=""
+                    prefix="/"
                     currentPage={pageInfo.currentPage}
                     pageCount={pageInfo.pageCount}
                 />

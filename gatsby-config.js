@@ -33,7 +33,7 @@ module.exports = {
         {
             resolve: `gatsby-source-wordpress-experimental`,
             options: {
-                url: `http://rest.thoughtsandstuff.com/graphql`,
+                url: process.env.GATSBY_SOURCE_URL,
                 verbose: true,
                 schema: {
                     perPage: 20,
@@ -51,7 +51,7 @@ module.exports = {
                         limit:
                             process.env.NODE_ENV === `development`
                                 ? // Lets just pull 50 posts in development to make it easy on ourselves.
-                                  50
+                                  5000
                                 : // and we don't actually need more than 5000 in production for this particular site
                                   5000,
                     },
@@ -99,7 +99,7 @@ module.exports = {
                         },
                         query: `
                   {
-                    allWpPost(first: 2000) {
+                    allWpPost {
                       nodes {
                         title
                         slug
