@@ -31,7 +31,7 @@
         "gatsby-source-wordpress-experimental": "^1.0.2",
         "gatsby-transformer-sharp": "^2.5.4",
         "he": "^1.2.0",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.19",
         "moment": "^2.26.0",
         "node-sass": "^4.14.1",
         "prismjs": "^1.20.0",
