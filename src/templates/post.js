@@ -117,8 +117,8 @@ export const postQuery = graphql`
     query post($id: String!, $primaryCatId: Int!) {
         wpPost(id: { eq: $id }) {
             ...PostContent
-            modifiedForUser: date(formatString: "D MMMM YYYY")
-            modifiedForSchema: date(formatString: "YYYY-MM-DD, HH:mm:ss")
+            modifiedForUser: modifed(formatString: "D MMMM YYYY")
+            modifiedForSchema: modifed(formatString: "YYYY-MM-DD, HH:mm:ss")
         }
         relatedByCat: allWpPost(
             limit: 3

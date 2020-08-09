@@ -23,6 +23,13 @@ function useSiteDefaults() {
                         facebookAppID
                     }
                 }
+                logo: file(relativePath: { eq: "logo.png" }) {
+                    childImageSharp {
+                        fluid {
+                            src
+                        }
+                    }
+                }
             }
         `
     )

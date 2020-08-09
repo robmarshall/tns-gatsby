@@ -19,13 +19,13 @@ export default memo(
         articleBody,
     }) => {
         const {
-            logoPng,
+            logo,
             site: {
                 siteMetadata: { siteName },
             },
         } = useSiteDefaults()
 
-        const logoData = logoPng?.childImageSharp?.fluid || false
+        const logoData = logo?.childImageSharp?.fluid || false
 
         // Set this as fallback. Overwritten later.
         let schema = [

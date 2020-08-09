@@ -183,7 +183,7 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-webpack-bundle-analyzer',
             options: {
-                // production: true,
+                production: true,
             },
         },
         `gatsby-plugin-netlify`,

@@ -1,4 +1,3 @@
-// const getRelatedPosts = require('./getRelatedPosts.js')
 const createPage = require('./create/page.js')
 const createPost = require('./create/post.js')
 const createCat = require('./create/cat.js')

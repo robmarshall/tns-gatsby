@@ -23,7 +23,7 @@ const PageTemplate = (props) => {
             <SEO
                 postType="page"
                 yoastTitle={seo.title}
-                title={title}
+                title={cleanTitle}
                 description={seo.metaDesc}
                 facebookPostImage={facebookImage}
                 twitterPostImage={twitterImage}

@@ -1,5 +1,6 @@
 query SINGLE_CONTENT_QUERY($id: ID!) {
   contentType(id: $id) {
+    archivePath
     canExport
     connectedTaxonomies(first: 100) {
       nodes {

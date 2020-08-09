@@ -1,6 +1,7 @@
 query NODE_LIST_QUERY($first: Int!, $after: String) {
   contentTypes(first: $first, after: $after) {
     nodes {
+      archivePath
       canExport
       connectedTaxonomies(first: 100) {
         nodes {

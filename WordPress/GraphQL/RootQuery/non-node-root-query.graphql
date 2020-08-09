@@ -49,6 +49,31 @@ query NON_NODE_QUERY {
       showBlogPage
     }
 
+    openGraph {
+      defaultImage {
+        id
+        sourceUrl
+      }
+
+      frontPage {
+        description
+
+        image {
+          id
+          sourceUrl
+        }
+
+        title
+      }
+    }
+
+    redirects {
+      format
+      origin
+      target
+      type
+    }
+
     schema {
       companyLogo {
         id

@@ -1,5 +1,6 @@
 query PREVIEW_QUERY($id: ID!) {
   contentType(id: $id, idType: ID, asPreview: true) {
+    archivePath
     canExport
     connectedTaxonomies(first: 100) {
       nodes {

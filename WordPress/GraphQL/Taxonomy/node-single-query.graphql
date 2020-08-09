@@ -1,5 +1,6 @@
 query SINGLE_CONTENT_QUERY($id: ID!) {
   taxonomy(id: $id) {
+    archivePath
     connectedContentTypes(first: 100) {
       nodes {
         id
