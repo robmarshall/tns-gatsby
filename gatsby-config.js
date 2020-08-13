@@ -51,6 +51,9 @@ module.exports = {
                                   5000,
                     },
                 },
+                html: {
+                    imageMaxWidth: 700,
+                },
             },
         },
         {
