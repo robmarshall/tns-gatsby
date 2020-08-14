@@ -61,9 +61,9 @@ module.exports = function createResolvers({
             cleanExcerpt: {
                 type: 'String',
                 resolve(source, args, context, info) {
-                    const seo = source?.seo.metaDesc || false
-                    const excerpt = source?.excerpt || false
-                    const content = source?.content || ''
+                    const seo = source?.seo?.metaDesc || ''
+                    const excerpt = source?.excerpt || ''
+                    const content = source?.content
                     return he.unescape(
                         stripTags(seo) ||
                             limitString(stripTags(excerpt || content)) ||
