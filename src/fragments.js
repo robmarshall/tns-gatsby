@@ -39,6 +39,7 @@ export const fragments = graphql`
         slug
         title
         cleanTitle
+        content
         databaseId
         excerpt
         cleanExcerpt
