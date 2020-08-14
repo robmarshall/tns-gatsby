@@ -1,8 +1,4 @@
 module.exports = function limitString(string, length) {
-    if (!string) {
-        return ''
-    }
-
     const fullLength = string.length
 
     let trimmedString = string.substr(0, length)

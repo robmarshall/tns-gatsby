@@ -63,11 +63,10 @@ module.exports = function createResolvers({
                 resolve(source, args, context, info) {
                     const seo = source?.seo?.metaDesc || ''
                     const excerpt = source?.excerpt || ''
-                    const content = source?.content
+                    const content = source?.content || ''
                     return he.unescape(
                         stripTags(seo) ||
-                            limitString(stripTags(excerpt || content)) ||
-                            ''
+                            limitString(stripTags(excerpt || content), 150)
                     )
                 },
             },
