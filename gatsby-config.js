@@ -36,7 +36,7 @@ module.exports = {
                 url: process.env.GATSBY_SOURCE_URL,
                 verbose: true,
                 schema: {
-                    perPage: 20,
+                    perPage: 10,
                 },
                 develop: {
                     hardCacheMediaFiles: true,

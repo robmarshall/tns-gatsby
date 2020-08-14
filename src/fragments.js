@@ -42,7 +42,7 @@ export const fragments = graphql`
         databaseId
         excerpt
         cleanExcerpt
-        modifiedForUser: modifed(formatString: "D MMMM YYYY")
+        modifiedForUser: modified(formatString: "D MMMM YYYY")
         modifiedForSchema: modified(formatString: "YYYY-MM-DD, HH:mm:ss")
         featuredImage {
             node {
@@ -76,9 +76,9 @@ export const fragments = graphql`
         excerpt
         cleanExcerpt
         featuredImage {
-            altText
-            title
             node {
+                altText
+                title
                 remoteFile {
                     ...Thumbnail
                     ...Facebook

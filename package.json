@@ -2,7 +2,7 @@
     "name": "gatsby-blog-starter",
     "private": true,
     "description": "Gatsby Blog Starter Framework",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "author": "Robert Marshall",
     "dependencies": {
         "dotenv": "^8.2.0",

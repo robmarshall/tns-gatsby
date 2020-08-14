@@ -15,7 +15,6 @@ const PostTemplate = (props) => {
     }, [])
 
     const {
-        // pageContext: { relatedPosts },
         data: {
             wpPost: {
                 content,
@@ -117,8 +116,8 @@ export const postQuery = graphql`
     query post($id: String!, $primaryCatId: Int!) {
         wpPost(id: { eq: $id }) {
             ...PostContent
-            modifiedForUser: modifed(formatString: "D MMMM YYYY")
-            modifiedForSchema: modifed(formatString: "YYYY-MM-DD, HH:mm:ss")
+            modifiedForUser: modified(formatString: "D MMMM YYYY")
+            modifiedForSchema: modified(formatString: "YYYY-MM-DD, HH:mm:ss")
         }
         relatedByCat: allWpPost(
             limit: 3
