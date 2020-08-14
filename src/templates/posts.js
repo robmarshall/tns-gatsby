@@ -31,8 +31,6 @@ const Posts = ({ data, pageContext }) => {
                         const imageAlt =
                             node?.featuredImage?.node?.imageAlt || ''
 
-                        console.log(image)
-
                         return (
                             <ArticleCard
                                 key={node.slug}

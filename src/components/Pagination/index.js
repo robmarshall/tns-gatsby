@@ -46,7 +46,6 @@ const NextPrevLink = ({ next, prev, prefix, currentPage, totalPages }) => {
 }
 
 const PageLink = ({ pageNum, prefix, isCurrent, humanNum }) => {
-    console.log(makePageUrl(prefix, pageNum))
     return (
         <li key={`pagination-number${humanNum}`} className="paginationItem">
             <Link
