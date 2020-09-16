@@ -1,7 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import useSiteDefaults from '../../hooks/useSiteDefaults'
-
 import decodeEntities from '../../utils/decodeEntities'
 import SchemaOrg from './SchemaOrg'
 import { isPost } from './SeoHelpers'
@@ -34,12 +33,16 @@ const SEO = ({
         twitterImage?.childImageSharp?.fixed?.src || false
 
     // Set the title from the browser. If there is a page title, set properly. Otherwise fall back
-    const browserTitle =
-        yoastTitle || title
-            ? `${title} | ${siteName}`
-            : `${siteName} | ${tagLine}`
-
-    const metaTitle = decodeEntities(yoastTitle || title || siteName)
+    let browserTitle = yoastTitle
+    if (!browserTitle) {
+        if (title) {
+            browserTitle = `${title} | ${siteName}`
+        }
+        if (!browserTitle) {
+            browserTitle = `${siteName} | ${tagLine}`
+        }
+        browserTitle = decodeEntities(browserTitle)
+    }
 
     const facebookMetaImage =
         facebookPostImage ||
@@ -60,7 +63,7 @@ const SEO = ({
         <>
             <Helmet>
                 {/* General tags */}
-                <title>{decodeEntities(browserTitle)}</title>
+                <title>{browserTitle}</title>
                 {description && (
                     <meta name="description" content={description} />
                 )}
@@ -74,7 +77,7 @@ const SEO = ({
                 {isPost(postType) ? (
                     <meta property="og:type" content="article" />
                 ) : null}
-                <meta name="title" property="og:title" content={metaTitle} />
+                <meta name="title" property="og:title" content={browserTitle} />
                 {description && (
                     <meta
                         name="description"
@@ -105,7 +108,7 @@ const SEO = ({
                 {/* Twitter Card tags */}
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:creator" content={fallback.author} />
-                <meta name="twitter:title" content={metaTitle} />
+                <meta name="twitter:title" content={browserTitle} />
                 {description && (
                     <meta name="twitter:description" content={description} />
                 )}
@@ -119,7 +122,7 @@ const SEO = ({
             <SchemaOrg
                 author={author}
                 url={url}
-                title={metaTitle}
+                title={browserTitle}
                 image={fallback.siteUrl + facebookMetaImage}
                 description={description}
                 dateModified={dateModified}

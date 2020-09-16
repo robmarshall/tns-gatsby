@@ -13,21 +13,25 @@ require('dotenv').config({
     path: `.env.${activeEnv}`,
 })
 
-/**
- * Custom resolver to add all items from Media items (media libary)
- * to Gatsby. So we can use them as Gatsby images.
- *
- * To work properly, in image queries also query
- * - sourceUrl
- * - databaseId
- * - modified
- *
- * Otherwise resolver doesn't work
- */
+function cleanTitle(source) {
+    return he.unescape(source?.title || '')
+}
 
-/**
- * Map over items array using the fn function but wait for each step to finish before moving to the next one
- */
+function cleanSeoTitle(source) {
+    return he.unescape(source?.title || '')
+}
+
+function cleanExcerpt(source) {
+    const seo = source?.seo?.metaDesc
+    const excerpt = source?.excerpt
+    const content = source?.content
+
+    const toClean = he.unescape(seo || excerpt || content || '')
+    const noTags = stripTags(toClean)
+    const lengthCorrected = limitString(noTags, 180)
+
+    return lengthCorrected.replace(/(\r\n|\n|\r)/gm, '')
+}
 
 module.exports = function createResolvers({
     actions,
@@ -46,28 +50,22 @@ module.exports = function createResolvers({
         WpPage: {
             cleanTitle: {
                 type: 'String',
-                resolve(source, args, context, info) {
-                    return he.unescape(source?.title || '')
+                resolve(source) {
+                    return cleanTitle(source)
                 },
             },
         },
         WpPost: {
             cleanTitle: {
                 type: 'String',
-                resolve(source, args, context, info) {
-                    return he.unescape(source?.title || '')
+                resolve(source) {
+                    return cleanTitle(source)
                 },
             },
             cleanExcerpt: {
                 type: 'String',
-                resolve(source, args, context, info) {
-                    const seo = source?.seo?.metaDesc || ''
-                    const excerpt = source?.excerpt || ''
-                    const content = source?.content || ''
-                    return he.unescape(
-                        stripTags(seo) ||
-                            limitString(stripTags(excerpt || content), 150)
-                    )
+                resolve(source) {
+                    return cleanExcerpt(source)
                 },
             },
         },
