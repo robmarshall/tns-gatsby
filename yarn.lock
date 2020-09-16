@@ -1898,6 +1898,24 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
+"@prefresh/core@^0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@prefresh/core/-/core-0.8.1.tgz#d4f15d9e3ee9c16bf420405e2b422774e807a594"
+  integrity sha512-woho+Ja8w3pxnZwq68MnWzH9ffdidrpJsV6PDTNIsJOpsLYmfCNxqxGsxIqYw40d1yjg4h6HFGbb6Y9lhyTPNA==
+
+"@prefresh/utils@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@prefresh/utils/-/utils-0.3.1.tgz#f9e1a5e1fa4bc02989980733950e60520f0f9869"
+  integrity sha512-9kLzPWN4teeiKuc+Rle3SF/hyx5lzo35X4rHr+kQXnJT+BaEb1ymDWIHGkv85xjnw8+l6I1r1H7JB4BHOMJfmg==
+
+"@prefresh/webpack@^1.0.2":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@prefresh/webpack/-/webpack-1.1.0.tgz#a36fd072ef1d5cd88ced8df89d7ae62bdbddf71b"
+  integrity sha512-a3JG2maH3bacDobb4WywVTuqvAyBxJ7dRNSG2Ywv1AytAdgpgNZKJpR4xUTzPTwPGpRkfNOOf4mODqoOZ7W0Sw==
+  dependencies:
+    "@prefresh/core" "^0.8.1"
+    "@prefresh/utils" "^0.3.1"
+
 "@reach/alert@0.10.3":
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/@reach/alert/-/alert-0.10.3.tgz#9e4278edf8e6cfbe94df9a105faaa1c049a84517"
@@ -7334,6 +7352,14 @@ gatsby-plugin-page-creator@^2.3.28:
     graphql "^14.6.0"
     lodash "^4.17.20"
 
+gatsby-plugin-preact@^4.0.12:
+  version "4.0.12"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-preact/-/gatsby-plugin-preact-4.0.12.tgz#cde31eb11ff1f833745bf47d6a179e1393931f60"
+  integrity sha512-t26xoN81Z8DRbiZPJTLszrNElY/pUb7N9u99htRStvOnJeGv4luXPPXofTHJ2dI44V1zaBP/5BiWwU+CiJREoQ==
+  dependencies:
+    "@prefresh/webpack" "^1.0.2"
+    react-refresh "^0.8.2"
+
 gatsby-plugin-prefetch-google-fonts@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-prefetch-google-fonts/-/gatsby-plugin-prefetch-google-fonts-1.4.3.tgz#0557879c7ba0085e4d53107699a8c1073bd52d0e"
@@ -12557,6 +12583,18 @@ potrace@^2.1.8:
   dependencies:
     jimp "^0.14.0"
 
+preact-render-to-string@^5.1.10:
+  version "5.1.10"
+  resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-5.1.10.tgz#cce03d73b166c550148af9dedc9e06fdf6820f8a"
+  integrity sha512-40svy7NDe5Qe0ymdsIC11f0hZb05MeTSUqqIaWJ5DEFCh/sF86KcpRW0kN/ymGYDVVUCfv9qFrVuLCXR7aQxgQ==
+  dependencies:
+    pretty-format "^3.8.0"
+
+preact@^10.4.8:
+  version "10.4.8"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.4.8.tgz#8517b106cc5591eb675237c93da99ac052cf4756"
+  integrity sha512-uVLeEAyRsCkUEFhVHlOu17OxcrwC7+hTGZ08kBoLBiGHiZooUZuibQnphgMKftw/rqYntNMyhVCPqQhcyAGHag==
+
 prebuild-install@^5.3.3, prebuild-install@^5.3.4, prebuild-install@^5.3.5:
   version "5.3.5"
   resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-5.3.5.tgz#e7e71e425298785ea9d22d4f958dbaccf8bb0e1b"
@@ -12632,6 +12670,11 @@ pretty-format@^25.5.0:
     ansi-regex "^5.0.0"
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
+
+pretty-format@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-3.8.0.tgz#bfbed56d5e9a776645f4b1ff7aa1a3ac4fa3c385"
+  integrity sha1-v77VbV6ad2ZF9LH/eqGjrE+jw4U=
 
 prismjs@^1.21.0:
   version "1.21.0"
@@ -13115,6 +13158,11 @@ react-refresh@^0.7.0:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.7.2.tgz#f30978d21eb8cac6e2f2fde056a7d04f6844dd50"
   integrity sha512-u5l7fhAJXecWUJzVxzMRU2Zvw8m4QmDNHlTrT5uo3KBlYBhmChd7syAakBoay1yIiVhx/8Fi7a6v6kQZfsw81Q==
+
+react-refresh@^0.8.2:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
+  integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
 react-remove-scroll-bar@^2.1.0:
   version "2.1.0"

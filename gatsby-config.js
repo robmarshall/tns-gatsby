@@ -20,6 +20,7 @@ module.exports = {
         facebookAppID: `xxx`,
     },
     plugins: [
+        `gatsby-plugin-preact`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sitemap`,
         `gatsby-plugin-robots-txt`,
