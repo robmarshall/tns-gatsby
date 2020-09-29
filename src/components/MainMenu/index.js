@@ -9,7 +9,9 @@ const Menu = ({ data }) => (
         <ul>
             {data.map((item) => (
                 <li key={slugify(item.label)}>
-                    <Link to={item.url}>{item.label}</Link>
+                    <Link target={item.target} to={item.url}>
+                        {item.label}
+                    </Link>
                 </li>
             ))}
         </ul>
