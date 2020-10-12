@@ -22,7 +22,7 @@ const MainMenu = ({ props }) => (
     <StaticQuery
         query={graphql`
             query {
-                wpMenu(name: { eq: "Main Menu" }) {
+                wpMenu(locations: { eq: HEADER_MENU }) {
                     menuItems {
                         nodes {
                             url

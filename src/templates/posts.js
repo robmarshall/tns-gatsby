@@ -24,12 +24,12 @@ const Posts = ({ data, pageContext }) => {
                 <div id="post-list" className="post-list">
                     {nodes.map((node, count) => {
                         const image =
-                            node?.featuredImage?.node?.remoteFile
+                            node?.featuredImage?.node?.localFile
                                 ?.childImageSharp?.fluid || false
                         const imageTitle =
-                            node?.featuredImage?.node?.imageTitle || ''
+                            node?.featuredImage?.node?.title || ''
                         const imageAlt =
-                            node?.featuredImage?.node?.imageAlt || ''
+                            node?.featuredImage?.node?.altText || ''
 
                         return (
                             <ArticleCard

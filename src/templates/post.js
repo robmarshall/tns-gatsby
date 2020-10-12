@@ -36,15 +36,15 @@ const PostTemplate = (props) => {
     } = props
 
     const image =
-        featuredImage?.node?.remoteFile?.childImageSharp?.fluid || false
+        featuredImage?.node?.localFile?.childImageSharp?.fluid || false
 
     const facebookImage =
-        featuredImage?.node?.remoteFile?.childImageSharp?.facebook?.src || false
+        featuredImage?.node?.localFile?.childImageSharp?.facebook?.src || false
 
     const twitterImage =
-        featuredImage?.node?.remoteFile?.childImageSharp?.twitter?.src || false
+        featuredImage?.node?.localFile?.childImageSharp?.twitter?.src || false
 
-    const featuredAlt = featuredImage.node?.alt_text || ''
+    const featuredAlt = featuredImage.node?.altText || ''
     const featuredTitle = featuredImage?.node?.title || ''
 
     const relatedPosts = relatedByCat.nodes

@@ -7,9 +7,9 @@ import './simplecard.scss'
 const SimpleCard = ({ node }) => {
     const { cleanTitle, featuredImage, slug } = node
 
-    const image = featuredImage?.node?.remoteFile?.childImageSharp?.fluid
+    const image = featuredImage?.node?.localFile?.childImageSharp?.fluid
     const imageTitle = featuredImage?.node?.title
-    const imageAlt = featuredImage?.node?.alt_text
+    const imageAlt = featuredImage?.node?.altText
 
     return (
         <div key={slug} className="simpleCard">

@@ -47,7 +47,9 @@ export const fragments = graphql`
         modifiedForSchema: modified(formatString: "YYYY-MM-DD, HH:mm:ss")
         featuredImage {
             node {
-                remoteFile {
+                altText
+                title
+                localFile {
                     ...Thumbnail
                 }
             }
@@ -80,7 +82,7 @@ export const fragments = graphql`
             node {
                 altText
                 title
-                remoteFile {
+                localFile {
                     ...Thumbnail
                     ...Facebook
                     ...Twitter
@@ -112,7 +114,7 @@ export const fragments = graphql`
         content
         featuredImage {
             node {
-                remoteFile {
+                localFile {
                     ...Facebook
                     ...Twitter
                 }
@@ -137,7 +139,7 @@ export const fragments = graphql`
         cleanTitle
         featuredImage {
             node {
-                remoteFile {
+                localFile {
                     ...SmallThumbnail
                 }
             }

@@ -1,5 +1,5 @@
 const moment = require('moment')
-const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+const { createlocalFileNode } = require(`gatsby-source-filesystem`)
 
 const he = require('he')
 const decodeEntities = require(`../utils/decodeEntities.js`)
@@ -28,7 +28,7 @@ function cleanExcerpt(source) {
 
     const toClean = he.unescape(seo || excerpt || content || '')
     const noTags = stripTags(toClean)
-    const lengthCorrected = limitString(noTags, 180)
+    const lengthCorrected = limitString(noTags, 220)
 
     return lengthCorrected.replace(/(\r\n|\n|\r)/gm, '')
 }

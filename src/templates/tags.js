@@ -28,7 +28,7 @@ const TagTemplate = ({ data, pageContext }) => {
                 <div id="post-list" className="post-list">
                     {nodes.map((node, count) => {
                         const image =
-                            node?.featuredImage?.node?.remoteFile
+                            node?.featuredImage?.node?.localFile
                                 ?.childImageSharp?.fluid || false
                         const imageTitle =
                             node?.featuredImage?.node?.imageTitle || ''

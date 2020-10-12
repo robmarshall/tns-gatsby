@@ -1,6 +1,10 @@
 module.exports = function limitString(string, length) {
     const fullLength = string.length
 
+    if (fullLength <= length) {
+        return string
+    }
+
     let trimmedString = string.substr(0, length)
 
     trimmedString = trimmedString.substr(
@@ -8,8 +12,9 @@ module.exports = function limitString(string, length) {
         Math.min(trimmedString.length, trimmedString.lastIndexOf(' '))
     )
 
-    if (fullLength !== trimmedString.length) {
+    if (fullLength > trimmedString.length) {
         return `${trimmedString}...`
     }
-    return trimmedString
+
+    return `${trimmedString}.`
 }
