@@ -1,8 +1,14 @@
 import React from 'react'
 
 export default function HTML(props) {
-
-    const { body,htmlAttributes, headComponents, bodyAttributes, preBodyComponents, postBodyComponents} = props
+    const {
+        body,
+        htmlAttributes,
+        headComponents,
+        bodyAttributes,
+        preBodyComponents,
+        postBodyComponents,
+    } = props
 
     return (
         // eslint-disable-next-line
@@ -14,11 +20,16 @@ export default function HTML(props) {
                     name="viewport"
                     content="width=device-width, initial-scale=1, shrink-to-fit=no"
                 />
+                <meta
+                    name="purpleads-verification"
+                    content="8b695f33439a94b70ff8a463"
+                />
                 {headComponents}
             </head>
             <body
                 // eslint-disable-next-line
-               {...bodyAttributes}>
+                {...bodyAttributes}
+            >
                 {preBodyComponents}
                 <noscript key="noscript" id="gatsby-noscript">
                     This app works best with JavaScript enabled.
@@ -31,10 +42,10 @@ export default function HTML(props) {
                 />
                 {postBodyComponents}
 
-                <script
+                {/**<script
                     async
                     src="https://arc.io/widget.js?WrxccT2crAmKvqcpei9Qkw"
-                />
+                />**/}
             </body>
         </html>
     )
