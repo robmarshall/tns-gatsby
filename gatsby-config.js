@@ -24,6 +24,13 @@ module.exports = {
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sitemap`,
         `gatsby-plugin-robots-txt`,
+        `gatsby-plugin-force-trailing-slashes`,
+        {
+            resolve: `gatsby-plugin-canonical-urls`,
+            options: {
+                siteUrl: process.env.GATSBY_BASE_URL || '',
+            },
+        },
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -43,11 +50,19 @@ module.exports = {
                     hardCacheMediaFiles: true,
                 },
                 type: {
+                    __all: {
+                        limit: process.env.NODE_ENV === `development` && 10,
+                    },
+                    MediaItem: {
+                        localFile: {
+                            requestConcurrency: 10,
+                        },
+                    },
                     Post: {
                         limit:
                             process.env.NODE_ENV === `development`
                                 ? // Lets just pull 50 posts in development to make it easy on ourselves.
-                                  5000
+                                  5
                                 : // and we don't actually need more than 5000 in production for this particular site
                                   5000,
                     },
