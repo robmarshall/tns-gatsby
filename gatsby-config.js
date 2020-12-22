@@ -163,17 +163,9 @@ module.exports = {
             resolve: 'gatsby-plugin-preload-fonts',
         },
         {
-            resolve: `gatsby-plugin-google-analytics`,
+            resolve: `gatsby-plugin-google-gtag`,
             options: {
-                trackingId: process.env.GOOGLE_TRACKING_ID || '',
-                // Puts tracking script in the head instead of the body
-                head: true,
-                // Enables Google Optimize using your container Id
-                optimizeId: process.env.GOOGLE_OPTIMIZE_ID || '',
-                // Enables Google Optimize Experiment ID
-                experimentId: process.env.GOOGLE_EXPERIMENT_ID || '',
-                // Set Variation ID. 0 for original 1,2,3....
-                variationId: process.env.GOOGLE_VARIATION_ID || '',
+                trackingIds: [process.env.GOOGLE_ID] || [],
             },
         },
         {
