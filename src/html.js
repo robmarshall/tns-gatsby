@@ -37,10 +37,7 @@ export default function HTML(props) {
                     dangerouslySetInnerHTML={{ __html: body }}
                 />
                 {postBodyComponents}
-                <script
-                    async
-                    src="https://arc.io/widget.min.js#WrxccT2crAmKvqcpei9Qkw"
-                />
+                <script async src="https://arc.io/widget.min.js#nkJroGnK" />
             </body>
         </html>
     )
