@@ -22,6 +22,7 @@ const ArticleCard = ({
                         className={style.image}
                         fluid={image}
                         loading={count === 0 ? 'eager' : 'lazy'}
+                        fadeIn={false}
                         title={imageTitle}
                         alt={imageAlt}
                     />
