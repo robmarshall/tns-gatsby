@@ -153,14 +153,17 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-plugin-google-fonts`,
+            resolve: `gatsby-plugin-webfonts`,
             options: {
-                fonts: [`Merriweather\:400,700`],
-                display: 'swap',
+                fonts: {
+                    google: [
+                        {
+                            family: 'Merriweather',
+                            variants: ['400', '700'],
+                        },
+                    ],
+                },
             },
-        },
-        {
-            resolve: 'gatsby-plugin-preload-fonts',
         },
         {
             resolve: `gatsby-plugin-google-gtag`,
