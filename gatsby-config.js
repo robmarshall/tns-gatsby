@@ -186,6 +186,14 @@ module.exports = {
             },
         },
         {
+            resolve: `gatsby-plugin-minify-classnames`,
+            options: {
+                dictionary:
+                    'bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0123456789',
+                enableOnDevelopment: false,
+            },
+        },
+        {
             resolve: 'gatsby-plugin-webpack-bundle-analyzer',
             options: {
                 production: true,
