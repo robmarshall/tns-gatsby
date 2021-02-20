@@ -39,7 +39,7 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-source-wordpress-experimental`,
+            resolve: `gatsby-source-wordpress`,
             options: {
                 url: process.env.GATSBY_SOURCE_URL,
                 verbose: true,
@@ -190,7 +190,7 @@ module.exports = {
             options: {
                 dictionary:
                     'bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0123456789',
-                enableOnDevelopment: false,
+                enable: activeEnv !== 'development',
             },
         },
         {
