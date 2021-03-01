@@ -122,6 +122,7 @@ export const postQuery = graphql`
         relatedByCat: allWpPost(
             limit: 3
             filter: {
+                id: { ne: $id }
                 categories: {
                     nodes: { elemMatch: { databaseId: { eq: $primaryCatId } } }
                 }
@@ -131,7 +132,7 @@ export const postQuery = graphql`
                 ...RelatedContent
             }
         }
-        relatedTopUp: allWpPost(limit: 3) {
+        relatedTopUp: allWpPost(limit: 3, filter: { id: { ne: $id } }) {
             nodes {
                 ...RelatedContent
             }
