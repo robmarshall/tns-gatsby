@@ -41,8 +41,9 @@ const SEO = ({
         if (!browserTitle) {
             browserTitle = `${siteName} | ${tagLine}`
         }
-        browserTitle = decodeEntities(browserTitle)
     }
+
+    browserTitle = decodeEntities(browserTitle)
 
     const facebookMetaImage =
         facebookPostImage ||
