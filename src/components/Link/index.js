@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link as GatsbyLink } from 'gatsby'
-import { OutboundLink } from 'gatsby-plugin-google-gtag'
 
 // Since DOM elements <a> cannot receive activeClassName
 // and partiallyActive, destructure the prop here and
@@ -22,9 +21,9 @@ const Link = ({ children, to, activeClassName, partiallyActive, ...other }) => {
     }
     return (
         // eslint-disable-next-line react/jsx-props-no-spreading
-        <OutboundLink href={to} {...other}>
+        <a href={to} {...other}>
             {children}
-        </OutboundLink>
+        </a>
     )
 }
 export default Link
