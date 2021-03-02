@@ -166,9 +166,9 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-plugin-google-gtag`,
+            resolve: `gatsby-plugin-plausible`,
             options: {
-                trackingIds: [process.env.GOOGLE_ID] || [],
+                domain: `thoughtsandstuff.com`,
             },
         },
         {
