@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { getImage } from 'gatsby-plugin-image'
 import ArticleCard from '../components/ArticleCard'
 import FilterCategories from '../components/FilterCategories'
 import Pagination from '../components/Pagination'
@@ -23,9 +24,9 @@ const Posts = ({ data, pageContext }) => {
                 {currentPage === 1 && <FilterCategories />}
                 <div id="post-list" className="post-list">
                     {nodes.map((node, count) => {
-                        const image =
+                        const image = getImage(
                             node?.featuredImage?.node?.localFile
-                                ?.childImageSharp?.fluid || false
+                        )
                         const imageTitle =
                             node?.featuredImage?.node?.title || ''
                         const imageAlt =

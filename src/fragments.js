@@ -3,17 +3,13 @@ import { graphql } from 'gatsby'
 export const fragments = graphql`
     fragment Thumbnail on File {
         childImageSharp {
-            fluid(maxWidth: 700) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-            }
+            gatsbyImageData(formats: [AUTO, WEBP, AVIF])
         }
     }
 
     fragment SmallThumbnail on File {
         childImageSharp {
-            fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp
-            }
+            gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
         }
     }
 

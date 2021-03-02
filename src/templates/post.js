@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Prism from 'prismjs'
 import CategoryList from '../components/CategoryList'
 import RelatedCards from '../components/RelatedCards'
@@ -34,8 +34,7 @@ const PostTemplate = (props) => {
         uri,
     } = props
 
-    const image =
-        featuredImage?.node?.localFile?.childImageSharp?.fluid || false
+    const image = getImage(featuredImage?.node?.localFile)
 
     const facebookImage =
         featuredImage?.node?.localFile?.childImageSharp?.facebook?.src || false
@@ -80,9 +79,9 @@ const PostTemplate = (props) => {
 
                     {image && (
                         <div>
-                            <Img
+                            <GatsbyImage
                                 className="post__feat-image"
-                                fluid={image}
+                                image={image}
                                 loading="eager"
                                 title={featuredTitle || ''}
                                 alt={featuredAlt || ''}

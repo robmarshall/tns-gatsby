@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import style from './style.module.scss'
 
 const ArticleCard = ({
@@ -16,13 +16,12 @@ const ArticleCard = ({
 }) => {
     return (
         <div className={style.card}>
-            <Link to={`/${slug}`} className={style.link}>
+            <Link to={`/${slug}/`} className={style.link}>
                 {image && (
-                    <Img
+                    <GatsbyImage
                         className={style.image}
-                        fluid={image}
+                        image={image}
                         loading={count === 0 ? 'eager' : 'lazy'}
-                        fadeIn={false}
                         title={imageTitle}
                         alt={imageAlt}
                     />

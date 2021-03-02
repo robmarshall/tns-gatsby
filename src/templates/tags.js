@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { getImage } from 'gatsby-plugin-image'
 import ArticleCard from '../components/ArticleCard'
 import Pagination from '../components/Pagination'
 import SEO from '../components/SEO/SEO'
@@ -27,9 +28,9 @@ const TagTemplate = ({ data, pageContext }) => {
 
                 <div id="post-list" className="post-list">
                     {nodes.map((node, count) => {
-                        const image =
+                        const image = getImage(
                             node?.featuredImage?.node?.localFile
-                                ?.childImageSharp?.fluid || false
+                        )
                         const imageTitle =
                             node?.featuredImage?.node?.imageTitle || ''
                         const imageAlt =

@@ -33,17 +33,7 @@ function cleanExcerpt(source) {
     return lengthCorrected.replace(/(\r\n|\n|\r)/gm, '')
 }
 
-module.exports = function createResolvers({
-    actions,
-    cache,
-    createNodeId,
-    createResolvers,
-    getNode,
-    store,
-    reporter,
-}) {
-    const { createNode, touchNode } = actions
-
+module.exports = function createResolvers({ createResolvers }) {
     // Add all media libary images so they can be queried by
     // childImageSharp
     createResolvers({
