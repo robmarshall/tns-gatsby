@@ -63,15 +63,13 @@ const TagTemplate = ({ data, pageContext }) => {
 }
 
 export const query = graphql`
-    query Tag($tagDatabaseId: Int!, $offset: Int!, $perPage: Int!) {
+    query Tag($id: Int!, $offset: Int!, $perPage: Int!) {
         allWpPost(
             limit: $perPage
             skip: $offset
             sort: { fields: date, order: DESC }
             filter: {
-                tags: {
-                    nodes: { elemMatch: { databaseId: { eq: $tagDatabaseId } } }
-                }
+                tags: { nodes: { elemMatch: { databaseId: { eq: $id } } } }
             }
         ) {
             nodes {

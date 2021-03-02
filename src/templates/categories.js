@@ -63,16 +63,14 @@ const CatTemplate = ({ data, pageContext }) => {
 }
 
 export const query = graphql`
-    query Category($categoryDatabaseId: Int!, $offset: Int!, $perPage: Int!) {
+    query Category($id: Int!, $offset: Int!, $perPage: Int!) {
         allWpPost(
             limit: $perPage
             skip: $offset
             sort: { fields: date, order: DESC }
             filter: {
                 categories: {
-                    nodes: {
-                        elemMatch: { databaseId: { eq: $categoryDatabaseId } }
-                    }
+                    nodes: { elemMatch: { databaseId: { eq: $id } } }
                 }
             }
         ) {

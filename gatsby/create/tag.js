@@ -34,7 +34,7 @@ module.exports = async ({ actions, graphql }, options) => {
                   ) {
                     nodes {
                       uri
-                      id
+                      databaseId
                     }
                   }
                 }
@@ -58,7 +58,7 @@ module.exports = async ({ actions, graphql }, options) => {
                             archivePath: tagPath,
                             name: tag.name,
                             description: tag.description,
-                            tagDatabaseId: tag.databaseId,
+                            id: tag.databaseId,
                             offset: perPage * index,
                             pageNumber: index + 1,
                             perPage,

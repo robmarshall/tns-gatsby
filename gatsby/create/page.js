@@ -6,7 +6,7 @@ module.exports = async ({ actions, graphql }) => {
             allWpPage(sort: { fields: modifiedGmt, order: DESC }) {
                 nodes {
                     uri
-                    id
+                    databaseId
                 }
             }
         }
@@ -19,7 +19,7 @@ module.exports = async ({ actions, graphql }) => {
                 component: path.resolve('src/templates/page.js'),
                 path: page.uri,
                 context: {
-                    id: page.id,
+                    id: page.databaseId,
                 },
             })
         })

@@ -47,8 +47,8 @@ const PageTemplate = (props) => {
 }
 
 export const pageQuery = graphql`
-    query page($id: String!) {
-        wpPage(id: { eq: $id }) {
+    query page($id: Int!) {
+        wpPage(databaseId: { eq: $id }) {
             ...PageContent
         }
     }
