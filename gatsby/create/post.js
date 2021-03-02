@@ -1,5 +1,6 @@
 const path = require(`path`)
 const chunk = require(`lodash/chunk`)
+const getRelated = require('../../utils/getRelated')
 
 module.exports = async ({ actions, graphql }, options) => {
     const { perPage, blogURI } = options
@@ -9,7 +10,7 @@ module.exports = async ({ actions, graphql }, options) => {
             allWpPost(sort: { fields: modifiedGmt, order: DESC }) {
                 nodes {
                     uri
-                    id
+                    databaseId
                     categories {
                         nodes {
                             databaseId
@@ -23,14 +24,16 @@ module.exports = async ({ actions, graphql }, options) => {
     // Make individual posts.
     await Promise.all(
         data.allWpPost.nodes.map(async (post, index) => {
-            const primaryCatId = post?.categories?.nodes[0]?.databaseId || false
-
             await actions.createPage({
                 component: path.resolve('src/templates/post.js'),
                 path: post.uri,
                 context: {
-                    id: post.id,
-                    primaryCatId: primaryCatId,
+                    id: post.databaseId,
+                    related: getRelated({
+                        allPosts: data.allWpPost.nodes,
+                        current: post,
+                        sortBy: 'categories',
+                    }),
                 },
             })
         })

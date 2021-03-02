@@ -16,6 +16,7 @@ const PostTemplate = (props) => {
 
     const {
         data: {
+            relatedPosts,
             wpPost: {
                 content,
                 date,
@@ -29,8 +30,6 @@ const PostTemplate = (props) => {
                 categories,
                 seo,
             },
-            relatedByCat,
-            relatedTopUp,
         },
         uri,
     } = props
@@ -46,17 +45,6 @@ const PostTemplate = (props) => {
 
     const featuredAlt = featuredImage.node?.altText || ''
     const featuredTitle = featuredImage?.node?.title || ''
-
-    const relatedPosts = relatedByCat.nodes
-    const relatedCount = relatedPosts.length
-    if (relatedCount < 3) {
-        const relatedNeeded = 3 - relatedCount
-
-        for (var i = 0; i < relatedNeeded; i++) {
-            const newRelated = relatedTopUp.nodes[i]
-            relatedPosts.push(newRelated)
-        }
-    }
 
     return (
         <Layout>
@@ -107,32 +95,19 @@ const PostTemplate = (props) => {
                     <TagList tags={tags.nodes} />
                 </article>
             </ArticleContainer>
-            <RelatedCards relatedPosts={relatedPosts} />
+            <RelatedCards relatedPosts={relatedPosts.nodes} />
         </Layout>
     )
 }
 
 export const postQuery = graphql`
-    query post($id: String!, $primaryCatId: Int!) {
-        wpPost(id: { eq: $id }) {
+    query post($id: Int!, $related: [Int!]) {
+        wpPost(databaseId: { eq: $id }) {
             ...PostContent
             modifiedForUser: modified(formatString: "D MMMM YYYY")
             modifiedForSchema: modified(formatString: "YYYY-MM-DD, HH:mm:ss")
         }
-        relatedByCat: allWpPost(
-            limit: 3
-            filter: {
-                id: { ne: $id }
-                categories: {
-                    nodes: { elemMatch: { databaseId: { eq: $primaryCatId } } }
-                }
-            }
-        ) {
-            nodes {
-                ...RelatedContent
-            }
-        }
-        relatedTopUp: allWpPost(limit: 3, filter: { id: { ne: $id } }) {
+        relatedPosts: allWpPost(filter: { databaseId: { in: $related } }) {
             nodes {
                 ...RelatedContent
             }
