@@ -15,19 +15,13 @@ export const fragments = graphql`
 
     fragment Facebook on File {
         childImageSharp {
-            facebook: fixed(width: 1024, height: 512) {
-                src
-                width
-                height
-            }
+            facebook: gatsbyImageData(layout: FIXED, width: 1024, height: 512)
         }
     }
 
     fragment Twitter on File {
         childImageSharp {
-            twitter: fixed(width: 1200, height: 630) {
-                src
-            }
+            twitter: gatsbyImageData(layout: FIXED, width: 1200, height: 630)
         }
     }
 

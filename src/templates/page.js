@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { getSrc } from 'gatsby-plugin-image'
 import SEO from '../components/SEO/SEO'
 import ArticleContainer from '../containers/ArticleContainer'
 import Layout from '../containers/Layout'
@@ -12,11 +13,13 @@ const PageTemplate = (props) => {
         uri,
     } = props
 
-    const facebookImage =
-        featuredImage?.node?.localFile?.childImageSharp?.facebook?.src || false
+    const facebookImage = getSrc(
+        featuredImage?.node?.localFile?.childImageSharp?.facebook
+    )
 
-    const twitterImage =
-        featuredImage?.node?.localFile?.childImageSharp?.twitter?.src || false
+    const twitterImage = getSrc(
+        featuredImage?.node?.localFile?.childImageSharp?.twitter
+    )
 
     return (
         <Layout>

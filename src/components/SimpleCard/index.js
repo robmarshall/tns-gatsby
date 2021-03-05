@@ -1,5 +1,5 @@
 import React from 'react'
-import Img from 'gatsby-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Link from '../Link'
 
 import './simplecard.scss'
@@ -7,7 +7,7 @@ import './simplecard.scss'
 const SimpleCard = ({ node }) => {
     const { cleanTitle, featuredImage, slug } = node
 
-    const image = featuredImage?.node?.localFile?.childImageSharp?.fluid
+    const image = getImage(featuredImage?.node?.childImageSharp)
     const imageTitle = featuredImage?.node?.title
     const imageAlt = featuredImage?.node?.altText
 
@@ -15,9 +15,9 @@ const SimpleCard = ({ node }) => {
         <div key={slug} className="simpleCard">
             <Link to={`/${slug}`}>
                 {image && (
-                    <Img
+                    <GatsbyImage
                         className="simpleCard_image"
-                        fluid={image}
+                        image={image}
                         title={imageTitle}
                         alt={imageAlt}
                     />

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import style from './style.module.scss'
+import * as style from './style.module.scss'
 
 const ArticleCard = ({
     count,

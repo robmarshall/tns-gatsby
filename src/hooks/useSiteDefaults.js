@@ -25,9 +25,7 @@ function useSiteDefaults() {
                 }
                 logo: file(relativePath: { eq: "logo.png" }) {
                     childImageSharp {
-                        fluid {
-                            src
-                        }
+                        gatsbyImageData(layout: FIXED)
                     }
                 }
             }

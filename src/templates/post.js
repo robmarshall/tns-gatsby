@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { graphql } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image'
 import Prism from 'prismjs'
 import CategoryList from '../components/CategoryList'
 import RelatedCards from '../components/RelatedCards'
@@ -36,11 +36,13 @@ const PostTemplate = (props) => {
 
     const image = getImage(featuredImage?.node?.localFile)
 
-    const facebookImage =
-        featuredImage?.node?.localFile?.childImageSharp?.facebook?.src || false
+    const facebookImage = getSrc(
+        featuredImage?.node?.localFile?.childImageSharp?.facebook
+    )
 
-    const twitterImage =
-        featuredImage?.node?.localFile?.childImageSharp?.twitter?.src || false
+    const twitterImage = getSrc(
+        featuredImage?.node?.localFile?.childImageSharp?.twitter
+    )
 
     const featuredAlt = featuredImage.node?.altText || ''
     const featuredTitle = featuredImage?.node?.title || ''

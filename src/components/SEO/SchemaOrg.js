@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { getSrc } from 'gatsby-plugin-image'
 import { Helmet } from 'react-helmet'
 import useSiteDefaults from '../../hooks/useSiteDefaults'
 
@@ -25,7 +26,7 @@ export default memo(
             },
         } = useSiteDefaults()
 
-        const logoData = logo?.childImageSharp?.fluid || false
+        const logoData = getSrc(logo?.childImageSharp)
 
         // Set this as fallback. Overwritten later.
         let schema = [
