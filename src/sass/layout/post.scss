@@ -18,11 +18,7 @@
 }
 
 .post__feat-image {
-    margin-bottom: em(20);
-}
-
-article .post__feat-image {
-    margin-bottom: em(30);
+    margin: em(20) 0 em(35) 0;
 }
 
 .post__date_wrap {
@@ -49,12 +45,6 @@ article .post__feat-image {
     margin-top: em(20);
 }
 
-.gatsby-image-wrapper {
-    margin: em(25px) 1em em(25px) 0;
-    max-width: 100% !important;
-    width: 100%;
-}
-
 @media only screen and (min-width: em(730px)) {
     .post {
         margin-bottom: em(80);
@@ -69,13 +59,5 @@ article .post__feat-image {
 
     .post__date {
         font-size: em(18);
-    }
-
-    .post__feat-image {
-        margin-bottom: em(30);
-    }
-
-    article .post__feat-image {
-        margin-bottom: em(50);
     }
 }

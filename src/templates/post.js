@@ -80,15 +80,13 @@ const PostTemplate = (props) => {
                     <CategoryList cats={categories.nodes} />
 
                     {image && (
-                        <div>
-                            <GatsbyImage
-                                className="post__feat-image"
-                                image={image}
-                                loading="eager"
-                                title={featuredTitle || ''}
-                                alt={featuredAlt || ''}
-                            />
-                        </div>
+                        <GatsbyImage
+                            className="post__feat-image"
+                            image={image}
+                            loading="eager"
+                            title={featuredTitle || ''}
+                            alt={featuredAlt || ''}
+                        />
                     )}
 
                     <div dangerouslySetInnerHTML={{ __html: content }} />

@@ -1,22 +1,22 @@
 import React from 'react'
 import slugify from '../../utils/slugify'
 import Link from '../Link'
-import './tags.scss'
+import { wrap, itemList, item, itemName, itemTitle } from './style.module.scss'
 
 const TagList = ({ tags }) => {
     if (tags && tags.length > 0) {
         const allTags = tags.map((tag) => (
-            <li key={slugify(tag.name)} className="tag">
-                <Link to={`/tag/${slugify(tag.name)}`} className="tag__name">
+            <li key={slugify(tag.name)} className={item}>
+                <Link to={`/tag/${slugify(tag.name)}`} className={itemName}>
                     {tag.name}
                 </Link>
             </li>
         ))
 
         return (
-            <div className="tags__wrap">
-                <h4 className="tags__title">Tags:</h4>
-                <ul className="tags">{allTags}</ul>
+            <div className={wrap}>
+                <h4 className={itemTitle}>Tags:</h4>
+                <ul className={itemList}>{allTags}</ul>
             </div>
         )
     }

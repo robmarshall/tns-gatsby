@@ -9,7 +9,7 @@
 }
 
 .image {
-    margin-bottom: em(30);
+    margin-bottom: 0;
 }
 
 .title {
@@ -39,9 +39,5 @@
         display: block;
         font-size: em(18);
         margin: em(10) 0;
-    }
-
-    .image {
-        margin-bottom: em(30);
     }
 }

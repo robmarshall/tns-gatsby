@@ -1,23 +1,12 @@
 import React from 'react'
-import './footer.scss'
+import { footer } from './style.module.scss'
 import Container from '../../containers/Container'
 
 const Footer = ({ siteTitle }) => (
-    <footer className="footer">
+    <footer className={footer}>
         <Container>
-            <div className="footer__wrap">
-                By
-                {' '}
-                <a href="https://robertmarshall.dev" className="footer__link">
-                    Robert Marshall
-                </a>
-                {' '}
-                &
-                {' '}
-                <a href="https://www.gatsbyjs.org/" className="footer__link">
-                    Gatsby
-                </a>
-            </div>
+            By <a href="https://robertmarshall.dev">Robert Marshall</a> &{' '}
+            <a href="https://www.gatsbyjs.org/">Gatsby</a>
         </Container>
     </footer>
 )
