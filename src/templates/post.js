@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { graphql } from 'gatsby'
 import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image'
 import Prism from 'prismjs'
+import DateMeta from '../components/DateMeta'
 import CategoryList from '../components/CategoryList'
 import RelatedCards from '../components/RelatedCards'
 import SEO from '../components/SEO/SEO'
@@ -64,18 +65,10 @@ const PostTemplate = (props) => {
                 <article className="post">
                     <h1>{cleanTitle}</h1>
 
-                    <div className="post__date_wrap">
-                        <span className="post__date_updated">
-                            Last Updated:{' '}
-                        </span>
-                        <time
-                            className={'post__date'}
-                            dateTime={modifiedForSchema}
-                            itemProp="dateModified"
-                        >
-                            {modifiedForUser}
-                        </time>
-                    </div>
+                    <DateMeta
+                        modifiedForUser={modifiedForUser}
+                        modifiedForSchema={modifiedForSchema}
+                    />
 
                     <CategoryList cats={categories.nodes} />
 

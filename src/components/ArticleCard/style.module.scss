@@ -16,13 +16,6 @@
     font-size: em(30);
 }
 
-.date {
-    display: block;
-    font-size: em(16);
-    font-style: italic;
-    margin: em(10) 0;
-}
-
 .excerpt {
     margin-top: em(20);
 }
@@ -33,11 +26,5 @@
         &:last-of-type {
             margin-bottom: em(10);
         }
-    }
-
-    .date {
-        display: block;
-        font-size: em(18);
-        margin: em(10) 0;
     }
 }

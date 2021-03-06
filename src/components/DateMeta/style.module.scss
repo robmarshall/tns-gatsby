@@ -1,0 +1,23 @@
+@import '../../sass/abstracts/abstracts';
+
+.wrap {
+    display: block;
+}
+
+.date {
+    display: inline-block;
+    font-size: em(16);
+    font-style: italic;
+    margin: em(10) 0;
+}
+
+.updated {
+    font-weight: 600;
+    margin: 0;
+}
+
+@media only screen and (min-width: em(730px)) {
+    .date {
+        font-size: em(18);
+    }
+}
