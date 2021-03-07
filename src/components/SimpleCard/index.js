@@ -13,7 +13,7 @@ const SimpleCard = ({ node }) => {
 
     return (
         <div key={slug} className={cardWrap}>
-            <Link className={cardLink} to={`/${slug}`}>
+            <Link className={cardLink} to={`/${slug}/`}>
                 {image && (
                     <GatsbyImage
                         image={image}
