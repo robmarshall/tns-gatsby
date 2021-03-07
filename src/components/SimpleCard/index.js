@@ -7,7 +7,7 @@ import { cardWrap, cardLink, cardTitle } from './style.module.scss'
 const SimpleCard = ({ node }) => {
     const { cleanTitle, featuredImage, slug } = node
 
-    const image = getImage(featuredImage?.node?.childImageSharp)
+    const image = getImage(featuredImage?.node?.localFile)
     const imageTitle = featuredImage?.node?.title
     const imageAlt = featuredImage?.node?.altText
 
