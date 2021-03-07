@@ -15,7 +15,7 @@
             "babel-preset-gatsby",
             {
                 "targets": {
-                    "browsers": [">0.25%", "not dead"]
+                    "browsers": ["last 2 versions"]
                 }
             }
         ]
