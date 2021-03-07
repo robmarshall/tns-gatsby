@@ -4,7 +4,7 @@ import Container from '../../containers/Container'
 import slugify from '../../utils/slugify'
 import SimpleCard from '../SimpleCard'
 
-import './relatedcards.scss'
+import { relatedWrap, relatedCards } from './style.module.scss'
 
 const RelatedCards = ({ relatedPosts }) => {
     const cards = relatedPosts.map((post) => (
@@ -14,9 +14,9 @@ const RelatedCards = ({ relatedPosts }) => {
     if (cards) {
         return (
             <Container>
-                <div className="post_related">
-                    <h2 className="post_related_title">Related Posts</h2>
-                    <div className="post_related_wrap">{cards}</div>
+                <div className={relatedWrap}>
+                    <h2>Related Posts</h2>
+                    <div className={relatedCards}>{cards}</div>
                 </div>
             </Container>
         )

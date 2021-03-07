@@ -1,7 +1,7 @@
 import React from 'react'
 import slugify from '../../utils/slugify'
 import Link from '../Link'
-import { wrap, itemList, item, itemName, itemTitle } from './style.module.scss'
+import { wrap, itemList, item, itemName, mainTitle } from './style.module.scss'
 
 const TagList = ({ tags }) => {
     if (tags && tags.length > 0) {
@@ -15,7 +15,7 @@ const TagList = ({ tags }) => {
 
         return (
             <div className={wrap}>
-                <h4 className={itemTitle}>Tags:</h4>
+                <h4 className={mainTitle}>Tags:</h4>
                 <ul className={itemList}>{allTags}</ul>
             </div>
         )

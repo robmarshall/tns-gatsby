@@ -7,6 +7,7 @@ import CategoryList from '../components/CategoryList'
 import RelatedCards from '../components/RelatedCards'
 import SEO from '../components/SEO/SEO'
 import TagList from '../components/TagList'
+import FeaturedImage from '../components/FeaturedImage'
 import ArticleContainer from '../containers/ArticleContainer'
 import Layout from '../containers/Layout'
 
@@ -62,7 +63,7 @@ const PostTemplate = (props) => {
             />
 
             <ArticleContainer>
-                <article className="post">
+                <article>
                     <h1>{cleanTitle}</h1>
 
                     <DateMeta
@@ -72,15 +73,11 @@ const PostTemplate = (props) => {
 
                     <CategoryList cats={categories.nodes} />
 
-                    {image && (
-                        <GatsbyImage
-                            className="post__feat-image"
-                            image={image}
-                            loading="eager"
-                            title={featuredTitle || ''}
-                            alt={featuredAlt || ''}
-                        />
-                    )}
+                    <FeaturedImage
+                        image={image}
+                        title={featuredTitle || ''}
+                        alt={featuredAlt || ''}
+                    />
 
                     <div dangerouslySetInnerHTML={{ __html: content }} />
 

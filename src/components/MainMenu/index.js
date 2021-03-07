@@ -2,14 +2,18 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import slugify from '../../utils/slugify'
 import Link from '../Link'
-import './menu.scss'
+import { menuNav, menuList, menuItem, menuItemLink } from './style.module.scss'
 
 const Menu = ({ data }) => (
-    <nav className="main-menu">
-        <ul>
+    <nav className={menuNav}>
+        <ul className={menuList}>
             {data.map((item) => (
-                <li key={slugify(item.label)}>
-                    <Link target={item.target} to={item.url}>
+                <li key={slugify(item.label)} className={menuItem}>
+                    <Link
+                        className={menuItemLink}
+                        target={item.target}
+                        to={item.url}
+                    >
                         {item.label}
                     </Link>
                 </li>

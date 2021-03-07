@@ -2,7 +2,13 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import DateMeta from '../DateMeta'
-import * as style from './style.module.scss'
+import {
+    cardWrap,
+    cardLink,
+    cardImage,
+    cardTitle,
+    cardExcerpt,
+} from './style.module.scss'
 
 const ArticleCard = ({
     count,
@@ -15,11 +21,11 @@ const ArticleCard = ({
     modifiedForSchema,
     excerpt,
 }) => (
-    <div className={style.card}>
-        <Link to={`/${slug}/`} className={style.link}>
+    <div className={cardWrap}>
+        <Link to={`/${slug}/`} className={cardLink}>
             {image && (
                 <GatsbyImage
-                    className={style.image}
+                    className={cardImage}
                     image={image}
                     loading={count === 0 ? 'eager' : 'lazy'}
                     title={imageTitle}
@@ -27,14 +33,14 @@ const ArticleCard = ({
                 />
             )}
 
-            <h2 className={style.title}>{title}</h2>
+            <h2 className={cardTitle}>{title}</h2>
 
             <DateMeta
                 modifiedForUser={modifiedForUser}
                 modifiedForSchema={modifiedForSchema}
             />
 
-            <div className={style.excerpt}>
+            <div className={cardExcerpt}>
                 <p>{excerpt}</p>
             </div>
         </Link>

@@ -1,30 +1,37 @@
 @import '../../sass/abstracts/abstracts';
 
 .card {
-    margin-bottom: em(40);
-}
+    &Wrap {
+        margin-bottom: em(40);
 
-.link {
-    width: 100%;
-}
-
-.image {
-    margin-bottom: 0;
-}
-
-.title {
-    font-size: em(30);
-}
-
-.excerpt {
-    margin-top: em(20);
-}
-
-@media only screen and (min-width: em(730px)) {
-    .card {
-        margin-bottom: em(80);
-        &:last-of-type {
-            margin-bottom: em(10);
+        @media only screen and (min-width: em(730px)) {
+            margin-bottom: em(80);
+            &:last-of-type {
+                margin-bottom: em(10);
+            }
         }
+    }
+
+    &Link {
+        width: 100%;
+        text-decoration: none;
+        @include animate-transition(all, 0.3s);
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+    }
+
+    &Image {
+        margin-bottom: 0;
+    }
+
+    &Title {
+        font-size: em(30);
+    }
+
+    &Excerpt {
+        margin-top: em(20);
     }
 }

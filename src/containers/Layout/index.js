@@ -5,7 +5,7 @@ import Header from '../../components/Header'
 
 import SEO from '../../components/SEO/SEO'
 
-import './layout.scss'
+import { layout } from './style.module.scss'
 import '../../sass/base/base.scss'
 
 const Layout = ({ children }) => {
@@ -23,7 +23,7 @@ const Layout = ({ children }) => {
         <div>
             <SEO />
             <Header siteTitle="T&S" />
-            <div className="layout">{children}</div>
+            <div className={layout}>{children}</div>
             <Footer />
         </div>
     )

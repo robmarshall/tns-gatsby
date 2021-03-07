@@ -1,12 +1,14 @@
 @import '../../sass/abstracts/abstracts';
 
-.main-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    pointer-events: all;
+.menu {
+    &Nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        pointer-events: all;
+    }
 
-    ul {
+    &List {
         color: #292929;
         display: flex;
         flex-wrap: wrap;
@@ -15,7 +17,7 @@
         margin: 0;
     }
 
-    li {
+    &Item {
         text-align: center;
 
         @media only screen and (min-width: em(730px)) {
@@ -23,9 +25,14 @@
             width: auto;
         }
 
+        &Link {
+            padding: em(3) em(9);
+            text-decoration: none;
+        }
+
         &:last-of-type {
             margin-right: 0;
-            a {
+            .menuItemLink {
                 background-color: #532ee7;
                 border-radius: em(15);
                 box-shadow: 0 10px 30px -10px rgba(#532ee7, 0.5);
@@ -40,10 +47,5 @@
                 }
             }
         }
-    }
-
-    a {
-        padding: em(3) em(9);
-        text-decoration: none;
     }
 }

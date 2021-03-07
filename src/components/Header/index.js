@@ -2,13 +2,18 @@ import React from 'react'
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import MainMenu from '../MainMenu'
-import './header.scss'
+import {
+    header,
+    headerWrap,
+    headerTitle,
+    headerLink,
+} from './style.module.scss'
 
 const Header = ({ siteTitle }) => (
-    <header className="header">
-        <div className="header__wrap">
-            <h1 className="header__title">
-                <Link className="header__link" to="/">
+    <header className={header}>
+        <div className={headerWrap}>
+            <h1 className={headerTitle}>
+                <Link className={headerLink} to="/">
                     {siteTitle}
                 </Link>
             </h1>

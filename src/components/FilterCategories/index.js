@@ -2,7 +2,7 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import slugify from '../../utils/slugify'
 import Link from '../Link'
-import * as style from './style.module.scss'
+import { wrap, item, itemList, itemName, mainTitle } from './style.module.scss'
 
 const List = ({ data }) => {
     const toIgnore = [
@@ -14,16 +14,16 @@ const List = ({ data }) => {
     ]
 
     return (
-        <div className={style.wrap}>
-            <p className={style.cat__title}>Filter by category:</p>
-            <ul className={style.cats}>
+        <div className={wrap}>
+            <p className={mainTitle}>Filter by category:</p>
+            <ul className={itemList}>
                 {data.map((cat) => {
                     if (!toIgnore.includes(cat.name)) {
                         return (
-                            <li key={slugify(cat.name)} className={style.cat}>
+                            <li key={slugify(cat.name)} className={item}>
                                 <Link
                                     to={`/category/${slugify(cat.name)}`}
-                                    className={style.cat__name}
+                                    className={itemName}
                                 >
                                     {cat.name}
                                 </Link>

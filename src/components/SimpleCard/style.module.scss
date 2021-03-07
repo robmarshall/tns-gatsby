@@ -1,0 +1,40 @@
+@import '../../sass/abstracts/abstracts';
+
+.card {
+    &Wrap {
+        width: 100%;
+
+        @media only screen and (min-width: em(700px)) {
+            margin-right: 20px;
+            width: calc(33.333% - (20px / 3 * 2));
+
+            &:last-of-type {
+                margin-right: 0;
+                width: calc(33.333% - (20px / 3 * 2));
+            }
+        }
+    }
+
+    &Link {
+        text-decoration: none;
+        width: 100%;
+    }
+
+    &Title {
+        font-size: em(18);
+
+        @media only screen and (min-width: em(500px)) {
+            font-size: em(20);
+        }
+
+        @media only screen and (min-width: em(700px)) {
+            font-size: em(17);
+            font-weight: 400;
+        }
+
+        @media only screen and (min-width: em(900px)) {
+            font-size: em(20);
+            font-weight: 600;
+        }
+    }
+}

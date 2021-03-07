@@ -10,36 +10,36 @@
     top: 0;
     pointer-events: none;
     z-index: 2;
-}
 
-.header__wrap {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0.75em 0;
-}
+    &Wrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0.75em 0;
+    }
 
-.header__title {
-    font-size: em(30);
-    margin: 0;
-}
+    &Title {
+        font-size: em(30);
+        margin: 0;
+    }
 
-.header__link {
-    pointer-events: all;
-    text-decoration: none;
+    &Link {
+        pointer-events: all;
+        text-decoration: none;
+    }
 }
 
 @media only screen and (min-width: em(730px)) {
     .header {
         background-color: transparent;
         box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.05);
-    }
 
-    .header__wrap {
-        padding: 1em 0;
-    }
+        &Wrap {
+            padding: 1em 0;
+        }
 
-    .header__title {
-        font-size: em(40);
+        &Title {
+            font-size: em(40);
+        }
     }
 }

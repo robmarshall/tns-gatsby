@@ -5,6 +5,7 @@ import ArticleCard from '../components/ArticleCard'
 import Pagination from '../components/Pagination'
 import SEO from '../components/SEO/SEO'
 import ArticleContainer from '../containers/ArticleContainer'
+import PostsWrap from '../containers/PostsWrap'
 import Layout from '../containers/Layout'
 
 const TagTemplate = ({ data, pageContext }) => {
@@ -26,7 +27,7 @@ const TagTemplate = ({ data, pageContext }) => {
                 <h1>Tag: {name}</h1>
                 {description && <p>{description}</p>}
 
-                <div id="post-list" className="post-list">
+                <PostsWrap>
                     {nodes.map((node, count) => {
                         const image = getImage(
                             node?.featuredImage?.node?.localFile
@@ -51,7 +52,7 @@ const TagTemplate = ({ data, pageContext }) => {
                             />
                         )
                     })}
-                </div>
+                </PostsWrap>
 
                 <Pagination
                     prefix={archivePath}

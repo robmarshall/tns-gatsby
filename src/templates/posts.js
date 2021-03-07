@@ -5,9 +5,8 @@ import ArticleCard from '../components/ArticleCard'
 import FilterCategories from '../components/FilterCategories'
 import Pagination from '../components/Pagination'
 import ArticleContainer from '../containers/ArticleContainer'
+import PostsWrap from '../containers/PostsWrap'
 import Layout from '../containers/Layout'
-
-import '../sass/layout/post.scss'
 
 const Posts = ({ data, pageContext }) => {
     const {
@@ -22,7 +21,7 @@ const Posts = ({ data, pageContext }) => {
         <Layout>
             <ArticleContainer>
                 {currentPage === 1 && <FilterCategories />}
-                <div id="post-list" className="post-list">
+                <PostsWrap>
                     {nodes.map((node, count) => {
                         const image = getImage(
                             node?.featuredImage?.node?.localFile
@@ -47,7 +46,7 @@ const Posts = ({ data, pageContext }) => {
                             />
                         )
                     })}
-                </div>
+                </PostsWrap>
 
                 <Pagination
                     prefix="/"

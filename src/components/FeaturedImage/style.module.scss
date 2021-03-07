@@ -1,0 +1,8 @@
+@import '../../sass/abstracts/abstracts';
+
+.imageStyle {
+    margin: em(20) 0;
+    @media only screen and (min-width: em(730px)) {
+        margin: em(30) 0 em(40) 0;
+    }
+}
