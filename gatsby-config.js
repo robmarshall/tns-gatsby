@@ -189,6 +189,9 @@ module.exports = {
             },
         },
         {
+            resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
+        },
+        {
             resolve: `gatsby-plugin-minify-classnames`,
             options: {
                 dictionary:

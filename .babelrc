@@ -10,14 +10,5 @@
             }
         ]
     ],
-    "presets": [
-        [
-            "babel-preset-gatsby",
-            {
-                "targets": {
-                    "browsers": ["last 2 versions"]
-                }
-            }
-        ]
-    ]
+    "presets": [["babel-preset-gatsby"]]
 }
