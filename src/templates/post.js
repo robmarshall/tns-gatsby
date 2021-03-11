@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { graphql } from 'gatsby'
-import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image'
+import { getImage, getSrc } from 'gatsby-plugin-image'
 import Prism from 'prismjs'
 import DateMeta from '../components/DateMeta'
 import CategoryList from '../components/CategoryList'

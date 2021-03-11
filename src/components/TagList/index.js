@@ -7,7 +7,7 @@ const TagList = ({ tags }) => {
     if (tags && tags.length > 0) {
         const allTags = tags.map((tag) => (
             <li key={slugify(tag.name)} className={item}>
-                <Link to={`/tag/${slugify(tag.name)}`} className={itemName}>
+                <Link to={`/tag/${slugify(tag.name)}/`} className={itemName}>
                     {tag.name}
                 </Link>
             </li>

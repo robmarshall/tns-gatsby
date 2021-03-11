@@ -22,7 +22,7 @@ const List = ({ data }) => {
                         return (
                             <li key={slugify(cat.name)} className={item}>
                                 <Link
-                                    to={`/category/${slugify(cat.name)}`}
+                                    to={`/category/${slugify(cat.name)}/`}
                                     className={itemName}
                                 >
                                     {cat.name}

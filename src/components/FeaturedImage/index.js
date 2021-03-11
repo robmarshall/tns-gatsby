@@ -6,11 +6,11 @@ const FeaturedImage = ({ image, title, alt }) => {
     if (image) {
         return (
             <GatsbyImage
+                alt={alt}
                 className={imageStyle}
                 image={image}
                 loading="eager"
                 title={title}
-                alt={alt}
             />
         )
     }
