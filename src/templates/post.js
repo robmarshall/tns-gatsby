@@ -36,15 +36,11 @@ const PostTemplate = (props) => {
         uri,
     } = props
 
-    const image = getImage(featuredImage?.node?.localFile)
+    const image = getImage(featuredImage?.node?.thumbnail)
 
-    const facebookImage = getSrc(
-        featuredImage?.node?.localFile?.childImageSharp?.facebook
-    )
+    const facebookImage = getSrc(featuredImage?.node?.facebook)
 
-    const twitterImage = getSrc(
-        featuredImage?.node?.localFile?.childImageSharp?.twitter
-    )
+    const twitterImage = getSrc(featuredImage?.node?.twitter)
 
     const featuredAlt = featuredImage.node?.altText || ''
     const featuredTitle = featuredImage?.node?.title || ''

@@ -13,13 +13,9 @@ const PageTemplate = (props) => {
         uri,
     } = props
 
-    const facebookImage = getSrc(
-        featuredImage?.node?.localFile?.childImageSharp?.facebook
-    )
+    const facebookImage = getSrc(featuredImage?.node?.facebook)
 
-    const twitterImage = getSrc(
-        featuredImage?.node?.localFile?.childImageSharp?.twitter
-    )
+    const twitterImage = getSrc(featuredImage?.node?.twitter)
 
     return (
         <Layout>

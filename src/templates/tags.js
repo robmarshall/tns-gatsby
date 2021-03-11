@@ -30,7 +30,7 @@ const TagTemplate = ({ data, pageContext }) => {
                 <PostsWrap>
                     {nodes.map((node, count) => {
                         const image = getImage(
-                            node?.featuredImage?.node?.localFile
+                            node?.featuredImage?.node?.thumbnail
                         )
                         const imageTitle =
                             node?.featuredImage?.node?.imageTitle || ''

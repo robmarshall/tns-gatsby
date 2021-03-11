@@ -1,9 +1,11 @@
 import { graphql } from 'gatsby'
 
 export const fragments = graphql`
-    fragment Thumbnail on File {
-        childImageSharp {
-            gatsbyImageData(formats: [AUTO, WEBP, AVIF])
+    fragment Thumbnail on WpMediaItem {
+        thumbnail: localFile {
+            childImageSharp {
+                gatsbyImageData(formats: [AUTO, WEBP, AVIF])
+            }
         }
     }
 
@@ -13,15 +15,19 @@ export const fragments = graphql`
         }
     }
 
-    fragment Facebook on File {
-        childImageSharp {
-            facebook: gatsbyImageData(layout: FIXED, width: 1024, height: 512)
+    fragment Facebook on WpMediaItem {
+        facebook: localFile {
+            childImageSharp {
+                gatsbyImageData(layout: FIXED, width: 1024, height: 512)
+            }
         }
     }
 
-    fragment Twitter on File {
-        childImageSharp {
-            twitter: gatsbyImageData(layout: FIXED, width: 1200, height: 630)
+    fragment Twitter on WpMediaItem {
+        twitter: localFile {
+            childImageSharp {
+                gatsbyImageData(layout: FIXED, width: 1200, height: 630)
+            }
         }
     }
 
@@ -39,9 +45,7 @@ export const fragments = graphql`
             node {
                 altText
                 title
-                localFile {
-                    ...Thumbnail
-                }
+                ...Thumbnail
             }
         }
         categories {
@@ -72,11 +76,9 @@ export const fragments = graphql`
             node {
                 altText
                 title
-                localFile {
-                    ...Thumbnail
-                    ...Facebook
-                    ...Twitter
-                }
+                ...Thumbnail
+                ...Facebook
+                ...Twitter
             }
         }
         categories {
@@ -104,10 +106,8 @@ export const fragments = graphql`
         content
         featuredImage {
             node {
-                localFile {
-                    ...Facebook
-                    ...Twitter
-                }
+                ...Facebook
+                ...Twitter
             }
         }
         seo {
