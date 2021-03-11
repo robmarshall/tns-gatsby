@@ -188,20 +188,14 @@ module.exports = {
                 icon: `src/favicon.png`,
             },
         },
-        // {
-        //     resolve: `gatsby-plugin-minify-classnames`,
-        //     options: {
-        //         dictionary:
-        //             'bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0123456789',
-        //         enable: activeEnv !== 'development',
-        //     },
-        // },
-        // {
-        //     resolve: 'gatsby-plugin-webpack-bundle-analyzer',
-        //     options: {
-        //         production: true,
-        //     },
-        // },
+        {
+            resolve: `gatsby-plugin-minify-classnames`,
+            options: {
+                dictionary:
+                    'bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0123456789',
+                enable: true, //activeEnv !== 'development',
+            },
+        },
         `gatsby-plugin-netlify`,
         // {
         //     resolve: 'gatsby-plugin-netlify-cache',

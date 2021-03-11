@@ -7,7 +7,7 @@
     "dependencies": {
         "@babel/plugin-proposal-decorators": "^7.13.5",
         "dotenv": "^8.2.0",
-        "gatsby": "^3.0.3",
+        "gatsby": "^3.0.4",
         "gatsby-image": "^3.0.0",
         "gatsby-paginate": "^1.1.1",
         "gatsby-plugin-canonical-urls": "^3.0.0",
@@ -15,9 +15,9 @@
         "gatsby-plugin-feed": "^3.0.0",
         "gatsby-plugin-force-trailing-slashes": "^1.0.5",
         "gatsby-plugin-html-attributes": "^1.0.5",
-        "gatsby-plugin-image": "^1.0.0",
+        "gatsby-plugin-image": "^1.0.1",
         "gatsby-plugin-manifest": "^3.0.0",
-        "gatsby-plugin-minify-classnames": "^0.2.2",
+        "gatsby-plugin-minify-classnames": "^0.2.3",
         "gatsby-plugin-netlify": "^3.0.0",
         "gatsby-plugin-netlify-cache": "^1.2.0",
         "gatsby-plugin-offline": "^4.0.0",
@@ -27,10 +27,9 @@
         "gatsby-plugin-react-helmet": "^4.0.0",
         "gatsby-plugin-robots-txt": "^1.5.5",
         "gatsby-plugin-sass": "^4.0.2",
-        "gatsby-plugin-sharp": "^3.0.0",
+        "gatsby-plugin-sharp": "^3.0.1",
         "gatsby-plugin-sitemap": "^3.0.0",
         "gatsby-plugin-webfonts": "^2.0.0",
-        "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5",
         "gatsby-source-filesystem": "^3.0.0",
         "gatsby-source-wordpress": "^5.0.0",
         "gatsby-transformer-sharp": "^3.0.0",
@@ -38,7 +37,7 @@
         "lodash": "^4.17.21",
         "moment": "^2.29.1",
         "preact": "^10.5.12",
-        "preact-render-to-string": "^5.1.13",
+        "preact-render-to-string": "^5.1.15",
         "prismjs": "^1.23.0",
         "prop-types": "^15.7.2",
         "react": "^17.0.1",
@@ -70,7 +69,7 @@
         "url": "https://github.com/robmarshall/gatsby-tns/issues"
     },
     "devDependencies": {
-        "@babel/core": "^7.13.8",
+        "@babel/core": "^7.13.10",
         "@babel/plugin-proposal-class-properties": "^7.13.0",
         "babel-eslint": "^10.1.0",
         "babel-loader": "^8.2.2",
@@ -92,6 +91,7 @@
         "gatsby-plugin-react-axe": "^0.5.0",
         "sass-loader": "^11.0.1",
         "style-loader": "^2.0.0",
-        "stylelint-order": "^4.1.0"
+        "stylelint-order": "^4.1.0",
+        "webpack-bundle-analyzer": "^4.4.0"
     }
 }

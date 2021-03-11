@@ -6,13 +6,6 @@ const decodeEntities = require(`../utils/decodeEntities.js`)
 const limitString = require(`../utils/limitString.js`)
 const stripTags = require(`../utils/stripTags.js`)
 
-const activeEnv =
-    process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
-
-require('dotenv').config({
-    path: `.env.${activeEnv}`,
-})
-
 function cleanTitle(source) {
     return he.unescape(source?.title || '')
 }
