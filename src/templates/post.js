@@ -7,6 +7,7 @@ import CategoryList from '../components/CategoryList'
 import RelatedCards from '../components/RelatedCards'
 import SEO from '../components/SEO/SEO'
 import TagList from '../components/TagList'
+import WYSIWYG from '../components/WYSIWYG'
 import FeaturedImage from '../components/FeaturedImage'
 import ArticleContainer from '../containers/ArticleContainer'
 import Layout from '../containers/Layout'
@@ -75,7 +76,7 @@ const PostTemplate = (props) => {
                         alt={featuredAlt || ''}
                     />
 
-                    <div dangerouslySetInnerHTML={{ __html: content }} />
+                    <WYSIWYG content={content} />
 
                     <TagList tags={tags.nodes} />
                 </article>

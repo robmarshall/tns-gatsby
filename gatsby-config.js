@@ -196,16 +196,16 @@ module.exports = {
             options: {
                 dictionary:
                     'bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0123456789',
-                enable: true, //activeEnv !== 'development',
+                enable: activeEnv !== 'development',
             },
         },
         `gatsby-plugin-netlify`,
-        // {
-        //     resolve: 'gatsby-plugin-netlify-cache',
-        //     options: {
-        //         cachePublic: true,
-        //     },
-        // },
+        {
+            resolve: 'gatsby-plugin-netlify-cache',
+            options: {
+                cachePublic: true,
+            },
+        },
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.app/offline
         {
