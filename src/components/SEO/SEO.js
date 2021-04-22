@@ -32,6 +32,8 @@ const SEO = ({
     const twitterImageFallback =
         twitterImage?.childImageSharp?.fixed?.src || false
 
+    const pageDescription = description || fallback.description
+
     // Set the title from the browser. If there is a page title, set properly. Otherwise fall back
     let browserTitle = yoastTitle
     if (!browserTitle) {
@@ -65,8 +67,8 @@ const SEO = ({
             <Helmet>
                 {/* General tags */}
                 <title>{browserTitle}</title>
-                {description && (
-                    <meta name="description" content={description} />
+                {pageDescription && (
+                    <meta name="description" content={pageDescription} />
                 )}
                 {facebookMetaImage && (
                     <meta name="image" content={facebookMetaImage} />

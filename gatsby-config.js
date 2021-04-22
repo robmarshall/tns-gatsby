@@ -12,8 +12,8 @@ module.exports = {
     siteMetadata: {
         locale: `en_GB`, // Fallback
         siteName: `T&S`, // Fallback
-        title: `Website Design and Development Inspiration`,
-        description: `Website Design and Development Inspiration`,
+        title: `Website Development Inspiration`,
+        description: `Website Development Inspiration, focused on React and Gatsby.`,
         author: `@RobMarProd`,
         url: `https://thoughtsandstuff.com`,
         siteUrl: `https://thoughtsandstuff.com`,

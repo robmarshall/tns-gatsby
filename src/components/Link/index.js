@@ -21,7 +21,7 @@ const Link = ({ children, to, activeClassName, partiallyActive, ...other }) => {
     }
     return (
         // eslint-disable-next-line react/jsx-props-no-spreading
-        <a href={to} {...other}>
+        <a href={to} {...other} rel="noopener noreferrer">
             {children}
         </a>
     )
