@@ -113,8 +113,8 @@ p *:last-child {
 blockquote {
     border-left: 5px solid #eee;
     font-style: italic;
-    margin: em(15) 0;
-    padding: em(10) em(20);
+    margin: to-rem(15) 0;
+    padding: to-rem(10) to-rem(20);
 }
 
 p {
@@ -286,10 +286,10 @@ pre tt:after {
 @mixin font-size-map($font-size-map) {
     @each $breakpoint, $font-size in $font-size-map {
         @if $breakpoint == null {
-            font-size: em($font-size);
+            font-size: to-rem($font-size);
         } @else {
             @include breakpoint($breakpoint) {
-                font-size: em($font-size);
+                font-size: to-rem($font-size);
             }
         }
     }

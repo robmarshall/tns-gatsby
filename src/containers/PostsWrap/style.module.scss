@@ -1,6 +1,6 @@
-@import '../../sass/abstracts/abstracts';
+@import '../../sass/abstracts/_abstracts';
 
 .container {
-    margin-top: em(40);
-    padding-top: em(20);
+    margin-top: to-rem(40);
+    padding-top: to-rem(20);
 }

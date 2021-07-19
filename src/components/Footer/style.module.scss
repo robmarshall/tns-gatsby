@@ -1,12 +1,12 @@
-@import '../../sass/abstracts/abstracts';
+@import '../../sass/abstracts/_abstracts';
 
 .footer {
-    border: em(1) solid rgba(0, 0, 0, 0.05);
-    margin-top: em(10);
-    padding: em(20) 0;
+    border: to-rem(1) solid rgba(0, 0, 0, 0.05);
+    margin-top: to-rem(10);
+    padding: to-rem(20) 0;
     text-align: center;
 
-    @media only screen and (min-width: em(730px)) {
-        margin-top: em(20);
+    @media only screen and (min-width: to-rem(730px)) {
+        margin-top: to-rem(20);
     }
 }

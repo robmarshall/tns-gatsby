@@ -22,7 +22,12 @@ module.exports = {
     plugins: [
         `gatsby-plugin-preact`,
         `gatsby-plugin-react-helmet`,
-        `gatsby-plugin-sitemap`,
+        {
+            resolve: 'gatsby-plugin-sitemap',
+            options: {
+                output: '/',
+            },
+        },
         `gatsby-plugin-robots-txt`,
         `gatsby-plugin-force-trailing-slashes`,
         {
@@ -200,12 +205,6 @@ module.exports = {
             },
         },
         `gatsby-plugin-netlify`,
-        {
-            resolve: 'gatsby-plugin-netlify-cache',
-            options: {
-                cachePublic: true,
-            },
-        },
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.app/offline
         {

@@ -1,9 +1,9 @@
-@import '../../sass/abstracts/abstracts';
+@import '../../sass/abstracts/_abstracts';
 
 .pagination {
     border-radius: 5px;
     display: inline-block;
-    margin: em(20px) 0;
+    margin: to-rem(20px) 0;
 
     &-wrap {
         display: block;
@@ -24,7 +24,7 @@
 
     &Item {
         display: inline-block;
-        margin: 0 em(5px);
+        margin: 0 to-rem(5px);
     }
 
     &Link {
@@ -35,11 +35,11 @@
         color: #292929;
         display: flex;
         font-family: Verdana, Geneva, sans-serif;
-        font-size: em(16px);
-        height: em(40);
+        font-size: to-rem(16px);
+        height: to-rem(40);
         justify-content: center;
         text-decoration: none;
-        width: em(40);
+        width: to-rem(40);
         @include animate-transition(all, 0.5s);
 
         &:hover {
@@ -54,9 +54,9 @@
 
         &-prev {
             &:after {
-                border-bottom: em(5px) solid transparent;
-                border-right: em(8px) solid #292929;
-                border-top: em(5px) solid transparent;
+                border-bottom: to-rem(5px) solid transparent;
+                border-right: to-rem(8px) solid #292929;
+                border-top: to-rem(5px) solid transparent;
                 content: '';
                 margin-top: 1px;
                 position: absolute;
@@ -65,9 +65,9 @@
 
         &-next {
             &:after {
-                border-bottom: em(5px) solid transparent;
-                border-left: em(8px) solid #292929;
-                border-top: em(5px) solid transparent;
+                border-bottom: to-rem(5px) solid transparent;
+                border-left: to-rem(8px) solid #292929;
+                border-top: to-rem(5px) solid transparent;
                 content: '';
                 margin-top: 1px;
                 position: absolute;
@@ -78,7 +78,7 @@
     &Word {
         display: none;
 
-        @media only screen and (min-width: em(1000px)) {
+        @media only screen and (min-width: to-rem(1000px)) {
             display: inline-block;
         }
     }

@@ -1,15 +1,15 @@
-@import '../../sass/abstracts/abstracts';
+@import '../../sass/abstracts/_abstracts';
 
 .container {
     color: #292929;
     margin: 0 auto;
-    padding-left: em(15);
-    padding-right: em(15);
+    padding-left: to-rem(15);
+    padding-right: to-rem(15);
     width: 100%;
 
-    @media only screen and (min-width: em(1000px)) {
+    @media only screen and (min-width: to-rem(1000px)) {
         margin: 0 auto;
-        max-width: em(960);
+        max-width: to-rem(960);
         padding-left: 0;
         padding-right: 0;
     }

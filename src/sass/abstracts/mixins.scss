@@ -1,0 +1,35 @@
+@use "sass:math";
+
+$browser-context: 16;
+
+/// Calculate REM size using PX value.
+/// @group utility
+/// @param {Number} $px-size - Size (PX)
+/// @example scss - Set a font size in rems.
+/// 	h1 {
+/// 		font-size: to-rem(24px);
+/// 	}
+/// @see {function} strip-unit
+@function to-rem($px-size) {
+    $rem-size: strip-unit(math.div($px-size, $browser-context));
+    @return $rem-size * 1rem;
+}
+
+/// Strip the unit from a value.
+/// @link https://css-tricks.com/snippets/sass/strip-unit-function/
+/// @group utility
+/// @param {Number} $value - Pixel value
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return math.div($number, $number * 0 + 1);
+    }
+    @return $number;
+}
+
+@mixin animate-transition($type, $time) {
+    -webkit-transition: $type $time ease;
+    -moz-transition: $type $time ease;
+    -ms-transition: $type $time ease;
+    -o-transition: $type $time ease;
+    transition: $type $time ease;
+}

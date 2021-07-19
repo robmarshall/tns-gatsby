@@ -1,4 +1,4 @@
-@import '../../sass/abstracts/abstracts';
+@import '../../sass/abstracts/_abstracts';
 
 .wrap {
     display: block;
@@ -6,9 +6,9 @@
 
 .date {
     display: inline-block;
-    font-size: em(16);
+    font-size: to-rem(16);
     font-style: italic;
-    margin: em(10) 0;
+    margin: to-rem(10) 0;
 }
 
 .updated {
@@ -16,8 +16,8 @@
     margin: 0;
 }
 
-@media only screen and (min-width: em(730px)) {
+@media only screen and (min-width: to-rem(730px)) {
     .date {
-        font-size: em(18);
+        font-size: to-rem(18);
     }
 }

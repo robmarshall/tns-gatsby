@@ -1,10 +1,10 @@
-@import '../../sass/abstracts/abstracts';
+@import '../../sass/abstracts/_abstracts';
 
 .header {
     background-color: #fff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
     left: 0;
-    padding: 0 em(20);
+    padding: 0 to-rem(20);
     position: fixed;
     right: 0;
     top: 0;
@@ -19,7 +19,7 @@
     }
 
     &Title {
-        font-size: em(30);
+        font-size: to-rem(30);
         margin: 0;
     }
 
@@ -29,7 +29,7 @@
     }
 }
 
-@media only screen and (min-width: em(730px)) {
+@media only screen and (min-width: to-rem(730px)) {
     .header {
         background-color: transparent;
         box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.05);
@@ -39,7 +39,7 @@
         }
 
         &Title {
-            font-size: em(40);
+            font-size: to-rem(40);
         }
     }
 }

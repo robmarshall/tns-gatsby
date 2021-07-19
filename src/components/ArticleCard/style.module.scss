@@ -1,13 +1,13 @@
-@import '../../sass/abstracts/abstracts';
+@import '../../sass/abstracts/_abstracts';
 
 .card {
     &Wrap {
-        margin-bottom: em(40);
+        margin-bottom: to-rem(40);
 
-        @media only screen and (min-width: em(730px)) {
-            margin-bottom: em(80);
+        @media only screen and (min-width: to-rem(730px)) {
+            margin-bottom: to-rem(80);
             &:last-of-type {
-                margin-bottom: em(10);
+                margin-bottom: to-rem(10);
             }
         }
     }
@@ -28,10 +28,10 @@
     }
 
     &Title {
-        font-size: em(30);
+        font-size: to-rem(30);
     }
 
     &Excerpt {
-        margin-top: em(20);
+        margin-top: to-rem(20);
     }
 }

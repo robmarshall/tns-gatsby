@@ -1,20 +1,20 @@
-@import '../../sass/abstracts/abstracts';
+@import '../../sass/abstracts/_abstracts';
 
 .wrap {
-    @media only screen and (min-width: em(730px)) {
+    @media only screen and (min-width: to-rem(730px)) {
         position: relative;
-        top: em(-45);
+        top: to-rem(-45);
     }
 }
 
 .mainTitle {
     font-weight: 700;
-    margin: em(15) 0 em(7) 0;
+    margin: to-rem(15) 0 to-rem(7) 0;
 }
 
 .item {
     background-color: #f5f5f5;
-    border-radius: em(5);
+    border-radius: to-rem(5);
     display: inline-block;
     margin: 0 0.25em 0.25em 0;
     padding: 0.25em 0.425em;
@@ -26,7 +26,7 @@
 
     &Name {
         font-family: 'arial';
-        font-size: em(16);
+        font-size: to-rem(16);
         text-decoration: none;
         @include animate-transition(all, 0.3s);
 

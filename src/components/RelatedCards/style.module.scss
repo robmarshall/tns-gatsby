@@ -1,15 +1,15 @@
-@import '../../sass/abstracts/abstracts';
+@import '../../sass/abstracts/_abstracts';
 
 .relatedWrap {
-    margin: em(40) 0;
+    margin: to-rem(40) 0;
 }
 
-@media only screen and (min-width: em(700px)) {
+@media only screen and (min-width: to-rem(700px)) {
     .relatedCards {
         display: flex;
     }
 
     .relatedWrap {
-        margin: em(60) 0;
+        margin: to-rem(60) 0;
     }
 }

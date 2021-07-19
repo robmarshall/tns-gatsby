@@ -1,15 +1,15 @@
-@import '../../sass/abstracts/abstracts';
+@import '../../sass/abstracts/_abstracts';
 
 .container {
-    margin: em(80) auto 0 auto;
-    max-width: em(700);
-    min-height: calc(100vh - (#{em(75)} + #{em(67)} + 3em + 1.25em));
-    padding-left: em(15);
-    padding-right: em(15);
+    margin: to-rem(80) auto 0 auto;
+    max-width: to-rem(700);
+    min-height: calc(100vh - (#{to-rem(75)} + #{to-rem(67)} + 3em + 1.25em));
+    padding-left: to-rem(15);
+    padding-right: to-rem(15);
     width: 100%;
 
-    @media only screen and (min-width: em(730px)) {
-        margin-top: em(140);
+    @media only screen and (min-width: to-rem(730px)) {
+        margin-top: to-rem(140);
         padding-left: 0;
         padding-right: 0;
     }
