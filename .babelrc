@@ -10,5 +10,14 @@
             }
         ]
     ],
-    "presets": [["babel-preset-gatsby"]]
+    "presets": [
+        [
+            "babel-preset-gatsby",
+            {
+                "targets": {
+                    "browsers": [">0.25%", "not dead"]
+                }
+            }
+        ]
+    ]
 }
