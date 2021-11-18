@@ -53,6 +53,12 @@ module.exports = {
                     timeout: 60000,
                     requestConcurrency: 2,
                 },
+                searchAndReplace: [
+                    {
+                        search: GATSBY_BACKEND_URL,
+                        replace: GATSBY_BASE_URL,
+                    },
+                ],
                 develop: {
                     hardCacheMediaFiles: true,
                 },
