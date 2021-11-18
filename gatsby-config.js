@@ -55,8 +55,8 @@ module.exports = {
                 },
                 searchAndReplace: [
                     {
-                        search: GATSBY_BACKEND_URL,
-                        replace: GATSBY_BASE_URL,
+                        search: process.env.GATSBY_BACKEND_URL,
+                        replace: process.env.GATSBY_BASE_URL,
                     },
                 ],
                 develop: {
