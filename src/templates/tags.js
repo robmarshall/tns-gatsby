@@ -39,9 +39,9 @@ const TagTemplate = ({ data, pageContext }) => {
 
                         return (
                             <ArticleCard
-                                key={node.slug}
+                                key={node.uri}
                                 count={count}
-                                slug={node.slug}
+                                uri={node.uri}
                                 image={image}
                                 imageTitle={imageTitle}
                                 imageAlt={imageAlt}

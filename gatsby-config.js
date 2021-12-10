@@ -8,15 +8,20 @@ require('dotenv').config({
     path: `.env.${activeEnv}`,
 })
 
+const reusables = {
+    author: 'Robert Marshall',
+    title: `Rob Marshall`,
+    description: `Web Developer, building with React, Headless WordPress and Gatsby.`,
+    url: `https://robertmarshall.dev`,
+}
+
 module.exports = {
     siteMetadata: {
         locale: `en_GB`, // Fallback
-        siteName: `T&S`, // Fallback
-        title: `Website Development Inspiration`,
-        description: `Website Development Inspiration, focused on React and Gatsby.`,
-        author: `@RobMarProd`,
-        url: `https://thoughtsandstuff.com`,
-        siteUrl: `https://thoughtsandstuff.com`,
+        title: reusables.title,
+        description: reusables.description,
+        author: `@robertmars`,
+        siteUrl: reusables.url,
         facebookAppID: `xxx`,
     },
     plugins: [
@@ -108,8 +113,8 @@ module.exports = {
                                     ...node,
                                     description: node.excerpt,
                                     date: node.date,
-                                    url: `${site.siteMetadata.siteUrl}/${node.slug}`,
-                                    guid: `${site.siteMetadata.siteUrl}/${node.slug}`,
+                                    url: `${site.siteMetadata.siteUrl}/${node.uri}`,
+                                    guid: `${site.siteMetadata.siteUrl}/${node.uri}`,
                                     categories:
                                         node.categories.nodes.length > 0
                                             ? node.categories.nodes.map(
@@ -129,7 +134,7 @@ module.exports = {
                     allWpPost {
                       nodes {
                         title
-                        slug
+                        uri
                         excerpt
                         content
                         categories {
@@ -143,10 +148,10 @@ module.exports = {
                   }
                 `,
                         output: '/rss.xml',
-                        title: 'T&S RSS Feed',
+                        title: `${reusables.title} Blog Feed`,
                         description:
-                            'Website Design and Development Inspiration',
-                        managingEditor: 'Robert Marshall',
+                            'Advice, hints and tips on developing with React, Headless WordPress, Gatsby and Jest',
+                        managingEditor: reusables.author,
                     },
                 ],
             },
@@ -157,7 +162,7 @@ module.exports = {
         {
             resolve: `gatsby-plugin-sharp`,
             options: {
-                defaultQuality: 100,
+                defaultQuality: 90,
             },
         },
         {
@@ -184,19 +189,19 @@ module.exports = {
         {
             resolve: `gatsby-plugin-plausible`,
             options: {
-                domain: `thoughtsandstuff.com`,
+                domain: `robertmarshall.dev`,
             },
         },
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `Thoughts and Stuff`,
-                short_name: `T&S`,
-                description: `Website Design and Development Inspiration`,
+                name: reusables.title,
+                short_name: `RMD`,
+                description: reusables.description,
                 lang: `en`,
                 start_url: `/`,
-                background_color: `#ffffff`,
-                theme_color: `#532ee7`,
+                background_color: `#fff`,
+                theme_color: `#fff`,
                 display: `standalone`,
                 icon: `src/favicon.png`,
             },

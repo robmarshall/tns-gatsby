@@ -5,6 +5,10 @@
     display: inline-block;
     margin: to-rem(20px) 0;
 
+    @media only screen and (min-width: to-rem(700px)) {
+        margin: to-rem(40px) 0;
+    }
+
     &-wrap {
         display: block;
         text-align: center;
@@ -25,12 +29,16 @@
     &Item {
         display: inline-block;
         margin: 0 to-rem(5px);
+
+        @media only screen and (min-width: to-rem(700px)) {
+            margin: 0 to-rem(7px);
+        }
     }
 
     &Link {
         align-items: center;
         background-color: #fff;
-        border-radius: 20%;
+        border-radius: 5px;
         box-shadow: 0 10px 30px -10px rgba(#532ee7, 0.5);
         color: #292929;
         display: flex;
@@ -41,6 +49,12 @@
         text-decoration: none;
         width: to-rem(40);
         @include animate-transition(all, 0.5s);
+
+        @media only screen and (min-width: to-rem(700px)) {
+            height: to-rem(50);
+            width: to-rem(50);
+            font-size: to-rem(20px);
+        }
 
         &:hover {
             box-shadow: 0 1px 1px rgba(#532ee7, 0.1);

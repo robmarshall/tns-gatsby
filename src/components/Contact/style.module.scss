@@ -1,0 +1,76 @@
+@import '../../sass/abstracts/_abstracts';
+
+.wrap {
+    padding: to-rem(20) 0;
+}
+
+.emailLink {
+    margin: 0 0 to-rem(10) 0;
+    font-size: to-rem(26);
+    text-align: center;
+}
+
+.emailLinkLink {
+    color: #532ee7;
+    text-decoration: none;
+    top: 0;
+    position: relative;
+    @include animate-transition(all, 0.5s);
+
+    &:hover {
+        color: darken(#532ee7, 30%);
+        top: to-rem(2);
+    }
+}
+
+.subLinks {
+    margin: to-rem(30) 0 0 0;
+}
+
+.subLinksLink {
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    top: 0;
+    position: relative;
+    margin: to-rem(10) to-rem(10) 0 0;
+    color: #532ee7;
+    @include animate-transition(all, 0.5s);
+
+    &:hover {
+        color: darken(#532ee7, 30%);
+        top: to-rem(5);
+    }
+}
+
+@media only screen and (min-width: to-rem(700px)) {
+    .wrap {
+        padding: to-rem(30) 0;
+    }
+
+    .emailLink {
+        font-size: to-rem(30);
+        text-align: left;
+    }
+
+    .subLinksLink {
+        text-align: left;
+        display: inline-block;
+    }
+
+    .subLinksLink {
+        margin: to-rem(10) to-rem(20) 0 0;
+    }
+}
+
+@media only screen and (min-width: to-rem(1000px)) {
+    .wrap {
+        padding: to-rem(80) 0;
+    }
+    .emailLink {
+        font-size: to-rem(40);
+    }
+    .subLinksLink {
+        margin: to-rem(10) to-rem(30) 0 0;
+    }
+}

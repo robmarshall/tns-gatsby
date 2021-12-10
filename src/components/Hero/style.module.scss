@@ -1,0 +1,55 @@
+@import '../../sass/abstracts/_abstracts';
+
+.hero {
+    margin-top: to-rem(-20);
+    padding: to-rem(30) 0;
+    min-height: 80vh;
+    background-color: #fff;
+}
+
+.title {
+    line-height: to-rem(50);
+    font-weight: 500;
+
+    a {
+        color: #532ee7;
+        text-decoration: none;
+        top: 0;
+        position: relative;
+        @include animate-transition(all, 0.5s);
+    }
+
+    a:hover {
+        color: darken(#532ee7, 30%);
+        top: to-rem(2);
+    }
+}
+
+@media only screen and (min-width: to-rem(700px)) {
+    .hero {
+        margin-top: to-rem(-40);
+        padding: to-rem(50) 0;
+    }
+
+    .title {
+        width: 80%;
+        font-size: to-rem(30);
+    }
+}
+
+@media only screen and (min-width: to-rem(900px)) {
+    .hero {
+        margin-top: to-rem(-115);
+        padding: to-rem(195) 0;
+    }
+}
+
+@media only screen and (min-width: to-rem(1000px)) {
+    .hero {
+        padding: to-rem(210) 0 to-rem(130) 0;
+    }
+    .title {
+        width: 50%;
+        font-size: to-rem(40);
+    }
+}

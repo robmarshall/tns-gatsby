@@ -1,0 +1,56 @@
+@import '../../sass/abstracts/_abstracts';
+
+.list {
+    padding: to-rem(30) 0;
+    background-color: #f6f9fc;
+    list-style: none;
+}
+
+.single {
+    margin-top: to-rem(15);
+}
+
+.link {
+    position: relative;
+    text-decoration: none;
+    top: 0;
+    @include animate-transition(all, 0.3s);
+
+    &:hover {
+        top: to-rem(5);
+    }
+}
+
+.singleTitle {
+    font-weight: 500;
+}
+
+.desc p {
+    font-size: to-rem(18);
+}
+
+.title {
+    font-size: to-rem(26);
+    font-weight: 400;
+}
+
+@media only screen and (min-width: to-rem(700px)) {
+    .list {
+        padding: to-rem(40) 0;
+    }
+    .single {
+        margin-top: to-rem(40);
+    }
+    .title {
+        font-size: to-rem(30);
+    }
+}
+
+@media only screen and (min-width: to-rem(1000px)) {
+    .list {
+        padding: to-rem(80) 0;
+    }
+    .title {
+        font-size: to-rem(40);
+    }
+}

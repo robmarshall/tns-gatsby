@@ -14,11 +14,9 @@ function useSiteDefaults() {
                 site: site {
                     siteMetadata {
                         locale
-                        siteName
                         title
                         description
                         author
-                        url
                         siteUrl
                         facebookAppID
                     }

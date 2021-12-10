@@ -1,0 +1,44 @@
+@import '../../sass/abstracts/_abstracts';
+
+.wrap {
+    margin: to-rem(30) 0 to-rem(20) 0;
+    width: 90%;
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.item {
+    display: inline-block;
+    margin: 0 to-rem(10) to-rem(10) 0;
+}
+
+.link {
+    position: relative;
+    border-radius: to-rem(2);
+    text-decoration: none;
+    padding: to-rem(2) to-rem(8);
+    top: 0;
+    @include animate-transition(all, 0.5s);
+
+    &:hover {
+        top: to-rem(5);
+    }
+}
+
+@media only screen and (min-width: to-rem(1000px)) {
+    .wrap {
+        margin: to-rem(40) 0;
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: to-rem(1400px)) {
+    .wrap {
+        margin: to-rem(60) 0;
+        width: 40%;
+    }
+}

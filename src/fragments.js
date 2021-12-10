@@ -32,7 +32,7 @@ export const fragments = graphql`
     }
 
     fragment PostPreviewContent on WpPost {
-        slug
+        uri
         title
         cleanTitle
         content
@@ -51,14 +51,12 @@ export const fragments = graphql`
         categories {
             nodes {
                 name
-                slug
                 description
             }
         }
         tags {
             nodes {
                 name
-                slug
             }
         }
         seo {
@@ -84,47 +82,24 @@ export const fragments = graphql`
         categories {
             nodes {
                 name
-                slug
+                uri
                 description
             }
         }
         tags {
             nodes {
                 name
-                slug
+                uri
             }
         }
         seo {
             metaDesc
             title
-        }
-    }
-
-    fragment PageContent on WpPage {
-        title
-        cleanTitle
-        content
-        featuredImage {
-            node {
-                ...Facebook
-                ...Twitter
-            }
-        }
-        seo {
-            metaDesc
-            metaKeywords
-            metaRobotsNofollow
-            metaRobotsNoindex
-            opengraphDescription
-            opengraphTitle
-            title
-            twitterDescription
-            twitterTitle
         }
     }
 
     fragment RelatedContent on WpPost {
-        slug
+        uri
         title
         cleanTitle
         featuredImage {

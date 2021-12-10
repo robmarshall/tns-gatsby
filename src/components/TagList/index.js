@@ -1,14 +1,13 @@
 import React from 'react'
-import slugify from '../../utils/slugify'
 import Link from '../Link'
 import { wrap, itemList, item, itemName, mainTitle } from './style.module.scss'
 
 const TagList = ({ tags }) => {
     if (tags && tags.length > 0) {
-        const allTags = tags.map((tag) => (
-            <li key={slugify(tag.name)} className={item}>
-                <Link to={`/tag/${slugify(tag.name)}/`} className={itemName}>
-                    {tag.name}
+        const allTags = tags.map(({ name, uri }) => (
+            <li key={uri} className={item}>
+                <Link to={uri} className={itemName}>
+                    {name}
                 </Link>
             </li>
         ))

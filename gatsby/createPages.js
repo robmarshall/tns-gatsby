@@ -1,4 +1,3 @@
-const createPage = require('./create/page.js')
 const createPost = require('./create/post.js')
 const createCat = require('./create/cat.js')
 const createTag = require('./create/tag.js')
@@ -18,8 +17,7 @@ module.exports = async function createPages(props) {
 
     const perPage = wpSettings.wp.readingSettings.postsPerPage || 10
 
-    await createPage(props)
-    await createPost(props, { perPage, blogURI: '/' })
+    await createPost(props, { perPage, blogURI: '/blog/' })
     await createCat(props, { perPage })
     await createTag(props, { perPage })
 }

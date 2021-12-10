@@ -13,18 +13,12 @@ export default memo(
         description,
         image,
         postType,
-        organization,
         startDateTime,
         title,
         url,
         articleBody,
     }) => {
-        const {
-            logo,
-            site: {
-                siteMetadata: { siteName },
-            },
-        } = useSiteDefaults()
+        const { logo } = useSiteDefaults()
 
         const logoData = getSrc(logo?.childImageSharp)
 
@@ -56,63 +50,19 @@ export default memo(
                     description,
                     author: {
                         '@type': 'Person',
-                        name: author,
+                        name: 'Robert Marshall',
                     },
                     publisher: {
-                        '@type': 'Organization',
+                        '@type': 'Person',
                         url: siteUrl,
-                        logo: {
-                            '@type': 'ImageObject',
-                            url: logoData.src,
-                            width: 567,
-                            height: 544,
-                        },
-                        name: siteName,
+                        image: logoData.src,
+                        name: 'Robert Marshall',
                     },
                     mainEntityOfPage: {
                         '@type': 'WebSite',
                         '@id': url,
                     },
-                    dateModified,
-                    articleBody,
-                },
-            ]
-        }
-
-        if (postType === 'route' || postType === 'group') {
-            schema = [
-                ...schema,
-                {
-                    '@context': 'http://schema.org',
-                    '@type': 'BlogPosting',
-                    url,
-                    name: title,
-                    alternateName: defaultTitle,
-                    headline: title,
-                    image: {
-                        '@type': 'ImageObject',
-                        url: image,
-                    },
-                    description,
-                    author: {
-                        '@type': 'Organization',
-                        name: 'Run Leeds',
-                    },
-                    publisher: {
-                        '@type': 'Organization',
-                        url: siteUrl,
-                        logo: {
-                            '@type': 'ImageObject',
-                            url: logoData.src,
-                            width: 567,
-                            height: 544,
-                        },
-                        name: 'Run Leeds',
-                    },
-                    mainEntityOfPage: {
-                        '@type': 'WebSite',
-                        '@id': url,
-                    },
+                    wordCount: null,
                     dateModified,
                     articleBody,
                 },

@@ -15,33 +15,36 @@ const SEO = ({
     title,
     twitterPostImage,
     url,
+    keywords,
     yoastTitle,
     articleBody,
 }) => {
     // Pull data from WordPress and Gatsby config
     const { settings, site, facebookImage, twitterImage } = useSiteDefaults()
     const wpSettings = settings.allSettings
-    const fallback = site.siteMetadata
+    const meta = site.siteMetadata
 
-    const siteName = wpSettings.generalSettingsTitle || fallback.siteName
-    const tagLine =
-        wpSettings.generalSettingsDescription || fallback.description
+    const siteName = meta.title
+    let tagLine = meta.description
+    if (postType === 'post') {
+        tagLine = wpSettings.generalSettingsDescription
+    }
     const facebookImageFallback =
         facebookImage?.childImageSharp?.fixed?.src || false
 
     const twitterImageFallback =
         twitterImage?.childImageSharp?.fixed?.src || false
 
-    const pageDescription = description || fallback.description
+    const pageDescription = description || tagLine
 
     // Set the title from the browser. If there is a page title, set properly. Otherwise fall back
     let browserTitle = yoastTitle
     if (!browserTitle) {
         if (title) {
-            browserTitle = `${title} | ${siteName}`
+            browserTitle = `${title} | ${meta.title}`
         }
         if (!browserTitle) {
-            browserTitle = `${siteName} | ${tagLine}`
+            browserTitle = `${meta.title} | ${meta.description}`
         }
     }
 
@@ -60,7 +63,7 @@ const SEO = ({
         facebookImageFallback ||
         false
 
-    const postUrl = url ? `${fallback.siteUrl}${url}` : fallback.siteUrl
+    const postUrl = url ? `${meta.siteUrl}${url}` : meta.siteUrl
 
     return (
         <>
@@ -92,14 +95,11 @@ const SEO = ({
                     <meta
                         name="image"
                         property="og:image"
-                        content={fallback.siteUrl + facebookMetaImage}
+                        content={meta.siteUrl + facebookMetaImage}
                     />
                 )}
-                {fallback.facebookAppID && (
-                    <meta
-                        property="fb:app_id"
-                        content={fallback.facebookAppID}
-                    />
+                {meta.facebookAppID && (
+                    <meta property="fb:app_id" content={meta.facebookAppID} />
                 )}
                 {dateModified && (
                     <meta property="LastModifiedDate" content={dateModified} />
@@ -110,7 +110,7 @@ const SEO = ({
 
                 {/* Twitter Card tags */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:creator" content={fallback.author} />
+                <meta name="twitter:creator" content={meta.author} />
                 <meta name="twitter:title" content={browserTitle} />
                 {description && (
                     <meta name="twitter:description" content={description} />
@@ -118,19 +118,21 @@ const SEO = ({
                 {twitterMetaImage && (
                     <meta
                         name="twitter:image"
-                        content={fallback.siteUrl + twitterMetaImage}
+                        content={meta.siteUrl + twitterMetaImage}
                     />
+                )}
+                {keywords?.length > 0 && (
+                    <meta name="keywords" content={keywords.join(`, `)} />
                 )}
             </Helmet>
             <SchemaOrg
                 author={author}
                 url={url}
                 title={browserTitle}
-                image={fallback.siteUrl + facebookMetaImage}
+                image={meta.siteUrl + facebookMetaImage}
                 description={description}
                 dateModified={dateModified}
-                siteUrl={fallback.siteUrl}
-                organization="Thoughts and Stuff"
+                siteUrl={meta.siteUrl}
                 postType={postType}
                 defaultTitle={tagLine}
                 articleBody={articleBody}

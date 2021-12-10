@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
     return (
         <div>
             <SEO />
-            <Header siteTitle="T&S" />
+            <Header siteTitle="RM" />
             <div className={layout}>{children}</div>
             <Footer />
         </div>

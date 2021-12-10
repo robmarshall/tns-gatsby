@@ -18,6 +18,7 @@ const AllCategoriesList = () => (
                 allWpCategory {
                     nodes {
                         name
+                        uri
                     }
                 }
             }

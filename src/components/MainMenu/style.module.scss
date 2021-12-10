@@ -19,9 +19,11 @@
 
     &Item {
         text-align: center;
+        margin-left: to-rem(20);
 
         @media only screen and (min-width: to-rem(730px)) {
             margin-right: to-rem(20);
+            margin-left: 0;
             width: auto;
         }
 

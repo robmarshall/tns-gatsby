@@ -1,6 +1,5 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
-import slugify from '../../utils/slugify'
 import Link from '../Link'
 import { wrap, item, itemList, itemName, mainTitle } from './style.module.scss'
 
@@ -17,15 +16,12 @@ const List = ({ data }) => {
         <div className={wrap}>
             <p className={mainTitle}>Filter by category:</p>
             <ul className={itemList}>
-                {data.map((cat) => {
-                    if (!toIgnore.includes(cat.name)) {
+                {data.map(({ uri, name }) => {
+                    if (!toIgnore.includes(name)) {
                         return (
-                            <li key={slugify(cat.name)} className={item}>
-                                <Link
-                                    to={`/category/${slugify(cat.name)}/`}
-                                    className={itemName}
-                                >
-                                    {cat.name}
+                            <li key={uri} className={item}>
+                                <Link to={uri} className={itemName}>
+                                    {name}
                                 </Link>
                             </li>
                         )
@@ -44,6 +40,7 @@ const FilterCategories = () => (
                 allWpCategory {
                     nodes {
                         name
+                        uri
                     }
                 }
             }

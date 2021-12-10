@@ -12,7 +12,7 @@ import {
 
 const ArticleCard = ({
     count,
-    slug,
+    uri,
     image,
     imageTitle,
     imageAlt,
@@ -22,7 +22,7 @@ const ArticleCard = ({
     excerpt,
 }) => (
     <div className={cardWrap}>
-        <Link to={`/${slug}/`} className={cardLink}>
+        <Link to={uri} className={cardLink}>
             {image && (
                 <GatsbyImage
                     className={cardImage}

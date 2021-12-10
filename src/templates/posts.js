@@ -4,6 +4,7 @@ import { getImage } from 'gatsby-plugin-image'
 import ArticleCard from '../components/ArticleCard'
 import FilterCategories from '../components/FilterCategories'
 import Pagination from '../components/Pagination'
+import SEO from '../components/SEO/SEO'
 import ArticleContainer from '../containers/ArticleContainer'
 import PostsWrap from '../containers/PostsWrap'
 import Layout from '../containers/Layout'
@@ -19,6 +20,7 @@ const Posts = ({ data, pageContext }) => {
 
     return (
         <Layout>
+            <SEO yoastTitle="Blog | Discussing Gatsby, React, Jest & Headless WordPress, and More" />
             <ArticleContainer>
                 {currentPage === 1 && <FilterCategories />}
                 <PostsWrap>
@@ -33,9 +35,9 @@ const Posts = ({ data, pageContext }) => {
 
                         return (
                             <ArticleCard
-                                key={node.slug}
+                                key={node.uri}
                                 count={count}
-                                slug={node.slug}
+                                uri={node.uri}
                                 image={image}
                                 imageTitle={imageTitle}
                                 imageAlt={imageAlt}
@@ -49,7 +51,7 @@ const Posts = ({ data, pageContext }) => {
                 </PostsWrap>
 
                 <Pagination
-                    prefix="/"
+                    prefix={archivePath}
                     currentPage={pageInfo.currentPage}
                     pageCount={pageInfo.pageCount}
                 />

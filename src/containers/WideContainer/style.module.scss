@@ -1,0 +1,15 @@
+@import '../../sass/abstracts/_abstracts';
+
+.container {
+    padding-left: to-rem(20);
+    padding-right: to-rem(20);
+    margin: 0 auto;
+    width: 100%;
+
+    @media only screen and (min-width: to-rem(1430px)) {
+        padding-left: 0;
+        padding-right: 0;
+        margin: 0 auto;
+        max-width: to-rem(1400);
+    }
+}

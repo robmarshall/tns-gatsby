@@ -7,7 +7,12 @@ function makePageUrl(prefix, pageNum) {
     const end = pageNum === 0 ? '' : `page/${pageNum + 1}`
     const fullString = `${prefix}${end}`
     const cleanUrl = fullString.replace(/^\/+/g, '')
-    return process.env.GATSBY_BASE_URL + '/' + cleanUrl + '/'
+
+    if (pageNum === 0) {
+        return '/' + cleanUrl
+    }
+
+    return '/' + cleanUrl + '/'
 }
 
 const NextPrevLink = ({ next, prev, prefix, currentPage, totalPages }) => {
@@ -30,7 +35,12 @@ const NextPrevLink = ({ next, prev, prefix, currentPage, totalPages }) => {
         label = 'Next'
     }
 
-    if ((prev && currentPage === 1) || currentPage === totalPages) {
+    const onFirstPage = currentPage === 1
+    const onLastPage = currentPage === totalPages
+    const isPrevButton = prev
+    const isNextButton = next
+
+    if ((onFirstPage && isPrevButton) || onLastPage & isNextButton) {
         return null
     }
 
